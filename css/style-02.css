@@ -1,0 +1,78 @@
+:root, :host {
+    --Theme-BackgroundColor-default: #fff;
+    --Theme-BackgroundColor-default-rgb: 255, 255, 255;
+    --Theme-ForegroundColor-default: #000;
+    --Theme-ForegroundColor-default-rgb: 0, 0, 0;
+    
+          --Theme-ForegroundColor-0: #2e597a;
+          --Theme-ForegroundColor-0-rgb: 46,89,122;
+          --Theme-BackgroundColor-0: #2e597a;
+          --Theme-BackgroundColor-0-rgb: 46,89,122;
+          --Theme-ForegroundColor-1: #3da2b8;
+          --Theme-ForegroundColor-1-rgb: 61,162,184;
+          --Theme-BackgroundColor-1: #3da2b8;
+          --Theme-BackgroundColor-1-rgb: 61,162,184;
+          --Theme-ForegroundColor-2: #7f129a;
+          --Theme-ForegroundColor-2-rgb: 127,18,154;
+          --Theme-BackgroundColor-2: #7f129a;
+          --Theme-BackgroundColor-2-rgb: 127,18,154;
+          --Theme-ForegroundColor-3: #b79b41;
+          --Theme-ForegroundColor-3-rgb: 183,155,65;
+          --Theme-BackgroundColor-3: #b79b41;
+          --Theme-BackgroundColor-3-rgb: 183,155,65;
+          --Theme-ForegroundColor-4: #001f3a;
+          --Theme-ForegroundColor-4-rgb: 0,31,58;
+          --Theme-BackgroundColor-4: #001f3a;
+          --Theme-BackgroundColor-4-rgb: 0,31,58;
+          --Theme-ForegroundColor-5: #004454;
+          --Theme-ForegroundColor-5-rgb: 0,68,84;
+          --Theme-BackgroundColor-5: #004454;
+          --Theme-BackgroundColor-5-rgb: 0,68,84;
+          --Theme-ForegroundColor-6: #2e003b;
+          --Theme-ForegroundColor-6-rgb: 46,0,59;
+          --Theme-BackgroundColor-6: #2e003b;
+          --Theme-BackgroundColor-6-rgb: 46,0,59;
+          --Theme-ForegroundColor-7: #1c2640;
+          --Theme-ForegroundColor-7-rgb: 28,38,64;
+          --Theme-BackgroundColor-7: #1c2640;
+          --Theme-BackgroundColor-7-rgb: 28,38,64;
+          --Theme-ForegroundColor-8: #FFF;
+          --Theme-ForegroundColor-8-rgb: 255,255,255;
+          --Theme-BackgroundColor-8: #FFF;
+          --Theme-BackgroundColor-8-rgb: 255,255,255;
+          --Theme-ForegroundColor-9: #000;
+          --Theme-ForegroundColor-9-rgb: 0,0,0;
+          --Theme-BackgroundColor-9: #000;
+          --Theme-BackgroundColor-9-rgb: 0,0,0;
+    
+          --Theme-ForegroundColorCustom-nOATQY: rgb(34, 34, 34);
+          --Theme-ForegroundColorCustom-nOATQY-rgb: 34,34,34;
+          --Theme-ForegroundColorCustom-nOATQY-a: 1;
+          --Theme-BackgroundColorCustom-nOATQY: rgb(34, 34, 34);
+          --Theme-BackgroundColorCustom-nOATQY-rgb: 34,34,34;
+          --Theme-BackgroundColorCustom-nOATQY-a: 1;
+          --Theme-ForegroundColorCustom-H23ARt: rgba(110,72,30,1);
+          --Theme-ForegroundColorCustom-H23ARt-rgb: 110,72,30;
+          --Theme-ForegroundColorCustom-H23ARt-a: 1;
+          --Theme-BackgroundColorCustom-H23ARt: rgba(110,72,30,1);
+          --Theme-BackgroundColorCustom-H23ARt-rgb: 110,72,30;
+          --Theme-BackgroundColorCustom-H23ARt-a: 1;
+          --Theme-ForegroundColorCustom-MrQM95: rgba(247,230,196,1);
+          --Theme-ForegroundColorCustom-MrQM95-rgb: 247,230,196;
+          --Theme-ForegroundColorCustom-MrQM95-a: 1;
+          --Theme-BackgroundColorCustom-MrQM95: rgba(247,230,196,1);
+          --Theme-BackgroundColorCustom-MrQM95-rgb: 247,230,196;
+          --Theme-BackgroundColorCustom-MrQM95-a: 1;
+  }
+              .Theme-Section-Light {
+                --Theme-ForegroundColor-default: #000;
+                --Theme-ForegroundColor-default-rgb: 0, 0, 0;
+                --Theme-BackgroundColor-default: #fff;
+                --Theme-BackgroundColor-default-rgb: 255, 255, 255;
+              }
+              .Theme-Section-Dark {
+                --Theme-BackgroundColor-default: #000;
+                --Theme-BackgroundColor-default-rgb: 0, 0, 0;
+                --Theme-ForegroundColor-default: #fff;
+                --Theme-ForegroundColor-default-rgb: 255, 255, 255;
+              }

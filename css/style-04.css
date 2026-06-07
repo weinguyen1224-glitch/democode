@@ -1,0 +1,69 @@
+@font-face {
+      font-family: "CircularXXSub";
+      src:
+        url("/fonts/CircularXXSub-Book.woff") format("woff"),
+        url("/fonts/CircularXXSub-Book.woff2") format("woff2");
+      font-weight: 500;
+    }
+ body.scroll-lock {
+  overflow: hidden;
+ }
+ #shorthand-preview-overlay {
+ -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+ height: 100%;
+ transition: all 1s;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,1.0), rgba(255,255,255,1.0), rgba(255,255,255,0.85));
+}
+
+ #shorthand-preview-overlay div {
+  margin: auto auto;
+  width: clamp(400px, 60vw, 600px);
+  height: min(35vh, 400px);
+  padding: 0 50px;
+  font-family: CircularXXSub, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+}
+
+ #shorthand-preview-overlay h3 {
+  font-weight: 500;
+  font-size: min(max(4vw, 3.6vh), 30pt);
+  margin: 0;
+ }
+
+ #shorthand-preview-overlay p {
+  font-weight: 400;
+  font-size: min(max(2vw,1.8vh), 18pt);
+ }
+
+ #shorthand-preview-overlay button {
+  color: white;
+  background-color: rgb(18,191,156);
+  border: 1px solid rgb(18,191,156);
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 0px 5px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  width: 14em;
+  cursor: pointer;
+ }
+  
+ #shorthand-preview-overlay button:hover, #shorthand-preview-overlay button:focus {
+  background-color: rgb(19, 205, 167);
+  border-color: rgb(19, 205,167);
+ }
+ #shorthand-preview-overlay button:active {
+  background-color: rgb(17, 177, 145);
+  border-color: rgb(17, 177, 145);
+ }
