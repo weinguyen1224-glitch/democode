@@ -69,7 +69,9 @@
   text-decoration: none;
   border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow: 0 10px 28px rgb(0 0 0 / 0.28);
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
 }
 
 .intro-button:hover,
@@ -83,8 +85,13 @@
 }
 
 @media (max-width: 700px) {
-  .intro-copy { align-items: center; padding-bottom: clamp(24px, 6vw, 80px); }
-  .intro-card { border-radius: 14px; }
+  .intro-copy {
+    align-items: center;
+    padding-bottom: clamp(24px, 6vw, 80px);
+  }
+  .intro-card {
+    border-radius: 14px;
+  }
 }
 
 /* Creative scene transitions: additive only, independent from Shorthand effects. */
@@ -101,11 +108,20 @@
   z-index: 2;
   pointer-events: none;
   background:
-    linear-gradient(115deg, transparent 0 38%, rgb(255 255 255 / 0.16) 48%, transparent 58% 100%),
-    radial-gradient(circle at calc(var(--scene-ratio) * 100%) 50%, rgb(255 255 255 / 0.12), transparent 34%);
+    linear-gradient(
+      115deg,
+      transparent 0 38%,
+      rgb(255 255 255 / 0.16) 48%,
+      transparent 58% 100%
+    ),
+    radial-gradient(
+      circle at calc(var(--scene-ratio) * 100%) 50%,
+      rgb(255 255 255 / 0.12),
+      transparent 34%
+    );
   mix-blend-mode: soft-light;
   opacity: clamp(0, calc((var(--scene-ratio) - 0.08) * 1.2), 0.42);
-  transform: translate3d(calc((var(--scene-ratio) - .5) * 16vw), 0, 0);
+  transform: translate3d(calc((var(--scene-ratio) - 0.5) * 16vw), 0, 0);
   transition: opacity 180ms linear;
 }
 
@@ -117,7 +133,7 @@
   width: 100%;
   height: 3px;
   pointer-events: none;
-  background: linear-gradient(90deg, #fff, rgb(255 255 255 / .42));
+  background: linear-gradient(90deg, #fff, rgb(255 255 255 / 0.42));
   transform: scaleX(0);
   transform-origin: left center;
   will-change: transform;
@@ -133,10 +149,10 @@
   aspect-ratio: 1;
   pointer-events: none;
   border-radius: 999px;
-  background: radial-gradient(circle, rgb(255 255 255 / .18), transparent 68%);
+  background: radial-gradient(circle, rgb(255 255 255 / 0.18), transparent 68%);
   filter: blur(28px);
   mix-blend-mode: overlay;
-  opacity: .72;
+  opacity: 0.72;
   will-change: transform;
 }
 
@@ -156,7 +172,7 @@
   height: 6px;
   z-index: 2147483647;
   background: linear-gradient(90deg, #ffffff, #d7d7d7, #ffffff);
-  box-shadow: 0 0 18px rgb(255 255 255 / .55);
+  box-shadow: 0 0 18px rgb(255 255 255 / 0.55);
 }
 
 .scene-wipe {
@@ -166,23 +182,35 @@
   z-index: 2000;
   pointer-events: none;
   background:
-    linear-gradient(105deg, transparent 0 42%, rgb(255 255 255 / .24) 49%, transparent 57% 100%),
-    radial-gradient(circle at 50% 50%, rgb(255 255 255 / .16), transparent 42%);
+    linear-gradient(
+      105deg,
+      transparent 0 42%,
+      rgb(255 255 255 / 0.24) 49%,
+      transparent 57% 100%
+    ),
+    radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.16), transparent 42%);
   mix-blend-mode: screen;
-  opacity: .14;
-  filter: blur(.2px);
+  opacity: 0.14;
+  filter: blur(0.2px);
   will-change: opacity, transform;
-  transition: opacity 160ms linear, transform 220ms ease-out;
+  transition:
+    opacity 160ms linear,
+    transform 220ms ease-out;
 }
 
 .scene-orb {
   display: none;
   z-index: 1999;
   width: min(46vw, 560px);
-  background: radial-gradient(circle, rgb(255 255 255 / .28), rgb(255 255 255 / .10) 36%, transparent 72%);
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.28),
+    rgb(255 255 255 / 0.1) 36%,
+    transparent 72%
+  );
   filter: blur(18px);
   mix-blend-mode: screen;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 #article > header[id^="section-"]::before,
@@ -215,10 +243,15 @@
 
 .v2-transition-layer::before {
   inset: -25vh -40vw;
-  background: linear-gradient(108deg, transparent 0 44%, rgb(255 255 255 / .30) 49%, transparent 56% 100%);
-  opacity: .34;
+  background: linear-gradient(
+    108deg,
+    transparent 0 44%,
+    rgb(255 255 255 / 0.3) 49%,
+    transparent 56% 100%
+  );
+  opacity: 0.34;
   transform: translateX(-70vw) rotate(0.001deg);
-  animation: v2-light-sweep 5.8s cubic-bezier(.22,1,.36,1) infinite;
+  animation: v2-light-sweep 5.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .v2-transition-layer::after {
@@ -227,7 +260,7 @@
   width: 100%;
   height: 5px;
   background: linear-gradient(90deg, transparent, #fff, transparent);
-  box-shadow: 0 0 20px rgb(255 255 255 / .8);
+  box-shadow: 0 0 20px rgb(255 255 255 / 0.8);
   animation: v2-top-line 2.4s ease-in-out infinite alternate;
 }
 
@@ -237,9 +270,14 @@
   left: 8vw;
   top: 18vh;
   border-radius: 999px;
-  background: radial-gradient(circle, rgb(255 255 255 / .32), rgb(255 255 255 / .10) 42%, transparent 72%);
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.32),
+    rgb(255 255 255 / 0.1) 42%,
+    transparent 72%
+  );
   filter: blur(18px);
-  opacity: .75;
+  opacity: 0.75;
   animation: v2-orb 7.2s ease-in-out infinite alternate;
 }
 
@@ -248,31 +286,62 @@
   height: 160vh;
   right: 10vw;
   top: -30vh;
-  background: linear-gradient(180deg, transparent, rgb(255 255 255 / .16), transparent);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(255 255 255 / 0.16),
+    transparent
+  );
   transform: rotate(18deg);
-  opacity: .45;
+  opacity: 0.45;
   animation: v2-ribbon 6.4s ease-in-out infinite alternate;
 }
 
 @keyframes v2-light-sweep {
-  0%, 18% { transform: translateX(-75vw); opacity: 0; }
-  38% { opacity: .34; }
-  62%, 100% { transform: translateX(75vw); opacity: 0; }
+  0%,
+  18% {
+    transform: translateX(-75vw);
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.34;
+  }
+  62%,
+  100% {
+    transform: translateX(75vw);
+    opacity: 0;
+  }
 }
 
 @keyframes v2-top-line {
-  from { transform: translateX(-35%) scaleX(.35); opacity: .45; }
-  to { transform: translateX(35%) scaleX(.8); opacity: .95; }
+  from {
+    transform: translateX(-35%) scaleX(0.35);
+    opacity: 0.45;
+  }
+  to {
+    transform: translateX(35%) scaleX(0.8);
+    opacity: 0.95;
+  }
 }
 
 @keyframes v2-orb {
-  from { transform: translate3d(0, 0, 0) scale(.9); }
-  to { transform: translate3d(54vw, 28vh, 0) scale(1.18); }
+  from {
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+  to {
+    transform: translate3d(54vw, 28vh, 0) scale(1.18);
+  }
 }
 
 @keyframes v2-ribbon {
-  from { transform: translateX(18vw) rotate(18deg); opacity: .12; }
-  to { transform: translateX(-70vw) rotate(18deg); opacity: .45; }
+  from {
+    transform: translateX(18vw) rotate(18deg);
+    opacity: 0.12;
+  }
+  to {
+    transform: translateX(-70vw) rotate(18deg);
+    opacity: 0.45;
+  }
 }
 
 /* Slideshow covers: full bleed, preserve Shorthand transitions. */
