@@ -1,0 +1,347 @@
+﻿CHƯƠNG 1 - CỘI NGUỒN
+Mục tiêu:
+Giới thiệu vùng đất Kinh Bắc, truyền thuyết về bánh Phu Thê, làng nghề truyền thống và dẫn dắt người xem tới chiếc bánh Phu Thê.
+════════════════════════════
+PHẦN 1 - VÙNG ĐẤT KINH BẮC
+Layer:
+* Background thủy mặc
+* Ảnh cổng làng Kinh Bắc
+Mục đích:
+* Giới thiệu vùng đất Bắc Ninh, Đình Bảng.
+* Tạo cảm giác bắt đầu hành trình tìm về nguồn gốc bánh Phu Thê.
+Hiệu ứng:
+* Cổng làng xuất hiện khi người dùng cuộn tới phần này.
+* Background thủy mặc di chuyển nhẹ hoặc giữ cố định.
+* Nội dung giới thiệu Kinh Bắc hiển thị bên dưới hoặc bên cạnh ảnh.
+════════════════════════════
+PHẦN 2 - TRUYỀN THUYẾT BÁNH PHU THÊ
+Layer:
+* 01 tranh minh họa truyền thuyết
+Mục đích:
+* Kể câu chuyện nguồn gốc bánh Phu Thê.
+Hiệu ứng:
+* Tranh xuất hiện khi người dùng cuộn tới.
+* Nội dung truyền thuyết hiển thị bên cạnh tranh.
+* Cuộn tiếp chuyển sang phần tiếp theo.
+════════════════════════════
+PHẦN 3 - DẤU ẤN LỊCH SỬ
+Layer:
+* 01 hình ảnh minh họa lịch sử (cung đình nhà Lý hoặc tư liệu lịch sử)
+Mục đích:
+* Giới thiệu bánh Phu Thê là vật phẩm tiến vua.
+* Thể hiện mối liên hệ với vùng đất Đình Bảng.
+Hiệu ứng:
+* Hình ảnh xuất hiện khi người dùng cuộn tới.
+* Nội dung lịch sử hiển thị bên cạnh.
+════════════════════════════
+PHẦN 4 - LÀNG NGHỀ TRUYỀN THỐNG
+Layer:
+* 01 ảnh làng nghề hoặc nghệ nhân làm bánh
+Mục đích:
+* Giới thiệu nghề làm bánh Phu Thê tại Đình Bảng.
+* Kể câu chuyện truyền nghề qua nhiều thế hệ.
+Hiệu ứng:
+* Hình ảnh xuất hiện khi người dùng cuộn tới.
+* Nội dung về làng nghề hiển thị bên cạnh.
+════════════════════════════
+PHẦN 5 - CHIẾC BÁNH PHU THÊ
+Layer:
+* 01 ảnh bánh Phu Thê thành phẩm
+Mục đích:
+* Kết thúc Chương 1.
+* Khẳng định bánh Phu Thê là kết tinh của lịch sử, văn hóa và làng nghề Kinh Bắc.
+Hiệu ứng:
+* Ảnh bánh xuất hiện ở trung tâm màn hình.
+* Khi người dùng cuộn tiếp, camera zoom dần vào bánh.
+* Chuyển sang Chương 2.
+════════════════════════════
+
+
+
+
+TỔNG ASSET CẦN CHUẨN BỊ
+   1. Background thủy mặc .
+   2. Ảnh cổng làng Kinh Bắc  .
+   3. Tranh minh họa truyền thuyết bánh Phu Thê .
+   4. Ảnh minh họa lịch sử/cung đình nhà Lý.
+   5. Ảnh nghệ nhân làm bánh .
+   6. Ảnh bánh Phu Thê thành phẩm .
+
+
+
+
+
+
+CHƯƠNG 2 - CẤU TẠO
+
+Mục tiêu:
+Giúp người xem khám phá triết lý Ngũ Hành và ý nghĩa văn hóa được gửi gắm trong từng thành phần của bánh Phu Thê.
+════════════════════════════
+PHẦN 1 - NGŨ HÀNH TRONG CHIẾC BÁNH
+Layer:
+   * Bánh Phu Thê ở trung tâm 
+   * Mộc (Lá dong)
+   * Kim (Bột bánh, sợi dừa)
+   * Thủy (Nước kết dính)
+   * Hỏa (Dây lạt đỏ)
+   * Thổ (Nhân đậu xanh)
+Mục đích:
+   * Giới thiệu tổng thể triết lý Ngũ Hành trong bánh Phu Thê.
+   * Dẫn dắt người xem khám phá từng thành phần.
+Hiệu ứng:
+   * Bánh Phu Thê nằm ở trung tâm.
+   * 5 nguyên liệu đại diện cho Ngũ Hành bố trí thành vòng tròn xung quanh.
+   * Các nguyên liệu chuyển động nhẹ quanh bánh.
+   * Khi click vào từng nguyên liệu:
+   * Thành phần được highlight.
+   * Hiển thị ý nghĩa Ngũ Hành tương ứng.
+   * Phần liên quan trên bánh được làm nổi bật.
+════════════════════════════
+PHẦN 2 - HƯƠNG VỊ HÒA HỢP
+Layer:
+   * Vỏ bánh
+   * Nhân đậu xanh
+   * Sợi dừa
+   * Hoa bưởi
+Mục đích:
+   * Giới thiệu cảm nhận khi thưởng thức bánh.
+   * Liên hệ sự hòa hợp của nguyên liệu với sự hòa hợp trong hôn nhân.
+Hiệu ứng:
+   * Từng nguyên liệu xuất hiện khi người dùng cuộn xuống.
+   * Nội dung mô tả hương vị hiển thị bên cạnh.
+════════════════════════════
+PHẦN 3 - NGHỆ THUẬT CHẾ BIẾN
+Layer:
+   * Video/Cinemagraph nhào bột
+   * Video/Cinemagraph sên nhân đậu xanh
+   * Video/Cinemagraph gói bánh
+Mục đích:
+   * Thể hiện sự công phu trong quá trình làm bánh.
+   * Tôn vinh công sức và kỹ năng của người nghệ nhân.
+Hiệu ứng:
+   * Video ngắn tự động phát lặp.
+   * Chuyển động chậm nhấn mạnh từng công đoạn.
+════════════════════════════
+PHẦN 4 - KẾT THÚC CHƯƠNG
+Layer:
+   * Bánh Phu Thê hoàn chỉnh
+Mục đích:
+   * Tổng kết ý nghĩa Ngũ Hành và sự hòa hợp của các thành phần.
+   * Chuẩn bị chuyển sang chương tiếp theo.
+Hiệu ứng:
+   * Các nguyên liệu xung quanh thu dần về trung tâm.
+   * Hợp nhất thành chiếc bánh Phu Thê hoàn chỉnh.
+   * Camera zoom nhẹ vào bánh.
+   * Chuyển sang Chương 3.
+════════════════════════════
+TỔNG ASSET CẦN CHUẨN BỊ
+   1. Ảnh bánh Phu Thê hoàn chỉnh.
+   2. Layer lá dong (Mộc).
+   3. Layer bột bánh + sợi dừa (Kim).
+   4. Layer nước (Thủy).
+   5. Layer dây lạt đỏ (Hỏa).
+   6. Layer nhân đậu xanh (Thổ).
+   7. Layer hoa bưởi.
+   8. Video/Cinemagraph nhào bột.
+   9. Video/Cinemagraph sên nhân đậu xanh.
+   10. Video/Cinemagraph gói bánh.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHƯƠNG 3 - KỸ THUẬT (LẠT MỀM BUỘC CHẶT)
+Mục tiêu:
+Giới thiệu kỹ thuật buộc lạt trong bánh Phu Thê và triết lý nhân sinh được gửi gắm qua công đoạn này.
+════════════════════════════
+PHẦN 1 - NGHỆ THUẬT CHẺ LẠT
+Layer:
+   * Ảnh nghệ nhân chẻ lạt
+   * Ảnh sợi lạt đỏ thành phẩm
+Mục đích:
+   * Giới thiệu nguyên liệu và kỹ thuật làm lạt.
+   * Giải thích vì sao sợi lạt phải mỏng nhưng vẫn dai.
+Hiệu ứng:
+   * Ảnh xuất hiện khi người dùng cuộn tới.
+   * Nội dung hiển thị bên cạnh.
+════════════════════════════
+PHẦN 2 - KỸ NGHỆ BUỘC LẠT
+Layer:
+   * Ảnh cận cảnh bàn tay buộc lạt trên bánh
+Mục đích:
+   * Giới thiệu kỹ thuật buộc lạt.
+   * Giải thích nguyên tắc không quá lỏng, không quá chặt.
+Hiệu ứng:
+   * Ảnh xuất hiện khi người dùng cuộn tới.
+   * Nội dung hiển thị bên cạnh.
+════════════════════════════
+PHẦN 3 - NÚT THẮT VÀ Ý NGHĨA
+Layer:
+   * Ảnh cận cảnh nút thắt trên bánh
+Mục đích:
+   * Giới thiệu hình dáng nút thắt.
+   * Liên hệ với biểu tượng trọn vẹn và bền vững.
+Hiệu ứng:
+   * Click hoặc hover vào nút thắt.
+   * Hiển thị phần giải thích ý nghĩa.
+════════════════════════════
+PHẦN 4 - NHU THẮNG CƯƠNG
+Layer:
+   * Ảnh tre nứa
+   * Ảnh bánh đã được buộc lạt hoàn chỉnh
+Mục đích:
+   * Giải thích vì sao sử dụng lạt tre thay vì vật liệu khác.
+   * Liên hệ với triết lý mềm mỏng trong đời sống vợ chồng.
+Hiệu ứng:
+   * Hai hình ảnh xuất hiện song song.
+   * Nội dung giải thích hiển thị bên dưới.
+════════════════════════════
+PHẦN 5 - KẾT CHƯƠNG
+Layer:
+   * Ảnh bánh Phu Thê đã hấp chín với lạt đỏ buộc quanh lá xanh
+Mục đích:
+   * Tổng kết ý nghĩa kỹ thuật và triết lý nhân sinh.
+   * Nhấn mạnh hình ảnh "thuận vợ thuận chồng".
+Hiệu ứng:
+   * Ảnh xuất hiện toàn màn hình.
+   * Chuyển sang chương tiếp theo.
+════════════════════════════
+TỔNG ASSET CẦN CHUẨN BỊ
+      1. Ảnh nghệ nhân chẻ lạt.
+      2. Ảnh sợi lạt đỏ.
+      3. Ảnh bàn tay buộc lạt.
+      4. Ảnh cận cảnh nút thắt.
+      5. Ảnh tre/nứa.
+      6. Ảnh bánh Phu Thê hoàn chỉnh sau khi buộc lạt.
+CHƯƠNG 4 - BÁNH PHU THÊ TRONG ĐỜI SỐNG HẰNG NGÀY
+Mục tiêu:
+Cho người xem thấy bánh Phu Thê không chỉ là một món ăn mà đã trở thành biểu tượng trong cưới hỏi, trong đời sống hiện đại và trong văn hóa tặng quà của người Việt.
+════════════════════════════
+PHẦN 1 - "VỊ VUA KHÔNG NGAI" TRÊN MÂM LỄ ĂN HỎI
+Layer:
+      * Ảnh tráp ăn hỏi có bánh Phu Thê
+Mục đích:
+      * Giới thiệu vị thế đặc biệt của bánh Phu Thê trong lễ dạm ngõ và ăn hỏi.
+      * Giải thích vì sao bánh vẫn là lễ vật không thể thiếu.
+      * Giải thích ý nghĩa bánh đi theo cặp và ý nghĩa màu sắc trên mâm lễ.
+Hiệu ứng:
+      * Ảnh xuất hiện khi người dùng cuộn tới.
+      * Nội dung hiển thị bên cạnh.
+════════════════════════════
+PHẦN 2 - LỜI THỀ TRƯỚC TỔ TIÊN
+Layer:
+      * Ảnh bánh Phu Thê trên bàn thờ gia tiên
+Mục đích:
+      * Giải thích ý nghĩa của bánh trong nghi lễ gia tiên.
+      * Thể hiện lời cam kết gắn bó của đôi lứa trước tổ tiên hai họ.
+Hiệu ứng:
+      * Ảnh xuất hiện khi người dùng cuộn tới.
+      * Nội dung hiển thị bên cạnh.
+════════════════════════════
+PHẦN 3 - TỪ CHIẾC CHÕNG TRE LÀNG ĐẾN SẢNH TIỆC SANG TRỌNG
+Layer:
+      * Ảnh bánh Phu Thê truyền thống
+      * Ảnh bánh Phu Thê hiện đại
+Mục đích:
+      * Thể hiện sự thay đổi về hình thức qua thời gian.
+      * Cho thấy kỹ thuật làm bánh và giá trị văn hóa vẫn được giữ nguyên.
+Hiệu ứng:
+      * Before/After Slider.
+      * Kéo sang trái: bánh Phu Thê truyền thống tại chợ quê.
+      * Kéo sang phải: bánh Phu Thê trong hộp quà hoặc tráp cưới hiện đại.
+════════════════════════════
+PHẦN 4 - MÓN QUÀ CỦA HẠNH PHÚC
+Layer:
+      * Ảnh bánh Phu Thê làm quà biếu tặng
+Mục đích:
+      * Giới thiệu bánh Phu Thê như món quà mang lời chúc bình an và hạnh phúc.
+      * Kết thúc chương.
+Hiệu ứng:
+      * Ảnh xuất hiện khi người dùng cuộn tới.
+      * Nội dung hiển thị bên cạnh.
+════════════════════════════
+TỔNG ASSET CẦN CHUẨN BỊ
+      1. Ảnh tráp ăn hỏi có bánh Phu Thê.
+      2. Ảnh bánh Phu Thê trên bàn thờ gia tiên.
+      3. Ảnh bánh Phu Thê truyền thống.
+      4. Ảnh bánh Phu Thê hiện đại.
+      5. Ảnh bánh Phu Thê làm quà tặng.
+
+
+
+
+
+
+
+
+CHƯƠNG 5 - LỜI THỀ CÒN ĐÓ, VỊ NGỌT CÒN ĐÂY
+Mục tiêu:
+Khép lại hành trình khám phá bánh Phu Thê bằng những giá trị văn hóa, tình nghĩa vợ chồng và thông điệp về hạnh phúc bền vững.
+════════════════════════════
+PHẦN 1 - HẠNH PHÚC HÔM NAY
+Layer:
+      * Ảnh đôi trẻ trong trang phục áo dài truyền thống cầm tráp bánh Phu Thê trước cổng nhà cổ.
+Mục đích:
+      * Kết nối toàn bộ câu chuyện từ quá khứ đến hiện tại.
+      * Thể hiện bánh Phu Thê vẫn hiện diện trong đời sống người Việt ngày nay.
+Hiệu ứng:
+      * Ảnh toàn màn hình (Wide Shot).
+      * Nội dung tổng kết xuất hiện bên cạnh hoặc phía dưới.
+════════════════════════════
+PHẦN 2 - LỜI THỀ THỦY CHUNG
+Layer:
+      * Audio podcast chia sẻ của một cặp vợ chồng già.
+      * Ảnh nền tĩnh (sử dụng lại ảnh đôi trẻ hoặc ảnh bánh Phu Thê).
+Mục đích:
+      * Truyền tải ý nghĩa của sự thủy chung và đồng hành trong hôn nhân.
+      * Tạo cảm xúc trước khi kết thúc website.
+Hiệu ứng:
+      * Nút phát audio.
+      * Nhạc nền quan họ Bắc Ninh nhẹ nhàng.
+      * Hiển thị câu trích dẫn nổi bật trong lúc phát.
+════════════════════════════
+PHẦN 3 - ĐI TÌM GIÁ TRỊ CỐT LÕI
+Layer:
+      * Frame 1: Bánh Phu Thê còn nguyên lớp lá.
+      * Frame 2: Lớp lá mở khoảng 30%.
+      * Frame 3: Lớp lá mở khoảng 60%.
+      * Frame 4: Lớp lá mở hoàn toàn, lộ phần bánh vàng bên trong.
+Mục đích:
+      * Tạo hình ảnh ẩn dụ cho hành trình hôn nhân.
+      * Liên hệ việc đi qua những thăng trầm cuộc sống để tìm thấy giá trị cốt lõi của hạnh phúc.
+Hiệu ứng:
+      * Khi người dùng cuộn xuống, website lần lượt chuyển qua các frame.
+      * Frame 1 → Frame 2 → Frame 3 → Frame 4.
+      * Nội dung kết bài xuất hiện đồng thời với quá trình mở lá.
+      * Khi frame cuối xuất hiện, phần bánh vàng bên trong trở thành tâm điểm màn hình.
+Thông điệp:
+"Giống như chiếc bánh Phu Thê phải mở lớp lá xanh mới thấy được phần nhân vàng óng bên trong, con người cũng phải đi qua những thăng trầm của cuộc sống mới tìm thấy giá trị cốt lõi của hạnh phúc và sự gắn bó."
+════════════════════════════
+PHẦN 4 - THƯỞNG BÁNH
+Layer:
+      * Ảnh bánh Phu Thê thành phẩm.
+Mục đích:
+      * Khép lại toàn bộ hành trình khám phá.
+      * Để lại dư vị về một món bánh chứa đựng lịch sử, văn hóa và đạo nghĩa vợ chồng.
+Hiệu ứng:
+      * Ảnh bánh xuất hiện ở trung tâm màn hình.
+      * Hiện thông điệp kết thúc website.
+      * Nút kêu gọi người dùng khám phá hoặc thưởng thức bánh Phu Thê.
+════════════════════════════
+TỔNG ASSET CẦN CHUẨN BỊ
+      1. Ảnh đôi trẻ cầm tráp bánh Phu Thê.
+      2. Audio podcast + nhạc nền quan họ.
+      3. Frame 1 - Bánh nguyên lá.
+      4. Frame 2 - Lá mở 30%.
+      5. Frame 3 - Lá mở 60%.
+      6. Frame 4 - Lá mở hoàn toàn.
+      7. Ảnh bánh Phu Thê thành phẩm.
