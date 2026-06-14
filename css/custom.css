@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: clamp(24px, 6vw, 80px);
 }
 
@@ -273,4 +273,26 @@
 @keyframes v2-ribbon {
   from { transform: translateX(18vw) rotate(18deg); opacity: .12; }
   to { transform: translateX(-70vw) rotate(18deg); opacity: .45; }
+}
+
+/* Slideshow covers: full bleed, preserve Shorthand transitions. */
+sh-background-transition .Theme-Item-Picture img {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Hero: 100vh full-bleed cover. */
+#section-r44SGFDar3 {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+#section-r44SGFDar3 .Theme-BackgroundMedia {
+  position: absolute !important;
+  inset: 0 !important;
+}
+#section-r44SGFDar3 .Theme-BackgroundMedia img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
 }
