@@ -60,31 +60,26 @@
   addEventListener("resize", requestUpdate, { passive: true });
   update();
 })();
-
 /* ═══════════════════════════════════════════════════════════ */
-/* CHƯƠNG I — Scroll-reveal + zoom transition                    */
+/* CHƯƠNG I — Scroll-reveal for narrative scenes                */
 /* ═══════════════════════════════════════════════════════════ */
 
 (() => {
-  const revealEls = document.querySelectorAll('.bpt-scroll-reveal');
-  if (!revealEls.length) return;
+  const reveals = document.querySelectorAll('.bpt-reveal');
+  if (!reveals.length) return;
 
-  const revealObserver = new IntersectionObserver(
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('bpt-revealed');
-          // Zoom effect on the final Chương I section
-          const zoomTarget = entry.target.querySelector('.bpt-scene--zoom-target');
-          if (zoomTarget) {
-            zoomTarget.classList.add('bpt-zoomed');
-          }
-          revealObserver.unobserve(entry.target);
+          entry.target.classList.add('bpt-visible');
+          observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.2, rootMargin: '0px 0px -40px 0px' }
   );
 
-  revealEls.forEach((el) => revealObserver.observe(el));
+  reveals.forEach((el) => observer.observe(el));
 })();
+
