@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bánh Phu Thê - Component Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Vollkorn:ital,wght@0,400;0,700;1,400&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: #F7E8CB;
+      font-family: var(--font-body);
+    }
+    .demo-section {
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: rgba(255,255,255,0.3);
+      border-radius: 12px;
+    }
+    .demo-section h2 {
+      font-family: var(--font-display);
+      color: var(--color-red-thread);
+      margin-bottom: 1.5rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-section">
+    <h2>1. Typography System</h2>
+    <div class="demo-grid">
+      <p class="bpt-hero-title">BÁNH PHU THÊ</p>
+      <p class="bpt-subtitle">Bánh phu thê, lạt mềm buộc chặt</p>
+      <p class="bpt-body">Đôi ta như bánh phu thê / Đẹp duyên, vẹn nghĩa, chẳng nề gian nan.</p>
+      <p class="bpt-quote">"Tình yêu như chiếc bánh, cần sự kiên nhẫn để nặn nên hạnh phúc."</p>
+      <p class="bpt-kicker">ĐÌNH BẢNG - TỪ SƠN BẮC NINH</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Color Palette</h2>
+    <div class="demo-grid">
+      <div style="padding:2rem;background:var(--color-rice-paper);border:1px solid #ccc;border-radius:8px;">Rice Paper #F7E8CB</div>
+      <div style="padding:2rem;background:var(--color-sticky-rice-gold);border-radius:8px;">Sticky Rice Gold #F8D077</div>
+      <div style="padding:2rem;background:var(--color-betel-leaf-green);color:white;border-radius:8px;">Betel Leaf Green #698456</div>
+      <div style="padding:2rem;background:var(--color-red-thread);color:white;border-radius:8px;">Red Thread #972023</div>
+      <div style="padding:2rem;background:var(--color-ink);color:white;border-radius:8px;">Ink #221A14</div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Cards</h2>
+    <div class="demo-grid">
+      <div class="bpt-card">
+        <h3 class="bpt-section-title" style="font-size:1.5rem;">Paper Card</h3>
+        <p class="bpt-body">This is a standard card with the rice paper background texture and subtle border.</p>
+      </div>
+      <div class="bpt-glass" style="padding:2rem;">
+        <h3 style="color:white;margin-top:0;">Glassmorphism Card</h3>
+        <p style="color:white;opacity:0.9;">This glass effect should be used on dark backgrounds only.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Ngũ Hành Interactive (Click để test)</h2>
+    <div class="bpt-ngu-hanh-orbit" style="width:400px;height:400px;margin:0 auto;">
+      <div class="bpt-banh-center">
+        <img src="assets/images/asset-12-416x415-d5bcd2f153.png" alt="Bánh Phu Thê">
+      </div>
+      <div class="bpt-ngu-hanh-item" data-element="moc">🌿</div>
+      <div class="bpt-ngu-hanh-item" data-element="kim">⚪</div>
+      <div class="bpt-ngu-hanh-item" data-element="tho">🟡</div>
+      <div class="bpt-ngu-hanh-item" data-element="hoa">🔴</div>
+      <div class="bpt-ngu-hanh-item" data-element="thuy">🔵</div>
+    </div>
+    <div class="bpt-ngu-hanh-info" style="position:static;transform:none;margin-top:2rem;">
+      <h4 class="bpt-ngu-hanh-info-title">Chọn một nguyên tố</h4>
+      <p class="bpt-ngu-hanh-info-desc">Click vào các biểu tượng Ngũ Hành để khám phá ý nghĩa.</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Before/After Slider</h2>
+    <div class="bpt-before-after" style="height:400px;">
+      <img class="bpt-after-img" src="assets/images/cover-2-16x9-750x422.png" alt="After">
+      <img class="bpt-before-img" src="assets/images/cover-1-16x9-750x422.png" alt="Before">
+      <div class="bpt-slider-handle">
+        <div class="bpt-slider-handle-icon">↔</div>
+      </div>
+      <div class="bpt-slider-labels">
+        <span class="bpt-slider-label">Thời xưa</span>
+        <span class="bpt-slider-label">Hiện nay</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. Audio Player</h2>
+    <div class="bpt-audio-player">
+      <div class="bpt-audio-header">
+        <button class="bpt-play-btn" aria-label="Phát">▶</button>
+        <div class="bpt-audio-info">
+          <h4>Quan họ Bắc Ninh</h4>
+          <p>Dân ca đám cưới truyền thống</p>
+        </div>
+      </div>
+      <div class="bpt-audio-progress-container">
+        <div class="bpt-audio-progress"></div>
+      </div>
+      <div class="bpt-audio-transcript">
+        <h5>Lời bài hát</h5>
+        <p>"Hát nói lên tình yêu đôi lứa, gửi gắm những lời thề son sắt qua điệu quan họ..."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>7. Scroll Reveal Test</h2>
+    <p>Scroll xuống để xem hiệu ứng:</p>
+    <div class="bpt-reveal" style="padding:2rem;background:white;border-radius:8px;margin:1rem 0;">
+      <h3>Reveal Fade Up</h3>
+      <p>Phần tử này sẽ hiện lên từ dưới khi scroll đến.</p>
+    </div>
+    <div class="bpt-reveal-left" style="padding:2rem;background:white;border-radius:8px;margin:1rem 0;">
+      <h3>Reveal Slide Left</h3>
+      <p>Phần tử này sẽ trượt từ trái sang.</p>
+    </div>
+    <div class="bpt-reveal-right" style="padding:2rem;background:white;border-radius:8px;margin:1rem 0;">
+      <h3>Reveal Slide Right</h3>
+      <p>Phần tử này sẽ trượt từ phải sang.</p>
+    </div>
+    <div class="bpt-red-thread" style="padding:2rem;background:white;border-radius:8px;margin:1rem 0;position:relative;">
+      <h3>Red Thread Accent</h3>
+      <p>Phần tử này có đường chỉ đỏ bên trái.</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>8. Chapter Divider</h2>
+    <div class="bpt-chapter-divider">
+      <div class="bpt-chapter-divider-content">
+        <span class="bpt-chapter-num">CHƯƠNG I</span>
+        <h2 class="bpt-section-title">Nguồn gốc</h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/custom.js"></script>
+</body>
+</html>

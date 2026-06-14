@@ -365,3 +365,275 @@ sh-background-transition .Theme-Item-Picture img {
   object-fit: cover !important;
   object-position: center center !important;
 }
+
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG I — Divider, Paper Card, Scroll Reveal, Red Thread   */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* --- CSS custom properties (FE-GUIDE §3 + UI-SPEC §17) --- */
+:root {
+  --color-rice-paper: #F7E8CB;
+  --color-sticky-rice-gold: #F8D077;
+  --color-betel-leaf-green: #698456;
+  --color-red-thread: #972023;
+  --color-ink: #221A14;
+  --color-cream-white: #FFF8EA;
+  --space-section: clamp(24px, 6vw, 80px);
+  --space-card: clamp(24px, 4vw, 48px);
+  --radius-card: 18px;
+  --radius-card-mobile: 14px;
+}
+
+/* --- Chapter divider (red-thread motif) --- */
+.bpt-chapter-divider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: var(--space-section);
+  background: var(--color-rice-paper);
+  overflow: hidden;
+}
+
+.bpt-divider-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bpt-divider-line {
+  display: block;
+  width: clamp(40px, 10vw, 120px);
+  height: 2px;
+  background: var(--color-red-thread);
+  border-radius: 1px;
+}
+
+.bpt-divider-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-red-thread);
+}
+
+.bpt-divider-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-betel-leaf-green);
+  text-align: center;
+  margin: 0;
+}
+
+.bpt-divider-sub {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-ink);
+  opacity: 0.72;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+/* Red-thread vertical accent behind divider */
+.bpt-chapter-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-red-thread) 30%, var(--color-red-thread) 70%, transparent 100%);
+  opacity: 0.12;
+  transform: translateX(-50%);
+}
+
+/* --- Paper card (FE-GUIDE §3.7 + UI-SPEC) --- */
+.bpt-paper-card {
+  position: relative;
+  width: min(620px, 92vw);
+  margin-inline: auto;
+  padding: var(--space-card);
+  color: var(--color-ink);
+  background: rgb(247 232 203 / 0.88);
+  border: 1px solid rgb(151 32 35 / 0.18);
+  border-radius: var(--radius-card);
+  box-shadow: 0 18px 60px rgb(34 26 20 / 0.12);
+}
+
+@media (max-width: 700px) {
+  .bpt-paper-card {
+    border-radius: var(--radius-card-mobile);
+  }
+}
+
+.bpt-card-kicker {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-red-thread);
+  margin: 0 0 8px;
+}
+
+.bpt-card-body {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.75;
+  margin: 0 0 16px;
+  color: var(--color-ink);
+}
+
+.bpt-card-body:last-child {
+  margin-bottom: 0;
+}
+
+.bpt-quote {
+  position: relative;
+  margin: 24px 0;
+  padding: 20px 24px;
+  font-family: 'Pacifico', 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.6;
+  color: var(--color-betel-leaf-green);
+  background: rgb(105 132 86 / 0.06);
+  border-left: 3px solid var(--color-red-thread);
+  border-radius: 0 8px 8px 0;
+}
+
+.bpt-quote p {
+  margin: 0;
+}
+
+/* --- Scene layouts --- */
+.bpt-scene {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section);
+}
+
+.bpt-scene--full {
+  flex-direction: column;
+}
+
+.bpt-scene--split {
+  flex-direction: row;
+  gap: clamp(24px, 4vw, 60px);
+  align-items: center;
+}
+
+.bpt-scene--reverse {
+  flex-direction: row-reverse;
+}
+
+.bpt-scene-visual {
+  flex: 0 0 clamp(200px, 30vw, 420px);
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-rice-paper);
+  border: 1px solid rgb(151 32 35 / 0.12);
+}
+
+.bpt-visual-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Vollkorn', serif;
+  font-size: 0.95rem;
+  color: var(--color-betel-leaf-green);
+  text-align: center;
+  padding: 24px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgb(105 132 86 / 0.04) 10px,
+    rgb(105 132 86 / 0.04) 20px
+  );
+}
+
+@media (max-width: 768px) {
+  .bpt-scene--split,
+  .bpt-scene--reverse {
+    flex-direction: column;
+  }
+  .bpt-scene-visual {
+    flex: 0 0 auto;
+    width: min(300px, 85vw);
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* --- Scroll-reveal animations --- */
+.bpt-scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bpt-scroll-reveal.bpt-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Split slide-in */
+.bpt-slide-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.bpt-slide-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.bpt-revealed .bpt-slide-left,
+.bpt-revealed .bpt-slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Zoom target for final Chương I section */
+.bpt-scene--zoom-target {
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bpt-scene--zoom-target.bpt-zoomed {
+  transform: scale(1.05);
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-scroll-reveal,
+  .bpt-slide-left,
+  .bpt-slide-right,
+  .bpt-scene--zoom-target {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- Section background on Chương I parts --- */
+#section-bpt-ch1-p1,
+#section-bpt-ch1-p2,
+#section-bpt-ch1-p3,
+#section-bpt-ch1-p4,
+#section-bpt-ch1-p5 {
+  background: var(--color-cream-white);
+}
