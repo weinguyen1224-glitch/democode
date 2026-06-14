@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a1010;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6a2020;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" style="stop-color:#d4a882;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#3a1010;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <rect x="50" y="50" width="1100" height="575" rx="12" fill="none" stroke="#97202344" stroke-width="2"/>
+  <!-- Two intertwined circles (union symbol) -->
+  <circle cx="540" cy="300" r="70" fill="none" stroke="#c4a88244" stroke-width="2"/>
+  <circle cx="660" cy="300" r="70" fill="none" stroke="#c4a88244" stroke-width="2"/>
+  <!-- Red thread -->
+  <path d="M200 320 Q350 250 500 300 Q550 320 540 300" fill="none" stroke="#97202366" stroke-width="1.5"/>
+  <path d="M660 300 Q700 320 800 280 Q950 250 1000 320" fill="none" stroke="#97202366" stroke-width="1.5"/>
+  <text x="600" y="460" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#d4a0a0" opacity="0.7">Chứng nhân của hạnh phúc</text>
+  <text x="600" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#d4a0a0" opacity="0.4">Lạt mềm buộc chặt — Tình nghĩa vợ chồng</text>
+  <text x="600" y="540" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#97202399">📸 Ảnh minh họa chưa có</text>
+</svg>

@@ -719,3 +719,315 @@ sh-background-transition .Theme-Item-Picture img {
     max-height: 50vh;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   STORYTELLING EFFECTS — lightweight, CSS-first, no lag
+   ══════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────
+   1. Stagger reveal for prose children
+   Kicker slides from left, paragraphs fade-up with delay
+   ────────────────────────────────────────── */
+.bpt-reveal .bpt-prose > .bpt-kicker,
+.bpt-reveal .bpt-prose > p,
+.bpt-reveal .bpt-prose > blockquote {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-reveal .bpt-prose > .bpt-kicker {
+  transform: translateX(-24px) translateY(0);
+}
+
+/* Stagger: each child gets an increasing delay via CSS custom property */
+.bpt-reveal .bpt-prose > *:nth-child(1) { transition-delay: 0s; }
+.bpt-reveal .bpt-prose > *:nth-child(2) { transition-delay: 0.12s; }
+.bpt-reveal .bpt-prose > *:nth-child(3) { transition-delay: 0.24s; }
+.bpt-reveal .bpt-prose > *:nth-child(4) { transition-delay: 0.36s; }
+.bpt-reveal .bpt-prose > *:nth-child(5) { transition-delay: 0.48s; }
+.bpt-reveal .bpt-prose > *:nth-child(6) { transition-delay: 0.56s; }
+.bpt-reveal .bpt-prose > *:nth-child(7) { transition-delay: 0.62s; }
+
+/* When scene is visible, reveal children */
+.bpt-reveal.bpt-visible .bpt-prose > .bpt-kicker,
+.bpt-reveal.bpt-visible .bpt-prose > p,
+.bpt-reveal.bpt-visible .bpt-prose > blockquote {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* ──────────────────────────────────────────
+   2. Ca-dao quote — border grows + text fades
+   ────────────────────────────────────────── */
+.bpt-ca-dao {
+  border-left-width: 0;
+  border-left-style: solid;
+  border-left-color: var(--color-red-thread);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    border-left-width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.bpt-ca-dao.bpt-quote-visible {
+  opacity: 1;
+  transform: translateY(0);
+  border-left-width: 3px;
+}
+
+/* ──────────────────────────────────────────
+   3. Chapter divider — scale-up entrance
+   ────────────────────────────────────────── */
+.bpt-chapter-divider .bpt-divider-num,
+.bpt-chapter-divider .bpt-divider-title,
+.bpt-chapter-divider .bpt-divider-sub {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-chapter-divider.bpt-visible .bpt-divider-num {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.bpt-chapter-divider.bpt-visible .bpt-divider-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+.bpt-chapter-divider.bpt-visible .bpt-divider-sub {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.bpt-chapter-divider .bpt-divider-red-line {
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top center;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.bpt-chapter-divider.bpt-visible .bpt-divider-red-line {
+  transform: translateX(-50%) scaleY(1);
+}
+
+/* ──────────────────────────────────────────
+   4. Closing scene — red-thread dot pulse glow
+   ────────────────────────────────────────── */
+.bpt-scene-transition {
+  animation: none;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bpt-scene--closing.bpt-visible .bpt-scene-transition {
+  animation: bpt-pulse-glow 2.4s ease-in-out 0.6s 1 forwards;
+}
+
+@keyframes bpt-pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgb(168 34 48 / 0);
+    opacity: 0.35;
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgb(168 34 48 / 0.35);
+    opacity: 0.7;
+  }
+  100% {
+    box-shadow: 0 0 6px 2px rgb(168 34 48 / 0.15);
+    opacity: 0.55;
+  }
+}
+
+/* ──────────────────────────────────────────
+   5. Split-scene visual — parallax fade-in
+   ────────────────────────────────────────── */
+.bpt-split-scene .bpt-split-scene__visual img {
+  opacity: 0;
+  transform: scale(0.96) translateY(16px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.bpt-split-scene.bpt-visible .bpt-split-scene__visual img {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ──────────────────────────────────────────
+   6. Scroll-driven text dimming — paragraphs gently
+   fade as you scroll past, creating a "read and move on" feel
+   ────────────────────────────────────────── */
+.bpt-prose p {
+  transition: opacity 0.3s ease;
+}
+
+/* ──────────────────────────────────────────
+   7. Intro card — entrance animation
+   ────────────────────────────────────────── */
+.intro-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.intro-card.bpt-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ──────────────────────────────────────────
+   Reduced motion override for storytelling effects
+   ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-reveal .bpt-prose > .bpt-kicker,
+  .bpt-reveal .bpt-prose > p,
+  .bpt-reveal .bpt-prose > blockquote,
+  .bpt-ca-dao,
+  .bpt-chapter-divider .bpt-divider-num,
+  .bpt-chapter-divider .bpt-divider-title,
+  .bpt-chapter-divider .bpt-divider-sub,
+  .bpt-chapter-divider .bpt-divider-red-line,
+  .bpt-split-scene .bpt-split-scene__visual img,
+  .intro-card {
+    opacity: 1 !important;
+    transform: none !important;
+    border-left-width: 3px !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PLACEHOLDER IMAGES — SVG-based with dashed border & label
+   ══════════════════════════════════════════════════════════════ */
+.bpt-placeholder-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--color-rice-paper, #e8dcc8);
+}
+
+.bpt-placeholder-img svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bpt-split-scene__visual .bpt-placeholder-img {
+  max-height: 85vh;
+  box-shadow: 0 32px 100px rgb(34 26 20 / 0.15);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ZOOM SCENE — Chương I Phần 5: bánh center → zoom on scroll
+   Layout: image centered on top, text overlay fades in below.
+   On scroll the image scales from 1 → ~1.8 as section enters
+   ══════════════════════════════════════════════════════════════ */
+.bpt-zoom-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: clamp(48px, 8vh, 120px) clamp(24px, 4vw, 60px) clamp(32px, 4vh, 64px);
+  overflow: hidden;
+  position: relative;
+}
+
+.bpt-zoom-scene__visual {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(480px, 60vw);
+  margin-bottom: clamp(24px, 4vh, 48px);
+  transform: scale(var(--bpt-zoom, 1));
+  transform-origin: center center;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.bpt-zoom-scene__visual .bpt-placeholder-img,
+.bpt-zoom-scene__visual img {
+  border-radius: 20px;
+  box-shadow: 0 32px 100px rgb(34 26 20 / 0.18);
+}
+
+.bpt-zoom-scene__text {
+  flex: 0 0 auto;
+  max-width: min(720px, 92vw);
+  text-align: center;
+  opacity: var(--bpt-zoom-text-opacity, 0);
+  transform: translateY(var(--bpt-zoom-text-y, 30px));
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-zoom-scene__text .bpt-kicker {
+  font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+  margin-bottom: 12px;
+}
+
+.bpt-zoom-scene__text p {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+  line-height: 1.8;
+  color: var(--color-ink);
+  margin: 0 0 1.2em;
+}
+
+.bpt-zoom-scene__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* When zoom becomes visible via IntersectionObserver */
+.bpt-zoom-scene.bpt-visible .bpt-zoom-scene__text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile: zoom-scene stacks vertically, smaller image */
+@media (max-width: 768px) {
+  .bpt-zoom-scene {
+    padding: clamp(40px, 6vh, 80px) clamp(20px, 5vw, 40px);
+  }
+  .bpt-zoom-scene__visual {
+    width: min(320px, 80vw);
+  }
+  .bpt-zoom-scene__text p {
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+  }
+}
+
+/* Reduced motion: disable zoom, show at normal scale */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-zoom-scene__visual {
+    transform: none !important;
+  }
+  .bpt-zoom-scene__text {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .bpt-placeholder-img,
+  .bpt-split-scene__visual .bpt-placeholder-img,
+  .bpt-zoom-scene__visual .bpt-placeholder-img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a2818;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a4028;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="50" y="50" width="1100" height="575" rx="12" fill="none" stroke="#c4a88233" stroke-width="2"/>
+  <!-- Palace silhouette -->
+  <path d="M350 400 L600 280 L850 400 L850 500 L350 500 Z" fill="#5a4028" opacity="0.5"/>
+  <path d="M550 280 L600 220 L650 280 Z" fill="#6a5038" opacity="0.5"/>
+  <path d="M520 280 L600 230 L680 280 Z" fill="#7a6048" opacity="0.4"/>
+  <!-- Ornamental lines -->
+  <line x1="500" y1="350" x2="700" y2="350" stroke="#c4a882" stroke-width="1" opacity="0.2"/>
+  <line x1="520" y1="370" x2="680" y2="370" stroke="#c4a882" stroke-width="1" opacity="0.15"/>
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#d4b892" opacity="0.7">Lời ban truyền định danh</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#d4b892" opacity="0.4">Vua Lý Thánh Tông &amp; Nguyên phi Ỷ Lan</text>
+  <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#97202399">📸 Ảnh minh họa chưa có</text>
+</svg>

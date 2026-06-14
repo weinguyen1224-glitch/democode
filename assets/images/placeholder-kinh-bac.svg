@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c1810;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a3a28;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="50" y="50" width="1100" height="575" rx="12" fill="none" stroke="#97202333" stroke-width="2"/>
+  <!-- Temple silhouette -->
+  <path d="M200 450 L300 350 L320 350 L320 450 Z" fill="#4a3020" opacity="0.6"/>
+  <path d="M280 350 L300 310 L320 350 Z" fill="#5a3a28" opacity="0.6"/>
+  <path d="M850 450 L950 330 L970 330 L970 450 Z" fill="#4a3020" opacity="0.5"/>
+  <path d="M930 330 L950 280 L970 330 Z" fill="#5a3a28" opacity="0.5"/>
+  <!-- Moon -->
+  <circle cx="600" cy="180" r="60" fill="#e8d5b7" opacity="0.15"/>
+  <!-- Placeholder text -->
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#c4a882" opacity="0.7">Vùng đất Kinh Bắc</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#c4a882" opacity="0.4">Đình Bảng — Bắc Ninh</text>
+  <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#97202399">📸 Ảnh minh họa chưa có</text>
+</svg>
