@@ -399,24 +399,6 @@ sh-background-transition .Theme-Item-Picture img {
   overflow: hidden;
 }
 
-/* Vertical red-thread running behind the divider */
-.bpt-divider-red-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    var(--color-red-thread) 25%,
-    var(--color-red-thread) 75%,
-    transparent 100%
-  );
-  opacity: 0.18;
-  transform: translateX(-50%);
-}
-
 .bpt-divider-num {
   position: relative;
   display: block;
@@ -811,16 +793,6 @@ sh-background-transition .Theme-Item-Picture img {
   transition-delay: 0.3s;
 }
 
-.bpt-chapter-divider .bpt-divider-red-line {
-  transform: translateX(-50%) scaleY(0);
-  transform-origin: top center;
-  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
-}
-
-.bpt-chapter-divider.bpt-visible .bpt-divider-red-line {
-  transform: translateX(-50%) scaleY(1);
-}
-
 /* ──────────────────────────────────────────
    4. Closing scene — red-thread dot pulse glow
    ────────────────────────────────────────── */
@@ -899,7 +871,6 @@ sh-background-transition .Theme-Item-Picture img {
   .bpt-chapter-divider .bpt-divider-num,
   .bpt-chapter-divider .bpt-divider-title,
   .bpt-chapter-divider .bpt-divider-sub,
-  .bpt-chapter-divider .bpt-divider-red-line,
   .bpt-split-scene .bpt-split-scene__visual img,
   .intro-card {
     opacity: 1 !important;
@@ -1160,6 +1131,18 @@ sh-background-transition .Theme-Item-Picture img {
       rgb(34 26 20 / 0.42) 45%,
       rgb(34 26 20 / 0.12) 100%
     );
+  transition: background 0.8s ease;
+}
+
+/* Overlay sáng cho warm placeholder (Ch1 p1,p2) */
+.bpt-sm-overlay.is-light {
+  background:
+    linear-gradient(
+      to right,
+      rgb(247 232 203 / 0.65) 0%,
+      rgb(247 232 203 / 0.35) 45%,
+      rgb(247 232 203 / 0.05) 100%
+    );
 }
 
 /* ── Scroll track — chiều cao = 5 panels × 100vh ── */
@@ -1260,7 +1243,7 @@ sh-background-transition .Theme-Item-Picture img {
   /* Trạng thái ban đầu set bởi JS; will-change giúp GPU layer sẵn sàng */
   will-change: transform, opacity;
   /* Không dùng CSS transition — JS applyProgress() set trực tiếp mỗi frame */
-  transition: none !important;
+  transition: none;
 }
 
 /* bpt-visible không cần thiết cho p2 (JS tự handle), giữ lại để không break panels khác */
@@ -1316,6 +1299,10 @@ sh-background-transition .Theme-Item-Picture img {
   .bpt-sm-overlay {
     background: rgb(34 26 20 / 0.55);
   }
+
+  .bpt-sm-overlay.is-light {
+    background: rgb(247 232 203 / 0.45);
+  }
 }
 
 /* ── Reduced motion: tắt tất cả cross-fade và scale ── */
@@ -1341,92 +1328,87 @@ sh-background-transition .Theme-Item-Picture img {
 
 /* ═══════════════════════════════════════════════════════════
    Panel p2 — Split: GIF (50%) trái | Text (50%) phải
-   GIF bay vào từ rìa trái theo scroll (JS-driven).
-   Text luôn bên phải, cân đối với GIF.
+   GIF bay vào chéo 45° khi panel visible (IntersectionObserver trigger-once).
+   Text fade-in từ phải sau GIF 350ms.
    ═══════════════════════════════════════════════════════════ */
 
-.bpt-sm-panel--split {
+.bpt-sm-panel--cinematic {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  /* overflow hidden = clip GIF khi nó animate từ ngoài rìa trái vào */
+  justify-content: center;
   overflow: hidden;
-  gap: 0;
-  padding: 0;
-  /* min-height cao hơn để panel có không gian scroll */
-  min-height: 100vh;
 }
 
-.bpt-sm-gif-reveal {
-  /* GIF chiếm đúng 50% panel (= 50vw trên desktop) */
-  flex: 0 0 50%;
-  max-width: 50%;
-  min-width: 0;
-  /* Cao 70vh để GIF to, đủ nổi bật */
-  height: clamp(300px, 70vh, 720px);
-  /* Rìa trái phẳng (bay vào từ ngoài), rìa phải bo góc nhẹ */
-  border-radius: 0 20px 20px 0;
-  overflow: hidden;
-  box-shadow:
-    0 24px 72px rgb(0 0 0 / 0.5),
-    0 0 0 1px rgb(255 255 255 / 0.05),
-    4px 0 24px rgb(151 32 35 / 0.15);
-  will-change: transform, opacity;
-  pointer-events: auto;
-  /* Viền phải màu đỏ chủ đạo, nhấn mạnh điểm chia đôi */
-  border-right: 3px solid rgb(151 32 35 / 0.45);
-}
-
-.bpt-sm-gif-reveal img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+/* GIF nền full-bleed — <img> thật, JS control transform + opacity */
+.bpt-sm-cinematic-bg {
+  position: absolute;
+  inset: -24px;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  object-fit: cover;
   object-position: center;
+  z-index: 0;
+  will-change: transform, opacity;
+  /* JS scroll-driven sets transform + opacity directly */
+  pointer-events: none;
 }
 
-/* Text block: cột phải, chiều rộng đầy đủ, căn chỉnh tốt */
-.bpt-sm-panel--split .bpt-sm-text {
-  flex: 1 1 0%;
-  min-width: 0;
-  /* Override base class max-width — text fill cột phải hoàn toàn */
-  max-width: 100%;
-  /* Padding ngang thay vì margin — giữ nền tối mờ đúng kích thước */
-  margin-left: clamp(16px, 2.5vw, 40px);
-  margin-right: clamp(32px, 5vw, 80px);
+/* Overlay gradient tối → text đọc được */
+.bpt-sm-panel--cinematic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgb(34 26 20 / 0.40) 0%, rgb(34 26 20 / 0.72) 100%);
+  pointer-events: none;
 }
 
-/* Mobile: stack dọc — GIF full width trên, text dưới */
+/* Text overlay giữa màn hình */
+.bpt-sm-panel--cinematic .bpt-sm-text {
+  position: relative;
+  z-index: 2;
+  max-width: min(640px, 88vw);
+  margin: auto;
+  background: rgb(34 26 20 / 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 16px;
+  border: 1px solid rgb(255 255 255 / 0.06);
+  padding: clamp(28px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+.bpt-sm-panel--cinematic .bpt-sm-text .bpt-kicker {
+  text-align: center;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  .bpt-sm-panel--split {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    overflow: hidden;
-    min-height: unset;
+  .bpt-sm-cinematic-bg {
+    inset: -12px;
+    width: calc(100% + 24px);
+    height: calc(100% + 24px);
   }
 
-  .bpt-sm-gif-reveal {
-    flex: 0 0 auto;
-    max-width: 100%;
-    width: 100%;
-    height: clamp(200px, 55vw, 320px);
-    border-radius: 0;
-    border-right: none;
-    border-bottom: 3px solid rgb(151 32 35 / 0.45);
-  }
-
-  .bpt-sm-panel--split .bpt-sm-text {
-    margin: 24px 16px 0;
-    max-width: 100%;
+  .bpt-sm-panel--cinematic .bpt-sm-text {
+    max-width: 92vw;
+    padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
+    border-radius: 12px;
   }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .bpt-sm-gif-reveal {
+  .bpt-sm-cinematic-bg {
     transform: none !important;
     opacity: 1 !important;
-    transition: none !important;
+  }
+  .bpt-sm-panel--cinematic .bpt-sm-text.bpt-reveal {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
-

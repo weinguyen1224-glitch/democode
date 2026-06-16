@@ -26,14 +26,15 @@
   const CIRCUMFERENCE = 1099;
   const isMobile = () => window.innerWidth <= 768;
   const isSmallPhone = () => window.innerWidth <= 420;
+  const prefersReducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ── Data 5 hành ────────────────────────────────────────── */
   const NGU_HANH = {
-    moc:  { name: '🌿 MỘC',  color: '#6fcf60', badge: 'Lá dong · Lá chuối — Sinh sôi · Sức sống', meaning: 'Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái' },
-    kim:  { name: '⬡ KIM',   color: '#e8f0f8', badge: 'Dừa nạo · Đường phèn — Tinh khiết · Thủy chung', meaning: 'Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững' },
-    tho:  { name: '◈ THỔ',   color: '#f5c842', badge: 'Nhân đậu xanh · Dành dành — Ổn định · Ấm áp', meaning: 'Màu vàng óng – nền tảng vững chắc của hạnh phúc' },
-    hoa:  { name: '🔥 HỎA',  color: '#f83018', badge: 'Sợi lạt đỏ — Niềm vui · Gắn kết', meaning: 'Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa' },
-    thuy: { name: '💧 THỦY', color: '#60c8f0', badge: 'Nước — Hài hòa · Linh hoạt · Bền bỉ', meaning: 'Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân' },
+    moc:  { name: '🌿 MỘC',  color: '#4A7C59', badge: 'Lá dong · Lá chuối — Sinh sôi · Sức sống', meaning: 'Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái' },
+    kim:  { name: '⬡ KIM',   color: '#8A8070', badge: 'Dừa nạo · Đường phèn — Tinh khiết · Thủy chung', meaning: 'Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững' },
+    tho:  { name: '◈ THỔ',   color: '#D4A843', badge: 'Nhân đậu xanh · Dành dành — Ổn định · Ấm áp', meaning: 'Màu vàng óng – nền tảng vững chắc của hạnh phúc' },
+    hoa:  { name: '🔥 HỎA',  color: '#972023', badge: 'Sợi lạt đỏ — Niềm vui · Gắn kết', meaning: 'Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa' },
+    thuy: { name: '💧 THỦY', color: '#6B9BC3', badge: 'Nước — Hài hòa · Linh hoạt · Bền bỉ', meaning: 'Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân' },
   };
 
   /* Burst config — responsive: radial on ALL screens, scaled down on mobile */
@@ -53,7 +54,7 @@
     { key: 'moc',  angle: -90,  dist: 320, colors: ['#40c030','#80e050','#b0f070'] },
     { key: 'kim',  angle: -18,  dist: 340, colors: ['#c8e0f8','#e0f0ff','#ffffff'] },
     { key: 'tho',  angle: 54,   dist: 330, colors: ['#f0c010','#f8e040','#fff080'] },
-    { key: 'hoa',  angle: 126,  dist: 340, colors: ['#f83018','#ff6040','#ff9070'] },
+    { key: 'hoa',  angle: 126,  dist: 340, colors: ['#972023','#C41E3A','#E84050'] },
     { key: 'thuy', angle: 198,  dist: 320, colors: ['#1890e0','#30c0f8','#70d8ff'] },
   ];
 
@@ -66,6 +67,8 @@
       const el = document.getElementById(id);
       if (el && IMGS[frameKeys[i]]) el.src = IMGS[frameKeys[i]];
     });
+    // Mark bánh as loaded once first frame has data
+    if (wrap) wrap.classList.add("is-loaded");
     const assetMap = {
       'bpt-img-ladong': 'assets/background-remover/ladong.png',
       'bpt-img-lachuoi': 'assets/background-remover/lachuoi.png',
@@ -202,53 +205,99 @@
     const panelH = infoPanel.offsetHeight || 120;
 
     if (isMobile()) {
-      // Mobile: panel below the card, centered horizontally
-      const leftOffset = Math.max(8, (oRect.width - panelW) / 2);
-      const topOffset = cRect.bottom - oRect.top + 8;
-      gsap.set(infoPanel, { left: leftOffset, top: topOffset });
+      // Mobile: determine card direction from center for outward placement
+      const cardCX = cRect.left + cRect.width / 2;
+      const cardCY = cRect.top + cRect.height / 2;
+      const orbitCX = oRect.left + oRect.width / 2;
+      const orbitCY = oRect.top + oRect.height / 2;
+      const dx = cardCX - orbitCX;
+      const dy = cardCY - orbitCY;
+      const leftOffset = Math.max(8, Math.min(oRect.width - panelW - 8, (oRect.width - panelW) / 2));
+
+      // Card above center → panel above card; below center → panel below card
+      if (dy < 0) {
+        let topOffset = cRect.top - oRect.top - panelH - 8;
+        if (topOffset < 8) topOffset = 8;
+        gsap.set(infoPanel, { left: leftOffset, top: topOffset });
+      } else {
+        let topOffset = cRect.bottom - oRect.top + 8;
+        topOffset = Math.min(topOffset, oRect.height - panelH - 8);
+        gsap.set(infoPanel, { left: leftOffset, top: topOffset });
+      }
       return;
     }
 
-    // Desktop: panel goes AWAY from center (outward)
-    const cardCenterX = cRect.left + cRect.width / 2;
-    const cardCenterY = cRect.top + cRect.height / 2;
-    const orbitCenterX = oRect.left + oRect.width / 2;
-    const orbitCenterY = oRect.top + oRect.height / 2;
-    const dx = cardCenterX - orbitCenterX;
-    const dy = cardCenterY - orbitCenterY;
+    // Desktop: place panel AWAY from orbit center (outward)
+    const cardCX = cRect.left + cRect.width / 2;
+    const cardCY = cRect.top + cRect.height / 2;
+    const orbitCX = oRect.left + oRect.width / 2;
+    const orbitCY = oRect.top + oRect.height / 2;
+    const dx = cardCX - orbitCX;
+    const dy = cardCY - orbitCY;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
 
     let leftOffset, topOffset;
 
-    // Use dx/dy to determine outward direction
-    const placeRight = dx > 10;
-    const placeBelow = dy > 10;
-
-    if (Math.abs(dx) <= 10) {
-      // Near vertical axis → place below/above
-      leftOffset = Math.max(8, Math.min(oRect.width - panelW - 8, cRect.left - oRect.left));
-      if (placeBelow || dy >= 0) {
-        topOffset = cRect.bottom - oRect.top + 8;
+    if (absDy > absDx) {
+      // Vertical-dominant: card is above/below center
+      if (dy < 0) {
+        // Card above center (e.g. Mộc at -90°) → panel ABOVE card
+        topOffset = cRect.top - oRect.top - panelH - 10;
+        if (topOffset < 4) {
+          // Not enough room above → place to the side instead
+          topOffset = cRect.top - oRect.top + (cRect.height - panelH) / 2;
+          if (dx >= 0) {
+            leftOffset = cRect.right - oRect.left + 10;
+          } else {
+            leftOffset = cRect.left - oRect.left - panelW - 10;
+          }
+          if (leftOffset === undefined || leftOffset < 4 || leftOffset + panelW > oRect.width - 4) {
+            leftOffset = Math.max(4, Math.min(oRect.width - panelW - 4, cRect.left - oRect.left));
+          }
+        }
       } else {
-        topOffset = cRect.top - oRect.top - panelH - 8;
+        // Card below center → panel BELOW card
+        topOffset = cRect.bottom - oRect.top + 10;
+        if (topOffset + panelH > oRect.height - 4) {
+          // Not enough room below → place to the side
+          topOffset = cRect.top - oRect.top + (cRect.height - panelH) / 2;
+          if (dx >= 0) {
+            leftOffset = cRect.right - oRect.left + 10;
+          } else {
+            leftOffset = cRect.left - oRect.left - panelW - 10;
+          }
+          if (leftOffset === undefined || leftOffset < 4 || leftOffset + panelW > oRect.width - 4) {
+            leftOffset = Math.max(4, Math.min(oRect.width - panelW - 4, cRect.left - oRect.left));
+          }
+        }
       }
-    } else if (placeRight) {
-      leftOffset = cRect.right - oRect.left + 10;
-      if (leftOffset + panelW > oRect.width - 8) {
-        leftOffset = Math.max(8, Math.min(oRect.width - panelW - 8, cRect.left - oRect.left));
-        topOffset = cRect.bottom - oRect.top + 8;
+      if (leftOffset === undefined) {
+        leftOffset = Math.max(4, Math.min(oRect.width - panelW - 4, cRect.left - oRect.left + (cRect.width - panelW) / 2));
       }
     } else {
-      leftOffset = cRect.left - oRect.left - panelW - 10;
-      if (leftOffset < 8) {
-        leftOffset = Math.max(8, Math.min(oRect.width - panelW - 8, cRect.left - oRect.left));
-        topOffset = cRect.bottom - oRect.top + 8;
+      // Horizontal-dominant: card is left/right of center
+      if (dx > 0) {
+        leftOffset = cRect.right - oRect.left + 10;
+        if (leftOffset + panelW > oRect.width - 8) {
+          leftOffset = Math.max(4, Math.min(oRect.width - panelW - 4, cRect.left - oRect.left));
+          topOffset = cRect.bottom - oRect.top + 10;
+        }
+      } else {
+        leftOffset = cRect.left - oRect.left - panelW - 10;
+        if (leftOffset < 8) {
+          leftOffset = Math.max(4, Math.min(oRect.width - panelW - 4, cRect.left - oRect.left));
+          topOffset = cRect.bottom - oRect.top + 10;
+        }
+      }
+      if (topOffset === undefined) {
+        topOffset = cRect.top - oRect.top + (cRect.height - panelH) / 2;
       }
     }
 
-    if (topOffset === undefined) {
-      topOffset = cRect.top - oRect.top + (cRect.height - panelH) / 2;
-      topOffset = Math.max(8, Math.min(topOffset, oRect.height - panelH - 8));
-    }
+    // Final clamps
+    leftOffset = Math.max(4, Math.min(leftOffset, oRect.width - panelW - 4));
+    topOffset = Math.max(4, Math.min(topOffset, oRect.height - panelH - 4));
 
     gsap.set(infoPanel, { left: leftOffset, top: topOffset });
   }
@@ -262,16 +311,17 @@
     const orbit = section.querySelector('.bpt-ngu-hanh__orbit');
     if (!orbit) return;
     const oRect = orbit.getBoundingClientRect();
+    
     const cx = oRect.left + oRect.width / 2;
     const cy = oRect.top + oRect.height / 2;
     const cfg = getBurstConfig();
 
     // Shrink bánh
-    gsap.to(wrap, { scale: 0.55, opacity: 0.15, duration: 0.55, ease: 'power3.in' });
-    if (progRing) gsap.to(progRing, { opacity: 0, duration: 0.4 });
+    gsap.to(wrap, { scale: 0.55, opacity: 0.15, duration: prefersReducedMotion() ? 0.01 : 0.55, ease: 'power3.in' });
+    if (progRing) gsap.to(progRing, { opacity: 0, duration: prefersReducedMotion() ? 0.01 : 0.4 });
 
     // Big golden burst
-    addParticles(120, ['#f8d820','#f0a010','#e06010','#a0d020','#20c060','#60a8f0','#f04020'], canvas.width/2, canvas.height/2, 9);
+    !prefersReducedMotion() && addParticles(120, ['#f8d820','#f0a010','#e06010','#a0d020','#20c060','#60a8f0','#f04020'], canvas.width/2, canvas.height/2, 9);
 
     HANH_BURST.forEach((h, i) => {
       const rad = (h.angle * Math.PI) / 180;
@@ -307,10 +357,10 @@
         opacity: 1,
         scale: 1,
         rotation: (Math.random() - 0.5) * 10,
-        duration: 0.75,
+        duration: prefersReducedMotion() ? 0.01 : 0.75,
         delay: delay,
         ease: 'back.out(1.9)',
-        onStart: () => addParticles(20, h.colors, canvas.width/2, canvas.height/2, 5),
+        onStart: () => !prefersReducedMotion() && addParticles(20, h.colors, canvas.width/2, canvas.height/2, 5),
         onComplete: () => { el.style.pointerEvents = 'auto'; },
       });
 
@@ -369,7 +419,6 @@
     const hanhKey = card.dataset.hanh;
     const data = NGU_HANH[hanhKey];
     if (!data) return;
-
     if (activeHanh === hanhKey) {
       activeHanh = null;
       if (infoPanel) infoPanel.classList.remove('is-visible');
@@ -385,12 +434,31 @@
     updateInfoPanel(hanhKey, card);
   });
 
+  // Keyboard support for hanh cards
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.bpt-hanh-card');
+      if (card && burstDone) {
+        e.preventDefault();
+        card.click();
+      }
+    }
+  });
+
   /* ── Main click → unwrap sequence ─────────────────────── */
   let animating = false;
 
   function startUnwrap() {
     if (animating || burstDone) return;
     if (typeof gsap === 'undefined') return;
+    // Reduced motion: skip animation, show final state immediately
+    if (prefersReducedMotion()) {
+      frames.forEach((f, i) => { if (f) { f.style.opacity = i === 6 ? "1" : "0"; f.style.transform = "none"; } });
+      if (progArc) progArc.style.strokeDashoffset = "0";
+      if (hint) { hint.style.opacity = "0"; hint.style.pointerEvents = "none"; }
+      burstHanh();
+      return;
+    }
     animating = true;
 
     if (hint) { hint.style.opacity = '0'; hint.style.pointerEvents = 'none'; }
@@ -418,8 +486,8 @@
         return;
       }
       const s = steps[i];
-      doRipple(s.ripple);
-      addParticles(s.pN, s.pColor, canvas.width/2, canvas.height/2, s.pSp);
+      !prefersReducedMotion() && doRipple(s.ripple);
+      !prefersReducedMotion() && addParticles(s.pN, s.pColor, canvas.width/2, canvas.height/2, s.pSp);
       quickSwap(frames[s.from], frames[s.to], () => {
         setProgress((i + 1) / 6);
         setTimeout(() => runStep(i + 1), gaps[i]);
@@ -437,7 +505,7 @@
   });
 
   /* ── Scroll fade-in ────────────────────────────────────── */
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!prefersReducedMotion()) {
     const reveals = section.querySelectorAll('.bpt-reveal');
     const obs = new IntersectionObserver(
       ([entry]) => {

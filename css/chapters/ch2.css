@@ -74,6 +74,28 @@
   z-index: 10;
 }
 
+
+/* Loading placeholder for bánh frames before base64 loads */
+.bpt-banh-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 2px solid rgba(180,130,40,0.2);
+  border-top-color: var(--color-sticky-rice-gold, #F8D077);
+  animation: bpt-spin 1.2s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s;
+}
+.bpt-banh-wrap.is-loaded::after {
+  opacity: 0;
+  animation: none;
+}
+@keyframes bpt-spin {
+  to { transform: rotate(360deg); }
+}
+
 .bpt-banh-frame {
   position: absolute;
   inset: 0;
@@ -82,7 +104,6 @@
   object-fit: contain;
   will-change: transform, opacity;
 }
-
 /* Canvas for particles/ripple FX */
 .bpt-canvas-fx {
   position: absolute;
@@ -153,7 +174,14 @@
   transition: box-shadow 0.2s;
 }
 
+
 .bpt-hanh-card:hover {
+  filter: brightness(1.05);
+}
+
+.bpt-hanh-card:focus-visible {
+  outline: 2px solid var(--color-red-thread, #972023);
+  outline-offset: 4px;
   filter: brightness(1.05);
 }
 
@@ -381,12 +409,12 @@
   }
 
   .bpt-hanh-card .hc-name {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 2px;
   }
 
   .bpt-hanh-card .hc-badge {
-    font-size: 8px;
+    font-size: 11px;
     padding: 2px 6px;
     line-height: 1.2;
   }
@@ -510,12 +538,12 @@
   }
 
   .bpt-hanh-card .hc-name {
-    font-size: 9px;
+    font-size: 11px;
     margin-bottom: 1px;
   }
 
   .bpt-hanh-card .hc-badge {
-    font-size: 7px;
+    font-size: 10px;
     padding: 1px 4px;
     line-height: 1.15;
   }

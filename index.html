@@ -338,7 +338,6 @@
                 id="section-bpt-ch1-divider"
                 class="Theme-Section bpt-chapter-divider"
             >
-                <span class="bpt-divider-red-line" aria-hidden="true"></span>
                 <span class="bpt-divider-num">I</span>
                 <h2 class="bpt-divider-title">Nguồn gốc của Bánh Phu Thê</h2>
                 <p class="bpt-divider-sub">Bánh phu thê, lạt mềm buộc chặt</p>
@@ -415,26 +414,23 @@
                         </div>
                     </div>
 
-                    <!-- Panel 1: Truyền thuyết cung đình — split: GIF trái + text phải -->
+                    <!-- Panel 1: Truyền thuyết cung đình — GIF nền + text overlay -->
                     <div
                         id="section-bpt-ch1-p2"
-                        class="bpt-sm-panel bpt-sm-panel--split"
+                        class="bpt-sm-panel bpt-sm-panel--cinematic"
                         data-sm-panel="1"
-                    >
-                        <!-- GIF slide-in từ rìa trái khi scroll đến panel -->
-                        <div
-                            class="bpt-sm-gif-reveal"
-                            aria-label="Minh họa đôi vợ chồng"
-                        >
-                            <img
-                                src="assets/gif/thiet-ke-bao-bi-truyen-thong-lucky-brand-1-8c274acf41.gif"
-                                alt="Minh họa đôi vợ chồng trong truyền thuyết bánh phu thê"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </div>
-                        <!-- Text block bên phải, đối xứng với GIF -->
-                        <div class="bpt-sm-text bpt-sm-text--right bpt-reveal">
+                                            >
+                        <!-- GIF nền full-bleed -->
+                        <img
+                            class="bpt-sm-cinematic-bg"
+                            src="assets/gif/thiet-ke-bao-bi-truyen-thong-lucky-brand-1-8c274acf41.gif"
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <!-- Text block giữa màn, overlay lên GIF nền -->
+                        <div class="bpt-sm-text bpt-sm-text--center bpt-reveal">
                             <h3 class="bpt-kicker">Từ điển tích cung đình…</h3>
                             <p>
                                 Tục truyền, bánh phu thê gắn liền với giai thoại
@@ -552,7 +548,6 @@
 
         <!-- Divider Chương II -->
         <div id="section-bpt-ch2-divider" class="Theme-Section bpt-chapter-divider">
-          <div class="bpt-divider-red-line" aria-hidden="true"></div>
           <span class="bpt-divider-num" aria-hidden="true">II</span>
           <h2 class="bpt-divider-title">Ngọt Bùi Hòa Quyện</h2>
           <p class="bpt-divider-sub">Vẹn Tròn Đạo Phu Thê</p>
@@ -569,7 +564,7 @@
                 <p>Nếu chỉ nhìn thoáng qua, bánh phu thê chỉ là một thức quà ngọt ngào giản dị. Nhưng ẩn sâu bên trong lớp lá dong xanh và sợi lạt đỏ thắm kia là cả một vũ trụ thu nhỏ — nơi năm nguyên tố của trời đất hội tụ, cân bằng và hòa quyện.</p>
                 <p>Người xưa đã gửi vào chiếc bánh triết lý ngũ hành sâu sắc: Mộc nuôi dưỡng, Kim gắn kết, Thổ ổn định, Hỏa thắp lên, Thủy dẫn đường. Đủ năm hành — hứa hẹn một hôn nhân trọn vẹn, hạnh phúc viên mãn.</p>
               </div>
-              <p class="bpt-ngu-hanh__hint" aria-label="Gợi ý tương tác">✦ Chạm vào bánh để cảm nhận ngũ hành ✦</p>
+              <p class="bpt-ngu-hanh__hint" aria-label="Gợi ý tương tác">✦ Chạm để cảm nhận ngũ hành ✦</p>
             </div>
 
             <!-- Bánh unwrapping area bên phải -->
@@ -586,13 +581,13 @@
                 <canvas class="bpt-canvas-fx" id="bpt-canvas-fx" width="340" height="340"></canvas>
                 <div class="bpt-water-overlay" id="bpt-water-overlay"></div>
 
-                <img id="bpt-f1" class="bpt-banh-frame" style="z-index:17;opacity:1" alt="Bánh frame 1"/>
-                <img id="bpt-f2" class="bpt-banh-frame" style="z-index:16;opacity:0" alt="Bánh frame 2"/>
-                <img id="bpt-f3" class="bpt-banh-frame" style="z-index:15;opacity:0" alt="Bánh frame 3"/>
-                <img id="bpt-f4" class="bpt-banh-frame" style="z-index:14;opacity:0" alt="Bánh frame 4"/>
-                <img id="bpt-f5" class="bpt-banh-frame" style="z-index:13;opacity:0" alt="Bánh frame 5"/>
-                <img id="bpt-f6" class="bpt-banh-frame" style="z-index:12;opacity:0" alt="Bánh frame 6"/>
-                <img id="bpt-f7" class="bpt-banh-frame" style="z-index:11;opacity:0" alt="Bánh frame 7"/>
+                <img id="bpt-f1" class="bpt-banh-frame" style="z-index:17;opacity:1" alt="Bánh phu thê nguyên vẹn gói trong lá dong"/>
+                <img id="bpt-f2" class="bpt-banh-frame" style="z-index:16;opacity:0" alt="Bắt đầu mở lớp lá dong bên ngoài"/>
+                <img id="bpt-f3" class="bpt-banh-frame" style="z-index:15;opacity:0" alt="Lá dong mở ra, lộ lớp lá chuối bên trong"/>
+                <img id="bpt-f4" class="bpt-banh-frame" style="z-index:14;opacity:0" alt="Lá chuối gỡ ra, thấy lớp vỏ bánh trong veo"/>
+                <img id="bpt-f5" class="bpt-banh-frame" style="z-index:13;opacity:0" alt="Vỏ bánh trong veo mở ra, lộ nhân đậu xanh"/>
+                <img id="bpt-f6" class="bpt-banh-frame" style="z-index:12;opacity:0" alt="Nhân đậu xanh và dừa nạo hiện rõ"/>
+                <img id="bpt-f7" class="bpt-banh-frame" style="z-index:11;opacity:0" alt="Bánh phu thê mở hoàn toàn, sợi lạt đỏ buộc chéo"/>
 
                 <div class="bpt-banh-glow" id="bpt-banh-glow" aria-hidden="true"></div>
                 <div class="bpt-banh-hint" id="bpt-banh-hint"><span>✦ Chạm để cảm nhận ngũ hành ✦</span></div>
@@ -601,45 +596,45 @@
 
               <!-- Ngũ Hành Cards — hidden, burst after unwrapping -->
               <!-- MỘC -->
-              <div class="bpt-hanh-card" id="bpt-hc-moc" data-hanh="moc">
+              <div class="bpt-hanh-card" id="bpt-hc-moc" tabindex="0" role="button" aria-label="Xem chi tiết Mộc" data-hanh="moc">
                 <div class="hc-img-pair">
                   <img class="hc-img" id="bpt-img-ladong" alt="Lá dong" src="assets/background-remover/ladong.png"/>
                   <img class="hc-img" id="bpt-img-lachuoi" alt="Lá chuối" src="assets/background-remover/lachuoi.png"/>
                 </div>
-                <div class="hc-name" style="color:#6fcf60">🌿 MỘC</div>
-                <div class="hc-badge" style="background:rgba(40,120,30,0.35);color:#90e070;border:1px solid rgba(80,180,50,0.4)">Lá dong · Lá chuối<br/>Sinh sôi · Sức sống</div>
+                <div class="hc-name" style="color:#4A7C59">🌿 MỘC</div>
+                <div class="hc-badge" style="background:rgba(74,124,89,0.25);color:#6A9E72;border:1px solid rgba(74,124,89,0.4)">Lá dong · Lá chuối<br/>Sinh sôi · Sức sống</div>
                 <div class="hc-desc">Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái</div>
               </div>
 
               <!-- KIM -->
-              <div class="bpt-hanh-card" id="bpt-hc-kim" data-hanh="kim">
+              <div class="bpt-hanh-card" id="bpt-hc-kim" tabindex="0" role="button" aria-label="Xem chi tiết Kim" data-hanh="kim">
                 <div class="hc-img-pair">
                   <img class="hc-img" id="bpt-img-dua" alt="Dừa nạo" src="assets/background-remover/dua.png"/>
                   <img class="hc-img" id="bpt-img-duong" alt="Đường phèn" src="assets/background-remover/duong.png"/>
                 </div>
-                <div class="hc-name" style="color:#e8f0f8">⬡ KIM</div>
-                <div class="hc-badge" style="background:rgba(180,200,220,0.2);color:#d8eaf8;border:1px solid rgba(200,220,240,0.35)">Dừa nạo · Đường phèn<br/>Tinh khiết · Thủy chung</div>
+                <div class="hc-name" style="color:#8A8070">⬡ KIM</div>
+                <div class="hc-badge" style="background:rgba(138,128,112,0.18);color:#C0B8A0;border:1px solid rgba(138,128,112,0.3)">Dừa nạo · Đường phèn<br/>Tinh khiết · Thủy chung</div>
                 <div class="hc-desc">Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững</div>
               </div>
 
               <!-- THỔ -->
-              <div class="bpt-hanh-card" id="bpt-hc-tho" data-hanh="tho">
+              <div class="bpt-hanh-card" id="bpt-hc-tho" tabindex="0" role="button" aria-label="Xem chi tiết Thổ" data-hanh="tho">
                 <img class="hc-img" id="bpt-img-dau" alt="Nhân đậu xanh" src="assets/background-remover/dau.png"/>
-                <div class="hc-name" style="color:#f5c842">◈ THỔ</div>
-                <div class="hc-badge" style="background:rgba(200,160,40,0.25);color:#f8e080;border:1px solid rgba(240,200,60,0.4)">Nhân đậu xanh · Dành dành<br/>Ổn định · Ấm áp</div>
+                <div class="hc-name" style="color:#D4A843">◈ THỔ</div>
+                <div class="hc-badge" style="background:rgba(212,168,67,0.25);color:#D4A843;border:1px solid rgba(212,168,67,0.4)">Nhân đậu xanh · Dành dành<br/>Ổn định · Ấm áp</div>
                 <div class="hc-desc">Màu vàng óng – nền tảng vững chắc của hạnh phúc</div>
               </div>
 
               <!-- HỎA -->
-              <div class="bpt-hanh-card" id="bpt-hc-hoa" data-hanh="hoa">
+              <div class="bpt-hanh-card" id="bpt-hc-hoa" tabindex="0" role="button" aria-label="Xem chi tiết Hỏa" data-hanh="hoa">
                 <img class="hc-img" id="bpt-img-soi-lat" alt="Sợi lạt đỏ"/>
-                <div class="hc-name" style="color:#f83018">🔥 HỎA</div>
-                <div class="hc-badge" style="background:rgba(200,40,30,0.2);color:#ff6040;border:1px solid rgba(248,48,24,0.4)">Sợi lạt đỏ<br/>Niềm vui · Gắn kết</div>
+                <div class="hc-name" style="color:#972023">🔥 HỎA</div>
+                <div class="hc-badge" style="background:rgba(151,32,35,0.2);color:#C44040;border:1px solid rgba(151,32,35,0.4)">Sợi lạt đỏ<br/>Niềm vui · Gắn kết</div>
                 <div class="hc-desc">Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa</div>
               </div>
 
               <!-- THỦY -->
-              <div class="bpt-hanh-card" id="bpt-hc-thuy" data-hanh="thuy">
+              <div class="bpt-hanh-card" id="bpt-hc-thuy" tabindex="0" role="button" aria-label="Xem chi tiết Thủy" data-hanh="thuy">
                 <div class="hc-img-pair">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" class="hc-img hc-img--thuy" style="filter:drop-shadow(0 6px 16px rgb(0 0 0 / 0.5))" aria-hidden="true">
                     <defs>
@@ -652,8 +647,8 @@
                     <ellipse cx="38" cy="72" rx="10" ry="14" fill="rgba(255,255,255,0.25)" transform="rotate(-15 38 72)"/>
                   </svg>
                 </div>
-                <div class="hc-name" style="color:#60c8f0">💧 THỦY</div>
-                <div class="hc-badge" style="background:rgba(20,80,140,0.35);color:#80d8f8;border:1px solid rgba(40,140,210,0.4)">Nước · Hài hòa<br/>Linh hoạt · Bền bỉ</div>
+                <div class="hc-name" style="color:#6B9BC3">💧 THỦY</div>
+                <div class="hc-badge" style="background:rgba(107,155,195,0.25);color:#6B9BC3;border:1px solid rgba(107,155,195,0.4)">Nước · Hài hòa<br/>Linh hoạt · Bền bỉ</div>
                 <div class="hc-desc">Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân</div>
               </div>
 
@@ -681,6 +676,16 @@
         <!-- Section 2: Hương vị hòa hợp -->
         <div id="section-bpt-ch2-vi-ngot" class="Theme-Section bpt-scene">
           <div class="bpt-split-scene bpt-reveal">
+            <div class="bpt-split-scene__visual">
+              <div class="bpt-placeholder-img bpt-placeholder-img--warm" aria-hidden="true">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="400" height="300" fill="#F7E8CB"/>
+                  <circle cx="200" cy="130" r="60" fill="#F8D077" opacity="0.4"/>
+                  <circle cx="200" cy="130" r="35" fill="#D4A843" opacity="0.5"/>
+                  <text x="200" y="220" text-anchor="middle" fill="#972023" font-family="Vollkorn,serif" font-size="16" opacity="0.6">Hương vị hòa hợp</text>
+                </svg>
+              </div>
+            </div>
             <div class="bpt-split-scene__text">
               <div class="bpt-prose">
                 <h3 class="bpt-kicker">Hương vị hòa hợp</h3>
