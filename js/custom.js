@@ -360,8 +360,8 @@
     // Bắt đầu:   rect.top = vh*1.1  → panel chưa chạm đáy viewport (p = 0)
     // Hoàn thành: rect.top = vh*0.1  → panel gần căn giữa viewport (p = 1)
     // Range = vh → dài hơn trước, animation kéo dài suốt quá trình scroll vào
-    const rangeStart = vh * 1.05;
-    const rangeEnd   = vh * -1.20;
+    const rangeStart = vh * 1.05;   // p=0: panel chưa vào (dưới màn hình)
+    const rangeEnd   = vh * 0.35;   // p=1: panel lên 65% viewport → GIF đã vào hẳn
 
     const traveled = rangeStart - rect.top;
     const range    = rangeStart - rangeEnd;
@@ -383,7 +383,7 @@
       gifEl.style.opacity   = op;
     } else {
       // Desktop: trượt từ ngoài rìa trái vào (translateX chủ đạo) + chéo nhẹ
-      const tx = (-105 * (1 - ep)).toFixed(2);   // từ -105% về 0 (vừa đủ ngoài màn hình)
+      const tx = (-55 * (1 - ep)).toFixed(2);   // bắt đầu ở -55% (thấy được rìa phải GIF ngay), trôi về 0
       const ty = (20  * (1 - ep)).toFixed(2);    // nhẹ từ dưới lên 20px (tạo cảm giác chéo)
       const sc = (0.95 + 0.05 * ep).toFixed(4);  // scale nhẹ hơn, tự nhiên hơn
       const op = Math.min(1, p * 2.2).toFixed(3); // fade nhanh ở đầu, rõ sớm
