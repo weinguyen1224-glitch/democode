@@ -493,8 +493,15 @@
     const ep  = easeOut(p);
     const exp = easeIn(ex);
 
-    const isMobile = window.innerWidth <= 768;
+    // Cinematic reveal: toggle is-visible class
+    if (ep > 0.2) {
+      textEl.classList.add('is-visible');
+    } else if (exp > 0.5) {
+      textEl.classList.remove('is-visible');
+    }
 
+    const isMobile = window.innerWidth <= 768;
+    
     if (isMobile) {
       // Mobile: bay lên từ dưới theo chiều thẳng đứng
       const ty  = (64 * (1 - ep) - 24 * exp).toFixed(2);
@@ -605,6 +612,15 @@
     
     const ep = easeOutCubic(pEnter);
     const exp = easeInCubic(pExit);
+
+    // Toggle is-visible classes cho animation
+    if (ep > 0.15) {
+      if (photoFrame) photoFrame.classList.add('is-visible');
+      if (textEl) textEl.classList.add('is-visible');
+    } else if (exp > 0.6) {
+      if (photoFrame) photoFrame.classList.remove('is-visible');
+      if (textEl) textEl.classList.remove('is-visible');
+    }
 
     // Photo animation - 3 phases:
     // ENTER: từ góc phải dưới, rotate 35° → vị trí chuẩn

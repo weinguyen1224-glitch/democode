@@ -1515,3 +1515,349 @@ sh-background-transition .Theme-Item-Picture img {
     opacity: 1 !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   Text Block Entrance Animations — Magazine style
+   Cinematic, sống động nhưng vẫn readable
+   ═══════════════════════════════════════════════════════════ */
+
+/* Base: text blocks sẵn sàng animation, không blur */
+.bpt-sm-text.bpt-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+}
+
+/* Left text: bay từ trái */
+.bpt-sm-text.bpt-reveal.bpt-sm-text--left {
+  transform: translateX(-60px) translateY(20px);
+}
+
+/* Right text: bay từ phải */
+.bpt-sm-text.bpt-reveal.bpt-sm-text--right {
+  transform: translateX(60px) translateY(20px);
+}
+
+/* Center text: bay từ dưới + scale nhẹ */
+.bpt-sm-text.bpt-reveal.bpt-sm-text--center {
+  transform: translateY(50px) scale(0.96);
+}
+
+/* Stagger cho content bên trong */
+.bpt-sm-text.bpt-reveal .bpt-kicker,
+.bpt-sm-text.bpt-reveal p {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+/* Border glow effect */
+.bpt-sm-text.bpt-reveal::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(151, 32, 35, 0.3) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.8s ease;
+}
+
+/* ===== VISIBLE STATES ===== */
+
+/* Text block hiện rõ */
+.bpt-sm-text.bpt-reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Border glow khi visible */
+.bpt-sm-text.bpt-reveal.is-visible::after {
+  opacity: 0.6;
+  animation: border-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes border-shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Stagger reveal content */
+.bpt-sm-text.bpt-reveal.is-visible .bpt-kicker {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+}
+
+.bpt-sm-text.bpt-reveal.is-visible p:nth-child(1 of p) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+.bpt-sm-text.bpt-reveal.is-visible p:nth-child(2 of p) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s;
+}
+
+.bpt-sm-text.bpt-reveal.is-visible p:nth-child(3 of p) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s;
+}
+
+/* Hover effect: nâng nhẹ + glow mạnh hơn */
+.bpt-sm-text.bpt-reveal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.bpt-sm-text.bpt-reveal:hover::after {
+  opacity: 1;
+}
+
+/* Mobile: giảm distance */
+@media (max-width: 768px) {
+  .bpt-sm-text.bpt-reveal {
+    transform: translateY(30px);
+  }
+  
+  .bpt-sm-text.bpt-reveal.bpt-sm-text--left {
+    transform: translateX(-30px) translateY(15px);
+  }
+  
+  .bpt-sm-text.bpt-reveal.bpt-sm-text--right {
+    transform: translateX(30px) translateY(15px);
+  }
+}
+
+/* Reduced motion: instant, no animation */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-sm-text.bpt-reveal,
+  .bpt-sm-text.bpt-reveal.bpt-sm-text--left,
+  .bpt-sm-text.bpt-reveal.bpt-sm-text--right,
+  .bpt-sm-text.bpt-reveal.bpt-sm-text--center {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .bpt-sm-text.bpt-reveal .bpt-kicker,
+  .bpt-sm-text.bpt-reveal p {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .bpt-sm-text.bpt-reveal::after {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Magazine Photo Frame — Cinematic entrance
+   ═══════════════════════════════════════════════════════════ */
+
+.bpt-magazine-photo-inner {
+  position: relative;
+  border-radius: 4px;
+  padding: 8px;
+  background: linear-gradient(135deg, #f5e6c8 0%, #e8d4a8 100%);
+  box-shadow:
+    0 0 0 1px rgba(139, 90, 43, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  /* Cinematic entrance */
+  opacity: 0;
+  transform: scale(0.9) rotate(-5deg);
+  transform-origin: bottom right;
+  will-change: transform, opacity;
+}
+
+.bpt-magazine-photo-inner.is-visible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Corner accent decoration */
+.bpt-magazine-photo-inner::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid rgba(151, 32, 35, 0.5);
+  border-left: 2px solid rgba(151, 32, 35, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.bpt-magazine-photo-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid rgba(151, 32, 35, 0.5);
+  border-right: 2px solid rgba(151, 32, 35, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.bpt-magazine-photo-inner.is-visible::before,
+.bpt-magazine-photo-inner.is-visible::after {
+  opacity: 1;
+}
+
+/* Hover: lift + shadow */
+.bpt-magazine-photo-inner:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow:
+    0 0 0 1px rgba(139, 90, 43, 0.3),
+    0 28px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-magazine-photo-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .bpt-magazine-photo-inner::before,
+  .bpt-magazine-photo-inner::after {
+    opacity: 1 !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Cinematic Panel Effects — Enhanced
+   ═══════════════════════════════════════════════════════════ */
+
+/* Subtle grain texture overlay cho panels */
+.bpt-sm-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Vignette effect cho panels */
+.bpt-sm-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(34, 26, 20, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Typography animation — letter spacing breathe */
+@keyframes text-breathe {
+  0%, 100% { letter-spacing: 0.2em; }
+  50% { letter-spacing: 0.25em; }
+}
+
+.bpt-kicker {
+  animation: text-breathe 4s ease-in-out infinite;
+}
+
+/* Scroll indicator */
+.bpt-scroll-hint {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(151, 32, 35, 0.4);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 100;
+}
+
+.bpt-scroll-hint::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  background: rgba(151, 32, 35, 0.6);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  animation: scroll-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 0.3; }
+}
+
+/* Photo inner shine effect */
+.bpt-magazine-photo img {
+  position: relative;
+  overflow: hidden;
+}
+
+.bpt-magazine-photo img::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg) translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.bpt-magazine-photo:hover img::after {
+  transform: rotate(45deg) translateX(100%);
+}
+
+/* Link underline animation */
+.bpt-sm-text a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bpt-sm-text a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.bpt-sm-text a:hover::after {
+  width: 100%;
+}
