@@ -380,8 +380,8 @@
     const enterStart = vh * 1.1;
     const enterEnd   = vh * 0.45;
     const p = Math.max(0, Math.min(1, (enterStart - rect.top) / (enterStart - enterEnd)));
-    const exitStart = -vh * 0.05;
-    const exitEnd   = -vh * 0.65;
+    const exitStart = -vh * 0.35;
+    const exitEnd   = -vh * 1.2;
     const ex = Math.max(0, Math.min(1, (exitStart - rect.top) / (exitStart - exitEnd)));
     return { p, ex };
   }
@@ -481,8 +481,8 @@
     const p = Math.max(0, Math.min(1, (enterStart - rect.top) / (enterStart - enterEnd)));
 
     // Exit: rect.top từ -vh*0.05 xuống -vh*0.65 → ex: 0→1
-    const exitStart = -vh * 0.05;
-    const exitEnd   = -vh * 0.65;
+    const exitStart = -vh * 0.35;
+    const exitEnd   = -vh * 1.2;
     const ex = Math.max(0, Math.min(1, (exitStart - rect.top) / (exitStart - exitEnd)));
 
     return { p, ex };
@@ -595,8 +595,8 @@
     // Start: panel center ở viewport center
     // End: panel top ra khỏi viewport (panelTop = -panelHeight * 0.3)
     let pExit = 0;
-    const exitStart = viewportCenter;  // bắt đầu exit
-    const exitEnd = -panelHeight * 0.4; // đã exit hẳn
+    const exitStart = viewportCenter * 0.5;  // bắt đầu exit muộn hơn
+    const exitEnd = -panelHeight * 0.9; // đã exit hẳn — muộn hơn
     
     if (panelCenter <= exitStart && panelCenter >= exitEnd) {
       pExit = Math.max(0, Math.min(1, (exitStart - panelCenter) / (exitStart - exitEnd)));
