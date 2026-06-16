@@ -7,14 +7,16 @@ Mục tiêu: Kể câu chuyện nguồn gốc → cấu tạo → kỹ nghệ �
 
 **Tech stack hiện tại:**
 - Platform: **Shorthand** (story editor, quản lý sections/backgrounds)
-- Custom CSS: `css/custom.css` (additive overrides only, không edit Shorthand runtime CSS)
-- Custom JS: `js/custom.js` (scroll observer, progress bar, scene effects)
+- Custom CSS: `css/custom.css` (global) + `css/chapters/ch{N}.css` (per-chapter)
+- Custom JS: `js/custom.js` (global) + `js/chapters/ch{N}.js` (per-chapter) + `js/ch2-imgs.js` (base64 images)
+- GSAP: CDN `gsap.min.js` 3.12.x (defer, loaded in `<head>`)
 - Fonts: Josefin Sans, Lato, Mulish, Oswald, Outfit, PT Serif, Poppins, Quicksand (Google Fonts)
 - Layout: Full-width sections, 100vh hero, backdrop-filter glassmorphism cards
 
 **Nguyên tắc bắt buộc:**
-- ✅ Chỉ thêm CSS vào `css/custom.css` — KHÔNG sửa `style-00.css` → `style-04.css`
-- ✅ Chỉ thêm JS vào `js/custom.js` — KHÔNG sửa `inline-*.js`, `story.*.min.js`, `footer.*.min.js`
+- ✅ Global CSS/JS: thêm vào `css/custom.css` / `js/custom.js`
+- ✅ Per-chapter CSS/JS: thêm vào `css/chapters/ch{N}.css` / `js/chapters/ch{N}.js`
+- ✅ KHÔNG sửa `style-00.css` → `style-04.css` hay `inline-*.js`, `story.*.min.js`
 - ✅ Giữ nguyên cấu trúc Shorthand section IDs
 - ✅ Ưu tiên CSS-first animations, chỉ dùng JS khi cần scroll trigger / interaction logic
 - ✅ Responsive: mobile-first, test tại 375px / 768px / 1440px
@@ -52,7 +54,7 @@ Mục tiêu: Kể câu chuyện nguồn gốc → cấu tạo → kỹ nghệ �
 
 | Phần | Asset | Hiệu ứng |
 |------|-------|----------|
-| 1. Ngũ Hành trong chiếc bánh | Bánh trung tâm + 5 nguyên liệu vòng tròn | **INTERACTIVE**: 5 nguyên liệu (Mộc/Kim/Thổ/Hỏa/Thủy) chuyển động nhẹ quanh bánh. **Click** → highlight thành phần + hiển thị text Ngũ Hành tương ứng + phàn bánh nổi bật |
+| 1. Ngũ Hành trong chiếc bánh | 7 frame bánh (base64) + canvas particles + 5 hanh cards | **INTERACTIVE**: Bánh đóng kín → **Click** → unwrap 7 frames (GSAP quickSwap + particles + ripple + progress ring) → burst 5 ngũ hành cards (Mộc/Kim/Thổ/Hỏa/Thủy) → click card → info panel |
 | 2. Hương vị hòa hợp | Vỏ bánh, nhân đậu, sợi dừa, hoa bưởi | Từng nguyên liệu appear on scroll + text mô tả hương vị bên cạnh |
 | 3. Trích dẫn nghệ nhân | Ảnh nghệ nhân | Trích dẫn Nguyễn Đình Minh (68 tuổi) trong khối quote nổi bật |
 
@@ -361,3 +363,341 @@ Accessibility: aria-label, keyboard play/pause (Space)
 ---
 
 *Tài liệu này là nguồn chân lý (single source of truth) cho FE agent. Mọi quyết định thiết kế đều tham chiếu về đây.*
+
+---
+
+## 8. CHƯƠNG II — IMPLEMENTATION GUIDE (Chi tiết)
+
+### 8.1 Tổng quan Chương II
+
+| Thuộc tính | Giá trị |
+|-----------|---------|
+| Section ID | `section-bpt-ch2-divider`, `section-bpt-ch2-ngu-hanh`, `section-bpt-ch2-vi-ngot`, `section-bpt-ch2-nghe-nhan` |
+| Palette | Nền `--color-rice-paper` (#F7E8CB), text `--color-ink` (#221A14), accent `--color-red-thread` (#972023) |
+| GSAP | **Bắt buộc** — CDN `gsap.min.js` 3.12.x loaded in `<head>` |
+| Assets | 7 bánh frames = base64 inline (`js/ch2-imgs.js`), ngũ hành cards = `assets/background-remover/*.png` |
+| Per-chapter files | `css/chapters/ch2.css`, `js/chapters/ch2.js`, `js/ch2-imgs.js` |
+| Transition vào | Scroll-zoom từ cuối Chương I (`bpt-zoom-scene`) dẫn vào divider Chương II |
+
+---
+
+### 8.2 Divider Chương II
+
+```html
+<div id="section-bpt-ch2-divider" class="Theme-Section bpt-chapter-divider">
+  <div class="bpt-divider-red-line" aria-hidden="true"></div>
+  <span class="bpt-divider-num" aria-hidden="true">II</span>
+  <h2 class="bpt-divider-title">Ngọt Bùi Hòa Quyện</h2>
+  <p class="bpt-divider-sub">Vẹn Tròn Đạo Phu Thê</p>
+</div>
+```
+
+**CSS:** Dùng nguyên `.bpt-chapter-divider` pattern đã có — không cần thêm rule mới.
+
+---
+
+### 8.3 Ngũ Hành Interactive — Spec đầy đủ
+
+#### Layout
+
+```
+Desktop & Mobile:
+  ┌──────────────────────────────────────┐
+  │          [Text centered, max-600px]  │
+  │  Kicker: "Ngũ Hành trong chiếc bánh" │
+  │  Body: Nếu chỉ nhìn thoáng qua...    │
+  │                                      │
+  │         ┌─────────────────┐          │
+  │         │   🟤 BÁNH center │          │
+  │         │  + hint "Chạm"  │          │
+  │         └─────────────────┘          │
+  │                                      │
+  │  [5 hanh cards burst outward]        │
+  │  [Info panel below]                  │
+  └──────────────────────────────────────┘
+```
+
+#### Circular Layout — 5 nguyên liệu
+
+```
+         MỘC (top, -90°)
+          🌿
+    THỦY          KIM
+    💧    [BÁNH]    ⬡
+          Trung tâm
+    HỎA          THỔ
+    🔥              ◈
+```
+
+- Góc: `angle = -90 + index * 72` (5 × 72° = 360°)
+- **Info panel**: absolute, positioned beside clicked card (right if card left-of-center, left otherwise); mobile → below card
+- **Responsive**: burst distance scales ×0.5 (tablet) / ×0.38 (phone ≤420px); card widths 190→140→110px
+- Bán kính orbit: `clamp(120px, 18vw, 180px)` trên desktop; fixed trên mobile
+- Orbit animation: `rotate nhẹ 360° / 30s infinite linear` — toàn bộ vòng tròn xoay cực chậm
+- Bánh trung tâm: `width: clamp(160px, 22vw, 240px)`, `border-radius: 50%`, `cursor: pointer`
+
+#### Click behavior (CSS-first + JS toggle)
+
+```
+Trạng thái idle (default):
+  - 5 item-cards vị trí orbit, opacity 1, scale 1
+  - Bánh trung tâm: glow nhẹ vàng (box-shadow animation)
+  - Hint text: "✦ Chạm để cảm nhận ngũ hành ✦" (float animation)
+
+Khi click item hoặc bánh lần đầu → BURST (dùng lại logic burstHanh):
+  - Khác với animation file (full-screen), ở đây burst TẠI CHỖ trong section
+  - Không cần GSAP full-screen overlay
+  - Thay bằng: click item → item scale(1.15) + glow shadow màu hành tương ứng
+  - Các item còn lại: opacity → 0.35, scale → 0.9
+  - Info panel bên dưới (hoặc bên cạnh) fadeIn: tên hành + màu + ý nghĩa + text
+
+Khi click item đang active → deselect (về idle)
+Khi click item khác → chuyển active
+```
+
+#### Click animation — adapt từ `burstHanh()` trong animation file
+
+Thay vì dùng `position: fixed` + GSAP di chuyển toàn màn hình (như animation file gốc), ta embed trực tiếp:
+
+```javascript
+// Pseudocode logic chính:
+function selectHanh(index) {
+  const cards = document.querySelectorAll('.bpt-ngu-hanh__item');
+  const infoPanel = document.querySelector('.bpt-ngu-hanh__info');
+  
+  cards.forEach((card, i) => {
+    if (i === index) {
+      card.classList.add('is-active');
+      card.classList.remove('is-dimmed');
+    } else {
+      card.classList.remove('is-active');
+      card.classList.add('is-dimmed');
+    }
+  });
+
+  // Update info panel với data của hành được chọn
+  const data = NGU_HANH_DATA[index];
+  infoPanel.querySelector('.bpt-nhu-hanh__name').textContent = data.emoji + ' ' + data.name;
+  infoPanel.querySelector('.bpt-ngu-hanh__ingredients').textContent = data.ingredients;
+  infoPanel.querySelector('.bpt-ngu-hanh__meaning').textContent = data.meaning;
+  infoPanel.style.setProperty('--hanh-color', data.color);
+  infoPanel.classList.add('is-visible');
+}
+```
+
+#### Dữ liệu 5 Hành (từ FE-GUIDE section 2 + animation file)
+
+```javascript
+const NGU_HANH_DATA = [
+  {
+    id: 'moc',
+    name: 'MỘC',
+    emoji: '🌿',
+    color: '#4A7C59',
+    glowColor: 'rgba(74,124,89,0.35)',
+    ingredients: 'Lá dong · Lá chuối',
+    badge: 'Sinh sôi · Sức sống',
+    meaning: 'Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái',
+    angle: -90,
+    assets: ['assets/animation-banh-phu-the/ladong.png', 'assets/animation-banh-phu-the/lachuoi.png'],
+  },
+  {
+    id: 'kim',
+    name: 'KIM',
+    emoji: '⬡',
+    color: '#C8D8E8',
+    glowColor: 'rgba(200,216,232,0.35)',
+    ingredients: 'Dừa nạo · Đường phèn',
+    badge: 'Tinh khiết · Thủy chung',
+    meaning: 'Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững',
+    angle: -18,
+    assets: ['assets/animation-banh-phu-the/dua.png', 'assets/animation-banh-phu-the/duong.png'],
+  },
+  {
+    id: 'tho',
+    name: 'THỔ',
+    emoji: '◈',
+    color: '#D4A843',
+    glowColor: 'rgba(212,168,67,0.35)',
+    ingredients: 'Nhân đậu xanh · Dành dành',
+    badge: 'Ổn định · Ấm áp',
+    meaning: 'Màu vàng óng – nền tảng vững chắc của hạnh phúc',
+    angle: 54,
+    assets: ['assets/animation-banh-phu-the/dau.png'],
+  },
+  {
+    id: 'hoa',
+    name: 'HỎA',
+    emoji: '🔥',
+    color: '#C41E3A',
+    glowColor: 'rgba(196,30,58,0.35)',
+    ingredients: 'Sợi lạt đỏ',
+    badge: 'Niềm vui · Gắn kết',
+    meaning: 'Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa',
+    angle: 126,
+    assets: ['assets/animation-banh-phu-the/soi-lat-do.png'],
+  },
+  {
+    id: 'thuy',
+    name: 'THỦY',
+    emoji: '💧',
+    color: '#6B9BC3',
+    glowColor: 'rgba(107,155,195,0.35)',
+    ingredients: 'Nước · Vỏ trong veo',
+    badge: 'Hài hòa · Linh hoạt',
+    meaning: 'Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân',
+    angle: 198,
+    assets: [],  // SVG inline (nước)
+  },
+];
+```
+
+#### Assets sử dụng
+
+| Asset | Đường dẫn | Dùng cho |
+|-------|-----------|---------|
+| Bánh trung tâm | `assets/animation-banh-phu-the/banh-frame-5.png` | Bánh tâm ở idle state |
+| Lá dong | `assets/animation-banh-phu-the/ladong.png` | MỘC item |
+| Lá chuối | `assets/animation-banh-phu-the/lachuoi.png` | MỘC item (pair) |
+| Dừa | `assets/animation-banh-phu-the/dua.png` | KIM item |
+| Đường | `assets/animation-banh-phu-the/duong.png` | KIM item (pair) |
+| Đậu xanh | `assets/animation-banh-phu-the/dau.png` | THỔ item |
+| Sợi lạt đỏ | `assets/animation-banh-phu-the/soi-lat-do.png` | HỎA item |
+| Thủy (nước) | SVG inline (xem animation file `#hc-thuy`) | THỦY item |
+
+**Note:** Các asset `lachuoi.png`, `hatdua.png`, `gao.png` cũng có trong thư mục, dùng thêm nếu cần.
+
+---
+
+### 8.4 CSS Classes Chương II
+
+```css
+/* Container section */
+.bpt-ngu-hanh-section { }
+
+/* Layout grid: text trái + vòng tròn phải */
+.bpt-ngu-hanh__layout { }
+.bpt-ngu-hanh__text { }       /* 40% trái */
+.bpt-ngu-hanh__orbit { }      /* 60% phải */
+
+/* Orbit wrapper — xoay chậm */
+.bpt-ngu-hanh__ring { }       /* position: relative; animation: bpt-orbit-spin 30s linear infinite */
+.bpt-ngu-hanh__center { }     /* bánh trung tâm */
+
+/* Item card cho từng hành */
+.bpt-ngu-hanh__item { }
+.bpt-ngu-hanh__item.is-active { }   /* scale 1.15, glow */
+.bpt-ngu-hanh__item.is-dimmed { }   /* opacity 0.35 */
+
+/* Info panel hiện khi click */
+.bpt-ngu-hanh__info { }
+.bpt-ngu-hanh__info.is-visible { }
+
+/* Mobile override */
+@media (max-width: 768px) {
+  /* .bpt-ngu-hanh__layout → flex-col */
+  /* .bpt-ngu-hanh__item → list dọc */
+}
+```
+
+---
+
+### 8.5 JS Module Chương II — Per-chapter files
+
+**Đã tách ra file riêng** (không còn trong `custom.js`):
+
+| File | Nội dung | Kích thước |
+|------|----------|------------|
+| `js/ch2-imgs.js` | Base64 IMGS object (7 bánh frames + soi-lat-do) | ~1.3MB |
+| `js/chapters/ch2.js` | CH2 IIFE: unwrap sequence, GSAP timeline, particles, burst, info panel | ~10KB |
+| `css/chapters/ch2.css` | CH2 CSS: dark bg, bánh wrap, hanh cards, progress ring, responsive | ~8KB |
+
+**Thứ tự load trong `index.html`:**
+1. GSAP CDN (defer) — `<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer>`
+2. `js/custom.js` (defer) — global scroll/progress/reveal
+3. `js/ch2-imgs.js` (sync) — must load before ch2.js so `IMGS` is available
+4. `js/chapters/ch2.js` (defer) — CH2 animation logic
+
+**Animation flow:**
+1. Initial state: bánh đóng (frame 1 visible, hint "Chạm để cảm nhận ngũ hành")
+2. Click → startUnwrap(): 6 quickSwap steps (frame 1→7) with particles + ripple + progress ring
+3. After frame 7 → burstHanh(): bánh shrinks, 5 hanh cards fly to circle positions
+4. Click card → info panel shows meaning; click again → deselect
+5. Finale text "Ngũ Hành Viên Mãn" appears after burst
+
+---
+
+### 8.6 Phần 2 — Hương vị hòa hợp (vi-ngot)
+
+Scroll reveal 4 nguyên liệu, mỗi nguyên liệu hiện lần lượt:
+
+```html
+<div id="section-bpt-ch2-vi-ngot" class="Theme-Section bpt-scene">
+  <!-- 4 items: vỏ bánh, nhân đậu, sợi dừa, hoa bưởi -->
+  <!-- Mỗi item: ảnh + text mô tả, dùng .bpt-split-scene pattern -->
+</div>
+```
+
+Dùng pattern `.bpt-split-scene` (đã có trong custom.css) cho từng nguyên liệu.
+
+---
+
+### 8.7 Phần 3 — Trích dẫn nghệ nhân (nghe-nhan)
+
+```html
+<div id="section-bpt-ch2-nghe-nhan" class="Theme-Section bpt-scene bpt-scene--closing">
+  <div class="bpt-prose bpt-reveal">
+    <blockquote class="bpt-ca-dao">
+      "Làm bánh phu thê phải có cái tâm. Mỗi chiếc bánh là một lời hứa..."
+      <footer>— Nghệ nhân Nguyễn Đình Minh, 68 tuổi, làng Đình Bảng</footer>
+    </blockquote>
+  </div>
+  <span class="bpt-scene-transition" aria-hidden="true"></span>
+</div>
+```
+
+---
+
+### 8.8 Thứ tự implement Chương II
+
+| Bước | Task | File | Ghi chú |
+|------|------|------|---------|
+| 1 | Thêm divider ch2 | `index.html` | Copy pattern từ `section-bpt-ch1-divider` |
+| 2 | Thêm section `ngu-hanh` với bánh unwrap layout | `index.html` | 7 frames + canvas + hanh cards |
+| 3 | CSS bánh unwrap + hanh cards + progress ring | `css/chapters/ch2.css` | Dark bg, per-chapter file |
+| 4 | JS unwrap sequence + burst + info panel | `js/chapters/ch2.js` | GSAP timeline, IIFE |
+| 5 | Base64 images | `js/ch2-imgs.js` | Extracted from animation reference |
+| 6 | Thêm section `vi-ngot` (scroll reveal) | `index.html` + `css/custom.css` | Dùng `.bpt-split-scene` |
+| 7 | Thêm section `nghe-nhan` (quote) | `index.html` | Dùng `.bpt-ca-dao` |
+| 8 | Responsive + reduced-motion | `css/chapters/ch2.css` | Mobile + no-motion |
+| 9 | Test unwrap + burst trên 375/768/1440px | — | Kiểm tra GSAP + canvas |
+
+---
+
+### 8.9 Vị trí HTML trong index.html
+
+Thêm sau thẻ đóng `<!-- /.bpt-sm-section -->` (hiện ở dòng ~553) và trước `<script src="js/inline-03.js">`:
+
+```
+[Chương I — bpt-zoom-scene]  ← đã có
+[section-bpt-ch2-divider]    ← THÊM MỚI
+[section-bpt-ch2-ngu-hanh]   ← THÊM MỚI  
+[section-bpt-ch2-vi-ngot]    ← THÊM MỚI
+[section-bpt-ch2-nghe-nhan]  ← THÊM MỚI
+<script src="js/inline-03.js"> ← giữ nguyên
+```
+
+---
+
+### 8.10 Checklist Chương II
+
+- [ ] Orbit 5 hành hiển thị đúng vị trí (72° cách nhau)
+- [ ] Click item → active state rõ (glow màu hành)
+- [ ] Các item chưa active → dimmed rõ ràng
+- [ ] Info panel hiển thị đúng data cho từng hành
+- [ ] Mobile: list dọc hoạt động không bị overflow
+- [ ] `prefers-reduced-motion`: orbit không xoay, transitions disabled
+- [ ] Alt text cho từng ảnh nguyên liệu (tiếng Việt)
+- [ ] Không lỗi console khi assets thiếu (img có fallback text)
+- [ ] Scroll vào section → orbit items fade-in (`.bpt-reveal` pattern)
+

@@ -27,6 +27,8 @@
         <title>Trang chính</title>
         <link rel="stylesheet" href="css/style-04.css" />
         <link rel="stylesheet" href="css/custom.css" />
+        <link rel="stylesheet" href="css/chapters/ch2.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     </head>
     <body>
         <div
@@ -355,36 +357,36 @@
                     <!-- Slide 0: Kinh Bắc -->
                     <div class="bpt-sm-slide is-active" data-sm-index="0">
                         <div
-                            class="bpt-sm-placeholder"
-                            data-label="Placeholder — Vùng đất Kinh Bắc"
+                            class="bpt-sm-placeholder bpt-sm-placeholder--warm"
+                            data-label="Vùng đất Kinh Bắc"
                         ></div>
                     </div>
                     <!-- Slide 1: Truyền thuyết cung đình -->
                     <div class="bpt-sm-slide is-primed" data-sm-index="1">
                         <div
-                            class="bpt-sm-placeholder"
-                            data-label="Placeholder — Truyền thuyết cung đình"
+                            class="bpt-sm-placeholder bpt-sm-placeholder--warm"
+                            data-label="Truyền thuyết cung đình"
                         ></div>
                     </div>
                     <!-- Slide 2: Bến sông -->
                     <div class="bpt-sm-slide" data-sm-index="2">
                         <div
-                            class="bpt-sm-placeholder"
-                            data-label="Placeholder — Bến sông"
+                            class="bpt-sm-placeholder bpt-sm-placeholder--photo"
+                            data-label="Bến sông"
                         ></div>
                     </div>
                     <!-- Slide 3: Làng nghề truyền thống -->
                     <div class="bpt-sm-slide" data-sm-index="3">
                         <div
-                            class="bpt-sm-placeholder"
-                            data-label="Placeholder — Làng nghề truyền thống"
+                            class="bpt-sm-placeholder bpt-sm-placeholder--photo"
+                            data-label="Làng nghề truyền thống"
                         ></div>
                     </div>
                     <!-- Slide 4: Chiếc bánh Phu Thê -->
                     <div class="bpt-sm-slide" data-sm-index="4">
                         <div
-                            class="bpt-sm-placeholder"
-                            data-label="Placeholder — Chiếc bánh Phu Thê"
+                            class="bpt-sm-placeholder bpt-sm-placeholder--photo"
+                            data-label="Chiếc bánh Phu Thê"
                         ></div>
                     </div>
                     <div class="bpt-sm-overlay" aria-hidden="true"></div>
@@ -543,6 +545,165 @@
                 <!-- /.bpt-sm-track -->
             </div>
             <!-- /.bpt-sm-section -->
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- CHƯƠNG II — Ngọt Bùi Hòa Quyện, Vẹn Tròn Đạo Phu Thê -->
+        <!-- ═══════════════════════════════════════════════ -->
+
+        <!-- Divider Chương II -->
+        <div id="section-bpt-ch2-divider" class="Theme-Section bpt-chapter-divider">
+          <div class="bpt-divider-red-line" aria-hidden="true"></div>
+          <span class="bpt-divider-num" aria-hidden="true">II</span>
+          <h2 class="bpt-divider-title">Ngọt Bùi Hòa Quyện</h2>
+          <p class="bpt-divider-sub">Vẹn Tròn Đạo Phu Thê</p>
+        </div>
+
+        <!-- Section 1: Ngũ Hành Interactive -->
+        <div id="section-bpt-ch2-ngu-hanh" class="Theme-Section bpt-ngu-hanh-section">
+          <div class="bpt-ngu-hanh__layout">
+
+            <!-- Text trái -->
+            <div class="bpt-ngu-hanh__text bpt-reveal">
+              <div class="bpt-prose">
+                <h3 class="bpt-kicker">Ngũ Hành trong chiếc bánh</h3>
+                <p>Nếu chỉ nhìn thoáng qua, bánh phu thê chỉ là một thức quà ngọt ngào giản dị. Nhưng ẩn sâu bên trong lớp lá dong xanh và sợi lạt đỏ thắm kia là cả một vũ trụ thu nhỏ — nơi năm nguyên tố của trời đất hội tụ, cân bằng và hòa quyện.</p>
+                <p>Người xưa đã gửi vào chiếc bánh triết lý ngũ hành sâu sắc: Mộc nuôi dưỡng, Kim gắn kết, Thổ ổn định, Hỏa thắp lên, Thủy dẫn đường. Đủ năm hành — hứa hẹn một hôn nhân trọn vẹn, hạnh phúc viên mãn.</p>
+              </div>
+              <p class="bpt-ngu-hanh__hint" aria-label="Gợi ý tương tác">✦ Chạm vào bánh để cảm nhận ngũ hành ✦</p>
+            </div>
+
+            <!-- Bánh unwrapping area bên phải -->
+            <div class="bpt-ngu-hanh__orbit" role="region" aria-label="Tương tác ngũ hành">
+
+              <!-- Progress ring -->
+              <svg class="bpt-prog-ring" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="190" cy="190" r="175" stroke="rgba(180,130,40,0.15)" stroke-width="1"/>
+                <circle class="bpt-prog-arc" id="bpt-prog-arc" cx="190" cy="190" r="175" stroke="rgba(210,160,50,0.5)" stroke-width="2" stroke-dasharray="1099" stroke-dashoffset="1099" stroke-linecap="round" transform="rotate(-90 190 190)"/>
+              </svg>
+
+              <!-- Bánh wrap — 7 frame layers + canvas FX -->
+              <div class="bpt-banh-wrap" id="bpt-banh-wrap" role="button" tabindex="0" aria-label="Chạm để mở bánh phu thê">
+                <canvas class="bpt-canvas-fx" id="bpt-canvas-fx" width="340" height="340"></canvas>
+                <div class="bpt-water-overlay" id="bpt-water-overlay"></div>
+
+                <img id="bpt-f1" class="bpt-banh-frame" style="z-index:17;opacity:1" alt="Bánh frame 1"/>
+                <img id="bpt-f2" class="bpt-banh-frame" style="z-index:16;opacity:0" alt="Bánh frame 2"/>
+                <img id="bpt-f3" class="bpt-banh-frame" style="z-index:15;opacity:0" alt="Bánh frame 3"/>
+                <img id="bpt-f4" class="bpt-banh-frame" style="z-index:14;opacity:0" alt="Bánh frame 4"/>
+                <img id="bpt-f5" class="bpt-banh-frame" style="z-index:13;opacity:0" alt="Bánh frame 5"/>
+                <img id="bpt-f6" class="bpt-banh-frame" style="z-index:12;opacity:0" alt="Bánh frame 6"/>
+                <img id="bpt-f7" class="bpt-banh-frame" style="z-index:11;opacity:0" alt="Bánh frame 7"/>
+
+                <div class="bpt-banh-glow" id="bpt-banh-glow" aria-hidden="true"></div>
+                <div class="bpt-banh-hint" id="bpt-banh-hint"><span>✦ Chạm để cảm nhận ngũ hành ✦</span></div>
+              </div>
+              <!-- /.bpt-banh-wrap -->
+
+              <!-- Ngũ Hành Cards — hidden, burst after unwrapping -->
+              <!-- MỘC -->
+              <div class="bpt-hanh-card" id="bpt-hc-moc" data-hanh="moc">
+                <div class="hc-img-pair">
+                  <img class="hc-img" id="bpt-img-ladong" alt="Lá dong" src="assets/background-remover/ladong.png"/>
+                  <img class="hc-img" id="bpt-img-lachuoi" alt="Lá chuối" src="assets/background-remover/lachuoi.png"/>
+                </div>
+                <div class="hc-name" style="color:#6fcf60">🌿 MỘC</div>
+                <div class="hc-badge" style="background:rgba(40,120,30,0.35);color:#90e070;border:1px solid rgba(80,180,50,0.4)">Lá dong · Lá chuối<br/>Sinh sôi · Sức sống</div>
+                <div class="hc-desc">Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái</div>
+              </div>
+
+              <!-- KIM -->
+              <div class="bpt-hanh-card" id="bpt-hc-kim" data-hanh="kim">
+                <div class="hc-img-pair">
+                  <img class="hc-img" id="bpt-img-dua" alt="Dừa nạo" src="assets/background-remover/dua.png"/>
+                  <img class="hc-img" id="bpt-img-duong" alt="Đường phèn" src="assets/background-remover/duong.png"/>
+                </div>
+                <div class="hc-name" style="color:#e8f0f8">⬡ KIM</div>
+                <div class="hc-badge" style="background:rgba(180,200,220,0.2);color:#d8eaf8;border:1px solid rgba(200,220,240,0.35)">Dừa nạo · Đường phèn<br/>Tinh khiết · Thủy chung</div>
+                <div class="hc-desc">Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững</div>
+              </div>
+
+              <!-- THỔ -->
+              <div class="bpt-hanh-card" id="bpt-hc-tho" data-hanh="tho">
+                <img class="hc-img" id="bpt-img-dau" alt="Nhân đậu xanh" src="assets/background-remover/dau.png"/>
+                <div class="hc-name" style="color:#f5c842">◈ THỔ</div>
+                <div class="hc-badge" style="background:rgba(200,160,40,0.25);color:#f8e080;border:1px solid rgba(240,200,60,0.4)">Nhân đậu xanh · Dành dành<br/>Ổn định · Ấm áp</div>
+                <div class="hc-desc">Màu vàng óng – nền tảng vững chắc của hạnh phúc</div>
+              </div>
+
+              <!-- HỎA -->
+              <div class="bpt-hanh-card" id="bpt-hc-hoa" data-hanh="hoa">
+                <img class="hc-img" id="bpt-img-soi-lat" alt="Sợi lạt đỏ"/>
+                <div class="hc-name" style="color:#f83018">🔥 HỎA</div>
+                <div class="hc-badge" style="background:rgba(200,40,30,0.2);color:#ff6040;border:1px solid rgba(248,48,24,0.4)">Sợi lạt đỏ<br/>Niềm vui · Gắn kết</div>
+                <div class="hc-desc">Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa</div>
+              </div>
+
+              <!-- THỦY -->
+              <div class="bpt-hanh-card" id="bpt-hc-thuy" data-hanh="thuy">
+                <div class="hc-img-pair">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" class="hc-img hc-img--thuy" style="filter:drop-shadow(0 6px 16px rgb(0 0 0 / 0.5))" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="bpt-wg2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#70d8ff;stop-opacity:1"/>
+                        <stop offset="100%" style="stop-color:#1890e0;stop-opacity:1"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M50 5 C50 5 15 55 15 75 C15 98 30 115 50 115 C70 115 85 98 85 75 C85 55 50 5 50 5Z" fill="url(#bpt-wg2)" stroke="#40b0e0" stroke-width="2"/>
+                    <ellipse cx="38" cy="72" rx="10" ry="14" fill="rgba(255,255,255,0.25)" transform="rotate(-15 38 72)"/>
+                  </svg>
+                </div>
+                <div class="hc-name" style="color:#60c8f0">💧 THỦY</div>
+                <div class="hc-badge" style="background:rgba(20,80,140,0.35);color:#80d8f8;border:1px solid rgba(40,140,210,0.4)">Nước · Hài hòa<br/>Linh hoạt · Bền bỉ</div>
+                <div class="hc-desc">Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân</div>
+              </div>
+
+              <!-- Finale text -->
+              <div class="bpt-finale-text" id="bpt-finale-text">
+                <h2>✦ Ngũ Hành Viên Mãn ✦</h2>
+                <p>Bánh phu thê hội tụ đủ năm hành<br/>Mộc · Kim · Thổ · Hỏa · Thủy<br/>Hứa hẹn hôn nhân trọn vẹn, hạnh phúc viên mãn</p>
+              </div>
+
+              <!-- Info panel — hiện khi click hanh card sau burst -->
+              <div class="bpt-ngu-hanh__info" id="bpt-ngu-hanh-info" aria-live="polite" aria-atomic="true">
+                <div class="bpt-ngu-hanh__info-name"></div>
+                <div class="bpt-ngu-hanh__info-badge"></div>
+                <div class="bpt-ngu-hanh__info-meaning"></div>
+              </div>
+
+            </div>
+            <!-- /.bpt-ngu-hanh__orbit -->
+
+          </div>
+          <!-- /.bpt-ngu-hanh__layout -->
+        </div>
+        <!-- /#section-bpt-ch2-ngu-hanh -->
+
+        <!-- Section 2: Hương vị hòa hợp -->
+        <div id="section-bpt-ch2-vi-ngot" class="Theme-Section bpt-scene">
+          <div class="bpt-split-scene bpt-reveal">
+            <div class="bpt-split-scene__text">
+              <div class="bpt-prose">
+                <h3 class="bpt-kicker">Hương vị hòa hợp</h3>
+                <p>Lớp vỏ bánh trong veo như hứa hẹn về sự thanh khiết. Nhân đậu xanh chín mềm pha lẫn dừa nạo và đường, tạo nên vị ngọt thanh mà không ngấy — như tình nghĩa đôi lứa, ngọt ngào nhưng không phải gánh nặng.</p>
+                <p>Và thoảng đâu đó, hương hoa bưởi dịu nhẹ — không lấn át, chỉ gợi nhớ — như những kỷ niệm xưa còn vương vấn trong từng mùa xuân về.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /#section-bpt-ch2-vi-ngot -->
+
+        <!-- Section 3: Trích dẫn nghệ nhân -->
+        <div id="section-bpt-ch2-nghe-nhan" class="Theme-Section bpt-scene bpt-scene--closing">
+          <div class="bpt-prose bpt-reveal">
+            <blockquote class="bpt-ca-dao">
+              "Làm bánh phu thê phải có cái tâm. Mỗi chiếc bánh là một lời hứa — với người nhận, với tổ tiên, và với chính mình."
+              <footer style="margin-top:12px;font-family:'Vollkorn','PT Serif',serif;font-style:normal;font-size:0.88em;opacity:0.72">— Nghệ nhân Nguyễn Đình Minh, 68 tuổi, làng Đình Bảng</footer>
+            </blockquote>
+          </div>
+          <span class="bpt-scene-transition" aria-hidden="true"></span>
+        </div>
+        <!-- /#section-bpt-ch2-nghe-nhan -->
+
         </article>
         <script src="js/inline-03.js"></script>
         <script
@@ -551,5 +712,7 @@
             type="text/javascript"
         ></script>
         <script src="js/custom.js" defer></script>
+        <script src="js/ch2-imgs.js"></script>
+        <script src="js/chapters/ch2.js" defer></script>
     </body>
 </html>

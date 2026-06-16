@@ -1,0 +1,586 @@
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — Ngũ Hành Interactive                            */
+/* Unwrap sequence: closed bánh → 7 frames → burst ngũ hành   */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ─────────────────────────────────────── */
+.bpt-ngu-hanh-section {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+  background: var(--color-rice-paper, #F7E8CB);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  color: var(--color-ink, #221A14);
+}
+
+/* ── Layout: centered column ──────────────────────────────── */
+.bpt-ngu-hanh__layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 4vh, 48px);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.bpt-ngu-hanh__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  max-width: 600px;
+  position: relative;
+  z-index: 50;
+}
+
+.bpt-ngu-hanh__hint {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: var(--color-red-thread, #972023);
+  opacity: 0.8;
+  animation: bpt-float-hint 2.4s ease-in-out infinite;
+}
+
+@keyframes bpt-float-hint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ── Orbit container ─────────────────────────────────────── */
+.bpt-ngu-hanh__orbit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  min-height: 620px;
+  width: 100%;
+  max-width: 1200px;
+  overflow: visible;
+}
+
+/* ── Bánh unwrapping area ───────────────────────────────── */
+.bpt-banh-wrap {
+  position: relative;
+  width: clamp(240px, 50vw, 340px);
+  height: clamp(240px, 50vw, 340px);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.bpt-banh-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  will-change: transform, opacity;
+}
+
+/* Canvas for particles/ripple FX */
+.bpt-canvas-fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* Glow behind bánh — warm golden glow on rice-paper bg */
+.bpt-banh-glow {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180,130,40,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bpt-banh-glow.is-bright {
+  background: radial-gradient(circle, rgba(240,180,40,0.28) 0%, transparent 70%);
+  transition: background 0.5s;
+}
+
+/* Hint text below bánh */
+.bpt-banh-hint {
+  position: absolute;
+  bottom: -54px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--color-red-thread, #972023);
+  white-space: nowrap;
+  pointer-events: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+
+.bpt-banh-hint span {
+  display: inline-block;
+  animation: bpt-float-hint 2s ease-in-out infinite;
+}
+
+/* Progress ring SVG */
+.bpt-prog-ring {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+/* ── Ngũ Hành cards — hidden until burst ────────────────── */
+.bpt-hanh-card {
+  position: absolute;
+  width: 190px;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: box-shadow 0.2s;
+}
+
+.bpt-hanh-card:hover {
+  filter: brightness(1.05);
+}
+
+.bpt-hanh-card .hc-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 0.25));
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.bpt-hanh-card .hc-img-pair {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0 auto 8px;
+}
+
+.bpt-hanh-card .hc-img-pair .hc-img {
+  width: 76px;
+  height: 76px;
+  margin: 0;
+}
+
+/* SVG thủy — override hardcoded width/height */
+.bpt-hanh-card .hc-img--thuy {
+  width: 120px;
+  height: 120px;
+}
+
+.bpt-hanh-card .hc-img-pair .hc-img--thuy {
+  width: 76px;
+  height: 76px;
+}
+
+.bpt-hanh-card .hc-badge {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  margin: 0 auto;
+  display: table;
+}
+
+.bpt-hanh-card .hc-name {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3px;
+  opacity: 0;
+}
+
+.bpt-hanh-card .hc-desc {
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0;
+  padding: 4px 6px;
+  border-radius: 8px;
+  background: rgba(151, 32, 35, 0.08);
+  color: var(--color-ink, #221A14);
+  margin-top: 4px;
+}
+
+/* Water ripple overlay */
+.bpt-water-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 25;
+  opacity: 0;
+}
+
+/* Finale text */
+.bpt-finale-text {
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  width: 280px;
+}
+
+.bpt-finale-text h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-red-thread, #972023);
+  text-shadow: 0 0 16px rgba(151, 32, 35, 0.2);
+  margin-bottom: 6px;
+}
+
+.bpt-finale-text p {
+  font-size: 12px;
+  color: var(--color-ink, #221A14);
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* ── Info panel — positioned beside clicked card ────────── */
+.bpt-ngu-hanh__info {
+  position: absolute;
+  min-height: 80px;
+  width: 220px;
+  padding: 14px 16px;
+  background: var(--color-cream-white, #FFF8EA);
+  border: 1px solid var(--color-red-thread, #972023);
+  border-radius: 12px;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 150;
+  box-shadow: 0 8px 24px rgba(34, 26, 20, 0.12);
+  transition: opacity 280ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(6px) scale(0.96);
+}
+
+.bpt-ngu-hanh__info.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.bpt-ngu-hanh__info-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hanh-color, var(--color-red-thread));
+  margin-bottom: 4px;
+}
+
+.bpt-ngu-hanh__info-badge {
+  font-family: 'Vollkorn', 'PT Serif', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-ink, #221A14);
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+
+.bpt-ngu-hanh__info-meaning {
+  font-family: 'Vollkorn', 'PT Serif', serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-ink, #221A14);
+  background: rgba(151, 32, 35, 0.05);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* Responsive: Tablet (≤768px) — smaller bánh + cards,        */
+/* radial burst still works because everything is compact     */
+/* ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .bpt-ngu-hanh-section {
+    min-height: auto;
+    padding: clamp(36px, 6vh, 60px) clamp(12px, 3vw, 24px);
+  }
+
+  .bpt-ngu-hanh__layout {
+    max-width: 100%;
+  }
+
+  .bpt-ngu-hanh__orbit {
+    min-height: 480px;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  /* Bánh nhỏ hơn nhiều — chỉ 160px để dành chỗ cho burst */
+  .bpt-banh-wrap {
+    width: 160px;
+    height: 160px;
+  }
+
+  .bpt-banh-hint {
+    font-size: 0.7rem;
+    bottom: -40px;
+  }
+
+  .bpt-prog-ring {
+    top: -14px;
+    left: -14px;
+    width: calc(100% + 28px);
+    height: calc(100% + 28px);
+  }
+
+  /* Cards compact — 100px width */
+  .bpt-hanh-card {
+    width: 100px;
+  }
+
+  .bpt-hanh-card .hc-img {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 4px;
+  }
+
+  .bpt-hanh-card .hc-img-pair {
+    gap: 4px;
+    margin: 0 auto 4px;
+  }
+
+  .bpt-hanh-card .hc-img-pair .hc-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .bpt-hanh-card .hc-img--thuy {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bpt-hanh-card .hc-img-pair .hc-img--thuy {
+    width: 32px;
+    height: 32px;
+  }
+
+  .bpt-hanh-card .hc-name {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .bpt-hanh-card .hc-badge {
+    font-size: 8px;
+    padding: 2px 6px;
+    line-height: 1.2;
+  }
+
+  .bpt-hanh-card .hc-desc {
+    font-size: 8px;
+    padding: 2px 4px;
+    margin-top: 2px;
+  }
+
+  /* Finale text compact */
+  .bpt-finale-text {
+    width: 180px;
+  }
+
+  .bpt-finale-text h2 {
+    font-size: 12px;
+  }
+
+  .bpt-finale-text p {
+    font-size: 8px;
+    line-height: 1.4;
+  }
+
+  /* Info panel — below card, compact */
+  .bpt-ngu-hanh__info {
+    width: 160px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+  }
+
+  .bpt-ngu-hanh__info.is-visible {
+    transform: translateY(0) scale(1);
+  }
+
+  .bpt-ngu-hanh__info-name {
+    font-size: 0.82rem;
+    margin-bottom: 2px;
+  }
+
+  .bpt-ngu-hanh__info-badge {
+    font-size: 0.68rem;
+    margin-bottom: 4px;
+  }
+
+  .bpt-ngu-hanh__info-meaning {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+    line-height: 1.4;
+  }
+
+  .bpt-ngu-hanh__text {
+    gap: 12px;
+  }
+
+  .bpt-ngu-hanh__hint {
+    font-size: 0.78rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* Responsive: Small phone (≤420px) — even more compact       */
+/* ═══════════════════════════════════════════════════════════ */
+@media (max-width: 420px) {
+  .bpt-ngu-hanh-section {
+    padding: clamp(28px, 5vh, 48px) clamp(8px, 2vw, 16px);
+  }
+
+  .bpt-ngu-hanh__orbit {
+    min-height: 420px;
+  }
+
+  /* Bánh tiny — 130px */
+  .bpt-banh-wrap {
+    width: 130px;
+    height: 130px;
+  }
+
+  .bpt-banh-hint {
+    font-size: 0.62rem;
+    bottom: -32px;
+  }
+
+  .bpt-prog-ring {
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+  }
+
+  /* Cards tiny — 90px */
+  .bpt-hanh-card {
+    width: 90px;
+  }
+
+  .bpt-hanh-card .hc-img {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 3px;
+  }
+
+  .bpt-hanh-card .hc-img-pair {
+    gap: 3px;
+    margin: 0 auto 3px;
+  }
+
+  .bpt-hanh-card .hc-img-pair .hc-img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .bpt-hanh-card .hc-img--thuy {
+    width: 38px;
+    height: 38px;
+  }
+
+  .bpt-hanh-card .hc-img-pair .hc-img--thuy {
+    width: 26px;
+    height: 26px;
+  }
+
+  .bpt-hanh-card .hc-name {
+    font-size: 9px;
+    margin-bottom: 1px;
+  }
+
+  .bpt-hanh-card .hc-badge {
+    font-size: 7px;
+    padding: 1px 4px;
+    line-height: 1.15;
+  }
+
+  .bpt-hanh-card .hc-desc {
+    display: none;
+  }
+
+  /* Finale text tiny */
+  .bpt-finale-text {
+    width: 140px;
+  }
+
+  .bpt-finale-text h2 {
+    font-size: 10px;
+  }
+
+  .bpt-finale-text p {
+    font-size: 7px;
+    line-height: 1.3;
+  }
+
+  /* Info panel tiny */
+  .bpt-ngu-hanh__info {
+    width: 140px;
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+
+  .bpt-ngu-hanh__info.is-visible {
+    transform: translateY(0) scale(1);
+  }
+
+  .bpt-ngu-hanh__info-name {
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+  }
+
+  .bpt-ngu-hanh__info-badge {
+    font-size: 0.62rem;
+    margin-bottom: 3px;
+  }
+
+  .bpt-ngu-hanh__info-meaning {
+    font-size: 0.66rem;
+    padding: 3px 6px;
+    line-height: 1.3;
+  }
+
+  .bpt-ngu-hanh__text {
+    gap: 8px;
+  }
+
+  .bpt-ngu-hanh__hint {
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-banh-glow,
+  .bpt-banh-hint span {
+    animation: none !important;
+  }
+  .bpt-ngu-hanh__info {
+    transition: none !important;
+  }
+}
