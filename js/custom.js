@@ -67,7 +67,7 @@
 (() => {
   const allReveals = document.querySelectorAll('.bpt-reveal');
   // Exclude p2 split-panel elements (they have their own IIFE animation)
-  const reveals = [...allReveals].filter(el => !el.closest('.bpt-sm-panel--cinematic'));
+  const reveals = [...allReveals].filter(el => !el.closest('.bpt-sm-panel--cinematic') && !el.closest('.bpt-sm-panel--magazine'));
   if (!reveals.length) return;
 
   const observer = new IntersectionObserver(
@@ -442,7 +442,7 @@
 
   // Chỉ lấy panels KHÔNG phải split (p2 đã có IIFE riêng)
   const panelItems = Array.from(
-    section.querySelectorAll('.bpt-sm-panel:not(.bpt-sm-panel--cinematic)')
+    section.querySelectorAll('.bpt-sm-panel:not(.bpt-sm-panel--cinematic):not(.bpt-sm-panel--magazine)')
   ).map((panel) => {
     const textEl = panel.querySelector('.bpt-sm-text.bpt-reveal');
     if (!textEl) return null;
@@ -529,3 +529,164 @@
   window.addEventListener('resize', onScroll, { passive: true });
 })();
 
+
+/* ═══════════════════════════════════════════════════════════
+   Panel p1 — Magazine Cinematic: ảnh Đình làng bay từ góc
+   - Phase 1 ENTER: Ảnh từ góc phải dưới (nghiêng 35°) bay vào vị trí chuẩn
+   - Phase 2 HOLD: Ảnh đứng yên, nằm ngay ngắn
+   - Phase 3 EXIT: Ảnh bay ngược về góc phải dưới khi scroll qua
+   - Khung ảnh: scale từ nhỏ → to + fade in (cinematic reveal)
+   ═══════════════════════════════════════════════════════════ */
+
+(() => {
+  const panel = document.querySelector('.bpt-sm-panel--magazine');
+  if (!panel) return;
+
+  const photo = panel.querySelector('.bpt-magazine-photo');
+  const photoFrame = panel.querySelector('.bpt-magazine-photo-inner');
+  const textEl = panel.querySelector('.bpt-sm-text.bpt-reveal');
+
+  // Reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (photo) { photo.style.transform = ''; photo.style.opacity = '1'; }
+    if (photoFrame) { photoFrame.style.transform = ''; photoFrame.style.opacity = '1'; }
+    if (textEl) { textEl.style.transform = ''; textEl.style.opacity = '1'; }
+    return;
+  }
+
+  // Easing functions
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeInCubic(t) { return t * t * t; }
+
+  let ticking = false;
+
+  function computeProgress() {
+    const rect = panel.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const panelHeight = rect.height;
+    
+    // viewport boundaries
+    const viewportCenter = vh * 0.5;
+    const panelTop = rect.top;
+    const panelBottom = rect.bottom;
+    const panelCenter = (panelTop + panelBottom) / 2;
+    
+    // Phase 1: ENTER - panel từ dưới lên đến khi panel top chạm viewport center
+    // Start: panel bottom ở viewport bottom (panelTop = vh)
+    // End: panel top ở viewport center (panelTop = viewportCenter)
+    let pEnter = 0;
+    const enterStart = vh;        // panel vừa bắt đầu vào từ dưới
+    const enterEnd = viewportCenter - panelHeight * 0.2;  // panel đã vào khá sâu
+    
+    if (panelTop <= enterStart && panelTop >= enterEnd) {
+      pEnter = Math.max(0, Math.min(1, (enterStart - panelTop) / (enterStart - enterEnd)));
+    } else if (panelTop < enterEnd) {
+      pEnter = 1; // Enter hoàn thành
+    }
+    
+    // Phase 3: EXIT - panel đi lên quá viewport center
+    // Start: panel center ở viewport center
+    // End: panel top ra khỏi viewport (panelTop = -panelHeight * 0.3)
+    let pExit = 0;
+    const exitStart = viewportCenter;  // bắt đầu exit
+    const exitEnd = -panelHeight * 0.4; // đã exit hẳn
+    
+    if (panelCenter <= exitStart && panelCenter >= exitEnd) {
+      pExit = Math.max(0, Math.min(1, (exitStart - panelCenter) / (exitStart - exitEnd)));
+    } else if (panelCenter < exitEnd) {
+      pExit = 1; // Đã exit hoàn toàn
+    }
+
+    return { pEnter, pExit };
+  }
+
+  function applyAnimation() {
+    const { pEnter, pExit } = computeProgress();
+    
+    const ep = easeOutCubic(pEnter);
+    const exp = easeInCubic(pExit);
+
+    // Photo animation - 3 phases:
+    // ENTER: từ góc phải dưới, rotate 35° → vị trí chuẩn
+    // HOLD: ở vị trí chuẩn (khi pEnter=1, pExit=0)
+    // EXIT: từ vị trí chuẩn → góc phải dưới, rotate 35°
+    if (photo) {
+      const startX = 80;   // % (bên phải xa)
+      const startY = 60;   // % (dưới)
+      const startRot = 35; // độ nghiêng ban đầu
+      
+      // Nếu đang exit, ưu tiên exit animation
+      let finalX, finalY, finalRot, opacity;
+      
+      if (pExit > 0) {
+        // EXIT phase: đang rời đi
+        finalX = startX * exp;
+        finalY = startY * exp;
+        finalRot = startRot * exp;
+        opacity = 1 - exp * 0.95;
+      } else {
+        // ENTER phase: đang vào
+        finalX = startX * (1 - ep);
+        finalY = startY * (1 - ep);
+        finalRot = startRot * (1 - ep);
+        opacity = Math.min(1, ep * 1.3);
+      }
+
+      photo.style.transform = `translate(${finalX.toFixed(2)}%, ${finalY.toFixed(2)}%) rotate(${finalRot.toFixed(2)}deg)`;
+      photo.style.opacity = Math.max(0, opacity).toFixed(3);
+    }
+
+    // Frame animation: scale từ nhỏ → to + fade in (cinematic)
+    if (photoFrame) {
+      let scale, opacity;
+      
+      if (pExit > 0) {
+        // EXIT: frame thu nhỏ và fade out
+        scale = 1 - 0.08 * exp;
+        opacity = 1 - exp * 0.95;
+      } else {
+        // ENTER: frame scale lên và fade in
+        scale = 0.92 + 0.08 * ep;
+        opacity = Math.min(1, ep * 1.4);
+      }
+      
+      photoFrame.style.transform = `scale(${scale.toFixed(3)})`;
+      photoFrame.style.opacity = Math.max(0, opacity).toFixed(3);
+    }
+
+    // Text animation - đơn giản hơn
+    if (textEl) {
+      let finalY, opacity;
+      
+      if (pExit > 0) {
+        // EXIT: text trượt lên và mờ
+        finalY = -25 * exp;
+        opacity = 1 - exp * 0.9;
+      } else {
+        // ENTER: text trượt lên nhẹ và hiện
+        finalY = 40 * (1 - ep);
+        opacity = Math.min(1, ep * 1.2);
+      }
+      
+      textEl.style.transform = `translateY(${finalY.toFixed(2)}px)`;
+      textEl.style.opacity = Math.max(0, opacity).toFixed(3);
+    }
+  }
+
+  function onRaf() {
+    ticking = false;
+    applyAnimation();
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onRaf);
+  }
+
+  // Init
+  applyAnimation();
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => { onScroll(); }, { passive: true });
+})();
