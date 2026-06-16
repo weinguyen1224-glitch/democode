@@ -227,3 +227,188 @@
   // Initial state
   requestZoomUpdate();
 })();
+
+/* ═════════════════════════════════════════════════════════════
+   BACKGROUND SCROLLMATION — Chương I
+   Pattern B từ SCROLL_ANIMATION_SPEC.md:
+   Sticky media layer, text panels scroll qua, ảnh cross-fade.
+   Thuật toán: passive scroll listener + rAF + chỉ thay opacity/transform.
+   ═════════════════════════════════════════════════════════════ */
+
+(() => {
+  const section = document.querySelector('[data-bgsm="ch1"]');
+  if (!section) return;
+
+  const slides = Array.from(section.querySelectorAll('.bpt-sm-slide'));
+  const panels = Array.from(section.querySelectorAll('.bpt-sm-panel'));
+  const N = slides.length;
+  if (!N || !panels.length) return;
+
+  // Respect reduced motion: no cross-fade, just show slide 0
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    slides[0].classList.add('is-active');
+    return;
+  }
+
+  let currentIndex = 0;
+  let ticking = false;
+  let _active = false;
+
+  // IntersectionObserver: pause scroll handler when section off-screen
+  const visObs = new IntersectionObserver(
+    (entries) => {
+      _active = entries[0].isIntersecting;
+    },
+    { rootMargin: '10% 0px' }
+  );
+  visObs.observe(section);
+
+  function activateSlide(index, instant) {
+    if (index === currentIndex && !instant) return;
+
+    const prev = currentIndex;
+    currentIndex = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.remove('is-active', 'is-primed');
+      if (i === index) {
+        if (instant) {
+          // Tắt transition tạm thời để chuyển ngay
+          slide.style.transition = 'none';
+          slide.style.transform = 'scale(1)';
+          slide.style.opacity = '1';
+          requestAnimationFrame(() => {
+            slide.style.removeProperty('transition');
+            slide.style.removeProperty('transform');
+            slide.style.removeProperty('opacity');
+            slide.classList.add('is-active');
+          });
+        } else {
+          slide.classList.add('is-active');
+        }
+      } else if (i === index + 1) {
+        // Pre-load ảnh kế tiếp
+        slide.classList.add('is-primed');
+      }
+    });
+  }
+
+  function onScroll() {
+    if (!_active || ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  function update() {
+    const rect = section.getBoundingClientRect();
+    const trackHeight = section.offsetHeight - window.innerHeight;
+    if (trackHeight <= 0) { ticking = false; return; }
+
+    // pct: 0 khi đỉnh section vào viewport → 1 khi đáy section rời viewport
+    const pct = Math.max(0, Math.min(1, -rect.top / trackHeight));
+
+    // Mỗi panel chiếm 1/N của chiều dài scroll
+    const rawIndex = pct * N;
+    const index = Math.min(N - 1, Math.floor(rawIndex));
+
+    if (index !== currentIndex) {
+      activateSlide(index, false);
+    }
+
+    ticking = false;
+  }
+
+  // Khởi tạo: slide 0 active ngay (instant, không transition)
+  activateSlide(0, true);
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  // First update in case page loads mid-scroll
+  requestAnimationFrame(update);
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   GIF Slide-In — Panel p2 scroll-driven parallax
+   Scroll xuống → GIF bay chéo từ rìa trái vào (translateX + Y nhẹ).
+   Scroll lên → GIF bay ngược ra theo đúng tỉ lệ scroll (reverse mượt).
+   Không dùng IntersectionObserver — pure rAF loop đồng bộ pixel.
+   ═══════════════════════════════════════════════════════════ */
+
+(() => {
+  const splitPanel = document.querySelector('.bpt-sm-panel--split');
+  if (!splitPanel) return;
+
+  const gifEl = splitPanel.querySelector('.bpt-sm-gif-reveal');
+  if (!gifEl) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gifEl.style.transform = 'none';
+    gifEl.style.opacity   = '1';
+    return;
+  }
+
+  let ticking = false;
+  let lastProgress = -1;
+
+  function computeProgress() {
+    const rect = splitPanel.getBoundingClientRect();
+    const vh   = window.innerHeight;
+
+    // Bắt đầu:   rect.top = vh*1.1  → panel chưa chạm đáy viewport (p = 0)
+    // Hoàn thành: rect.top = vh*0.1  → panel gần căn giữa viewport (p = 1)
+    // Range = vh → dài hơn trước, animation kéo dài suốt quá trình scroll vào
+    const rangeStart = vh * 1.05;
+    const rangeEnd   = vh * -1.20;
+
+    const traveled = rangeStart - rect.top;
+    const range    = rangeStart - rangeEnd;
+
+    return Math.max(0, Math.min(1, traveled / range));
+  }
+
+
+  function applyProgress(p) {
+    const ep  = p;
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Mobile: từ dưới lên + nhẹ fade
+      const ty = (70 * (1 - ep)).toFixed(2);
+      const sc = (0.92 + 0.08 * ep).toFixed(4);
+      const op = Math.min(1, p * 1.6).toFixed(3);
+      gifEl.style.transform = `translateY(${ty}px) scale(${sc})`;
+      gifEl.style.opacity   = op;
+    } else {
+      // Desktop: trượt từ ngoài rìa trái vào (translateX chủ đạo) + chéo nhẹ
+      const tx = (-105 * (1 - ep)).toFixed(2);   // từ -105% về 0 (vừa đủ ngoài màn hình)
+      const ty = (20  * (1 - ep)).toFixed(2);    // nhẹ từ dưới lên 20px (tạo cảm giác chéo)
+      const sc = (0.95 + 0.05 * ep).toFixed(4);  // scale nhẹ hơn, tự nhiên hơn
+      const op = Math.min(1, p * 2.2).toFixed(3); // fade nhanh ở đầu, rõ sớm
+      gifEl.style.transform = `translateX(${tx}%) translateY(${ty}px) scale(${sc})`;
+      gifEl.style.opacity   = op;
+    }
+  }
+
+  function onRaf() {
+    ticking = false;
+    const p = computeProgress();
+    if (Math.abs(p - lastProgress) < 0.0003) return;
+    lastProgress = p;
+    applyProgress(p);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onRaf);
+  }
+
+  // Init ngay (mid-scroll load)
+  applyProgress(computeProgress());
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+})();

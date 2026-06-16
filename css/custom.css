@@ -1031,3 +1031,343 @@ sh-background-transition .Theme-Item-Picture img {
     transform: none !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLLMATION — Chương I: sticky full-bleed background + text overlay panels
+   Pattern B from SCROLL_ANIMATION_SPEC.md
+   Không thay đổi: tone màu, font, biến CSS đã có sẵn.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ── */
+.bpt-sm-section {
+  position: relative;
+  /* height tự tính qua track, không cần set */
+}
+
+/* ── Sticky media layer ── */
+.bpt-sm-media {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+  will-change: transform; /* GPU layer */
+}
+
+/* ── Từng slide ảnh — chồng lên nhau, chuyển qua opacity ── */
+.bpt-sm-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Ken Burns nhẹ: scale out từ 1.06 về 1.0 khi active */
+  transform: scale(1.06);
+}
+
+.bpt-sm-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Active slide: hiện rõ + scale bình thường */
+.bpt-sm-slide.is-active {
+  opacity: 1;
+  transform: scale(1.0);
+  z-index: 1;
+}
+
+/* Primed: ảnh kế tiếp được pre-load (display block, opacity 0) */
+.bpt-sm-slide.is-primed {
+  opacity: 0;
+  transform: scale(1.04); /* nhẹ hơn, sẵn sàng bay vào */
+  z-index: 0;
+}
+
+/* ── Gradient overlay — đảm bảo text đọc được ── */
+.bpt-sm-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      rgb(34 26 20 / 0.72) 0%,
+      rgb(34 26 20 / 0.42) 45%,
+      rgb(34 26 20 / 0.12) 100%
+    );
+}
+
+/* ── Scroll track — chiều cao = 5 panels × 100vh ── */
+.bpt-sm-track {
+  position: relative;
+  z-index: 3;
+  /* Offset ngược -100vh để bắt đầu từ đỉnh media */
+  margin-top: -100vh;
+}
+
+/* ── Mỗi panel text = 1 màn hình, căn giữa dọc ── */
+.bpt-sm-panel {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* chỉ text block nhận events */
+}
+
+/* Closing panel: thêm padding bottom để có khoảng hở */
+.bpt-sm-panel--closing {
+  min-height: 110vh;
+  padding-bottom: clamp(80px, 12vh, 160px);
+  align-items: flex-end;
+}
+
+/* ── Text block nổi lên ảnh ── */
+.bpt-sm-text {
+  pointer-events: auto;
+  max-width: min(520px, 80vw);
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
+  /* Nền tối mờ, blur nhẹ để text nổi lên ảnh */
+  background: rgb(34 26 20 / 0.52);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  margin: clamp(24px, 4vw, 64px);
+}
+
+/* Vị trí: left / right / center */
+.bpt-sm-text--left {
+  margin-left: clamp(24px, 5vw, 100px);
+  margin-right: auto;
+}
+
+.bpt-sm-text--right {
+  margin-left: auto;
+  margin-right: clamp(24px, 5vw, 100px);
+}
+
+.bpt-sm-text--center {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(640px, 88vw);
+  text-align: center;
+}
+
+/* Typography override trong context tối */
+.bpt-sm-text .bpt-kicker {
+  color: var(--color-red-thread);
+  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.bpt-sm-text p {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  line-height: 1.82;
+  color: rgb(255 248 234 / 0.93); /* cream-white sáng hơn để đọc trên nền tối */
+  margin: 0 0 1.2em;
+}
+
+.bpt-sm-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* GIF nhỏ inline trong p2 */
+.bpt-sm-inline-gif {
+  margin: 1.4em 0 0;
+  max-width: min(200px, 44%);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.32);
+}
+
+.bpt-sm-inline-gif img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Reveal override: trong scrollmation, text block là target */
+.bpt-sm-text.bpt-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-sm-text.bpt-reveal.bpt-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ghi đè bpt-reveal paragraph stagger vì trong context này block chuyển cùng lúc */
+.bpt-sm-text.bpt-reveal .bpt-kicker,
+.bpt-sm-text.bpt-reveal p,
+.bpt-sm-text.bpt-reveal figure {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ── Red-thread accent: đường kẻ trái text block ── */
+.bpt-sm-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: clamp(14px, 2vw, 24px);
+  bottom: clamp(14px, 2vw, 24px);
+  width: 3px;
+  background: var(--color-red-thread);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.bpt-sm-text--center::before {
+  display: none; /* không cần đường kẻ khi centered */
+}
+
+/* ── Mobile: full-width text, overlay nhẹ hơn ── */
+@media (max-width: 768px) {
+  .bpt-sm-text {
+    max-width: calc(100vw - 32px);
+    margin: 16px;
+    padding: clamp(20px, 5vw, 32px);
+  }
+
+  .bpt-sm-text--left,
+  .bpt-sm-text--right {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .bpt-sm-text p {
+    font-size: clamp(0.98rem, 3.8vw, 1.2rem);
+  }
+
+  .bpt-sm-overlay {
+    background: rgb(34 26 20 / 0.55);
+  }
+}
+
+/* ── Reduced motion: tắt tất cả cross-fade và scale ── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-sm-slide {
+    transition: none !important;
+    transform: scale(1) !important;
+  }
+
+  .bpt-sm-text.bpt-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Panel p2 — Split layout: GIF trái slide-in + text phải
+   GIF bắt đầu ở ngoài rìa trái (translateX), trượt vào
+   khi scroll đến panel, tạo hiệu ứng "kéo sang" mượt mà.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════
+   Panel p2 — Split: GIF (50%) trái | Text (50%) phải
+   GIF bay vào từ rìa trái theo scroll (JS-driven).
+   Text luôn bên phải, cân đối với GIF.
+   ═══════════════════════════════════════════════════════════ */
+
+.bpt-sm-panel--split {
+  display: flex;
+  align-items: center;
+  /* overflow hidden = clip GIF khi nó animate từ ngoài rìa trái vào */
+  overflow: hidden;
+  gap: 0;
+  padding: 0;
+  /* min-height cao hơn để panel có không gian scroll */
+  min-height: 100vh;
+}
+
+.bpt-sm-gif-reveal {
+  /* GIF chiếm đúng 50% panel (= 50vw trên desktop) */
+  flex: 0 0 50%;
+  max-width: 50%;
+  min-width: 0;
+  /* Cao 70vh để GIF to, đủ nổi bật */
+  height: clamp(300px, 70vh, 720px);
+  /* Rìa trái phẳng (bay vào từ ngoài), rìa phải bo góc nhẹ */
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
+  box-shadow:
+    0 24px 72px rgb(0 0 0 / 0.5),
+    0 0 0 1px rgb(255 255 255 / 0.05),
+    4px 0 24px rgb(151 32 35 / 0.15);
+  will-change: transform, opacity;
+  pointer-events: auto;
+  /* Viền phải màu đỏ chủ đạo, nhấn mạnh điểm chia đôi */
+  border-right: 3px solid rgb(151 32 35 / 0.45);
+}
+
+.bpt-sm-gif-reveal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Text block: cột phải, chiều rộng đầy đủ, căn chỉnh tốt */
+.bpt-sm-panel--split .bpt-sm-text {
+  flex: 1 1 0%;
+  min-width: 0;
+  /* Override base class max-width — text fill cột phải hoàn toàn */
+  max-width: 100%;
+  /* Padding ngang thay vì margin — giữ nền tối mờ đúng kích thước */
+  margin-left: clamp(16px, 2.5vw, 40px);
+  margin-right: clamp(32px, 5vw, 80px);
+}
+
+/* Mobile: stack dọc — GIF full width trên, text dưới */
+@media (max-width: 768px) {
+  .bpt-sm-panel--split {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow: hidden;
+    min-height: unset;
+  }
+
+  .bpt-sm-gif-reveal {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+    height: clamp(200px, 55vw, 320px);
+    border-radius: 0;
+    border-right: none;
+    border-bottom: 3px solid rgb(151 32 35 / 0.45);
+  }
+
+  .bpt-sm-panel--split .bpt-sm-text {
+    margin: 24px 16px 0;
+    max-width: 100%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-sm-gif-reveal {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
