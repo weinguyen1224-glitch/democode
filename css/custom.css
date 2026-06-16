@@ -28,6 +28,7 @@
   border: 1px solid rgb(255 255 255 / 0.18);
   border-radius: 18px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 24px 80px rgb(0 0 0 / 0.28);
 }
 
@@ -91,6 +92,9 @@
   }
   .intro-card {
     border-radius: 14px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgb(0 0 0 / 0.6);
   }
 }
 
@@ -341,6 +345,20 @@
   to {
     transform: translateX(-70vw) rotate(18deg);
     opacity: 0.45;
+  }
+}
+
+/* ═══ Mobile performance: hide heavy animated layers ═══ */
+@media (max-width: 768px) {
+  .v2-transition-layer,
+  .scene-orb,
+  .scene-wipe {
+    display: none !important;
+  }
+
+  #article > header[id^="section-"]::before,
+  #article > div[id^="section-"]::before {
+    display: none !important;
   }
 }
 
@@ -1021,6 +1039,7 @@ sh-background-transition .Theme-Item-Picture img {
 /* ── Section wrapper ── */
 .bpt-sm-section {
   position: relative;
+  contain: content;
   /* height tự tính qua track, không cần set */
 }
 
@@ -1032,7 +1051,7 @@ sh-background-transition .Theme-Item-Picture img {
   width: 100%;
   overflow: hidden;
   z-index: 0;
-  will-change: transform; /* GPU layer */
+  contain: content;
 }
 
 /* ── Từng slide ảnh — chồng lên nhau, chuyển qua opacity ── */
@@ -1040,7 +1059,6 @@ sh-background-transition .Theme-Item-Picture img {
   position: absolute;
   inset: 0;
   opacity: 0;
-  will-change: opacity, transform;
   transition:
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1055,7 +1073,6 @@ sh-background-transition .Theme-Item-Picture img {
   object-fit: cover;
   object-position: center center;
   transform-origin: center center;
-  will-change: transform;
 }
 
 /* ═══════════════════════════════════════════════════════════ */
@@ -1143,6 +1160,12 @@ sh-background-transition .Theme-Item-Picture img {
       rgb(34 26 20 / 0.12) 100%
     );
   transition: background 0.8s ease;
+}
+
+@media (max-width: 768px) {
+  .bpt-sm-overlay {
+    transition: none;
+  }
 }
 
 /* Overlay sáng cho warm placeholder (Ch1 p1,p2) */
@@ -1252,7 +1275,6 @@ sh-background-transition .Theme-Item-Picture img {
 /* Reveal override: panel p2 text — JS-driven scroll sync (no CSS transition) */
 .bpt-sm-text.bpt-reveal {
   /* Cinematic reveal: bắt đầu ẩn, JS control */
-  will-change: transform, opacity;
   transition: none;
   /* Initial state: ẩn, sẵn sàng cho animation */
   opacity: 0;
@@ -1297,6 +1319,9 @@ sh-background-transition .Theme-Item-Picture img {
     max-width: calc(100vw - 32px);
     margin: 16px;
     padding: clamp(20px, 5vw, 32px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgb(34 26 20 / 0.72);
   }
 
   .bpt-sm-text--left,
@@ -1363,9 +1388,14 @@ sh-background-transition .Theme-Item-Picture img {
   object-fit: cover;
   object-position: center;
   z-index: 0;
-  will-change: transform, opacity;
   /* JS scroll-driven sets transform + opacity directly */
   pointer-events: none;
+}
+
+@media (min-width: 769px) {
+  .bpt-sm-cinematic-bg {
+    will-change: transform, opacity;
+  }
 }
 
 /* Overlay gradient tối → text đọc được */
@@ -1377,6 +1407,12 @@ sh-background-transition .Theme-Item-Picture img {
   background:
     radial-gradient(ellipse at center, rgb(34 26 20 / 0.40) 0%, rgb(34 26 20 / 0.72) 100%);
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .bpt-sm-panel--cinematic::after {
+    background: rgb(34 26 20 / 0.65);
+  }
 }
 
 /* Text overlay giữa màn hình */
@@ -1411,6 +1447,9 @@ sh-background-transition .Theme-Item-Picture img {
     max-width: 92vw;
     padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
     border-radius: 12px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgb(34 26 20 / 0.78);
   }
 }
 
@@ -1452,7 +1491,6 @@ sh-background-transition .Theme-Item-Picture img {
 .bpt-magazine-photo {
   flex: 0 0 44%;
   position: relative;
-  will-change: transform, opacity;
 }
 
 .bpt-magazine-photo--right {
@@ -1687,7 +1725,6 @@ sh-background-transition .Theme-Item-Picture img {
   opacity: 0;
   transform: scale(0.9) rotate(-5deg);
   transform-origin: bottom right;
-  will-change: transform, opacity;
 }
 
 .bpt-magazine-photo-inner.is-visible {
@@ -1766,6 +1803,12 @@ sh-background-transition .Theme-Item-Picture img {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .bpt-sm-panel::before {
+    display: none;
+  }
+}
+
 /* Vignette effect cho panels */
 .bpt-sm-panel::after {
   content: '';
@@ -1780,6 +1823,12 @@ sh-background-transition .Theme-Item-Picture img {
   z-index: 2;
 }
 
+@media (max-width: 768px) {
+  .bpt-sm-panel::after {
+    display: none;
+  }
+}
+
 /* Typography animation — letter spacing breathe */
 @keyframes text-breathe {
   0%, 100% { letter-spacing: 0.2em; }
@@ -1788,6 +1837,12 @@ sh-background-transition .Theme-Item-Picture img {
 
 .bpt-kicker {
   animation: text-breathe 4s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .bpt-kicker {
+    animation: none;
+  }
 }
 
 /* Scroll indicator */
@@ -2165,6 +2220,12 @@ sh-background-transition .Theme-Item-Picture img {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .bpt-scene::before {
+    display: none;
+  }
+}
+
 /* Vignette on bpt-scene sections */
 .bpt-scene::after {
   content: '';
@@ -2177,6 +2238,12 @@ sh-background-transition .Theme-Item-Picture img {
   );
   pointer-events: none;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .bpt-scene::after {
+    display: none;
+  }
 }
 
 /* bpt-scene relative positioning */

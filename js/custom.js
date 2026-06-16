@@ -336,14 +336,16 @@
     requestAnimationFrame(update);
   }
 
-  // Zoom scale cho slide 4 (cap-banh-phu-the) — 1 → 3× khi scroll qua panel cuối
+  // Zoom scale cho slide 4 — skip on mobile for performance
   const ZOOM_SLIDE_INDEX = 4;
+  const isMobile = window.innerWidth < 769;
   let zoomTicking = false;
 
   function applyZoomToSlide4() {
+    if (isMobile) return; // Skip zoom on mobile — too expensive
+    
     const slide4 = slides[ZOOM_SLIDE_INDEX];
     if (!slide4 || !slide4.classList.contains("is-active")) {
-      // Reset scale khi không active
       if (slide4) {
         const img = slide4.querySelector("img");
         if (img) img.style.transform = "";
@@ -358,25 +360,19 @@
     const rect = panel.getBoundingClientRect();
     const panelHeight = panel.offsetHeight;
 
-    // Progress 0→1 qua panel 4: từ khi panel top vào viewport (vh) → khi panel rời viewport (-panelHeight)
-    // Chỉ zoom khi panel đang trong viewport
     const progress = Math.max(
       0,
       Math.min(1, (vh - rect.top) / (vh + panelHeight)),
     );
 
-    // Easing: easeOutCubic cho zoom mượt
     const eased = 1 - Math.pow(1 - progress, 3);
-
-    // Scale từ 1 → 3×, đồng thời pan sang trái 15% (focus vào nửa trái bánh)
     const scale = 1 + eased * 2;
-    const panX = 15 * eased; // % pan sang trái
+    const panX = 15 * eased;
 
     const img = slide4.querySelector("img");
     if (img) {
-      img.style.transform = `translateX(${panX.toFixed(2)}%) scale(${scale.toFixed(3)})`;
+      img.style.transform = `translate3d(${panX.toFixed(2)}%, 0, 0) scale(${scale.toFixed(3)})`;
       img.style.transformOrigin = "center center";
-      img.style.willChange = "transform";
     }
   }
 
@@ -446,8 +442,35 @@
    ═══════════════════════════════════════════════════════════ */
 
 (() => {
+  const isMobileAnim = window.innerWidth < 769;
   const panel = document.querySelector(".bpt-sm-panel--cinematic");
   if (!panel) return;
+
+  // Mobile: simple IntersectionObserver instead of scroll-driven animation
+  if (isMobileAnim) {
+    const mobileObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const bg = panel.querySelector(".bpt-sm-cinematic-bg");
+            const txt = panel.querySelector(".bpt-sm-text.bpt-reveal");
+            if (bg) {
+              bg.style.transform = "scale(1)";
+              bg.style.opacity = "1";
+            }
+            if (txt) {
+              txt.style.transform = "translate3d(0, 0, 0)";
+              txt.style.opacity = "1";
+            }
+            mobileObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    mobileObs.observe(panel);
+    return;
+  }
 
   const bgImg = panel.querySelector(".bpt-sm-cinematic-bg");
   const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
@@ -628,14 +651,14 @@
       // Mobile: bay lên từ dưới theo chiều thẳng đứng
       const ty = (64 * (1 - ep) - 24 * exp).toFixed(2);
       const op = (Math.min(1, p * 1.6) * (1 - exp * 0.9)).toFixed(3);
-      textEl.style.transform = `translateY(${ty}px)`;
+      textEl.style.transform = `translate3d(0, ${ty}px, 0)`;
       textEl.style.opacity = op;
     } else {
       // Desktop: góc 45° — X đối xứng theo dir, Y từ dưới lên
       const tx = (dir * 80 * (1 - ep) - dir * 28 * exp).toFixed(2);
       const ty = (60 * (1 - ep) - 20 * exp).toFixed(2);
       const op = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
-      textEl.style.transform = `translateX(${tx}px) translateY(${ty}px)`;
+      textEl.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
       textEl.style.opacity = op;
     }
   }
@@ -667,12 +690,45 @@
    ═══════════════════════════════════════════════════════════ */
 
 (() => {
+  // Mobile: simplified IntersectionObserver instead of scroll-driven animation
+  const isMobileMag = window.innerWidth < 769;
+
   const panel = document.querySelector(".bpt-sm-panel--magazine");
   if (!panel) return;
 
   const photo = panel.querySelector(".bpt-magazine-photo");
   const photoFrame = panel.querySelector(".bpt-magazine-photo-inner");
   const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
+
+  // Mobile: simple reveal instead of per-frame animation
+  if (isMobileMag) {
+    const mobileMagObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            if (photo) {
+              photo.style.transform = "translate3d(0, 0, 0) rotate(0deg)";
+              photo.style.opacity = "1";
+            }
+            if (photoFrame) {
+              photoFrame.style.transform = "scale(1)";
+              photoFrame.style.opacity = "1";
+              photoFrame.classList.add("is-visible");
+            }
+            if (textEl) {
+              textEl.style.transform = "translate3d(0, 0, 0)";
+              textEl.style.opacity = "1";
+              textEl.classList.add("is-visible");
+            }
+            mobileMagObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    mobileMagObs.observe(panel);
+    return;
+  }
 
   // Reduced motion
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -788,7 +844,7 @@
         opacity = Math.min(1, ep * 1.3);
       }
 
-      photo.style.transform = `translate(${finalX.toFixed(2)}%, ${finalY.toFixed(2)}%) rotate(${finalRot.toFixed(2)}deg)`;
+      photo.style.transform = `translate3d(${finalX.toFixed(2)}%, ${finalY.toFixed(2)}%, 0) rotate(${finalRot.toFixed(2)}deg)`;
       photo.style.opacity = Math.max(0, opacity).toFixed(3);
     }
 
@@ -824,7 +880,7 @@
         opacity = Math.min(1, ep * 1.2);
       }
 
-      textEl.style.transform = `translateY(${finalY.toFixed(2)}px)`;
+      textEl.style.transform = `translate3d(0, ${finalY.toFixed(2)}px, 0)`;
       textEl.style.opacity = Math.max(0, opacity).toFixed(3);
     }
   }
@@ -902,12 +958,14 @@
   }
 
   // Parallax effect on placeholder images within split scenes
+  // Skip on mobile for performance
   const splitVisuals = document.querySelectorAll(
     ".bpt-split-scene__visual .bpt-placeholder-img",
   );
   if (
     splitVisuals.length &&
-    !matchMedia("(prefers-reduced-motion: reduce)").matches
+    !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    window.innerWidth >= 769
   ) {
     let ticking = false;
     function updateParallax() {
