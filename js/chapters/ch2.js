@@ -519,3 +519,429 @@
     if (reveals.length) obs.observe(section);
   }
 })();
+
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — EMAGAZINE SCROLL EFFECTS                        */
+/* Char reveals, word staggers, highlight sweeps, parallax      */
+/* ═══════════════════════════════════════════════════════════ */
+
+(() => {
+  const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  /* ── Helper: wrap each char in a span ───────────────────── */
+  function wrapChars(el, cls = 'bpt-char') {
+    const text = el.textContent;
+    el.innerHTML = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.className = cls;
+      span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+      span.style.transitionDelay = `${i * 0.03}s`;
+      el.appendChild(span);
+    }
+  }
+
+  /* ── Helper: wrap each word in a span ────────────────────── */
+  function wrapWords(el, cls = 'bpt-word') {
+    const text = el.textContent;
+    const words = text.split(/\s+/);
+    el.innerHTML = '';
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = cls;
+      span.textContent = word;
+      span.style.transitionDelay = `${i * 0.06}s`;
+      el.appendChild(span);
+      if (i < words.length - 1) {
+        el.appendChild(document.createTextNode('\u00A0'));
+      }
+    });
+  }
+
+  /* ── Helper: wrap words in a paragraph with fly-in ─────── */
+  function wrapWordsFly(el) {
+    const text = el.textContent;
+    const words = text.split(/\s+/);
+    el.innerHTML = '';
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = 'bpt-word bpt-word-fly';
+      span.textContent = word;
+      span.style.transitionDelay = `${i * 0.04}s`;
+      el.appendChild(span);
+      if (i < words.length - 1) {
+        el.appendChild(document.createTextNode('\u00A0'));
+      }
+    });
+  }
+
+  /* ── 1. Chapter Divider — char/word kinetic reveal ─────── */
+  const dividerNum = document.querySelector('#section-bpt-ch2-divider .bpt-divider-num');
+  const dividerTitle = document.querySelector('#section-bpt-ch2-divider .bpt-divider-title');
+  const dividerSub = document.querySelector('#section-bpt-ch2-divider .bpt-divider-sub');
+
+  if (dividerNum) wrapChars(dividerNum);
+  if (dividerTitle) wrapWords(dividerTitle);
+  if (dividerSub) wrapChars(dividerSub);
+
+  /* ── 2. Ngũ Hành section — kicker char reveal + word wave ─ */
+  const nhKicker = document.querySelector('#section-bpt-ch2-ngu-hanh .bpt-kicker');
+  if (nhKicker) wrapChars(nhKicker);
+
+  const nhParas = document.querySelectorAll('#section-bpt-ch2-ngu-hanh .bpt-prose p');
+  nhParas.forEach(p => {
+    p.classList.add('bpt-ngu-hanh__p-wave');
+    wrapWords(p, 'bpt-word');
+  });
+
+  /* ── 3. Highlight sweep — find <em> and wrap with highlight ─ */
+  document.querySelectorAll('#section-bpt-ch2-mo-dau em, #section-bpt-ch2-bao-ton em').forEach(em => {
+    const wrapper = document.createElement('span');
+    wrapper.className = 'bpt-highlight';
+    em.parentNode.insertBefore(wrapper, em);
+    wrapper.appendChild(em);
+  });
+
+  /* ── 4. Typewriter wrap for ca-dao blockquotes ─────────── */
+  document.querySelectorAll('.bpt-ca-dao--typewriter').forEach(bq => {
+    const lines = bq.querySelectorAll('p');
+    lines.forEach((line, i) => {
+      const div = document.createElement('div');
+      div.className = 'bpt-typewriter-line';
+      div.style.transitionDelay = `${i * 0.2 + 0.3}s`;
+      div.innerHTML = line.innerHTML;
+      line.parentNode.insertBefore(div, line);
+      line.remove();
+    });
+  });
+
+  /* ── 5. Floating words — ambient text particles ─────────── */
+  const floatWords = ['trời tròn', 'đất vuông', 'ngũ hành', 'mộc', 'kim', 'thổ', 'hỏa', 'thủy', 'hòa quyện', 'phu thê', 'tình nghĩa', 'thủy chung'];
+
+  function spawnFloatWord(container) {
+    const word = document.createElement('span');
+    word.className = 'bpt-float-word';
+    word.textContent = floatWords[Math.floor(Math.random() * floatWords.length)];
+    word.style.fontSize = `${0.7 + Math.random() * 0.6}rem`;
+    word.style.left = `${10 + Math.random() * 80}%`;
+    word.style.bottom = `${-5 + Math.random() * 10}%`;
+    word.style.animationDuration = `${5 + Math.random() * 4}s`;
+    word.style.animationDelay = `${Math.random() * 2}s`;
+    container.appendChild(word);
+    setTimeout(() => word.remove(), 12000);
+  }
+
+  // Ambient dots for sections
+  function createAmbientDots(section) {
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'bpt-ambient-dots';
+    section.style.position = 'relative';
+    section.insertBefore(dotsContainer, section.firstChild);
+
+    const colors = ['#972023', '#F8D077', '#4A7C59', '#6B9BC3', '#D4A843'];
+    for (let i = 0; i < 12; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'bpt-ambient-dot';
+      const size = 3 + Math.random() * 5;
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.top = `${20 + Math.random() * 70}%`;
+      dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+      dot.style.animationDelay = `${Math.random() * 6}s`;
+      dot.style.animationDuration = `${6 + Math.random() * 5}s`;
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  /* ── 6. Section progress bars ───────────────────────────── */
+  const ch2Sections = document.querySelectorAll(
+    '#section-bpt-ch2-mo-dau, #section-bpt-ch2-bao-ton'
+  );
+  ch2Sections.forEach(sec => {
+    const bar = document.createElement('div');
+    bar.className = 'bpt-section-progress';
+    sec.style.position = 'relative';
+    sec.appendChild(bar);
+  });
+
+  /* ── 7. Scroll-driven effects — IntersectionObserver ──── */
+  const allReveals = document.querySelectorAll(
+    '#section-bpt-ch2-divider, #section-bpt-ch2-mo-dau .bpt-split-scene, #section-bpt-ch2-mo-dau .bpt-prose, ' +
+    '#section-bpt-ch2-bao-ton .bpt-prose, .bpt-ingredient-card'
+  );
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bpt-visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  allReveals.forEach(el => revealObs.observe(el));
+
+  /* ── 8. Highlight sweep observer ────────────────────────── */
+  const highlights = document.querySelectorAll('.bpt-highlight');
+  const hlObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bpt-highlight--visible');
+        hlObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -60px 0px' });
+
+  highlights.forEach(hl => hlObs.observe(hl));
+
+  /* ── 9. Word-fly reveal observer ─────────────────────────── */
+  const wordFlys = document.querySelectorAll('.bpt-word-fly');
+  const wfObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const parent = entry.target.closest('.bpt-prose, .bpt-split-scene__text');
+        if (parent) parent.classList.add('bpt-visible');
+        wfObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  wordFlys.forEach(wf => wfObs.observe(wf));
+
+  /* ── 10. Scroll-driven parallax text ────────────────────── */
+  const parallaxTexts = document.querySelectorAll('.bpt-parallax-text');
+  if (parallaxTexts.length && window.innerWidth >= 769) {
+    let ticking = false;
+    function updateParallax() {
+      parallaxTexts.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (rect.top < vh && rect.bottom > 0) {
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const shift = (progress - 0.5) * 16;
+          el.style.transform = `translateY(${shift.toFixed(1)}px)`;
+        }
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ── 11. Scroll progress for section bars ───────────────── */
+  function updateSectionProgress() {
+    ch2Sections.forEach(sec => {
+      const bar = sec.querySelector('.bpt-section-progress');
+      if (!bar) return;
+      const rect = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.top < vh && rect.bottom > 0) {
+        const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height)));
+        const secHeight = sec.offsetHeight;
+        bar.style.height = `${progress * secHeight}px`;
+      }
+    });
+    requestAnimationFrame(updateSectionProgress);
+  }
+
+  // Throttle progress to scroll only
+  let progressTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!progressTicking) {
+      requestAnimationFrame(updateSectionProgress);
+      progressTicking = true;
+    }
+  }, { passive: true });
+
+  /* ── 12. Spawn floating words periodically ─────────────── */
+  const floatSections = document.querySelectorAll('#section-bpt-ch2-mo-dau, #section-bpt-ch2-bao-ton');
+  floatSections.forEach(sec => {
+    createAmbientDots(sec);
+    let floatInterval;
+    const floatObs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        // Spawn initial batch
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => spawnFloatWord(sec), i * 800);
+        }
+        floatInterval = setInterval(() => spawnFloatWord(sec), 3000);
+      } else {
+        clearInterval(floatInterval);
+      }
+    }, { threshold: 0.1 });
+    floatObs.observe(sec);
+  });
+
+  /* ── 13. Add shimmer class to specific sections ─────────── */
+  document.querySelectorAll('#section-bpt-ch2-mo-dau').forEach(sec => {
+    sec.classList.add('bpt-scene--shimmer');
+  });
+
+  /* ── 14. Add kicker sweep class ──────────────────────────── */
+  document.querySelectorAll('#section-bpt-ch2-mo-dau .bpt-kicker, #section-bpt-ch2-bao-ton .bpt-kicker').forEach(k => {
+    k.classList.add('bpt-kicker--sweep');
+  });
+
+  /* ── 16. Add cascade class to bao-ton prose ─────────────── */
+  const baoTonProse = document.querySelector('#section-bpt-ch2-bao-ton .bpt-prose');
+  if (baoTonProse) baoTonProse.classList.add('bpt-prose--cascade');
+
+  /* ── 17. Add directional split-scene classes ────────────── */
+  document.querySelectorAll('#section-bpt-ch2-mo-dau .bpt-split-scene').forEach(ss => {
+    ss.classList.add('bpt-split-scene--left');
+  });
+
+  /* ── 18. Divider decorative line ─────────────────────────── */
+  const divider = document.querySelector('#section-bpt-ch2-divider');
+  if (divider && !divider.querySelector('.bpt-divider-line')) {
+    const line = document.createElement('span');
+    line.className = 'bpt-divider-line';
+    divider.appendChild(line);
+  }
+
+  /* ═══════════════════════════════════════════════════════════ */
+  /* NGHỆ NHÂN — Immersive Cinematic Scroll Effects             */
+  /* ═══════════════════════════════════════════════════════════ */
+
+  const nhnSection = document.getElementById('section-bpt-ch2-nghe-nhan');
+  if (nhnSection && !prefersReduced) {
+
+    /* ── Wrap lead paragraph words for stagger reveal ──────── */
+    const leadEl = nhnSection.querySelector('.bpt-nghe-nhan__lead');
+    if (leadEl) {
+      const text = leadEl.textContent;
+      const words = text.split(/\s+/);
+      leadEl.innerHTML = '';
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'bpt-nhn-word';
+        span.textContent = word;
+        span.style.transitionDelay = `${0.2 + i * 0.035}s`;
+        leadEl.appendChild(span);
+        if (i < words.length - 1) {
+          leadEl.appendChild(document.createTextNode('\u00A0'));
+        }
+      });
+    }
+
+    /* ── Scene IntersectionObserver — reveal each scene ────── */
+    const scenes = nhnSection.querySelectorAll('.bpt-nghe-nhan__scene');
+    const sceneObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('bpt-nhn-visible');
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+
+    scenes.forEach(s => sceneObs.observe(s));
+
+    /* ── Parallax background on scroll ─────────────────────── */
+    const bgImg = nhnSection.querySelector('.bpt-nghe-nhan__bg-img');
+    if (bgImg && window.innerWidth >= 769) {
+      let nhnTicking = false;
+      function updateNhnParallax() {
+        const rect = nhnSection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (rect.top < vh && rect.bottom > 0) {
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const shift = (progress - 0.5) * 60;
+          bgImg.style.transform = `translateY(${shift.toFixed(1)}px) scale(1.05)`;
+        }
+        nhnTicking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!nhnTicking) {
+          requestAnimationFrame(updateNhnParallax);
+          nhnTicking = true;
+        }
+      }, { passive: true });
+    }
+
+    /* ── Ambient particles ─────────────────────────────────── */
+    const particlesContainer = nhnSection.querySelector('.bpt-nghe-nhan__particles');
+    if (particlesContainer) {
+      const PARTICLE_COLORS = [
+        'rgba(248, 208, 119, 0.5)',
+        'rgba(151, 32, 35, 0.3)',
+        'rgba(247, 232, 203, 0.35)',
+        'rgba(212, 168, 67, 0.4)',
+      ];
+
+      function spawnNhnParticle() {
+        if (particlesContainer.children.length > 20) return;
+        const dot = document.createElement('span');
+        dot.className = 'bpt-nghe-nhan__particle';
+        const size = 2 + Math.random() * 4;
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        dot.style.left = `${10 + Math.random() * 80}%`;
+        dot.style.bottom = `${Math.random() * 30}%`;
+        dot.style.background = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
+        const dur = 5 + Math.random() * 6;
+        dot.style.animation = `bpt-nhn-particle-float ${dur}s ease-out forwards`;
+        particlesContainer.appendChild(dot);
+        setTimeout(() => dot.remove(), dur * 1000);
+      }
+
+      let nhnFloatInterval;
+      const nhnFloatObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          for (let i = 0; i < 4; i++) {
+            setTimeout(() => spawnNhnParticle(), i * 600);
+          }
+          nhnFloatInterval = setInterval(spawnNhnParticle, 2000);
+        } else {
+          clearInterval(nhnFloatInterval);
+        }
+      }, { threshold: 0.05 });
+      nhnFloatObs.observe(nhnSection);
+    }
+
+    /* ── Scroll indicator — show only in artisan section ───── */
+    const scrollHint = nhnSection.querySelector('.bpt-nghe-nhan__scroll-hint');
+    if (scrollHint) {
+      const scrollObs = new IntersectionObserver(([entry]) => {
+        scrollHint.classList.toggle('bpt-nhn-show', entry.isIntersecting);
+      }, { threshold: 0.1 });
+      scrollObs.observe(nhnSection);
+    }
+
+    /* ── Video bar — click to expand ──────────────────────── */
+    const videoBar = document.getElementById('bpt-nhn-video-bar');
+    const videoOverlay = document.getElementById('bpt-nhn-video-overlay');
+    const videoClose = document.getElementById('bpt-nhn-video-close');
+
+    if (videoBar && videoOverlay) {
+      videoBar.addEventListener('click', () => {
+        videoOverlay.classList.add('bpt-nhn-active');
+        const vid = videoOverlay.querySelector('video');
+        if (vid) vid.play();
+      });
+
+      function closeVideo() {
+        videoOverlay.classList.remove('bpt-nhn-active');
+        const vid = videoOverlay.querySelector('video');
+        if (vid) { vid.pause(); vid.currentTime = 0; }
+      }
+
+      if (videoClose) videoClose.addEventListener('click', closeVideo);
+
+      videoOverlay.querySelector('.bpt-nhn-video-overlay__backdrop')
+        .addEventListener('click', closeVideo);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoOverlay.classList.contains('bpt-nhn-active')) {
+          closeVideo();
+        }
+      });
+    }
+  }
+
+})();

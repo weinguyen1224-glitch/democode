@@ -612,3 +612,1397 @@
     transition: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — EMAGAZINE EFFECTS                               */
+/* Scroll-driven text kinetics, char reveals, highlight sweeps */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* ── 1. Chapter Divider — Letter-by-letter kinetic reveal ── */
+.bpt-chapter-divider .bpt-divider-num {
+  overflow: hidden;
+}
+.bpt-divider-num .bpt-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60%) rotateX(-40deg) scale(0.6);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-chapter-divider.bpt-visible .bpt-divider-num .bpt-char {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg) scale(1);
+}
+
+.bpt-divider-title .bpt-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) rotate(-2deg);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-chapter-divider.bpt-visible .bpt-divider-title .bpt-word {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+.bpt-divider-sub .bpt-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-chapter-divider.bpt-visible .bpt-divider-sub .bpt-char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Divider decorative line sweep */
+.bpt-divider-line {
+  display: block;
+  width: 0;
+  height: 2px;
+  margin: 18px auto 0;
+  background: linear-gradient(90deg, transparent, var(--color-red-thread, #972023), transparent);
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+}
+.bpt-chapter-divider.bpt-visible .bpt-divider-line {
+  width: min(180px, 40vw);
+}
+
+/* ── 2. Kicker — Shimmer underline sweep ─────────────────── */
+.bpt-kicker.bpt-kicker--sweep {
+  position: relative;
+  display: inline-block;
+}
+.bpt-kicker.bpt-kicker--sweep::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-red-thread, #972023), transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-prose.bpt-visible .bpt-kicker.bpt-kicker--sweep::after,
+.bpt-split-scene.bpt-visible .bpt-kicker.bpt-kicker--sweep::after {
+  transform: scaleX(1);
+}
+
+/* ── 3. Text highlight sweep — gold underline that expands ── */
+.bpt-highlight {
+  position: relative;
+  display: inline;
+  background-image: linear-gradient(
+    120deg,
+    rgba(248, 208, 119, 0.45) 0%,
+    rgba(248, 208, 119, 0.45) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 40%;
+  background-position: 0 88%;
+  transition: background-size 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.bpt-highlight.bpt-highlight--visible {
+  background-size: 100% 40%;
+}
+
+/* ── 4. Floating word particles ──────────────────────────── */
+.bpt-float-word {
+  position: absolute;
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-style: italic;
+  color: var(--color-red-thread, #972023);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.bpt-float-word.bpt-float--animate {
+  animation: bpt-float-drift 6s ease-in-out forwards;
+}
+@keyframes bpt-float-drift {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotate(-3deg);
+  }
+  15% {
+    opacity: 0.18;
+  }
+  85% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) rotate(2deg);
+  }
+}
+
+/* ── 5. Word-by-word stagger fly-in ──────────────────────── */
+.bpt-word-fly {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px) rotate(1deg);
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-word-fly.bpt-word--visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* ── 6. Paragraph slide-in with elastic bounce ─────────── */
+.bpt-prose.bpt-prose--elastic > p {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bpt-prose.bpt-prose--elastic.bpt-visible > p {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── 7. Blockquote — typewriter reveal ───────────────────── */
+.bpt-ca-dao.bpt-ca-dao--typewriter {
+  overflow: hidden;
+  border-left-width: 0;
+  border-left-style: solid;
+  border-left-color: var(--color-red-thread, #972023);
+  padding-left: 0;
+  transition: border-left-width 0.6s ease 0.3s, padding-left 0.6s ease 0.3s;
+}
+.bpt-ca-dao.bpt-ca-dao--typewriter.bpt-quote-visible,
+.bpt-ca-dao.bpt-ca-dao--typewriter.bpt-visible {
+  border-left-width: 3px;
+  padding-left: 1.2em;
+}
+.bpt-ca-dao.bpt-ca-dao--typewriter .bpt-typewriter-line {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-ca-dao.bpt-ca-dao--typewriter.bpt-quote-visible .bpt-typewriter-line,
+.bpt-ca-dao.bpt-ca-dao--typewriter.bpt-visible .bpt-typewriter-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 8. Ca-dao finale — golden glow pulse ────────────────── */
+.bpt-ca-dao--finale.bpt-quote-visible,
+.bpt-ca-dao--finale.bpt-visible {
+  animation: bpt-finale-glow 3s ease-in-out 0.5s 1 forwards;
+}
+@keyframes bpt-finale-glow {
+  0% { box-shadow: 0 0 0 0 rgba(248, 208, 119, 0); }
+  40% { box-shadow: 0 0 24px 4px rgba(248, 208, 119, 0.18); }
+  100% { box-shadow: 0 0 8px 2px rgba(248, 208, 119, 0.06); }
+}
+
+/* ── 9. Closing section — cascade text reveal ────────────── */
+.bpt-prose.bpt-prose--cascade > * {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(1) { transition-delay: 0s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(3) { transition-delay: 0.24s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(4) { transition-delay: 0.36s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(5) { transition-delay: 0.48s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > *:nth-child(6) { transition-delay: 0.60s; }
+.bpt-prose.bpt-prose--cascade.bpt-visible > * {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── 10. Split-scene text — directional slide with stagger ── */
+.bpt-split-scene.bpt-split-scene--left .bpt-prose > * {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > *:nth-child(1) { transition-delay: 0.1s; }
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > *:nth-child(2) { transition-delay: 0.22s; }
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > *:nth-child(3) { transition-delay: 0.34s; }
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > *:nth-child(4) { transition-delay: 0.46s; }
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > *:nth-child(5) { transition-delay: 0.58s; }
+.bpt-split-scene.bpt-split-scene--left.bpt-visible .bpt-prose > * {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.bpt-split-scene.bpt-split-scene--right .bpt-prose > * {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > *:nth-child(1) { transition-delay: 0.1s; }
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > *:nth-child(2) { transition-delay: 0.22s; }
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > *:nth-child(3) { transition-delay: 0.34s; }
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > *:nth-child(4) { transition-delay: 0.46s; }
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > *:nth-child(5) { transition-delay: 0.58s; }
+.bpt-split-scene.bpt-split-scene--right.bpt-visible .bpt-prose > * {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── 11. Ingredient cards — scale pop-in with rotation ───── */
+.bpt-ingredient-card {
+  opacity: 0;
+  transform: scale(0.7) rotate(-4deg);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bpt-ingredient-card.bpt-visible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* ── 12. Parallax text — slow drift on scroll ────────────── */
+.bpt-parallax-text {
+  will-change: transform;
+}
+
+/* ── 13. Ngũ Hành section — text kinetic wave ───────────── */
+.bpt-ngu-hanh__text .bpt-kicker {
+  overflow: hidden;
+}
+.bpt-ngu-hanh__text .bpt-kicker .bpt-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-ngu-hanh__text.bpt-visible .bpt-kicker .bpt-char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bpt-ngu-hanh__text p.bpt-ngu-hanh__p-wave .bpt-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bpt-ngu-hanh__text.bpt-visible p.bpt-ngu-hanh__p-wave .bpt-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 14. Scroll-driven progress bar for each section ─────── */
+.bpt-section-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, var(--color-red-thread, #972023), var(--color-sticky-rice-gold, #F8D077));
+  transition: height 0.15s linear;
+  z-index: 50;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── 15. Ambient floating dots background ────────────────── */
+.bpt-ambient-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.bpt-ambient-dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: bpt-dot-float 8s ease-in-out infinite;
+}
+@keyframes bpt-dot-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  20% {
+    opacity: 0.15;
+  }
+  80% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1);
+  }
+}
+
+/* ── 16. Grain shimmer overlay for bpt-scene ──────────────── */
+.bpt-scene.bpt-scene--shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(248, 208, 119, 0.03) 40%,
+    transparent 60%,
+    rgba(151, 32, 35, 0.02) 100%
+  );
+  animation: bpt-shimmer-move 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes bpt-shimmer-move {
+  0% { transform: translateX(-30%) translateY(-10%); }
+  100% { transform: translateX(30%) translateY(10%); }
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* RESPONSIVE — Emagazine effects                             */
+/* ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .bpt-divider-num .bpt-char {
+    transform: translateY(40%) rotateX(-30deg) scale(0.7);
+  }
+  .bpt-divider-title .bpt-word {
+    transform: translateY(28px) rotate(-1.5deg);
+  }
+  .bpt-prose.bpt-prose--elastic > p {
+    transform: translateX(-24px);
+  }
+  .bpt-split-scene.bpt-split-scene--left .bpt-prose > * {
+    transform: translateX(-30px);
+  }
+  .bpt-split-scene.bpt-split-scene--right .bpt-prose > * {
+    transform: translateX(30px);
+  }
+  .bpt-float-word {
+    display: none;
+  }
+  .bpt-ambient-dots {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .bpt-prose.bpt-prose--elastic > p {
+    transform: translateX(-16px);
+  }
+  .bpt-split-scene.bpt-split-scene--left .bpt-prose > * {
+    transform: translateX(-20px);
+  }
+  .bpt-split-scene.bpt-split-scene--right .bpt-prose > * {
+    transform: translateX(20px);
+  }
+}
+
+/* ── Reduced motion override for emagazine effects ────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-divider-num .bpt-char,
+  .bpt-divider-title .bpt-word,
+  .bpt-divider-sub .bpt-char,
+  .bpt-kicker.bpt-kicker--sweep::after,
+  .bpt-highlight,
+  .bpt-word-fly,
+  .bpt-prose.bpt-prose--elastic > p,
+  .bpt-ca-dao.bpt-ca-dao--typewriter .bpt-typewriter-line,
+  .bpt-prose.bpt-prose--cascade > *,
+  .bpt-split-scene.bpt-split-scene--left .bpt-prose > *,
+  .bpt-split-scene.bpt-split-scene--right .bpt-prose > *,
+  .bpt-ingredient-card,
+  .bpt-ngu-hanh__text .bpt-kicker .bpt-char,
+  .bpt-ngu-hanh__text p.bpt-ngu-hanh__p-wave .bpt-word,
+  .bpt-divider-line {
+    opacity: 1 !important;
+    transform: none !important;
+    background-size: 100% 40% !important;
+    width: min(180px, 40vw) !important;
+    border-left-width: 3px !important;
+    padding-left: 1.2em !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .bpt-float-word,
+  .bpt-ambient-dot,
+  .bpt-ambient-dots {
+    display: none !important;
+  }
+  .bpt-scene--shimmer::before {
+    display: none;
+  }
+}
+
+/* ── 17. <em> highlight style for Ch2 ────────────────────── */
+.bpt-scene em,
+.bpt-ngu-hanh-section em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  text-shadow: 0 0 8px rgba(248, 208, 119, 0.3);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.bpt-scene--closing em {
+  color: #F8D077;
+  text-shadow: 0 0 12px rgba(248, 208, 119, 0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — NGHỆ NHÂN: Immersive Cinematic Section          */
+/* Full-bleed background + layered text overlay + scroll FX    */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper — full viewport height ──────────────── */
+.bpt-nghe-nhan {
+  position: relative;
+  min-height: 400vh;
+  overflow: hidden;
+  background: #0a0806;
+  color: var(--color-rice-paper, #F7E8CB);
+}
+
+/* ── Background layers ───────────────────────────────────── */
+.bpt-nghe-nhan__bg {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bpt-nghe-nhan__bg-img {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  background:
+    linear-gradient(180deg,
+      rgba(10, 8, 6, 0.35) 0%,
+      rgba(10, 8, 6, 0.15) 30%,
+      rgba(10, 8, 6, 0.2) 60%,
+      rgba(10, 8, 6, 0.88) 100%
+    ),
+    url('../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG');
+  background-size: cover;
+  background-position: center 35%;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Film grain overlay */
+.bpt-nghe-nhan__grain {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+  animation: bpt-grain-shift 0.5s steps(4) infinite;
+  z-index: 2;
+}
+
+@keyframes bpt-grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 3%); }
+  50% { transform: translate(3%, -1%); }
+  75% { transform: translate(-1%, -3%); }
+  100% { transform: translate(2%, 1%); }
+}
+
+/* Cinematic vignette */
+.bpt-nghe-nhan__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 65% at 50% 45%,
+    transparent 0%,
+    rgba(10, 8, 6, 0.25) 50%,
+    rgba(10, 8, 6, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* CRT-style scanlines — very subtle */
+.bpt-nghe-nhan__scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ── Ambient floating particles ──────────────────────────── */
+.bpt-nghe-nhan__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.bpt-nghe-nhan__particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248, 208, 119, 0.6), transparent);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ── Content overlay ─────────────────────────────────────── */
+.bpt-nghe-nhan__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-height: 400vh;
+}
+
+/* ── Individual scenes ───────────────────────────────────── */
+.bpt-nghe-nhan__scene {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 120px);
+  text-align: center;
+  position: relative;
+}
+
+/* ── Scene 1: Kicker ─────────────────────────────────────── */
+.bpt-nghe-nhan__scene--kicker {
+  min-height: 60vh;
+}
+
+.bpt-nghe-nhan__time {
+  display: inline-block;
+  font-family: 'Outfit', 'Lato', sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(248, 208, 119, 0.5);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.bpt-nghe-nhan__kicker {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-rice-paper, #F7E8CB);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__kicker-line {
+  display: block;
+  width: 0;
+  height: 1px;
+  margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #F8D077), transparent);
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+/* Visible state — Scene 1 */
+.bpt-nghe-nhan__scene--kicker.bpt-nhn-visible .bpt-nghe-nhan__time {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bpt-nghe-nhan__scene--kicker.bpt-nhn-visible .bpt-nghe-nhan__kicker {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bpt-nghe-nhan__scene--kicker.bpt-nhn-visible .bpt-nghe-nhan__kicker-line {
+  width: min(200px, 40vw);
+}
+
+/* ── Scene 2: Lead paragraph ─────────────────────────────── */
+.bpt-nghe-nhan__scene--intro {
+  min-height: 80vh;
+}
+
+.bpt-nghe-nhan__lead {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+  line-height: 1.9;
+  color: rgba(247, 232, 203, 0.9);
+  max-width: 800px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__lead .bpt-nhn-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) rotate(1deg);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__scene--intro.bpt-nhn-visible .bpt-nghe-nhan__lead {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bpt-nghe-nhan__scene--intro.bpt-nhn-visible .bpt-nhn-word {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* ── Scene 3: The artisan's voice — dramatic quote ──────── */
+.bpt-nghe-nhan__scene--quote {
+  min-height: 120vh;
+  padding: clamp(60px, 12vh, 160px) clamp(24px, 6vw, 120px);
+}
+
+.bpt-nghe-nhan__quote-frame {
+  position: relative;
+  max-width: 780px;
+  padding: clamp(32px, 5vw, 64px);
+  background: rgba(10, 8, 6, 0.55);
+  border: 1px solid rgba(248, 208, 119, 0.12);
+  border-radius: 4px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-frame {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.bpt-nghe-nhan__quote-mark {
+  position: absolute;
+  top: -20px;
+  left: clamp(16px, 3vw, 40px);
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 1;
+  color: var(--color-red-thread, #972023);
+  opacity: 0;
+  transform: translateY(30px) scale(0.5);
+  transition: opacity 0.8s ease 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  pointer-events: none;
+}
+
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-mark {
+  opacity: 0.35;
+  transform: translateY(0) scale(1);
+}
+
+.bpt-nghe-nhan__blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+}
+
+.bpt-nghe-nhan__quote-line {
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 2;
+  color: rgba(247, 232, 203, 0.92);
+  margin: 0 0 1.2em;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__quote-line:last-child {
+  margin-bottom: 0;
+}
+
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.4s; }
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.65s; }
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.9s; }
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 1.15s; }
+
+/* Quote author attribution */
+.bpt-nghe-nhan__quote-attr {
+  margin-top: clamp(20px, 3vh, 36px);
+  padding-top: clamp(16px, 2vh, 24px);
+  border-top: 1px solid rgba(248, 208, 119, 0.15);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
+}
+
+.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-attr {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bpt-nghe-nhan__attr-dash {
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--color-red-thread, #972023);
+  font-weight: 700;
+}
+
+.bpt-nghe-nhan__attr-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  font-weight: 600;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  letter-spacing: 0.02em;
+}
+
+.bpt-nghe-nhan__attr-detail {
+  display: block;
+  margin-top: 4px;
+  font-family: 'Outfit', 'Lato', sans-serif;
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  color: rgba(247, 232, 203, 0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Scene 4: Closing reflection ─────────────────────────── */
+.bpt-nghe-nhan__scene--closing {
+  min-height: 80vh;
+  align-items: center;
+}
+
+.bpt-nghe-nhan__reflect {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  line-height: 2;
+  color: rgba(247, 232, 203, 0.82);
+  max-width: 720px;
+  margin: 0 0 1.6em;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__reflect--dim {
+  color: rgba(247, 232, 203, 0.5);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+}
+
+.bpt-nghe-nhan__scene--closing.bpt-nhn-visible .bpt-nghe-nhan__reflect:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.bpt-nghe-nhan__scene--closing.bpt-nhn-visible .bpt-nghe-nhan__reflect:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+/* Highlighted em in closing */
+.bpt-nghe-nhan__em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  text-shadow: 0 0 20px rgba(248, 208, 119, 0.35);
+  position: relative;
+}
+
+.bpt-nghe-nhan__em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #F8D077), transparent);
+  opacity: 0.5;
+}
+
+/* ── Scroll indicator ────────────────────────────────────── */
+.bpt-nghe-nhan__scroll-hint {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.bpt-nghe-nhan__scroll-hint.bpt-nhn-show {
+  opacity: 1;
+}
+
+.bpt-nghe-nhan__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--color-sticky-rice-gold, #F8D077), transparent);
+  animation: bpt-nhn-scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes bpt-nhn-scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+  50% { opacity: 0.8; transform: scaleY(1); }
+}
+
+/* ── Ambient particle animation ──────────────────────────── */
+@keyframes bpt-nhn-particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0);
+  }
+  15% {
+    opacity: 0.6;
+    transform: translateY(-20px) translateX(10px) scale(1);
+  }
+  85% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) translateX(-15px) scale(0.3);
+  }
+}
+
+/* ── Scene 3b: Artisan portrait ──────────────────────────── */
+.bpt-nghe-nhan__scene--portrait {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bpt-nghe-nhan__portrait-wrap {
+  position: relative;
+  max-width: 420px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px) scale(0.92);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__portrait-wrap {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.bpt-nghe-nhan__portrait {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 6px;
+  border: 2px solid rgba(248, 208, 119, 0.2);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(248, 208, 119, 0.08);
+}
+
+.bpt-nghe-nhan__portrait-caption {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bpt-nghe-nhan__portrait-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 600;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  letter-spacing: 0.03em;
+}
+
+.bpt-nghe-nhan__portrait-sub {
+  font-family: 'Outfit', 'Lato', sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  color: rgba(247, 232, 203, 0.45);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Scene 5: Video bar ──────────────────────────────────── */
+.bpt-nghe-nhan__scene--video-bar {
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 60px;
+}
+
+.bpt-nhn-video-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 600px;
+  padding: 10px 16px 10px 10px;
+  background: rgba(10, 8, 6, 0.65);
+  border: 1px solid rgba(248, 208, 119, 0.15);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.bpt-nghe-nhan__scene--video-bar.bpt-nhn-visible .bpt-nhn-video-bar {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease 0.3s, transform 1s ease 0.3s, background 0.3s ease, border-color 0.3s ease;
+}
+
+.bpt-nhn-video-bar:hover {
+  background: rgba(10, 8, 6, 0.8);
+  border-color: rgba(248, 208, 119, 0.3);
+  transform: translateY(-2px);
+}
+
+.bpt-nhn-video-bar__thumb {
+  position: relative;
+  width: 80px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bpt-nhn-video-bar__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bpt-nhn-video-bar__play-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 8, 6, 0.4);
+  transition: background 0.3s ease;
+}
+
+.bpt-nhn-video-bar:hover .bpt-nhn-video-bar__play-icon {
+  background: rgba(10, 8, 6, 0.2);
+}
+
+.bpt-nhn-video-bar__play-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-sticky-rice-gold, #F8D077);
+}
+
+.bpt-nhn-video-bar__label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bpt-nhn-video-bar__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+  font-weight: 600;
+  color: var(--color-rice-paper, #F7E8CB);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bpt-nhn-video-bar__hint {
+  font-family: 'Outfit', 'Lato', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(248, 208, 119, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bpt-nhn-video-bar__progress {
+  width: 3px;
+  height: 52px;
+  flex-shrink: 0;
+  background: rgba(248, 208, 119, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bpt-nhn-video-bar__progress-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--color-sticky-rice-gold, #F8D077);
+  border-radius: 2px;
+  transition: height 2s ease;
+}
+
+.bpt-nghe-nhan__scene--video-bar.bpt-nhn-visible .bpt-nhn-video-bar__progress-fill {
+  height: 100%;
+}
+
+/* ── Video overlay ───────────────────────────────────────── */
+.bpt-nhn-video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.bpt-nhn-video-overlay.bpt-nhn-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bpt-nhn-video-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.bpt-nhn-video-overlay__container {
+  position: relative;
+  width: 90vw;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nhn-video-overlay.bpt-nhn-active .bpt-nhn-video-overlay__container {
+  transform: scale(1);
+}
+
+.bpt-nhn-video-overlay__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.bpt-nhn-video-overlay__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 8, 6, 0.6);
+  border: 1px solid rgba(248, 208, 119, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-rice-paper, #F7E8CB);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  z-index: 10;
+}
+
+.bpt-nhn-video-overlay__close:hover {
+  background: rgba(10, 8, 6, 0.9);
+  border-color: rgba(248, 208, 119, 0.5);
+}
+
+.bpt-nhn-video-overlay__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Responsive: Tablet ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .bpt-nghe-nhan {
+    min-height: 380vh;
+  }
+
+  .bpt-nghe-nhan__scene {
+    padding: clamp(32px, 6vh, 80px) clamp(20px, 5vw, 48px);
+  }
+
+  .bpt-nghe-nhan__scene--quote {
+    min-height: 100vh;
+    padding: clamp(40px, 8vh, 100px) clamp(16px, 4vw, 32px);
+  }
+
+  .bpt-nghe-nhan__quote-frame {
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .bpt-nghe-nhan__quote-mark {
+    font-size: clamp(3rem, 8vw, 5rem);
+    top: -12px;
+  }
+
+  .bpt-nghe-nhan__quote-line {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+    line-height: 1.85;
+  }
+
+  .bpt-nghe-nhan__lead {
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .bpt-nghe-nhan__reflect {
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+  }
+
+  .bpt-nghe-nhan__portrait {
+    max-width: 280px;
+  }
+
+  .bpt-nhn-video-bar {
+    max-width: 100%;
+    gap: 12px;
+    padding: 8px 12px 8px 8px;
+  }
+
+  .bpt-nhn-video-bar__thumb {
+    width: 64px;
+    height: 42px;
+  }
+
+  .bpt-nghe-nhan__particles {
+    display: none;
+  }
+}
+
+/* ── Responsive: Small phone ─────────────────────────────── */
+@media (max-width: 420px) {
+  .bpt-nghe-nhan {
+    min-height: 360vh;
+  }
+
+  .bpt-nghe-nhan__scene--kicker {
+    min-height: 50vh;
+  }
+
+  .bpt-nghe-nhan__scene--quote {
+    min-height: 90vh;
+  }
+
+  .bpt-nghe-nhan__quote-frame {
+    padding: clamp(20px, 5vw, 28px);
+    background: rgba(10, 8, 6, 0.7);
+  }
+
+  .bpt-nghe-nhan__quote-line {
+    font-size: clamp(0.92rem, 4vw, 1.1rem);
+    line-height: 1.8;
+  }
+
+  .bpt-nghe-nhan__kicker {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+  }
+
+  .bpt-nghe-nhan__lead {
+    font-size: clamp(1rem, 4.5vw, 1.2rem);
+  }
+
+  .bpt-nghe-nhan__attr-name {
+    font-size: 0.85rem;
+  }
+
+  .bpt-nghe-nhan__portrait {
+    max-width: 240px;
+  }
+
+  .bpt-nhn-video-bar__thumb {
+    width: 56px;
+    height: 36px;
+  }
+
+  .bpt-nhn-video-bar__title {
+    font-size: 0.7rem;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-nghe-nhan__grain {
+    animation: none;
+  }
+
+  .bpt-nghe-nhan__time,
+  .bpt-nghe-nhan__kicker,
+  .bpt-nghe-nhan__lead,
+  .bpt-nghe-nhan__quote-frame,
+  .bpt-nghe-nhan__quote-mark,
+  .bpt-nghe-nhan__quote-line,
+  .bpt-nghe-nhan__quote-attr,
+  .bpt-nghe-nhan__reflect,
+  .bpt-nghe-nhan__kicker-line,
+  .bpt-nghe-nhan__portrait-wrap,
+  .bpt-nhn-video-bar {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .bpt-nghe-nhan__kicker-line {
+    width: min(200px, 40vw) !important;
+  }
+
+  .bpt-nghe-nhan__particle {
+    display: none !important;
+  }
+
+  .bpt-nghe-nhan__scroll-line {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — BẢO TỒN: Cinematic Video Background             */
+/* ═══════════════════════════════════════════════════════════ */
+
+.bpt-bao-ton {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-rice-paper, #F7E8CB);
+}
+
+.bpt-bao-ton__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bpt-bao-ton__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.bpt-bao-ton__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(10, 8, 6, 0.5) 0%,
+      rgba(10, 8, 6, 0.3) 40%,
+      rgba(10, 8, 6, 0.4) 70%,
+      rgba(10, 8, 6, 0.8) 100%
+    );
+  z-index: 1;
+}
+
+.bpt-bao-ton__content {
+  position: relative;
+  z-index: 10;
+  max-width: 720px;
+  padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
+  text-align: center;
+}
+
+.bpt-bao-ton__content .bpt-kicker {
+  color: var(--color-sticky-rice-gold, #F8D077);
+  margin-bottom: 24px;
+}
+
+.bpt-bao-ton__content p {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.9;
+  color: rgba(247, 232, 203, 0.88);
+  margin: 0 0 1.4em;
+}
+
+.bpt-bao-ton__content .bpt-ca-dao {
+  margin-top: 32px;
+  padding: clamp(20px, 3vw, 32px);
+  background: rgba(10, 8, 6, 0.45);
+  border-left: 3px solid var(--color-sticky-rice-gold, #F8D077);
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.bpt-bao-ton__content .bpt-ca-dao p {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-style: italic;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  margin-bottom: 8px;
+}
+
+.bpt-bao-ton__content .bpt-ca-dao footer {
+  font-size: 0.85rem;
+  color: rgba(247, 232, 203, 0.5);
+  font-style: normal;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bpt-bao-ton__content {
+    padding: clamp(32px, 6vh, 60px) clamp(16px, 4vw, 32px);
+  }
+  .bpt-bao-ton__content p {
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .bpt-bao-ton__content .bpt-ca-dao {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bpt-bao-ton__video {
+    /* keep playing but no motion effects */
+  }
+}

@@ -461,6 +461,7 @@
             if (txt) {
               txt.style.transform = "translate3d(0, 0, 0)";
               txt.style.opacity = "1";
+              txt.style.filter = "blur(0)";
             }
             mobileObs.unobserve(e.target);
           }
@@ -484,6 +485,7 @@
     if (textEl) {
       textEl.style.transform = "";
       textEl.style.opacity = "1";
+      textEl.style.filter = "none";
     }
     return;
   }
@@ -533,8 +535,10 @@
     if (textEl) {
       const txtY = (30 * (1 - ep) - 20 * exp).toFixed(2);
       const txtOp = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
+      const txtBlur = (4 * (1 - ep)).toFixed(1);
       textEl.style.transform = `translateY(${txtY}px)`;
       textEl.style.opacity = txtOp;
+      textEl.style.filter = `blur(${txtBlur}px)`;
     }
   }
 
@@ -639,27 +643,35 @@
     const exp = easeIn(ex);
 
     // Cinematic reveal: toggle is-visible class
-    if (ep > 0.2) {
+    if (ep > 0.15) {
       textEl.classList.add("is-visible");
-    } else if (exp > 0.5) {
+    } else if (exp > 0.4) {
       textEl.classList.remove("is-visible");
     }
 
     const isMobile = window.innerWidth <= 768;
+    const rotation = dir * 3; // XOAY nhẹ khi bay vào
 
     if (isMobile) {
-      // Mobile: bay lên từ dưới theo chiều thẳng đứng
-      const ty = (64 * (1 - ep) - 24 * exp).toFixed(2);
-      const op = (Math.min(1, p * 1.6) * (1 - exp * 0.9)).toFixed(3);
-      textEl.style.transform = `translate3d(0, ${ty}px, 0)`;
+      // Mobile: bay lên từ dưới + scale + blur
+      const ty = (55 * (1 - ep) - 20 * exp).toFixed(2);
+      const sc = (0.94 + 0.06 * ep - 0.04 * exp).toFixed(3);
+      const bl = (4 * (1 - ep) + 3 * exp).toFixed(1);
+      const op = (Math.min(1, p * 1.8) * (1 - exp * 0.95)).toFixed(3);
+      textEl.style.transform = `translate3d(0, ${ty}px, 0) scale(${sc})`;
       textEl.style.opacity = op;
+      textEl.style.filter = `blur(${bl}px)`;
     } else {
-      // Desktop: góc 45° — X đối xứng theo dir, Y từ dưới lên
-      const tx = (dir * 80 * (1 - ep) - dir * 28 * exp).toFixed(2);
-      const ty = (60 * (1 - ep) - 20 * exp).toFixed(2);
-      const op = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
-      textEl.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+      // Desktop: góc 45° + xoay + scale + blur — cinematic emagazine
+      const tx = (dir * 90 * (1 - ep) - dir * 35 * exp).toFixed(2);
+      const ty = (65 * (1 - ep) - 25 * exp).toFixed(2);
+      const rot = (rotation * (1 - ep) - rotation * 0.5 * exp).toFixed(2);
+      const sc = (0.92 + 0.08 * ep - 0.05 * exp).toFixed(3);
+      const bl = (5 * (1 - ep) + 4 * exp).toFixed(1);
+      const op = (Math.min(1, p * 1.6) * (1 - exp * 0.95)).toFixed(3);
+      textEl.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${sc})`;
       textEl.style.opacity = op;
+      textEl.style.filter = `blur(${bl}px)`;
     }
   }
 
@@ -683,16 +695,11 @@
 
 /* ═══════════════════════════════════════════════════════════
    Panel p1 — Magazine Cinematic: ảnh Đình làng bay từ góc
-   - Phase 1 ENTER: Ảnh từ góc phải dưới (nghiêng 35°) bay vào vị trí chuẩn
-   - Phase 2 HOLD: Ảnh đứng yên, nằm ngay ngắn
-   - Phase 3 EXIT: Ảnh bay ngược về góc phải dưới khi scroll qua
-   - Khung ảnh: scale từ nhỏ → to + fade in (cinematic reveal)
+   - Bidirectional: enter khi scroll đến, exit khi scroll ra
+   - Photo bay từ góc phải dưới → center khi vào, ngược lại khi ra
    ═══════════════════════════════════════════════════════════ */
 
 (() => {
-  // Mobile: simplified IntersectionObserver instead of scroll-driven animation
-  const isMobileMag = window.innerWidth < 769;
-
   const panel = document.querySelector(".bpt-sm-panel--magazine");
   if (!panel) return;
 
@@ -700,213 +707,97 @@
   const photoFrame = panel.querySelector(".bpt-magazine-photo-inner");
   const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
 
-  // Mobile: simple reveal instead of per-frame animation
-  if (isMobileMag) {
-    const mobileMagObs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            if (photo) {
-              photo.style.transform = "translate3d(0, 0, 0) rotate(0deg)";
-              photo.style.opacity = "1";
-            }
-            if (photoFrame) {
-              photoFrame.style.transform = "scale(1)";
-              photoFrame.style.opacity = "1";
-              photoFrame.classList.add("is-visible");
-            }
-            if (textEl) {
-              textEl.style.transform = "translate3d(0, 0, 0)";
-              textEl.style.opacity = "1";
-              textEl.classList.add("is-visible");
-            }
-            mobileMagObs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    mobileMagObs.observe(panel);
-    return;
-  }
-
-  // Reduced motion
+  // Reduced motion — show everything immediately
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    if (photo) {
-      photo.style.transform = "";
-      photo.style.opacity = "1";
-    }
-    if (photoFrame) {
-      photoFrame.style.transform = "";
-      photoFrame.style.opacity = "1";
-    }
-    if (textEl) {
-      textEl.style.transform = "";
-      textEl.style.opacity = "1";
-    }
+    if (photo) { photo.style.transform = ""; photo.style.opacity = "1"; }
+    if (photoFrame) { photoFrame.style.transform = ""; photoFrame.style.opacity = "1"; photoFrame.classList.add("is-visible"); }
+    if (textEl) { textEl.style.transform = ""; textEl.style.opacity = "1"; textEl.classList.add("is-visible"); }
     return;
   }
 
-  // Easing functions
-  function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
+  // Initial hidden state
+  if (photo) {
+    photo.style.transform = "translate3d(60%, 40%, 0) rotate(25deg)";
+    photo.style.opacity = "0";
+    photo.style.transition = "opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1)";
   }
-  function easeInCubic(t) {
-    return t * t * t;
+  if (photoFrame) {
+    photoFrame.style.transform = "scale(0.88) rotate(-4deg)";
+    photoFrame.style.opacity = "0";
+    photoFrame.style.transition = "opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)";
   }
-
-  let ticking = false;
-
-  function computeProgress() {
-    const rect = panel.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const panelHeight = rect.height;
-
-    // viewport boundaries
-    const viewportCenter = vh * 0.5;
-    const panelTop = rect.top;
-    const panelBottom = rect.bottom;
-    const panelCenter = (panelTop + panelBottom) / 2;
-
-    // Phase 1: ENTER - panel từ dưới lên đến khi panel top chạm viewport center
-    // Start: panel bottom ở viewport bottom (panelTop = vh)
-    // End: panel top ở viewport center (panelTop = viewportCenter)
-    let pEnter = 0;
-    const enterStart = vh; // panel vừa bắt đầu vào từ dưới
-    const enterEnd = viewportCenter - panelHeight * 0.2; // panel đã vào khá sâu
-
-    if (panelTop <= enterStart && panelTop >= enterEnd) {
-      pEnter = Math.max(
-        0,
-        Math.min(1, (enterStart - panelTop) / (enterStart - enterEnd)),
-      );
-    } else if (panelTop < enterEnd) {
-      pEnter = 1; // Enter hoàn thành
-    }
-
-    // Phase 3: EXIT - panel đi lên quá viewport center
-    // Start: panel center ở viewport center
-    // End: panel top ra khỏi viewport (panelTop = -panelHeight * 0.3)
-    let pExit = 0;
-    const exitStart = viewportCenter * 0.5; // bắt đầu exit muộn hơn
-    const exitEnd = -panelHeight * 0.9; // đã exit hẳn — muộn hơn
-
-    if (panelCenter <= exitStart && panelCenter >= exitEnd) {
-      pExit = Math.max(
-        0,
-        Math.min(1, (exitStart - panelCenter) / (exitStart - exitEnd)),
-      );
-    } else if (panelCenter < exitEnd) {
-      pExit = 1; // Đã exit hoàn toàn
-    }
-
-    return { pEnter, pExit };
+  if (textEl) {
+    textEl.style.transform = "translate3d(0, 50px, 0)";
+    textEl.style.opacity = "0";
+    textEl.style.transition = "opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1)";
   }
 
-  function applyAnimation() {
-    const { pEnter, pExit } = computeProgress();
-
-    const ep = easeOutCubic(pEnter);
-    const exp = easeInCubic(pExit);
-
-    // Toggle is-visible classes cho animation
-    if (ep > 0.15) {
-      if (photoFrame) photoFrame.classList.add("is-visible");
-      if (textEl) textEl.classList.add("is-visible");
-    } else if (exp > 0.6) {
-      if (photoFrame) photoFrame.classList.remove("is-visible");
-      if (textEl) textEl.classList.remove("is-visible");
-    }
-
-    // Photo animation - 3 phases:
-    // ENTER: từ góc phải dưới, rotate 35° → vị trí chuẩn
-    // HOLD: ở vị trí chuẩn (khi pEnter=1, pExit=0)
-    // EXIT: từ vị trí chuẩn → góc phải dưới, rotate 35°
-    if (photo) {
-      const startX = 80; // % (bên phải xa)
-      const startY = 60; // % (dưới)
-      const startRot = 35; // độ nghiêng ban đầu
-
-      // Nếu đang exit, ưu tiên exit animation
-      let finalX, finalY, finalRot, opacity;
-
-      if (pExit > 0) {
-        // EXIT phase: đang rời đi
-        finalX = startX * exp;
-        finalY = startY * exp;
-        finalRot = startRot * exp;
-        opacity = 1 - exp * 0.95;
-      } else {
-        // ENTER phase: đang vào
-        finalX = startX * (1 - ep);
-        finalY = startY * (1 - ep);
-        finalRot = startRot * (1 - ep);
-        opacity = Math.min(1, ep * 1.3);
+  function animateIn() {
+    requestAnimationFrame(() => {
+      if (photo) {
+        photo.style.transition = "opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1)";
+        photo.style.transform = "translate3d(0, 0, 0) rotate(0deg)";
+        photo.style.opacity = "1";
       }
+      setTimeout(() => {
+        if (photoFrame) {
+          photoFrame.style.transition = "opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)";
+          photoFrame.style.transform = "scale(1) rotate(0deg)";
+          photoFrame.style.opacity = "1";
+          photoFrame.classList.add("is-visible");
+        }
+      }, 200);
+      setTimeout(() => {
+        if (textEl) {
+          textEl.style.transition = "opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1)";
+          textEl.style.transform = "translate3d(0, 0, 0)";
+          textEl.style.opacity = "1";
+          textEl.classList.add("is-visible");
+        }
+      }, 500);
+    });
+  }
 
-      photo.style.transform = `translate3d(${finalX.toFixed(2)}%, ${finalY.toFixed(2)}%, 0) rotate(${finalRot.toFixed(2)}deg)`;
-      photo.style.opacity = Math.max(0, opacity).toFixed(3);
-    }
-
-    // Frame animation: scale từ nhỏ → to + fade in (cinematic)
-    if (photoFrame) {
-      let scale, opacity;
-
-      if (pExit > 0) {
-        // EXIT: frame thu nhỏ và fade out
-        scale = 1 - 0.08 * exp;
-        opacity = 1 - exp * 0.95;
-      } else {
-        // ENTER: frame scale lên và fade in
-        scale = 0.92 + 0.08 * ep;
-        opacity = Math.min(1, ep * 1.4);
+  function animateOut() {
+    requestAnimationFrame(() => {
+      if (textEl) {
+        textEl.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        textEl.style.transform = "translate3d(0, 40px, 0)";
+        textEl.style.opacity = "0";
+        textEl.classList.remove("is-visible");
       }
-
-      photoFrame.style.transform = `scale(${scale.toFixed(3)})`;
-      photoFrame.style.opacity = Math.max(0, opacity).toFixed(3);
-    }
-
-    // Text animation - đơn giản hơn
-    if (textEl) {
-      let finalY, opacity;
-
-      if (pExit > 0) {
-        // EXIT: text trượt lên và mờ
-        finalY = -25 * exp;
-        opacity = 1 - exp * 0.9;
-      } else {
-        // ENTER: text trượt lên nhẹ và hiện
-        finalY = 40 * (1 - ep);
-        opacity = Math.min(1, ep * 1.2);
-      }
-
-      textEl.style.transform = `translate3d(0, ${finalY.toFixed(2)}px, 0)`;
-      textEl.style.opacity = Math.max(0, opacity).toFixed(3);
-    }
+      setTimeout(() => {
+        if (photoFrame) {
+          photoFrame.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+          photoFrame.style.transform = "scale(0.88) rotate(-4deg)";
+          photoFrame.style.opacity = "0";
+          photoFrame.classList.remove("is-visible");
+        }
+      }, 100);
+      setTimeout(() => {
+        if (photo) {
+          photo.style.transition = "opacity 1s ease, transform 1s ease";
+          photo.style.transform = "translate3d(60%, 40%, 0) rotate(25deg)";
+          photo.style.opacity = "0";
+        }
+      }, 200);
+    });
   }
 
-  function onRaf() {
-    ticking = false;
-    applyAnimation();
-  }
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(onRaf);
-  }
-
-  // Init
-  applyAnimation();
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener(
-    "resize",
-    () => {
-      onScroll();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateIn();
+        } else {
+          animateOut();
+        }
+      });
     },
-    { passive: true },
+    { threshold: [0, 0.15, 0.3], rootMargin: "0px 0px -5% 0px" },
   );
+
+  observer.observe(panel);
 })();
 
 /* ═══════════════════════════════════════════════════════════ */
@@ -916,7 +807,7 @@
 (() => {
   // Reveal animations for bpt-split-scene and bpt-scene sections
   const sceneEls = document.querySelectorAll(
-    "#section-bpt-ch2-mo-dau, #section-bpt-ch2-vi-ngot, #section-bpt-ch2-nghe-nhan, #section-bpt-ch2-bao-ton",
+    "#section-bpt-ch2-mo-dau, #section-bpt-ch2-nghe-nhan, #section-bpt-ch2-bao-ton",
   );
 
   if (!sceneEls.length) return;

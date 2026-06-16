@@ -144,7 +144,7 @@
                 data-effects="eyJ0ZXh0UGVyTGluZSI6ZmFsc2UsImhhc0VmZmVjdHMiOmZhbHNlLCJuZWVkc0JhY2tncm91bmRDbG9uZSI6ZmFsc2UsImVuY29kZWQiOiIifQ=="
             >
                 <sh-background-transition
-                    data-transitions="1 fade;1 fade;1 fade"
+                    data-transitions="1 fade;1 fade"
                     class="Layer--one Theme-Layer-BackgroundCanvas"
                 >
                     <div
@@ -247,15 +247,6 @@
                         </picture>
                     </div>
                     <div slot="foreground" class="MediaRenderer__textBlocks">
-                        <div class="MediaRenderer__textBlocksInner">
-                            <div
-                                class="MediaRenderer__srBlockAnchor MediaRenderer__srOnly"
-                                aria-hidden="true"
-                            ></div>
-                            <div
-                                class="MediaRenderer__srBlock MediaRenderer__srOnly"
-                            ></div>
-                        </div>
                         <div class="MediaRenderer__textBlocksInner">
                             <div
                                 class="MediaRenderer__srBlockAnchor MediaRenderer__srOnly"
@@ -575,45 +566,14 @@
             <div id="section-bpt-ch2-mo-dau" class="Theme-Section bpt-scene">
                 <div class="bpt-split-scene bpt-reveal">
                     <div class="bpt-split-scene__visual">
-                        <div
-                            class="bpt-placeholder-img bpt-placeholder-img--warm"
-                            aria-hidden="true"
-                        >
-                            <svg
-                                viewBox="0 0 400 300"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect width="400" height="300" fill="#F7E8CB" />
-                                <circle
-                                    cx="200"
-                                    cy="130"
-                                    r="55"
-                                    fill="#D4A843"
-                                    opacity="0.35"
-                                />
-                                <rect
-                                    x="170"
-                                    y="100"
-                                    width="60"
-                                    height="60"
-                                    rx="4"
-                                    fill="#972023"
-                                    opacity="0.25"
-                                    transform="rotate(15 200 130)"
-                                />
-                                <text
-                                    x="200"
-                                    y="220"
-                                    text-anchor="middle"
-                                    fill="#221A14"
-                                    font-family="Vollkorn,serif"
-                                    font-size="15"
-                                    opacity="0.55"
-                                >
-                                    Trời tròn · Đất vuông
-                                </text>
-                            </svg>
-                        </div>
+                        <figure>
+                            <img
+                                src="assets/chuong-2/minh họa bánh.png"
+                                alt="Minh họa cấu tạo bánh Phu Thê với các lớp nguyên liệu: lá dong, nếp, đậu xanh, sen, dừa, lạt đỏ"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </figure>
                     </div>
                     <div class="bpt-split-scene__text">
                         <div class="bpt-prose">
@@ -625,10 +585,10 @@
                                 bình dị như bao thức quà quê khác. Nhưng khi sợi
                                 lạt đỏ được tháo mở, lớp lá dong xanh tước đi để
                                 lộ phần bánh bên trong, người ta mới thực sự cảm
-                                nhận được sự tinh tế và khéo léo của những nghệ
+                                nhận được <em>sự tinh tế và khéo léo</em> của những nghệ
                                 nhân Đình Bảng. Chiếc bánh ấy không chỉ là sự
                                 kết hợp hài hòa giữa các nguyên liệu, mà là một
-                                sự cân bằng hoàn hảo giữa thị giác và hương vị.
+                                <em>sự cân bằng hoàn hảo</em> giữa thị giác và hương vị.
                             </p>
                             <p>
                                 Để có được một mẻ bánh phu thê thành công, người
@@ -659,85 +619,135 @@
             <!-- /#section-bpt-ch2-mo-dau -->
 
             <!-- Section 3: Nghệ nhân & Quy trình -->
-            <div id="section-bpt-ch2-nghe-nhan" class="Theme-Section bpt-scene">
-                <div class="bpt-split-scene bpt-reveal">
-                    <div class="bpt-split-scene__visual">
-                        <div
-                            class="bpt-placeholder-img bpt-placeholder-img--warm"
-                            aria-hidden="true"
-                        >
-                            <svg
-                                viewBox="0 0 400 300"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect width="400" height="300" fill="#2A1F18" />
-                                <circle
-                                    cx="200"
-                                    cy="150"
-                                    r="80"
-                                    fill="#972023"
-                                    opacity="0.15"
-                                />
-                                <text
-                                    x="200"
-                                    y="160"
-                                    text-anchor="middle"
-                                    fill="#F7E8CB"
-                                    font-family="Vollkorn,serif"
-                                    font-size="14"
-                                    opacity="0.6"
-                                >
-                                    3 giờ sáng · Bếp lửa · Tâm huyết
-                                </text>
-                            </svg>
+            <div id="section-bpt-ch2-nghe-nhan" class="Theme-Section bpt-nghe-nhan">
+                <!-- Full-screen cinematic background -->
+                <div class="bpt-nghe-nhan__bg" aria-hidden="true">
+                    <div class="bpt-nghe-nhan__bg-img"></div>
+                    <div class="bpt-nghe-nhan__grain"></div>
+                    <div class="bpt-nghe-nhan__vignette"></div>
+                    <div class="bpt-nghe-nhan__scanlines"></div>
+                </div>
+
+                <!-- Ambient floating particles -->
+                <div class="bpt-nghe-nhan__particles" aria-hidden="true"></div>
+
+                <!-- Content overlay — scroll-driven cinematic reveals -->
+                <div class="bpt-nghe-nhan__content">
+                    <!-- Scene 1: Kicker — fades in from darkness -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--kicker">
+                        <span class="bpt-nghe-nhan__time">3:00 sáng</span>
+                        <h3 class="bpt-nghe-nhan__kicker">Kỳ công từ tờ mờ sáng</h3>
+                        <div class="bpt-nghe-nhan__kicker-line"></div>
+                    </div>
+
+                    <!-- Scene 2: Opening paragraph — slides up letter by letter -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--intro">
+                        <p class="bpt-nghe-nhan__lead">
+                            Để có những cặp bánh tươi ngon kịp trao tay khách
+                            trong ngày đại hỷ, những nếp nhà nghề ở Đình Bảng
+                            thường phải bắt đầu công việc từ lúc 3, 4 giờ sáng.
+                        </p>
+                    </div>
+
+                    <!-- Scene 3: The artisan's voice — full dramatic quote -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--quote">
+                        <div class="bpt-nghe-nhan__quote-frame">
+                            <div class="bpt-nghe-nhan__quote-mark">"</div>
+                            <blockquote class="bpt-nghe-nhan__blockquote">
+                                <p class="bpt-nghe-nhan__quote-line">Làm ra được một mẻ bánh là cả một sự kỳ công của gia đình.</p>
+                                <p class="bpt-nghe-nhan__quote-line">Từ lúc tờ mờ sáng, chúng tôi đã phải thức giấc để chuẩn bị nhân bánh.</p>
+                                <p class="bpt-nghe-nhan__quote-line">Riêng phần nhân đậu xanh sau khi sên xong, phải đợi thêm 3 đến 4 tiếng cho nguội hẳn thì mới có thể bắt tay vào nặn bánh.</p>
+                                <p class="bpt-nghe-nhan__quote-line">Mọi công đoạn đều phải tuân thủ đúng nhịp độ thời gian, không thể vội vàng, cũng chẳng thể làm dối.</p>
+                            </blockquote>
+                            <div class="bpt-nghe-nhan__quote-attr">
+                                <span class="bpt-nghe-nhan__attr-dash">—</span>
+                                <span class="bpt-nghe-nhan__attr-name">Nghệ nhân Nguyễn Đình Minh</span>
+                                <span class="bpt-nghe-nhan__attr-detail">68 tuổi · Làng Đình Bảng</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="bpt-split-scene__text">
-                        <div class="bpt-prose">
-                            <h3 class="bpt-kicker">Kỳ công từ tờ mờ sáng</h3>
-                            <p>
-                                Để có những cặp bánh tươi ngon kịp trao tay
-                                khách trong ngày đại hỷ, những nếp nhà nghề ở
-                                Đình Bảng thường phải bắt đầu công việc từ lúc
-                                3, 4 giờ sáng.
-                            </p>
-                            <blockquote class="bpt-ca-dao">
-                                "Làm bánh phu thê phải có cái tâm. Mỗi chiếc
-                                bánh là một lời hứa — với người nhận, với tổ
-                                tiên, và với chính mình. Từ lúc tờ mờ sáng,
-                                chúng tôi đã phải thức giấc để chuẩn bị nhân
-                                bánh. Riêng phần nhân đậu xanh sau khi sên xong,
-                                phải đợi thêm 3 đến 4 tiếng cho nguội hẳn thì
-                                mới có thể bắt tay vào nặn bánh. Mọi công đoạn
-                                đều phải tuân thủ đúng nhịp độ thời gian, không
-                                thể vội vàng, cũng chẳng thể làm dối."
-                                <footer
-                                    style="
-                                        margin-top: 12px;
-                                        font-family:
-                                            &quot;Vollkorn&quot;,
-                                            &quot;PT Serif&quot;, serif;
-                                        font-style: normal;
-                                        font-size: 0.88em;
-                                        opacity: 0.72;
-                                    "
-                                >
-                                    — Nghệ nhân Nguyễn Đình Minh, 68 tuổi, làng
-                                    Đình Bảng
-                                </footer>
-                            </blockquote>
-                            <p>
-                                Người thợ không chỉ làm bánh bằng công thức, mà
-                                bằng cả sự nâng niu. Việc chờ nhân nguội, đợi
-                                bột trong, hay việc cẩn thận thắt từng sợi lạt
-                                hồng không chỉ là kỹ thuật, mà là cách người
-                                nghệ nhân gửi gắm sự trân trọng, chúc phúc cho
-                                tình yêu đôi lứa. Từng chiếc bánh được tạo ra
-                                mang vị ngọt của đường nếp, thấm đượm cả những
-                                giọt mồ hôi và tấm lòng sắt son của người thợ
-                                với nghề.
-                            </p>
+
+                    <!-- Scene 3b: Artisan portrait -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--portrait">
+                        <div class="bpt-nghe-nhan__portrait-wrap">
+                            <img
+                                class="bpt-nghe-nhan__portrait"
+                                src="assets/chuong-2/NGHỆ NHÂN NGUYỄN ĐÌNH MINH.JPG"
+                                alt="Nghệ nhân Nguyễn Đình Minh"
+                                loading="lazy"
+                            />
+                            <div class="bpt-nghe-nhan__portrait-caption">
+                                <span class="bpt-nghe-nhan__portrait-name">Nghệ nhân Nguyễn Đình Minh</span>
+                                <span class="bpt-nghe-nhan__portrait-sub">Gìn giữ nghề truyền thống Làng Đình Bảng</span>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Scene 4: Closing reflection — cascade reveal -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--closing">
+                        <p class="bpt-nghe-nhan__reflect">
+                            Người thợ không chỉ làm bánh bằng công thức, mà bằng
+                            cả sự nâng niu. Việc chờ nhân nguội, đợi bột trong, hay
+                            việc cẩn thận thắt từng sợi lạt hồng không chỉ là kỹ
+                            thuật, mà là cách người nghệ nhân gửi gắm
+                            <em class="bpt-nghe-nhan__em">sự trân trọng, chúc phúc</em>
+                            cho tình yêu đôi lứa.
+                        </p>
+                        <p class="bpt-nghe-nhan__reflect bpt-nghe-nhan__reflect--dim">
+                            Từng chiếc bánh được tạo ra mang vị ngọt của đường nếp,
+                            thấm đượm cả những giọt mồ hôi và tấm lòng sắt son
+                            của người thợ với nghề.
+                        </p>
+                    </div>
+
+                    <!-- Scene 5: Video bar — click to expand -->
+                    <div class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--video-bar">
+                        <div class="bpt-nhn-video-bar" id="bpt-nhn-video-bar">
+                            <div class="bpt-nhn-video-bar__thumb">
+                                <img
+                                    src="assets/chuong-2/minh họa bánh.png"
+                                    alt="Quy trình gói bánh"
+                                    loading="lazy"
+                                />
+                                <div class="bpt-nhn-video-bar__play-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="bpt-nhn-video-bar__label">
+                                <span class="bpt-nhn-video-bar__title">Kỳ công gói bánh Phu Thê</span>
+                                <span class="bpt-nhn-video-bar__hint">Nhấn để xem</span>
+                            </div>
+                            <div class="bpt-nhn-video-bar__progress">
+                                <div class="bpt-nhn-video-bar__progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Expanded video overlay -->
+                        <div class="bpt-nhn-video-overlay" id="bpt-nhn-video-overlay">
+                            <div class="bpt-nhn-video-overlay__backdrop"></div>
+                            <div class="bpt-nhn-video-overlay__container">
+                                <video
+                                    class="bpt-nhn-video-overlay__video"
+                                    controls
+                                    preload="none"
+                                    poster="assets/chuong-2/minh họa bánh.png"
+                                >
+                                    <source src="assets/chuong-2/video-goi-banh.MP4" type="video/mp4" />
+                                </video>
+                                <button class="bpt-nhn-video-overlay__close" id="bpt-nhn-video-close" aria-label="Đóng video">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scroll indicator -->
+                    <div class="bpt-nghe-nhan__scroll-hint" aria-hidden="true">
+                        <div class="bpt-nghe-nhan__scroll-line"></div>
                     </div>
                 </div>
             </div>
@@ -752,9 +762,18 @@
                     <!-- Text trái -->
                     <div class="bpt-ngu-hanh__text bpt-reveal">
                         <div class="bpt-prose">
-                            <h3 class="bpt-kicker">
-                                Ngũ Hành trong chiếc bánh
-                            </h3>
+                           <h3 class="bpt-kicker">
+                               Ngũ Hành trong chiếc bánh
+                           </h3>
+                            <p>
+                                Sự tinh tế của các nguyên liệu còn được thể hiện
+                                thông qua sự cân bằng Ngũ hành trong triết học
+                                phương Đông. Mỗi nguyên liệu trong cặp bánh đều
+                                đại diện cho một nguyên tố, tạo nên sự cân bằng
+                                trong quy luật tương sinh, tương khắc của đất
+                                trời, từ đó biểu thị mong cầu cho đời sống hôn
+                                nhân thuận hòa của người Việt xưa.
+                            </p>
                             <p>
                                 Nếu chỉ nhìn thoáng qua, bánh phu thê chỉ là một
                                 thức quà ngọt ngào giản dị. Nhưng ẩn sâu bên
@@ -1126,9 +1145,13 @@
                         <div class="bpt-finale-text" id="bpt-finale-text">
                             <h2>✦ Ngũ Hành Viên Mãn ✦</h2>
                             <p>
-                                Bánh phu thê hội tụ đủ năm hành<br />Mộc · Kim ·
-                                Thổ · Hỏa · Thủy<br />Hứa hẹn hôn nhân trọn vẹn,
-                                hạnh phúc viên mãn
+                                Trên chiếc bánh nhỏ bé ấy, năm hành hội tụ,
+                                cân bằng và hòa quyện — một minh chứng cho
+                                triết lý sống sâu sắc của người Việt: hôn nhân
+                                viên mãn là khi âm dương thuận hòa, đất trời
+                                đồng điệu. Bánh phu thê vì thế không chỉ là
+                                thức quà, mà là lời nguyện ước chân thành nhất
+                                cho một cuộc đời gắn bó, bền chặt.
                             </p>
                         </div>
 
@@ -1150,163 +1173,58 @@
             </div>
             <!-- /#section-bpt-ch2-ngu-hanh -->
 
-            <!-- Section 2: Hương vị hòa hợp -->
-            <div id="section-bpt-ch2-vi-ngot" class="Theme-Section bpt-scene">
-                <div class="bpt-split-scene bpt-reveal">
-                    <div class="bpt-split-scene__visual">
-                        <div
-                            class="bpt-placeholder-img bpt-placeholder-img--warm"
-                            aria-hidden="true"
-                        >
-                            <svg
-                                viewBox="0 0 400 300"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect width="400" height="300" fill="#F7E8CB" />
-                                <circle
-                                    cx="200"
-                                    cy="130"
-                                    r="60"
-                                    fill="#F8D077"
-                                    opacity="0.4"
-                                />
-                                <circle
-                                    cx="200"
-                                    cy="130"
-                                    r="35"
-                                    fill="#D4A843"
-                                    opacity="0.5"
-                                />
-                                <text
-                                    x="200"
-                                    y="220"
-                                    text-anchor="middle"
-                                    fill="#972023"
-                                    font-family="Vollkorn,serif"
-                                    font-size="16"
-                                    opacity="0.6"
-                                >
-                                    Hương vị hòa hợp
-                                </text>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="bpt-split-scene__text">
-                        <div class="bpt-prose">
-                            <h3 class="bpt-kicker">Hương vị hòa hợp</h3>
-                            <p>
-                                Nếu chỉ nhìn thoáng qua, chiếc bánh phu thê cũng
-                                bình dị như bao thức quà quê khác. Nhưng hương
-                                vị của nó không đến từ cảm giác choáng ngợp, mà
-                                từ sự tinh tế được cảm nhận chậm rãi qua từng
-                                giác quan.
-                            </p>
-                            <p>
-                                Khi cắn một miếng bánh, vị ngọt thanh lan tỏa
-                                trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm
-                                từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng
-                                không hề dính hay ngấy. Tiếp đó là phần nhân đậu
-                                xanh được sên kỹ cùng hạt sen, dừa nạo và đường
-                                mía, mang đến vị bùi béo vừa phải. Những sợi dừa
-                                nhỏ tạo nên cảm giác sần sật thú vị, giúp hương
-                                vị của chiếc bánh trở nên phong phú hơn. Mỗi
-                                thành phần đều có dấu ấn riêng nhưng không lấn
-                                át nhau, cùng hòa quyện để tạo nên một tổng thể
-                                cân bằng và hài hòa.
-                            </p>
-                            <p>
-                                Người xưa thường nói bánh phu thê ngon nhất khi
-                                được dùng cùng một chén trà xanh nóng. Vị chát
-                                nhẹ của trà làm dịu đi vị ngọt của bánh, đồng
-                                thời giúp những tầng hương vị trở nên rõ nét
-                                hơn. Sau khi thưởng thức, dư vị ngọt lành vẫn
-                                còn đọng lại nơi cuống họng, hòa cùng hương trà
-                                thanh mát, tạo nên cảm giác nhẹ nhàng và thư
-                                thái.
-                            </p>
-                            <p>
-                                Có lẽ cũng bởi vậy mà bánh phu thê không chỉ
-                                xuất hiện trong những mâm tráp cưới hỏi, mà còn
-                                trở thành thức quà để người ta ngồi lại bên
-                                nhau, nhâm nhi cùng chén trà và trò chuyện trong
-                                những dịp sum họp.
-                            </p>
-                            <p>
-                                Nhưng điều đọng lại sau cùng không chỉ là hương
-                                vị. Đó còn là ý niệm về sự gắn kết, về một mái
-                                ấm được xây dựng bằng sự đồng lòng và sẻ chia.
-                                Bởi suy cho cùng, điều mà người ta trao nhau và
-                                cùng nhau thưởng thức không chỉ là một món sính
-                                lễ đơn thuần, mà là lời nguyện ước cho một cuộc
-                                hôn nhân bền chặt — nơi hai tâm hồn nguyện cùng
-                                nắm tay nhau đi qua mọi thăng trầm của cuộc
-                                sống.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /#section-bpt-ch2-vi-ngot -->
-
-            <!-- Section 4: Bảo tồn di sản -->
+            <!-- Section 4: Bảo tồn di sản — Cinematic video background -->
             <div
                 id="section-bpt-ch2-bao-ton"
-                class="Theme-Section bpt-scene bpt-scene--closing"
+                class="Theme-Section bpt-scene bpt-scene--closing bpt-bao-ton"
             >
-                <div class="bpt-prose bpt-reveal">
-                    <h3 class="bpt-kicker">Bảo tồn một phần hồn cốt</h3>
-                    <p>
-                        Ngày nay, giữa dòng chảy hối hả của cuộc sống, khi những
-                        trào lưu mới liên tục được tạo ra và thay thế nhau với
-                        tốc độ chóng mặt, nhiều làng nghề truyền thống đang lặng
-                        lẽ đối mặt với bài toán của sự tồn tại. Nghề làm bánh
-                        phu thê cũng không nằm ngoài vòng xoáy ấy. Những nếp
-                        sống xưa dần đổi thay, những thói quen tiêu dùng mới
-                        xuất hiện, khiến khoảng cách giữa con người với các giá
-                        trị truyền thống đôi khi trở nên xa hơn bao giờ hết.
-                    </p>
-                    <p>
-                        Thế nhưng, có những điều tưởng chừng mong manh lại sở
-                        hữu sức sống bền bỉ lạ kỳ. Ở làng nghề làm bánh phu thê
-                        tại Đình Bảng và nhiều vùng quê Bắc Bộ, những nghệ nhân
-                        vẫn miệt mài gìn giữ nghề như gìn giữ một phần ký ức của
-                        dân tộc. Họ không chỉ làm bánh để mưu sinh, mà còn mang
-                        trên vai trách nhiệm lưu truyền một di sản văn hóa đã
-                        được cha ông vun đắp qua nhiều thế hệ. Từ việc chọn nếp,
-                        đồ đậu, sên nhân, gói lá dong đến buộc từng sợi lạt đỏ,
-                        tất cả đều được thực hiện bằng đôi tay và bằng cả niềm
-                        tự hào với nghề truyền thống.
-                    </p>
-                    <p>
-                        Bảo tồn bánh phu thê không đơn thuần là lưu giữ một công
-                        thức ẩm thực cổ truyền. Đó còn là gìn giữ một phần hồn
-                        cốt văn hóa Việt Nam, những giá trị gia đình, sự gắn bó
-                        và lòng thủy chung được trao truyền từ đời này sang đời
-                        khác. Khi một làng nghề còn đỏ lửa, một chiếc bánh còn
-                        hiện diện trong lễ cưới, nghĩa là bản sắc dân tộc vẫn
-                        còn được tiếp nối trong đời sống hôm nay.
-                    </p>
-                    <p>
-                        Và có lẽ, chừng nào người Việt còn trân trọng những giá
-                        trị của tình yêu chân thành, còn nâng niu hạnh phúc gia
-                        đình và còn tự hào về cội nguồn văn hóa dân tộc, chừng
-                        đó chiếc bánh phu thê vẫn sẽ hiện diện trong những ngày
-                        vui, lễ cưới, những câu chuyện được kể bên mâm cỗ sum
-                        vầy. Sắc đỏ của sợi lạt, sắc xanh của lá dong và màu
-                        vàng hổ phách của lớp bánh trong veo sẽ vẫn tiếp tục kể
-                        câu chuyện kéo dài suốt hàng thế kỷ — câu chuyện về một
-                        dân tộc biết gửi gắm triết lý sống vào những điều bình
-                        dị nhất, để rồi từ một chiếc bánh nhỏ bé, kết tinh thành
-                        biểu tượng của tình yêu, của hạnh phúc và của bản sắc
-                        văn hóa Việt Nam trường tồn cùng thời gian.
-                    </p>
-                    <blockquote class="bpt-ca-dao bpt-ca-dao--finale">
+                <!-- Video background -->
+                <div class="bpt-bao-ton__bg" aria-hidden="true">
+                    <video
+                        class="bpt-bao-ton__video"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        poster="assets/chuong-2/minh họa bánh.png"
+                    >
+                        <source src="assets/chuong-2/video-goi-banh.MP4" type="video/mp4" />
+                    </video>
+                    <div class="bpt-bao-ton__overlay"></div>
+                </div>
+
+                <!-- Text content overlay -->
+                <div class="bpt-bao-ton__content bpt-reveal">
+                    <div class="bpt-prose bpt-prose--cascade">
+                        <h3 class="bpt-kicker">Bảo tồn một phần hồn cốt</h3>
                         <p>
-                            "Đôi ta như bánh phu thê<br />
-                            Đẹp duyên, vẹn nghĩa, chẳng nề gian nan."
+                            Ngày nay, giữa dòng chảy hối hả của cuộc sống, khi những
+                            trào lưu mới liên tục được tạo ra và thay thế nhau với
+                            tốc độ chóng mặt, nhiều làng nghề truyền thống đang lặng
+                            lẽ đối mặt với bài toán của sự tồn tại. Nghề làm bánh
+                            phu thê cũng không nằm ngoài vòng xoáy ấy.
                         </p>
-                        <footer>— Thơ ca dân gian</footer>
-                    </blockquote>
+                        <p>
+                            Thế nhưng, có những điều tưởng chừng mong manh lại sở
+                            hữu sức sống bền bỉ lạ kỳ. Ở làng nghề làm bánh phu thê
+                            tại Đình Bảng, những nghệ nhân vẫn miệt mài gìn giữ nghề
+                            như gìn giữ một phần ký ức của dân tộc.
+                        </p>
+                        <p>
+                            Bảo tồn bánh phu thê không đơn thuần là lưu giữ một công
+                            thức ẩm thực cổ truyền. Đó còn là gìn giữ một phần hồn
+                            cốt văn hóa Việt Nam — nơi <em>bản sắc dân tộc</em> vẫn
+                            còn được tiếp nối trong đời sống hôm nay.
+                        </p>
+                        <blockquote class="bpt-ca-dao bpt-ca-dao--finale">
+                            <p>
+                                "Đôi ta như bánh phu thê<br />
+                                Đẹp duyên, vẹn nghĩa, chẳng nề gian nan."
+                            </p>
+                            <footer>— Thơ ca dân gian</footer>
+                        </blockquote>
+                    </div>
                 </div>
                 <span class="bpt-scene-transition" aria-hidden="true"></span>
             </div>
