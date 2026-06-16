@@ -30,11 +30,11 @@
 
   /* ── Data 5 hành ────────────────────────────────────────── */
   const NGU_HANH = {
-    moc:  { name: '🌿 MỘC',  color: '#4A7C59', badge: 'Lá dong · Lá chuối — Sinh sôi · Sức sống', meaning: 'Bao bọc bên ngoài, tượng trưng cho mái ấm đơm hoa kết trái' },
-    kim:  { name: '⬡ KIM',   color: '#8A8070', badge: 'Dừa nạo · Đường phèn — Tinh khiết · Thủy chung', meaning: 'Vị ngọt thanh trong nhân bánh – tình nghĩa bền vững' },
-    tho:  { name: '◈ THỔ',   color: '#D4A843', badge: 'Nhân đậu xanh · Dành dành — Ổn định · Ấm áp', meaning: 'Màu vàng óng – nền tảng vững chắc của hạnh phúc' },
-    hoa:  { name: '🔥 HỎA',  color: '#972023', badge: 'Sợi lạt đỏ — Niềm vui · Gắn kết', meaning: 'Sắc đỏ thắm buộc chéo – ngọn lửa yêu thương đôi lứa' },
-    thuy: { name: '💧 THỦY', color: '#6B9BC3', badge: 'Nước — Hài hòa · Linh hoạt · Bền bỉ', meaning: 'Tạo nên lớp vỏ mềm mại – dòng chảy cảm xúc hôn nhân' },
+    moc:  { name: '🌿 MỘC',  color: '#4A7C59', badge: 'Lá dong · Lá chuối — Sinh sôi · Sức sống', meaning: 'Bao bọc bên ngoài chiếc bánh là lớp lá dong, lá chuối xanh mướt – sắc màu của cỏ cây, của sự sinh sôi và sức sống bền bỉ. Trong quan niệm ngũ hành, Mộc tượng trưng cho sự phát triển, cho mái ấm gia đình luôn đơm hoa kết trái và tràn đầy sinh khí.' },
+    kim:  { name: '⬡ KIM',   color: '#8A8070', badge: 'Dừa nạo · Đường phèn — Tinh khiết · Thủy chung', meaning: 'Vị ngọt thanh hòa quyện cùng những sợi dừa trắng trong nhân bánh gợi liên tưởng đến hành Kim. Đây là biểu tượng của sự tinh khiết, thủy chung và bền vững – những giá trị cốt lõi trong tình nghĩa phu thê.' },
+    tho:  { name: '◈ THỔ',   color: '#D4A843', badge: 'Nhân đậu xanh · Dành dành — Ổn định · Ấm áp', meaning: 'Màu vàng óng của lớp vỏ bánh được nhuộm từ quả dành dành tự nhiên hòa quyện với sắc vàng của nhân đậu xanh bên trong. Hành Thổ tượng trưng cho sự ổn định, ấm áp và là nền tảng vững chắc nâng đỡ hạnh phúc gia đình qua năm tháng.' },
+    hoa:  { name: '🔥 HỎA',  color: '#972023', badge: 'Sợi lạt đỏ — Niềm vui · Gắn kết', meaning: 'Nổi bật trên nền xanh của lớp lá là sợi lạt đỏ thắm buộc chéo quanh cặp bánh. Sắc đỏ của hành Hỏa tượng trưng cho niềm vui ngày cưới, cho ngọn lửa yêu thương và sự gắn kết nồng ấm của đôi lứa.' },
+    thuy: { name: '💧 THỦY', color: '#6B9BC3', badge: 'Nước — Hài hòa · Linh hoạt · Bền bỉ', meaning: 'Để tạo nên lớp vỏ trong veo, mềm mại đặc trưng của bánh phu thê không thể thiếu nước – yếu tố đại diện cho hành Thủy. Thủy là biểu tượng của sự hài hòa, linh hoạt và dòng chảy cảm xúc bền bỉ, kết nối hai con người trong cuộc sống hôn nhân.' },
   };
 
   /* Burst config — responsive: radial on ALL screens, scaled down on mobile */

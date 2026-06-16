@@ -291,7 +291,9 @@
 .bpt-ngu-hanh__info {
   position: absolute;
   min-height: 80px;
-  width: 220px;
+  width: 280px;
+  max-height: 320px;
+  overflow-y: auto;
   padding: 14px 16px;
   background: var(--color-cream-white, #FFF8EA);
   border: 1px solid var(--color-red-thread, #972023);
@@ -441,7 +443,8 @@
 
   /* Info panel — below card, compact */
   .bpt-ngu-hanh__info {
-    width: 160px;
+    width: 200px;
+    max-height: 260px;
     padding: 8px 10px;
     border-radius: 8px;
     font-size: 0.78rem;
@@ -568,7 +571,8 @@
 
   /* Info panel tiny */
   .bpt-ngu-hanh__info {
-    width: 140px;
+    width: 160px;
+    max-height: 220px;
     padding: 6px 8px;
     border-radius: 6px;
   }
@@ -1902,7 +1906,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════ */
-/* CHƯƠNG II — BẢO TỒN: Cinematic Video Background             */
+/* CHƯƠNG II — BẢO TỒN                                          */
 /* ═══════════════════════════════════════════════════════════ */
 
 .bpt-bao-ton {
@@ -1913,32 +1917,7 @@
   justify-content: center;
   overflow: hidden;
   color: var(--color-rice-paper, #F7E8CB);
-}
-
-.bpt-bao-ton__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.bpt-bao-ton__video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
-.bpt-bao-ton__overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg,
-      rgba(10, 8, 6, 0.5) 0%,
-      rgba(10, 8, 6, 0.3) 40%,
-      rgba(10, 8, 6, 0.4) 70%,
-      rgba(10, 8, 6, 0.8) 100%
-    );
-  z-index: 1;
+  background: #0a0806;
 }
 
 .bpt-bao-ton__content {
@@ -1947,11 +1926,15 @@
   max-width: 720px;
   padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
   text-align: center;
+  opacity: 1;
+  transform: none;
 }
 
 .bpt-bao-ton__content .bpt-kicker {
   color: var(--color-sticky-rice-gold, #F8D077);
   margin-bottom: 24px;
+  opacity: 1;
+  transform: none;
 }
 
 .bpt-bao-ton__content p {
@@ -1960,6 +1943,8 @@
   line-height: 1.9;
   color: rgba(247, 232, 203, 0.88);
   margin: 0 0 1.4em;
+  opacity: 1;
+  transform: none;
 }
 
 .bpt-bao-ton__content .bpt-ca-dao {
@@ -1970,6 +1955,10 @@
   border-radius: 4px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  transform: none;
+  color: var(--color-sticky-rice-gold, #F8D077);
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
 }
 
 .bpt-bao-ton__content .bpt-ca-dao p {
@@ -1998,11 +1987,5 @@
 @media (max-width: 420px) {
   .bpt-bao-ton__content .bpt-ca-dao {
     padding: 16px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bpt-bao-ton__video {
-    /* keep playing but no motion effects */
   }
 }
