@@ -331,71 +331,126 @@
 
 
 /* ═══════════════════════════════════════════════════════════
-   GIF Slide-In — Panel p2 scroll-driven parallax
-   Scroll xuống → GIF bay chéo từ rìa trái vào (translateX + Y nhẹ).
-   Scroll lên → GIF bay ngược ra theo đúng tỉ lệ scroll (reverse mượt).
-   Không dùng IntersectionObserver — pure rAF loop đồng bộ pixel.
+   Panel p2 — Scroll-driven parallax (GIF + Text đồng bộ)
+   ─────────────────────────────────────────────────────────
+   Design principles (UX/motion expert):
+   • GIF trượt từ trái vào — dẫn trước, thấy ngay khi panel xuất hiện
+   • Text trượt từ phải vào — lag 15% sau GIF để tạo cảm giác "gặp nhau"
+   • Scroll lên → cả hai reverse đồng bộ (GIF lùi trái, text mờ-lùi phải)
+   • Scroll qua panel → exit: GIF tiếp tục trôi, text fade out nhẹ
+   • Pure rAF loop — không dùng IntersectionObserver, không CSS transition
+   • Chỉ thay opacity + transform → không reflow, không jank
    ═══════════════════════════════════════════════════════════ */
 
 (() => {
   const splitPanel = document.querySelector('.bpt-sm-panel--split');
   if (!splitPanel) return;
 
-  const gifEl = splitPanel.querySelector('.bpt-sm-gif-reveal');
+  const gifEl  = splitPanel.querySelector('.bpt-sm-gif-reveal');
+  const textEl = splitPanel.querySelector('.bpt-sm-text.bpt-reveal');
   if (!gifEl) return;
 
+  // Reduced motion: instant, no animation
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    gifEl.style.transform = 'none';
-    gifEl.style.opacity   = '1';
+    gifEl.style.transform  = 'none';
+    gifEl.style.opacity    = '1';
+    if (textEl) { textEl.style.transform = 'none'; textEl.style.opacity = '1'; }
     return;
   }
 
-  let ticking = false;
+  // Đặt will-change sớm để GPU layer sẵn sàng
+  gifEl.style.willChange = 'transform, opacity';
+  if (textEl) textEl.style.willChange = 'transform, opacity';
+
+  let ticking      = false;
   let lastProgress = -1;
 
+  /* ── Progress: 0 khi panel chưa vào, 1 khi panel đã vào giữa màn hình ── */
   function computeProgress() {
     const rect = splitPanel.getBoundingClientRect();
     const vh   = window.innerHeight;
-
-    // Bắt đầu:   rect.top = vh*1.1  → panel chưa chạm đáy viewport (p = 0)
-    // Hoàn thành: rect.top = vh*0.1  → panel gần căn giữa viewport (p = 1)
-    // Range = vh → dài hơn trước, animation kéo dài suốt quá trình scroll vào
-    const rangeStart = vh * 1.05;   // p=0: panel chưa vào (dưới màn hình)
-    const rangeEnd   = vh * 0.35;   // p=1: panel lên 65% viewport → GIF đã vào hẳn
-
-    const traveled = rangeStart - rect.top;
-    const range    = rangeStart - rangeEnd;
-
+    // p=0: rect.top = vh*1.05 (panel dưới màn hình)
+    // p=1: rect.top = vh*0.35 (panel chiếm 65% viewport — đã vào hẳn)
+    const rangeStart = vh * 1.05;
+    const rangeEnd   = vh * 0.35;
+    const traveled   = rangeStart - rect.top;
+    const range      = rangeStart - rangeEnd;
     return Math.max(0, Math.min(1, traveled / range));
   }
 
+  /* ── Exit progress: 0 khi panel ở giữa, 1 khi panel đã scroll qua hẳn ── */
+  function computeExitProgress() {
+    const rect = splitPanel.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    // Exit bắt đầu khi rect.top < -vh*0.1 (panel bắt đầu rời đỉnh viewport)
+    // Exit kết thúc khi rect.top < -vh*0.7 (panel gần ra khỏi viewport trên)
+    const exitStart = -vh * 0.10;
+    const exitEnd   = -vh * 0.70;
+    const traveled  = exitStart - rect.top;
+    const range     = exitStart - exitEnd;
+    return Math.max(0, Math.min(1, traveled / range));
+  }
 
+  /* ── Easing: ease-out quart — mượt nhất cho slide vào ── */
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+
+  /* ── Apply: tính và set transform/opacity cho GIF + text ── */
   function applyProgress(p) {
-    const ep  = p;
+    const ep = easeOut(p);
+
+    // Exit: khi panel scroll qua, GIF tiếp tục trôi đi, text fade out
+    const ex     = computeExitProgress();
+    const exEased = easeOut(ex);
+
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
-      // Mobile: từ dưới lên + nhẹ fade
+      /* Mobile: slide lên từ dưới */
       const ty = (70 * (1 - ep)).toFixed(2);
       const sc = (0.92 + 0.08 * ep).toFixed(4);
-      const op = Math.min(1, p * 1.6).toFixed(3);
+      const op = (Math.min(1, p * 1.8) * (1 - exEased * 0.6)).toFixed(3);
       gifEl.style.transform = `translateY(${ty}px) scale(${sc})`;
       gifEl.style.opacity   = op;
+      if (textEl) {
+        const tty = (50 * (1 - Math.max(0, (p - 0.1) / 0.9))).toFixed(2);
+        const top = (Math.min(1, Math.max(0, (p - 0.1) / 0.9) * 2) * (1 - exEased * 0.8)).toFixed(3);
+        textEl.style.transform = `translateY(${tty}px)`;
+        textEl.style.opacity   = top;
+      }
     } else {
-      // Desktop: trượt từ ngoài rìa trái vào (translateX chủ đạo) + chéo nhẹ
-      const tx = (-55 * (1 - ep)).toFixed(2);   // bắt đầu ở -55% (thấy được rìa phải GIF ngay), trôi về 0
-      const ty = (20  * (1 - ep)).toFixed(2);    // nhẹ từ dưới lên 20px (tạo cảm giác chéo)
-      const sc = (0.95 + 0.05 * ep).toFixed(4);  // scale nhẹ hơn, tự nhiên hơn
-      const op = Math.min(1, p * 2.2).toFixed(3); // fade nhanh ở đầu, rõ sớm
-      gifEl.style.transform = `translateX(${tx}%) translateY(${ty}px) scale(${sc})`;
-      gifEl.style.opacity   = op;
+      /* ── Desktop: GIF từ trái, text từ phải ── */
+
+      // GIF: trượt từ -55% → 0 (thấy rìa phải ngay từ đầu)
+      // Exit: tiếp tục trôi thêm -15% khi scroll qua
+      const gifTx = (-55 * (1 - ep) - 15 * exEased).toFixed(2);
+      const gifTy = (20  * (1 - ep)).toFixed(2);
+      const gifSc = (0.95 + 0.05 * ep).toFixed(4);
+      const gifOp = (Math.min(1, p * 2.5) * (1 - exEased * 0.5)).toFixed(3);
+
+      gifEl.style.transform = `translateX(${gifTx}%) translateY(${gifTy}px) scale(${gifSc})`;
+      gifEl.style.opacity   = gifOp;
+
+      // Text: bắt đầu sau GIF 15% (lag), trượt từ phải +40px → 0
+      // Exit: lùi nhẹ về phải +20px + fade out
+      if (textEl) {
+        const textP   = Math.max(0, Math.min(1, (p - 0.15) / 0.85)); // lag 15%
+        const textEp  = easeOut(textP);
+        const textTx  = (40 * (1 - textEp) + 20 * exEased).toFixed(2);
+        const textOp  = (Math.min(1, textP * 1.4) * (1 - exEased * 0.85)).toFixed(3);
+        textEl.style.transform = `translateX(${textTx}px)`;
+        textEl.style.opacity   = textOp;
+      }
     }
   }
 
   function onRaf() {
     ticking = false;
     const p = computeProgress();
-    if (Math.abs(p - lastProgress) < 0.0003) return;
+    if (Math.abs(p - lastProgress) < 0.0002) {
+      // Vẫn check exit dù p không đổi
+      applyProgress(p);
+      return;
+    }
     lastProgress = p;
     applyProgress(p);
   }
@@ -408,6 +463,109 @@
 
   // Init ngay (mid-scroll load)
   applyProgress(computeProgress());
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   TEXT PANELS — Scroll-driven 45° fly-in (p1, p3, p4, p5)
+   Ảnh nền (background) giữ nguyên sticky cross-fade.
+   Text block mỗi panel: bay vào từ rìa màn hình theo góc 45°
+   khi scroll đến, bay ngược về khi scroll qua — bidirectional.
+   p2 text đã được IIFE trên xử lý riêng → skip ở đây.
+   ═══════════════════════════════════════════════════════════ */
+
+(() => {
+  const section = document.querySelector('[data-bgsm="ch1"]');
+  if (!section) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Chỉ lấy panels KHÔNG phải split (p2 đã có IIFE riêng)
+  const panelItems = Array.from(
+    section.querySelectorAll('.bpt-sm-panel:not(.bpt-sm-panel--split)')
+  ).map((panel) => {
+    const textEl = panel.querySelector('.bpt-sm-text.bpt-reveal');
+    if (!textEl) return null;
+
+    // Xác định hướng bay: --left → từ phải (dir=+1), --right → từ trái (dir=-1), center → phải
+    const dir = textEl.classList.contains('bpt-sm-text--right') ? -1 : 1;
+
+    // GPU layer sẵn sàng
+    textEl.style.willChange = 'transform, opacity';
+
+    return { panel, textEl, dir };
+  }).filter(Boolean);
+
+  if (!panelItems.length) return;
+
+  let ticking = false;
+  let _active = false;
+
+  const visObs = new IntersectionObserver(
+    (entries) => { _active = entries.some(e => e.isIntersecting); },
+    { rootMargin: '15% 0px' }
+  );
+  visObs.observe(section);
+
+  // easeOut quart — mượt cho enter
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+  // easeIn quad — nhanh dần cho exit
+  function easeIn(t) { return t * t; }
+
+  function computeItemProgress(panel) {
+    const rect = panel.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Enter: rect.top từ vh*1.1 xuống vh*0.45 → p: 0→1
+    const enterStart = vh * 1.1;
+    const enterEnd   = vh * 0.45;
+    const p = Math.max(0, Math.min(1, (enterStart - rect.top) / (enterStart - enterEnd)));
+
+    // Exit: rect.top từ -vh*0.05 xuống -vh*0.65 → ex: 0→1
+    const exitStart = -vh * 0.05;
+    const exitEnd   = -vh * 0.65;
+    const ex = Math.max(0, Math.min(1, (exitStart - rect.top) / (exitStart - exitEnd)));
+
+    return { p, ex };
+  }
+
+  function applyItem({ panel, textEl, dir }) {
+    const { p, ex } = computeItemProgress(panel);
+    const ep  = easeOut(p);
+    const exp = easeIn(ex);
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Mobile: bay lên từ dưới theo chiều thẳng đứng
+      const ty  = (64 * (1 - ep) - 24 * exp).toFixed(2);
+      const op  = (Math.min(1, p * 1.6) * (1 - exp * 0.9)).toFixed(3);
+      textEl.style.transform = `translateY(${ty}px)`;
+      textEl.style.opacity   = op;
+    } else {
+      // Desktop: góc 45° — X đối xứng theo dir, Y từ dưới lên
+      const tx  = (dir *  80 * (1 - ep) - dir * 28 * exp).toFixed(2);
+      const ty  = (60  * (1 - ep) - 20 * exp).toFixed(2);
+      const op  = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
+      textEl.style.transform = `translateX(${tx}px) translateY(${ty}px)`;
+      textEl.style.opacity   = op;
+    }
+  }
+
+  function onRaf() {
+    ticking = false;
+    panelItems.forEach(applyItem);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onRaf);
+  }
+
+  // Init
+  panelItems.forEach(applyItem);
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });

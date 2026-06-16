@@ -345,81 +345,85 @@
             <!-- ═══════════════════════════════════════════════════════════ -->
             <!-- SCROLLMATION BLOCK: p1→p5 — sticky background + text panels -->
             <!-- ═══════════════════════════════════════════════════════════ -->
-            <div class="bpt-sm-section" data-bgsm="ch1" aria-label="Chương I — nội dung cuộn">
-
+            <div
+                class="bpt-sm-section"
+                data-bgsm="ch1"
+                aria-label="Chương I — nội dung cuộn"
+            >
                 <!-- Sticky media layer — ảnh cross-fade khi scroll -->
                 <div class="bpt-sm-media" aria-hidden="true">
                     <!-- Slide 0: Kinh Bắc -->
                     <div class="bpt-sm-slide is-active" data-sm-index="0">
-                        <img
-                            src="assets/images/artboard-3.5-1920x1080-55649b4e9c.webp"
-                            alt=""
-                            fetchpriority="high"
-                            decoding="async"
-                        />
+                        <div
+                            class="bpt-sm-placeholder"
+                            data-label="Placeholder — Vùng đất Kinh Bắc"
+                        ></div>
                     </div>
                     <!-- Slide 1: Truyền thuyết cung đình -->
                     <div class="bpt-sm-slide is-primed" data-sm-index="1">
-                        <img
-                            src="assets/images/snapedit_1708951313271-1479x833-f2f6d5ecc2.jpg"
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <div
+                            class="bpt-sm-placeholder"
+                            data-label="Placeholder — Truyền thuyết cung đình"
+                        ></div>
                     </div>
                     <!-- Slide 2: Bến sông -->
                     <div class="bpt-sm-slide" data-sm-index="2">
-                        <img
-                            src="assets/images/artboard-5-1920x1080-17e68013f4.webp"
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <div
+                            class="bpt-sm-placeholder"
+                            data-label="Placeholder — Bến sông"
+                        ></div>
                     </div>
                     <!-- Slide 3: Làng nghề truyền thống -->
                     <div class="bpt-sm-slide" data-sm-index="3">
-                        <img
-                            src="assets/images/snapedit_1709045379738-1990x1120-56126bbb32.webp"
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <div
+                            class="bpt-sm-placeholder"
+                            data-label="Placeholder — Làng nghề truyền thống"
+                        ></div>
                     </div>
                     <!-- Slide 4: Chiếc bánh Phu Thê -->
                     <div class="bpt-sm-slide" data-sm-index="4">
-                        <img
-                            src="assets/images/thiet-ke-chua-co-ten-19-1864x1049-e1e472fe80.webp"
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <div
+                            class="bpt-sm-placeholder"
+                            data-label="Placeholder — Chiếc bánh Phu Thê"
+                        ></div>
                     </div>
                     <div class="bpt-sm-overlay" aria-hidden="true"></div>
                 </div>
 
                 <!-- Scroll track — text panels, mỗi panel = 100vh -->
                 <div class="bpt-sm-track">
-
                     <!-- Panel 0: Vùng đất Kinh Bắc -->
-                    <div id="section-bpt-ch1-p1" class="bpt-sm-panel" data-sm-panel="0">
+                    <div
+                        id="section-bpt-ch1-p1"
+                        class="bpt-sm-panel"
+                        data-sm-panel="0"
+                    >
                         <div class="bpt-sm-text bpt-sm-text--left bpt-reveal">
                             <h3 class="bpt-kicker">Vùng đất Kinh Bắc</h3>
                             <p>
-                                Dưới bóng thâm nghiêm của những mái đền xứ Kinh Bắc,
-                                vùng đất Đình Bảng (Bắc Ninh) hiện ra như một dấu son
-                                trầm mặc của một vùng đất địa linh nhân kiệt. Người ta
-                                nhớ về nơi đây không chỉ như vùng đất phát tích của
-                                vương triều nhà Lý lừng lẫy trong lịch sử dân tộc, mà
-                                còn bởi một thức quà thanh nhã đã minh chứng cho tình
-                                cảm vợ chồng suốt hàng thế kỷ qua — bánh phu thê.
+                                Dưới bóng thâm nghiêm của những mái đền xứ Kinh
+                                Bắc, vùng đất Đình Bảng (Bắc Ninh) hiện ra như
+                                một dấu son trầm mặc của một vùng đất địa linh
+                                nhân kiệt. Người ta nhớ về nơi đây không chỉ như
+                                vùng đất phát tích của vương triều nhà Lý lừng
+                                lẫy trong lịch sử dân tộc, mà còn bởi một thức
+                                quà thanh nhã đã minh chứng cho tình cảm vợ
+                                chồng suốt hàng thế kỷ qua — bánh phu thê.
                             </p>
                         </div>
                     </div>
 
                     <!-- Panel 1: Truyền thuyết cung đình — split: GIF trái + text phải -->
-                    <div id="section-bpt-ch1-p2" class="bpt-sm-panel bpt-sm-panel--split" data-sm-panel="1">
+                    <div
+                        id="section-bpt-ch1-p2"
+                        class="bpt-sm-panel bpt-sm-panel--split"
+                        data-sm-panel="1"
+                    >
                         <!-- GIF slide-in từ rìa trái khi scroll đến panel -->
-                        <div class="bpt-sm-gif-reveal" aria-label="Minh họa đôi vợ chồng">
+                        <div
+                            class="bpt-sm-gif-reveal"
+                            aria-label="Minh họa đôi vợ chồng"
+                        >
                             <img
                                 src="assets/gif/thiet-ke-bao-bi-truyen-thong-lucky-brand-1-8c274acf41.gif"
                                 alt="Minh họa đôi vợ chồng trong truyền thuyết bánh phu thê"
@@ -431,92 +435,114 @@
                         <div class="bpt-sm-text bpt-sm-text--right bpt-reveal">
                             <h3 class="bpt-kicker">Từ điển tích cung đình…</h3>
                             <p>
-                                Tục truyền, bánh phu thê gắn liền với giai thoại cảm
-                                động về tình nghĩa vợ chồng của vua Lý Anh Tông. Vào thế
-                                kỷ XII, khi đất nước có giặc ngoại xâm, nhà vua trực
-                                tiếp cầm quân ra trận. Ở lại kinh thành, hoàng hậu
-                                thương chồng vất vả đã tự tay làm nên món bánh gửi ra
-                                biên cương cho chồng. Chạm tay vào món quà từ hậu
-                                phương, cảm nhận vị ngọt bùi hòa quyện, nhà vua xúc động
-                                trước tấm chân tình của người vợ hiền mà đặt tên là bánh
-                                phu thê (hay còn gọi là bánh xu xê).
+                                Tục truyền, bánh phu thê gắn liền với giai thoại
+                                cảm động về tình nghĩa vợ chồng của vua Lý Anh
+                                Tông. Vào thế kỷ XII, khi đất nước có giặc ngoại
+                                xâm, nhà vua trực tiếp cầm quân ra trận. Ở lại
+                                kinh thành, hoàng hậu thương chồng vất vả đã tự
+                                tay làm nên món bánh gửi ra biên cương cho
+                                chồng. Chạm tay vào món quà từ hậu phương, cảm
+                                nhận vị ngọt bùi hòa quyện, nhà vua xúc động
+                                trước tấm chân tình của người vợ hiền mà đặt tên
+                                là bánh phu thê (hay còn gọi là bánh xu xê).
                             </p>
                             <p>
-                                Cũng vì tên gọi ấy mà bánh phu thê luôn được buộc thành
-                                cặp, biểu trưng cho sự gắn bó son sắt của tình nghĩa vợ
-                                chồng.
+                                Cũng vì tên gọi ấy mà bánh phu thê luôn được
+                                buộc thành cặp, biểu trưng cho sự gắn bó son sắt
+                                của tình nghĩa vợ chồng.
                             </p>
                         </div>
                     </div>
 
                     <!-- Panel 2: Nỗi lòng người vợ nơi bến sông -->
-                    <div id="section-bpt-ch1-p3" class="bpt-sm-panel" data-sm-panel="2">
+                    <div
+                        id="section-bpt-ch1-p3"
+                        class="bpt-sm-panel"
+                        data-sm-panel="2"
+                    >
                         <div class="bpt-sm-text bpt-sm-text--left bpt-reveal">
-                            <h3 class="bpt-kicker">…Đến nỗi lòng người vợ nơi bến sông</h3>
+                            <h3 class="bpt-kicker">
+                                …Đến nỗi lòng người vợ nơi bến sông
+                            </h3>
                             <p>
-                                Bên dòng Tiêu Tương, người vợ đứng đợi chờ tháng ngày
-                                dài rộng. Trong nỗi nhớ thương không tên, đôi bàn tay
-                                khéo léo ấy đã gói ghém cả tâm tình vào từng chiếc bánh —
-                                mỗi lớp lá xanh là một lời thề, mỗi sợi lạt đỏ là một
-                                mối duyên.
+                                Bên dòng Tiêu Tương, người vợ đứng đợi chờ tháng
+                                ngày dài rộng. Trong nỗi nhớ thương không tên,
+                                đôi bàn tay khéo léo ấy đã gói ghém cả tâm tình
+                                vào từng chiếc bánh — mỗi lớp lá xanh là một lời
+                                thề, mỗi sợi lạt đỏ là một mối duyên.
                             </p>
                             <p>
-                                Đó là lý do bánh phu thê không chỉ là thức ăn. Nó là
-                                ngôn ngữ của trái tim, là hình hài của tình yêu được gói
-                                lại và trao đi — vượt qua bao dặm đường, bao ranh giới
-                                của thời gian.
+                                Đó là lý do bánh phu thê không chỉ là thức ăn.
+                                Nó là ngôn ngữ của trái tim, là hình hài của
+                                tình yêu được gói lại và trao đi — vượt qua bao
+                                dặm đường, bao ranh giới của thời gian.
                             </p>
                         </div>
                     </div>
 
                     <!-- Panel 3: Làng nghề truyền thống -->
-                    <div id="section-bpt-ch1-p4" class="bpt-sm-panel" data-sm-panel="3">
+                    <div
+                        id="section-bpt-ch1-p4"
+                        class="bpt-sm-panel"
+                        data-sm-panel="3"
+                    >
                         <div class="bpt-sm-text bpt-sm-text--right bpt-reveal">
                             <h3 class="bpt-kicker">Làng nghề truyền thống</h3>
                             <p>
-                                Lại có một giai thoại khác mà người dân làng Đình Bảng
-                                vẫn thường nhắc lại. Vào thời Lý, mỗi dịp hội làng hay
-                                Tết đến, bà con thường làm bánh phu thê từ nông sản địa
-                                phương để thành tâm dâng cúng tổ tiên. Trong một lần về
-                                thăm quê để lễ tạ tại Đền Đô, vua Lý Thánh Tông và
-                                Nguyên phi Ỷ Lan đã có dịp thưởng thức món bánh đặc sản
-                                này.
+                                Lại có một giai thoại khác mà người dân làng
+                                Đình Bảng vẫn thường nhắc lại. Vào thời Lý, mỗi
+                                dịp hội làng hay Tết đến, bà con thường làm bánh
+                                phu thê từ nông sản địa phương để thành tâm dâng
+                                cúng tổ tiên. Trong một lần về thăm quê để lễ tạ
+                                tại Đền Đô, vua Lý Thánh Tông và Nguyên phi Ỷ
+                                Lan đã có dịp thưởng thức món bánh đặc sản này.
                             </p>
                             <p>
-                                Cảm mến hương vị thanh tao, lại thấu hiểu ý nghĩa nhân
-                                văn sâu sắc ẩn chứa trong sự hòa quyện giữa vỏ và nhân
-                                bánh, nhà vua đã ban chỉ rằng thức quà này chính là lễ
-                                vật phù hợp nhất để kết thành duyên mới. Tên gọi bánh
-                                phu thê cũng từ đó mà được xuất hiện, trở thành vật phẩm
-                                không thể thiếu trong nghi thức dẫn cưới của người Việt,
-                                mang theo khát vọng về một cuộc sống hôn nhân hạnh phúc,
-                                viên mãn.
+                                Cảm mến hương vị thanh tao, lại thấu hiểu ý
+                                nghĩa nhân văn sâu sắc ẩn chứa trong sự hòa
+                                quyện giữa vỏ và nhân bánh, nhà vua đã ban chỉ
+                                rằng thức quà này chính là lễ vật phù hợp nhất
+                                để kết thành duyên mới. Tên gọi bánh phu thê
+                                cũng từ đó mà được xuất hiện, trở thành vật phẩm
+                                không thể thiếu trong nghi thức dẫn cưới của
+                                người Việt, mang theo khát vọng về một cuộc sống
+                                hôn nhân hạnh phúc, viên mãn.
                             </p>
                         </div>
                     </div>
 
                     <!-- Panel 4: Chiếc bánh Phu Thê — closing -->
-                    <div id="section-bpt-ch1-p5" class="bpt-sm-panel bpt-sm-panel--closing" data-sm-panel="4">
+                    <div
+                        id="section-bpt-ch1-p5"
+                        class="bpt-sm-panel bpt-sm-panel--closing"
+                        data-sm-panel="4"
+                    >
                         <div class="bpt-sm-text bpt-sm-text--center bpt-reveal">
                             <h3 class="bpt-kicker">Chiếc bánh Phu Thê</h3>
                             <p>
-                                Đi cùng năm tháng, bánh phu thê không chỉ đơn thuần là
-                                một thức quà truyền thống, mà đã trở thành biểu tượng
-                                của tình nghĩa vợ chồng sắt son. Giữa mâm tráp rực rỡ
-                                ngày đại hỷ, cặp bánh hiện diện như một chứng nhân thầm
-                                lặng, nhắc nhở đôi lứa về đạo nghĩa vợ chồng.
+                                Đi cùng năm tháng, bánh phu thê không chỉ đơn
+                                thuần là một thức quà truyền thống, mà đã trở
+                                thành biểu tượng của tình nghĩa vợ chồng sắt
+                                son. Giữa mâm tráp rực rỡ ngày đại hỷ, cặp bánh
+                                hiện diện như một chứng nhân thầm lặng, nhắc nhở
+                                đôi lứa về đạo nghĩa vợ chồng.
                             </p>
                             <p>
-                                Gói sau lớp lá dong xanh và sợi lạt đỏ là cả một trời
-                                tâm tình, là lời chúc cho một đời bình an, để dù qua bao
-                                sóng gió, hai người vẫn mãi đồng lòng nhìn về một hướng.
+                                Gói sau lớp lá dong xanh và sợi lạt đỏ là cả một
+                                trời tâm tình, là lời chúc cho một đời bình an,
+                                để dù qua bao sóng gió, hai người vẫn mãi đồng
+                                lòng nhìn về một hướng.
                             </p>
                         </div>
-                        <span class="bpt-scene-transition" aria-hidden="true"></span>
+                        <span
+                            class="bpt-scene-transition"
+                            aria-hidden="true"
+                        ></span>
                     </div>
-
-                </div><!-- /.bpt-sm-track -->
-            </div><!-- /.bpt-sm-section -->
+                </div>
+                <!-- /.bpt-sm-track -->
+            </div>
+            <!-- /.bpt-sm-section -->
         </article>
         <script src="js/inline-03.js"></script>
         <script

@@ -1076,6 +1076,34 @@ sh-background-transition .Theme-Item-Picture img {
   object-position: center center;
 }
 
+/* Placeholder khi chưa có ảnh thật */
+.bpt-sm-placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgb(34 26 20 / 0.08) 0px,
+      rgb(34 26 20 / 0.08) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    linear-gradient(160deg, #1a1410 0%, #2d2018 50%, #1a1410 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bpt-sm-placeholder::after {
+  content: attr(data-label);
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(255 248 234 / 0.22);
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Active slide: hiện rõ + scale bình thường */
 .bpt-sm-slide.is-active {
   opacity: 1;
@@ -1198,21 +1226,21 @@ sh-background-transition .Theme-Item-Picture img {
   border-radius: 10px;
 }
 
-/* Reveal override: trong scrollmation, text block là target */
+/* Reveal override: panel p2 text — JS-driven scroll sync (no CSS transition) */
 .bpt-sm-text.bpt-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Trạng thái ban đầu set bởi JS; will-change giúp GPU layer sẵn sàng */
+  will-change: transform, opacity;
+  /* Không dùng CSS transition — JS applyProgress() set trực tiếp mỗi frame */
+  transition: none !important;
 }
 
+/* bpt-visible không cần thiết cho p2 (JS tự handle), giữ lại để không break panels khác */
 .bpt-sm-text.bpt-reveal.bpt-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Ghi đè bpt-reveal paragraph stagger vì trong context này block chuyển cùng lúc */
+/* Paragraph stagger: tắt trong scrollmation context — block animate cùng lúc với JS */
 .bpt-sm-text.bpt-reveal .bpt-kicker,
 .bpt-sm-text.bpt-reveal p,
 .bpt-sm-text.bpt-reveal figure {
@@ -1272,6 +1300,7 @@ sh-background-transition .Theme-Item-Picture img {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    will-change: auto !important;
   }
 }
 
