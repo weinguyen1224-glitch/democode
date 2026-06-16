@@ -66,8 +66,12 @@
 
 (() => {
   const allReveals = document.querySelectorAll('.bpt-reveal');
-  // Exclude p2 split-panel elements (they have their own IIFE animation)
-  const reveals = [...allReveals].filter(el => !el.closest('.bpt-sm-panel--cinematic') && !el.closest('.bpt-sm-panel--magazine'));
+  // Exclude elements with their own scroll-driven animation logic
+  const reveals = [...allReveals].filter(el =>
+    !el.closest('.bpt-sm-panel--cinematic') &&
+    !el.closest('.bpt-sm-panel--magazine') &&
+    !el.closest('.bpt-zoom-scene')
+  );
   if (!reveals.length) return;
 
   const observer = new IntersectionObserver(
@@ -192,25 +196,33 @@
 
   let ticking = false;
 
+  // Ease-out cubic for smooth zoom feel
+  function easeOutCubicZoom(t) { return 1 - Math.pow(1 - t, 3); }
+
   function updateZoom() {
     const rect = zoomScene.getBoundingClientRect();
     const vh = innerHeight;
 
-    // ratio: 0 when section bottom enters viewport → 1 when section top passes viewport center
-    // We want zoom to go from 1 to ~1.8 as the user scrolls through the section
+    // Progress: 0 when section bottom enters viewport → 1 when section top passes ~60vh above bottom
+    // We want zoom to go from 1 → 3× as user scrolls through
     const sectionProgress = Math.min(1, Math.max(0,
-      (vh - rect.top) / (vh + rect.height)
+      (vh - rect.top) / (vh + rect.height * 0.6)
     ));
 
-    // Zoom: starts at 1, eases up to 1.8 as user scrolls through
-    const scale = 1 + sectionProgress * 0.8;
+    // Apply easing for natural zoom feel: slow start, accelerate, then decelerate near 3×
+    const eased = easeOutCubicZoom(sectionProgress);
+
+    // Zoom: starts at 1, eases up to 3× as user scrolls through
+    const scale = 1 + eased * 2;
     visual.style.setProperty('--bpt-zoom', scale.toFixed(3));
     visual.style.transform = `scale(${scale.toFixed(3)})`;
 
-    // Text: fades in after ~30% progress through the section
+    // Text: fades in after ~50% progress (when zoom is already ~2×)
     if (text) {
-      const textOpacity = Math.min(1, Math.max(0, (sectionProgress - 0.3) / 0.3));
+      const textOpacity = Math.min(1, Math.max(0, (sectionProgress - 0.45) / 0.3));
       text.style.setProperty('--bpt-zoom-text-opacity', textOpacity.toFixed(3));
+      const textY = 30 * (1 - Math.min(1, textOpacity));
+      text.style.setProperty('--bpt-zoom-text-y', textY.toFixed(1));
     }
 
     ticking = false;
@@ -316,6 +328,60 @@
     requestAnimationFrame(update);
   }
 
+  // Zoom scale cho slide 4 (cap-banh-phu-the) — 1 → 3× khi scroll qua panel cuối
+  const ZOOM_SLIDE_INDEX = 4;
+  let zoomTicking = false;
+
+  function applyZoomToSlide4() {
+    const slide4 = slides[ZOOM_SLIDE_INDEX];
+    if (!slide4 || !slide4.classList.contains('is-active')) {
+      // Reset scale khi không active
+      if (slide4) {
+        const img = slide4.querySelector('img');
+        if (img) img.style.transform = '';
+      }
+      return;
+    }
+
+    const panel = panels[ZOOM_SLIDE_INDEX];
+    if (!panel) return;
+
+    const vh = window.innerHeight;
+    const rect = panel.getBoundingClientRect();
+    const panelHeight = panel.offsetHeight;
+
+    // Progress 0→1 qua panel 4: từ khi panel top vào viewport (vh) → khi panel rời viewport (-panelHeight)
+    // Chỉ zoom khi panel đang trong viewport
+    const progress = Math.max(0, Math.min(1,
+      (vh - rect.top) / (vh + panelHeight)
+    ));
+
+    // Easing: easeOutCubic cho zoom mượt
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    // Scale từ 1 → 3×
+    const scale = 1 + eased * 2;
+
+    const img = slide4.querySelector('img');
+    if (img) {
+      img.style.transform = `scale(${scale.toFixed(3)})`;
+      img.style.transformOrigin = 'center center';
+      img.style.willChange = 'transform';
+    }
+  }
+
+  function onZoomRaf() {
+    zoomTicking = false;
+    applyZoomToSlide4();
+  }
+
+  function requestZoomUpdate() {
+    if (!zoomTicking) {
+      requestAnimationFrame(onZoomRaf);
+      zoomTicking = true;
+    }
+  }
+
   function update() {
     const rect = section.getBoundingClientRect();
     const trackHeight = section.offsetHeight - window.innerHeight;
@@ -330,6 +396,18 @@
 
     if (index !== currentIndex) {
       activateSlide(index, false);
+      // Khi chuyển slide, reset zoom của slide cũ
+      slides.forEach((s, i) => {
+        if (i !== index && i === ZOOM_SLIDE_INDEX) {
+          const img = s.querySelector('img');
+          if (img) img.style.transform = '';
+        }
+      });
+    }
+
+    // Trigger zoom update cho slide 4
+    if (index === ZOOM_SLIDE_INDEX) {
+      requestZoomUpdate();
     }
 
     ticking = false;

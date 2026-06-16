@@ -366,7 +366,6 @@ sh-background-transition .Theme-Item-Picture img {
   object-position: center center !important;
 }
 
-
 /* ═══════════════════════════════════════════════════════════ */
 /* CHƯƠNG I — Storytelling typography-driven layout              */
 /* ═══════════════════════════════════════════════════════════ */
@@ -516,7 +515,6 @@ sh-background-transition .Theme-Item-Picture img {
 .bpt-prose p:last-child {
   margin-bottom: 0;
 }
-
 
 .bpt-inline-visual {
   margin: 2.4rem 0;
@@ -914,10 +912,11 @@ sh-background-transition .Theme-Item-Picture img {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
+  min-height: 250vh;
   padding: clamp(48px, 8vh, 120px) clamp(24px, 4vw, 60px) clamp(32px, 4vh, 64px);
   overflow: hidden;
   position: relative;
+  background: var(--color-cream, #faf5ec);
 }
 
 .bpt-zoom-scene__visual {
@@ -926,15 +925,19 @@ sh-background-transition .Theme-Item-Picture img {
   align-items: center;
   justify-content: center;
   width: min(480px, 60vw);
+  margin-top: 40vh;
   margin-bottom: clamp(24px, 4vh, 48px);
   transform: scale(var(--bpt-zoom, 1));
   transform-origin: center center;
-  transition: transform 0.1s linear;
+  transition: transform 0.15s ease-out;
   will-change: transform;
+  z-index: 1;
 }
 
 .bpt-zoom-scene__visual .bpt-placeholder-img,
 .bpt-zoom-scene__visual img {
+  width: 100%;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0 32px 100px rgb(34 26 20 / 0.18);
 }
@@ -948,6 +951,15 @@ sh-background-transition .Theme-Item-Picture img {
   transition:
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+  position: relative;
+}
+
+/* Override .bpt-reveal for zoom scene — JS controls opacity via CSS variable */
+.bpt-zoom-scene__text.bpt-reveal,
+.bpt-zoom-scene__text.bpt-reveal.bpt-visible {
+  opacity: var(--bpt-zoom-text-opacity, 0) !important;
+  transform: translateY(var(--bpt-zoom-text-y, 30px)) !important;
 }
 
 .bpt-zoom-scene__text .bpt-kicker {
@@ -967,11 +979,8 @@ sh-background-transition .Theme-Item-Picture img {
   margin-bottom: 0;
 }
 
-/* When zoom becomes visible via IntersectionObserver */
-.bpt-zoom-scene.bpt-visible .bpt-zoom-scene__text {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Zoom scene text opacity is controlled entirely by JS scroll-driven logic.
+   Do NOT override with .bpt-visible here — it conflicts with --bpt-zoom-text-opacity */
 
 /* Mobile: zoom-scene stacks vertically, smaller image */
 @media (max-width: 768px) {
@@ -1045,6 +1054,8 @@ sh-background-transition .Theme-Item-Picture img {
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 /* ═══════════════════════════════════════════════════════════ */
@@ -1515,7 +1526,6 @@ sh-background-transition .Theme-Item-Picture img {
     opacity: 1 !important;
   }
 }
-
 
 /* ═══════════════════════════════════════════════════════════
    Text Block Entrance Animations — Magazine style
