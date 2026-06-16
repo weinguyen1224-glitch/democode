@@ -569,12 +569,28 @@
                 id="section-bpt-ch2-nghe-nhan"
                 class="Theme-Section bpt-nghe-nhan"
             >
-                <!-- Full-screen cinematic background -->
+                <!-- Full-screen cinematic background with scroll-driven layers -->
                 <div class="bpt-nghe-nhan__bg" aria-hidden="true">
+                    <!-- Scroll-driven background layers -->
+                    <div
+                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--kicker bpt-nghe-nhan__bg-layer--active"
+                        data-bg-scene="kicker"
+                    ></div>
+                    <div
+                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--quote"
+                        data-bg-scene="quote"
+                    ></div>
+                    <!-- Base background image -->
                     <div class="bpt-nghe-nhan__bg-img"></div>
                     <div class="bpt-nghe-nhan__grain"></div>
                     <div class="bpt-nghe-nhan__vignette"></div>
                     <div class="bpt-nghe-nhan__scanlines"></div>
+                    <!-- Scroll-driven reveal: 3h-sang → 3h-sang-2 -->
+                    <div class="bpt-nghe-nhan__reveal" aria-hidden="true">
+                        <div class="bpt-nghe-nhan__reveal-base"></div>
+                        <div class="bpt-nghe-nhan__reveal-top"></div>
+                        <div class="bpt-nghe-nhan__reveal-bar"></div>
+                    </div>
                 </div>
 
                 <!-- Ambient floating particles -->
@@ -604,10 +620,19 @@
                         </p>
                     </div>
 
-                    <!-- Scene 3: The artisan's voice — full dramatic quote -->
+                    <!-- Scene 3: Artisan portrait + quote overlaid -->
                     <div
-                        class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--quote"
+                        class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--portrait"
                     >
+                        <div class="bpt-nghe-nhan__portrait-wrap">
+                            <img
+                                class="bpt-nghe-nhan__portrait"
+                                src="assets/chuong-2/NGHỆ NHÂN NGUYỄN ĐÌNH MINH.JPG"
+                                alt="Nghệ nhân Nguyễn Đình Minh"
+                                loading="lazy"
+                            />
+                            <div class="bpt-nghe-nhan__portrait-overlay"></div>
+                        </div>
                         <div class="bpt-nghe-nhan__quote-frame">
                             <div class="bpt-nghe-nhan__quote-mark">"</div>
                             <blockquote class="bpt-nghe-nhan__blockquote">
@@ -637,29 +662,6 @@
                                 >
                                 <span class="bpt-nghe-nhan__attr-detail"
                                     >68 tuổi · Làng Đình Bảng</span
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Scene 3b: Artisan portrait -->
-                    <div
-                        class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--portrait"
-                    >
-                        <div class="bpt-nghe-nhan__portrait-wrap">
-                            <img
-                                class="bpt-nghe-nhan__portrait"
-                                src="assets/chuong-2/NGHỆ NHÂN NGUYỄN ĐÌNH MINH.JPG"
-                                alt="Nghệ nhân Nguyễn Đình Minh"
-                                loading="lazy"
-                            />
-                            <div class="bpt-nghe-nhan__portrait-caption">
-                                <span class="bpt-nghe-nhan__portrait-name"
-                                    >Nghệ nhân Nguyễn Đình Minh</span
-                                >
-                                <span class="bpt-nghe-nhan__portrait-sub"
-                                    >Gìn giữ nghề truyền thống Làng Đình
-                                    Bảng</span
                                 >
                             </div>
                         </div>

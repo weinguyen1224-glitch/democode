@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; background: #0a0806; }
+    .debug-container {
+      height: 200vh;
+      position: relative;
+    }
+    .bg-layer {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      background-size: cover;
+      background-position: center center;
+      opacity: 1;
+    }
+    .kicker {
+      background-image: url('../assets/chuong-2/3h-sang.JPG');
+    }
+    .quote {
+      background-image: url('../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG');
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="debug-container">
+    <div class="bg-layer kicker" id="kicker"></div>
+    <div class="bg-layer quote" id="quote"></div>
+  </div>
+  <div class="controls">
+    <button onclick="document.getElementById('quote').style.opacity=0">Kicker</button>
+    <button onclick="document.getElementById('quote').style.opacity=1">Quote</button>
+  </div>
+</body>
+</html>

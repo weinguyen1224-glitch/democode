@@ -842,6 +842,38 @@
 
     scenes.forEach(s => sceneObs.observe(s));
 
+    /* ── Scroll-driven background switching ───────────────── */
+    const bgLayers = {
+      kicker: nhnSection.querySelector('[data-bg-scene="kicker"]'),
+      quote: nhnSection.querySelector('[data-bg-scene="quote"]')
+    };
+    const kickerScene = nhnSection.querySelector('.bpt-nghe-nhan__scene--kicker');
+    const quoteScene = nhnSection.querySelector('.bpt-nghe-nhan__scene--portrait');
+
+    if (bgLayers.kicker && bgLayers.quote && kickerScene && quoteScene) {
+      const bgObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const targetClass = entry.target.classList;
+          const isIntersecting = entry.isIntersecting;
+          const ratio = entry.intersectionRatio;
+
+          if (targetClass.contains('bpt-nghe-nhan__scene--kicker')) {
+            bgLayers.kicker.classList.toggle('bpt-nghe-nhan__bg-layer--active', isIntersecting && ratio > 0.3);
+          }
+          if (targetClass.contains('bpt-nghe-nhan__scene--portrait')) {
+            bgLayers.quote.classList.toggle('bpt-nghe-nhan__bg-layer--active', isIntersecting && ratio > 0.2);
+            // Dim kicker when portrait/quote is visible
+            if (isIntersecting && ratio > 0.2) {
+              bgLayers.kicker.classList.remove('bpt-nghe-nhan__bg-layer--active');
+            }
+          }
+        });
+      }, { threshold: [0, 0.2, 0.4, 0.6], rootMargin: '-20% 0px -20% 0px' });
+
+      bgObs.observe(kickerScene);
+      bgObs.observe(quoteScene);
+    }
+
     /* ── Parallax background on scroll ─────────────────────── */
     const bgImg = nhnSection.querySelector('.bpt-nghe-nhan__bg-img');
     if (bgImg && window.innerWidth >= 769) {
@@ -860,6 +892,43 @@
         if (!nhnTicking) {
           requestAnimationFrame(updateNhnParallax);
           nhnTicking = true;
+        }
+      }, { passive: true });
+    }
+
+    /* ── Scroll-driven reveal: 3h-sang → 3h-sang-2 ──────────── */
+    const revealContainer = nhnSection.querySelector('.bpt-nghe-nhan__reveal');
+    const revealTop = nhnSection.querySelector('.bpt-nghe-nhan__reveal-top');
+    const revealBar = nhnSection.querySelector('.bpt-nghe-nhan__reveal-bar');
+
+    if (revealContainer && revealTop && revealBar) {
+      let revealTicking = false;
+      const REVEAL_START = 0.10;
+      const REVEAL_END = 0.35;
+
+      function updateReveal() {
+        const rect = nhnSection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const sectionHeight = nhnSection.offsetHeight;
+        const scrolled = Math.max(0, -rect.top);
+        const progress = Math.min(1, scrolled / (sectionHeight - vh));
+
+        if (progress >= REVEAL_START) {
+          revealContainer.classList.add('bpt-nghe-nhan__reveal--active');
+          const t = Math.min(1, (progress - REVEAL_START) / (REVEAL_END - REVEAL_START));
+          const clipBottom = (1 - t) * 100;
+          revealTop.style.clipPath = `inset(0 0 ${clipBottom}% 0)`;
+          revealBar.style.top = `${(1 - t) * 100}%`;
+        } else {
+          revealContainer.classList.remove('bpt-nghe-nhan__reveal--active');
+        }
+        revealTicking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!revealTicking) {
+          requestAnimationFrame(updateReveal);
+          revealTicking = true;
         }
       }, { passive: true });
     }

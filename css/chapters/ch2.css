@@ -1080,7 +1080,7 @@
 /* ── Section wrapper — full viewport height ──────────────── */
 .bpt-nghe-nhan {
   position: relative;
-  min-height: 400vh;
+  min-height: 300vh;
   overflow: hidden;
   background: #0a0806;
   color: var(--color-rice-paper, #F7E8CB);
@@ -1104,16 +1104,89 @@
   height: 120%;
   background:
     linear-gradient(180deg,
+      rgba(10, 8, 6, 0.85) 0%,
+      rgba(10, 8, 6, 0.9) 50%,
+      rgba(10, 8, 6, 0.95) 100%
+    );
+  will-change: transform;
+  transition: opacity 0.8s ease, transform 0.1s linear;
+  z-index: 0;
+}
+
+/* Scroll-driven background layers */
+.bpt-nghe-nhan__bg-layer {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center 35%;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.8s ease;
+  z-index: 5;
+}
+
+.bpt-nghe-nhan__bg-layer--kicker {
+  background-image: url('../../assets/chuong-2/3h-sang.JPG');
+}
+
+.bpt-nghe-nhan__bg-layer--quote {
+  background:
+    linear-gradient(180deg,
       rgba(10, 8, 6, 0.35) 0%,
       rgba(10, 8, 6, 0.15) 30%,
       rgba(10, 8, 6, 0.2) 60%,
       rgba(10, 8, 6, 0.88) 100%
     ),
-    url('../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG');
+    url('../../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG');
   background-size: cover;
   background-position: center 35%;
-  will-change: transform;
-  transition: transform 0.1s linear;
+}
+
+.bpt-nghe-nhan__bg-layer--active {
+  opacity: 1;
+}
+
+/* Kicker scene — darker overlay for text contrast */
+.bpt-nghe-nhan__scene--kicker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(10, 8, 6, 0.3) 0%,
+    rgba(10, 8, 6, 0.7) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Quote scene — lighter overlay for quote readability */
+.bpt-nghe-nhan__scene--portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 70% at 50% 45%,
+    rgba(10, 8, 6, 0.2) 0%,
+    rgba(10, 8, 6, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Quote frame — enhanced glass effect over image */
+.bpt-nghe-nhan__quote-frame {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+  background: rgba(10, 8, 6, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(247, 232, 203, 0.12);
+  border-radius: 4px;
+  z-index: 5;
 }
 
 /* Film grain overlay */
@@ -1166,6 +1239,53 @@
   z-index: 4;
 }
 
+/* ── Scroll-driven reveal: 3h-sang → 3h-sang-2 ───────────── */
+.bpt-nghe-nhan__reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bpt-nghe-nhan__reveal--active {
+  opacity: 1;
+}
+
+.bpt-nghe-nhan__reveal-base {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: url('../../assets/chuong-2/3h-sang.JPG');
+  background-size: cover;
+  background-position: center 35%;
+}
+
+.bpt-nghe-nhan__reveal-top {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  background-image: url('../../assets/chuong-2/3h-sang-2.JPG');
+  background-size: cover;
+  background-position: center 35%;
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path;
+}
+
+.bpt-nghe-nhan__reveal-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(248, 208, 119, 0.6);
+  top: 100%;
+  will-change: top;
+  box-shadow: 0 0 8px rgba(248, 208, 119, 0.3);
+}
+
 /* ── Ambient floating particles ──────────────────────────── */
 .bpt-nghe-nhan__particles {
   position: absolute;
@@ -1189,7 +1309,7 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  min-height: 400vh;
+  min-height: 300vh;
 }
 
 /* ── Individual scenes ───────────────────────────────────── */
@@ -1291,12 +1411,6 @@
   transform: translateY(0) rotate(0deg);
 }
 
-/* ── Scene 3: The artisan's voice — dramatic quote ──────── */
-.bpt-nghe-nhan__scene--quote {
-  min-height: 120vh;
-  padding: clamp(60px, 12vh, 160px) clamp(24px, 6vw, 120px);
-}
-
 .bpt-nghe-nhan__quote-frame {
   position: relative;
   max-width: 780px;
@@ -1309,11 +1423,6 @@
   opacity: 0;
   transform: translateY(80px) scale(0.95);
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-frame {
-  opacity: 1;
-  transform: translateY(0) scale(1);
 }
 
 .bpt-nghe-nhan__quote-mark {
@@ -1330,7 +1439,7 @@
   pointer-events: none;
 }
 
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-mark {
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-mark {
   opacity: 0.35;
   transform: translateY(0) scale(1);
 }
@@ -1356,10 +1465,10 @@
   margin-bottom: 0;
 }
 
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.4s; }
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.65s; }
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.9s; }
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 1.15s; }
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.4s; }
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.65s; }
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.9s; }
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-line:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 1.15s; }
 
 /* Quote author attribution */
 .bpt-nghe-nhan__quote-attr {
@@ -1372,7 +1481,7 @@
   transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
 }
 
-.bpt-nghe-nhan__scene--quote.bpt-nhn-visible .bpt-nghe-nhan__quote-attr {
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-attr {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1505,46 +1614,58 @@
   }
 }
 
-/* ── Scene 3b: Artisan portrait ──────────────────────────── */
+/* ── Scene 3: Artisan portrait left + quote right ─────────── */
 .bpt-nghe-nhan__scene--portrait {
-  min-height: 80vh;
+  min-height: 100vh;
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 5vw, 80px);
+  padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
+  overflow: hidden;
 }
 
 .bpt-nghe-nhan__portrait-wrap {
   position: relative;
-  max-width: 420px;
-  text-align: center;
+  flex: 0 0 42%;
+  max-width: 42%;
   opacity: 0;
-  transform: translateY(60px) scale(0.92);
+  transform: translateX(-60px) scale(0.92);
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__portrait-wrap {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateX(0) scale(1);
 }
 
 .bpt-nghe-nhan__portrait {
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 20%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  object-position: center center;
   border-radius: 6px;
-  border: 2px solid rgba(248, 208, 119, 0.2);
+  border: 2px solid rgba(248, 208, 119, 0.15);
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(248, 208, 119, 0.08);
+    0 0 40px rgba(248, 208, 119, 0.06);
 }
 
-.bpt-nghe-nhan__portrait-caption {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.bpt-nghe-nhan__portrait-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg,
+      rgba(10, 8, 6, 0.1) 0%,
+      rgba(10, 8, 6, 0.05) 40%,
+      rgba(10, 8, 6, 0.1) 70%,
+      rgba(10, 8, 6, 0.4) 100%
+    );
+  pointer-events: none;
 }
 
 .bpt-nghe-nhan__portrait-name {
@@ -1561,6 +1682,28 @@
   color: rgba(247, 232, 203, 0.45);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Quote frame — right side, next to portrait */
+.bpt-nghe-nhan__scene--portrait .bpt-nghe-nhan__quote-frame {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 48%;
+  max-width: 520px;
+  padding: clamp(28px, 4vw, 52px);
+  background: rgba(10, 8, 6, 0.6);
+  border: 1px solid rgba(248, 208, 119, 0.12);
+  border-radius: 4px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateX(60px) scale(0.95);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-nghe-nhan__scene--portrait.bpt-nhn-visible .bpt-nghe-nhan__quote-frame {
+  opacity: 1;
+  transform: translateX(0) scale(1);
 }
 
 /* ── Scene 5: Video bar ──────────────────────────────────── */
@@ -1765,19 +1908,29 @@
 /* ── Responsive: Tablet ──────────────────────────────────── */
 @media (max-width: 768px) {
   .bpt-nghe-nhan {
-    min-height: 380vh;
+    min-height: 300vh;
   }
 
   .bpt-nghe-nhan__scene {
     padding: clamp(32px, 6vh, 80px) clamp(20px, 5vw, 48px);
   }
 
-  .bpt-nghe-nhan__scene--quote {
-    min-height: 100vh;
-    padding: clamp(40px, 8vh, 100px) clamp(16px, 4vw, 32px);
+  .bpt-nghe-nhan__scene--portrait {
+    flex-direction: column;
+    gap: clamp(24px, 4vh, 48px);
+    padding: clamp(40px, 8vh, 80px) clamp(16px, 4vw, 32px);
   }
 
-  .bpt-nghe-nhan__quote-frame {
+  .bpt-nghe-nhan__portrait-wrap {
+    flex: none;
+    width: 60%;
+    max-width: 320px;
+  }
+
+  .bpt-nghe-nhan__scene--portrait .bpt-nghe-nhan__quote-frame {
+    flex: none;
+    width: 100%;
+    max-width: 520px;
     padding: clamp(24px, 4vw, 40px);
   }
 
@@ -1799,10 +1952,6 @@
     font-size: clamp(1rem, 3.5vw, 1.2rem);
   }
 
-  .bpt-nghe-nhan__portrait {
-    max-width: 280px;
-  }
-
   .bpt-nhn-video-bar {
     max-width: 100%;
     gap: 12px;
@@ -1822,25 +1971,34 @@
 /* ── Responsive: Small phone ─────────────────────────────── */
 @media (max-width: 420px) {
   .bpt-nghe-nhan {
-    min-height: 360vh;
+    min-height: 280vh;
   }
 
   .bpt-nghe-nhan__scene--kicker {
     min-height: 50vh;
   }
 
-  .bpt-nghe-nhan__scene--quote {
-    min-height: 90vh;
+  .bpt-nghe-nhan__scene--portrait {
+    flex-direction: column;
+    gap: 20px;
+    padding: clamp(32px, 6vh, 60px) clamp(12px, 3vw, 20px);
   }
 
-  .bpt-nghe-nhan__quote-frame {
-    padding: clamp(20px, 5vw, 28px);
+  .bpt-nghe-nhan__portrait-wrap {
+    width: 70%;
+    max-width: 260px;
+  }
+
+  .bpt-nghe-nhan__scene--portrait .bpt-nghe-nhan__quote-frame {
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(16px, 4vw, 24px);
     background: rgba(10, 8, 6, 0.7);
   }
 
   .bpt-nghe-nhan__quote-line {
-    font-size: clamp(0.92rem, 4vw, 1.1rem);
-    line-height: 1.8;
+    font-size: clamp(0.88rem, 3.8vw, 1.05rem);
+    line-height: 1.75;
   }
 
   .bpt-nghe-nhan__kicker {
@@ -1853,10 +2011,6 @@
 
   .bpt-nghe-nhan__attr-name {
     font-size: 0.85rem;
-  }
-
-  .bpt-nghe-nhan__portrait {
-    max-width: 240px;
   }
 
   .bpt-nhn-video-bar__thumb {
