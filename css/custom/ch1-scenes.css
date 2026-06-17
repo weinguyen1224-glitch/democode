@@ -291,7 +291,7 @@
 /* ── Mỗi panel text = 1 màn hình, căn giữa dọc ── */
 .bpt-sm-panel {
   position: relative;
-  min-height: 100vh;
+  min-height: 140vh;
   display: flex;
   align-items: center;
   pointer-events: none; /* chỉ text block nhận events */
@@ -309,12 +309,12 @@
   pointer-events: auto;
   max-width: min(520px, 80vw);
   padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
-  /* Nền tối mờ, blur nhẹ để text nổi lên ảnh */
-  background: rgb(34 26 20 / 0.52);
+  /* Nền tối mờ để text nổi lên ảnh */
+  background: rgb(20 15 10 / 0.72);
 /* backdrop-filter: blur(8px); */
 /* -webkit-backdrop-filter: blur(8px); */
   border-radius: 12px;
-  border: 1px solid rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.10);
   margin: clamp(24px, 4vw, 64px);
 }
 
@@ -338,19 +338,26 @@
 
 /* Typography override trong context tối */
 .bpt-sm-text .bpt-kicker {
-  color: var(--color-red-thread);
+  color: rgb(255 215 140);
   font-size: clamp(0.72rem, 1.1vw, 0.88rem);
   letter-spacing: 0.2em;
   margin-bottom: 14px;
-  opacity: 0.9;
+  text-transform: uppercase;
 }
 
 .bpt-sm-text p {
   font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
   font-size: clamp(1.05rem, 1.7vw, 1.45rem);
   line-height: 1.82;
-  color: rgb(255 248 234 / 0.93); /* cream-white sáng hơn để đọc trên nền tối */
+  color: rgb(255 252 245); /* trắng sáng, nổi trên nền tối */
   margin: 0 0 1.2em;
+}
+
+/* Ca-dao/blockquote trong scrollmation — Override màu tối thành sáng */
+.bpt-sm-text blockquote,
+.bpt-sm-text .bpt-ca-dao {
+  color: rgb(255 220 180);
+  background: rgb(255 255 255 / 0.06);
 }
 
 .bpt-sm-text p:last-child {
