@@ -5,8 +5,7 @@
 /* Tiêu đề chính: DNS Gibsons One Semi Bold */
 @font-face {
   font-family: 'DNS Gibsons One';
-  src: url('/assets/fonts/dns-gibsons-one.otf') format('opentype'),
-       url('../assets/fonts/dns-gibsons-one.otf') format('opentype');
+  src: url('../../assets/fonts/dns-gibsons-one.otf') format('opentype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -15,8 +14,7 @@
 /* Tiêu đề phụ: DFVN West West Condensed */
 @font-face {
   font-family: 'DFVN West West';
-  src: url('/assets/fonts/dfvn-west-west.otf') format('opentype'),
-       url('../assets/fonts/dfvn-west-west.otf') format('opentype');
+  src: url('../../assets/fonts/dfvn-west-west.otf') format('opentype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -25,8 +23,7 @@
 /* Trích dẫn: MJ Milestone Script */
 @font-face {
   font-family: 'MJ Milestone';
-  src: url('/assets/fonts/mj-milestone.ttf') format('truetype'),
-       url('../assets/fonts/mj-milestone.ttf') format('truetype');
+  src: url('../../assets/fonts/mj-milestone.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
