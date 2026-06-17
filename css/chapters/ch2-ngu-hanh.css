@@ -283,6 +283,12 @@
   pointer-events: none;
   z-index: 200;
   width: 280px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bpt-finale-text:hover {
+  transform: scale(1.04);
 }
 
 .bpt-finale-text h2 {
@@ -353,3 +359,91 @@
   padding: 6px 10px;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   CURSOR HINT ANIMATION - Con trỏ chỉ vào bánh
+   ═══════════════════════════════════════════════════════════ */
+
+.cursor-hint-wrapper {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes cursorMove {
+  0% { transform: translate(-50px, -80px) rotate(-15deg); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translate(0, 0) rotate(0deg); }
+  70% { transform: translate(0, 0) rotate(0deg) scale(0.9); }
+  80% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(-50px, -80px) rotate(-15deg); opacity: 0; }
+}
+
+@keyframes cursorPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.85); }
+}
+
+@keyframes rippleClick {
+  0% { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes hintGlow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 20px var(--color-red-thread, #972023); }
+}
+
+.cursor-hint {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  animation: cursorMove 3s ease-in-out infinite;
+}
+
+.cursor-hint svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--color-red-thread, #972023);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.cursor-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid var(--color-red-thread, #972023);
+  border-radius: 50%;
+  opacity: 0;
+  animation: rippleClick 1s ease-out infinite;
+  animation-delay: 0.5s;
+}
+
+.bpt-ngu-hanh__hint {
+  animation: hintGlow 2s ease-in-out infinite;
+}
+
+/* Hide cursor hint after interaction */
+.bpt-ngu-hanh__orbit.clicked .cursor-hint-wrapper {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* CURSOR HINT */
+.cursor-hint-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 100; animation: cursorFloat 2s ease-in-out infinite; }
+@keyframes cursorFloat { 0%, 100% { transform: translate(-50%, -50%) translateX(0); } 50% { transform: translate(-50%, -50%) translateX(-8px); } }
+.cursor-icon { width: 40px; height: 40px; animation: cursorPoint 1.5s ease-in-out infinite; }
+.cursor-icon svg { width: 100%; height: 100%; fill: var(--color-red-thread, #972023); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+@keyframes cursorPoint { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 5px); } }
+.cursor-ripple-ring { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border: 2px solid var(--color-red-thread, #972023); border-radius: 50%; opacity: 0; animation: rippleRing 1.2s ease-out infinite; }
+.cursor-ripple-ring:nth-child(2) { animation-delay: 0.4s; }
+@keyframes rippleRing { 0% { transform: scale(0); opacity: 0.6; } 100% { transform: scale(2); opacity: 0; } }
+.cursor-tooltip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translate(-50%, -50%); background: var(--color-red-thread, #972023); color: white; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; white-space: nowrap; opacity: 0; animation: tooltipFade 0.3s ease 1s forwards; }
+.cursor-tooltip::after { content: ""; position: absolute; left: 100%; top: 50%; transform: translate(-50%, -50%); border: 5px solid transparent; border-left-color: var(--color-red-thread, #972023); }
+@keyframes tooltipFade { to { opacity: 1; } }
+.bpt-ngu-hanh__orbit.clicked .cursor-hint-container { opacity: 0; transition: opacity 0.3s ease; }
+@media (max-width: 768px) { .cursor-hint-container { left: 50%; top: 50%; } .cursor-icon { width: 32px; height: 32px; } .cursor-tooltip { display: none; } }

@@ -379,12 +379,110 @@
         width: fw,
       });
       setTimeout(() => {
-        gsap.set(finaleEl, { opacity: 0, scale: 0.85, y: 10 });
-        gsap.to(finaleEl, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' });
+        gsap.set(finaleEl, { opacity: 0, scale: 0.85, y: 10, pointerEvents: 'none' });
+        gsap.to(finaleEl, { opacity: 1, scale: 1, y: 0, pointerEvents: 'auto', duration: 0.7, ease: 'back.out(1.4)' });
       }, 1200);
     }
 
     burstDone = true;
+  }
+
+  /* ── Collapse ngũ hành — reverse burst, return to wrapped cake ── */
+  let collapsing = false;
+
+  function collapseHanh() {
+    if (!burstDone || collapsing || typeof gsap === 'undefined') return;
+    collapsing = true;
+
+    const orbit = section.querySelector('.bpt-ngu-hanh__orbit');
+    if (!orbit) return;
+    const oRect = orbit.getBoundingClientRect();
+    const cfg = getBurstConfig();
+
+    // Close info panel if open
+    activeHanh = null;
+    if (infoPanel) infoPanel.classList.remove('is-visible');
+
+    // Fade out finale text
+    const finaleEl = section.querySelector('.bpt-finale-text');
+    if (finaleEl) {
+      gsap.to(finaleEl, { opacity: 0, scale: 0.85, y: 10, pointerEvents: 'none', duration: 0.35, ease: 'power2.in' });
+    }
+
+    // Calculate center position for cards to return to
+    const cx = oRect.width / 2;
+    const cy = oRect.height / 2;
+
+    // Animate each card back to center (reverse of burst)
+    HANH_BURST.forEach((h, i) => {
+      const el = document.getElementById('bpt-hc-' + h.key);
+      if (!el) return;
+      const nameEl = el.querySelector('.hc-name');
+      const badge = el.querySelector('.hc-badge');
+      const desc = el.querySelector('.hc-desc');
+
+      // Hide sub-elements first
+      if (nameEl) gsap.to(nameEl, { opacity: 0, duration: 0.2, delay: i * 0.04 });
+      if (badge)  gsap.to(badge,  { opacity: 0, y: 6, duration: 0.2, delay: i * 0.04 });
+      if (desc)   gsap.to(desc,   { opacity: 0, duration: 0.2, delay: i * 0.04 });
+
+      const delay = i * 0.07;
+      gsap.to(el, {
+        left: cx - cfg.cardHalfW,
+        top: cy - cfg.cardHalfW,
+        opacity: 0,
+        scale: 0.15,
+        rotation: (Math.random() - 0.5) * 60,
+        duration: prefersReducedMotion() ? 0.01 : 0.55,
+        delay: delay,
+        ease: 'power3.in',
+        pointerEvents: 'none',
+        onStart: () => !prefersReducedMotion() && addParticles(15, HANH_BURST[i].colors, canvas.width/2, canvas.height/2, 4),
+      });
+    });
+
+    // After cards collapse, restore cake
+    const totalCardDelay = HANH_BURST.length * 0.07 + 0.55;
+    setTimeout(() => {
+      // Restore cake
+      gsap.to(wrap, { scale: 1, opacity: 1, duration: prefersReducedMotion() ? 0.01 : 0.6, ease: 'back.out(1.4)' });
+
+      // Reset frames: show f1, hide all others
+      frames.forEach((f, i) => { if (f) f.style.opacity = i === 0 ? '1' : '0'; });
+
+      // Reset progress ring
+      if (progArc) progArc.style.strokeDashoffset = CIRCUMFERENCE;
+      if (progRing) gsap.to(progRing, { opacity: 0.4, duration: 0.4 });
+
+      // Remove bright glow
+      if (glow) glow.classList.remove('is-bright');
+
+      // Show hint text again
+      if (hint) { hint.style.opacity = '1'; hint.style.pointerEvents = 'auto'; }
+
+      // Reset card inline styles
+      section.querySelectorAll('.bpt-hanh-card').forEach(c => {
+        c.style.opacity = '0';
+        c.style.transition = '';
+      });
+
+      // Emit a small particle burst at center to mark the return
+      !prefersReducedMotion() && addParticles(40, ['#f8d820','#f0a010','#e06010','#a0d020','#20c060','#60a8f0'], canvas.width/2, canvas.height/2, 6);
+
+      // Reset flags
+      burstDone = false;
+      animating = false;
+      collapsing = false;
+    }, totalCardDelay * 1000 + 100);
+  }
+
+  // Click on finale text → collapse back to wrapped cake
+  const finaleClickTarget = section.querySelector('.bpt-finale-text');
+  if (finaleClickTarget) {
+    finaleClickTarget.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collapseHanh();
+    });
   }
 
   /* ── Hanh card click → info panel beside card ────────── */
@@ -406,7 +504,7 @@
 
   // Delegate clicks on hanh cards
   section.addEventListener('click', (e) => {
-    if (!burstDone) return;
+    if (!burstDone || collapsing) return;
     const card = e.target.closest('.bpt-hanh-card');
     if (!card) {
       if (activeHanh) {
@@ -438,7 +536,7 @@
   section.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       const card = e.target.closest('.bpt-hanh-card');
-      if (card && burstDone) {
+      if (card && burstDone && !collapsing) {
         e.preventDefault();
         card.click();
       }
