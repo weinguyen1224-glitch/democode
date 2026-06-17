@@ -251,8 +251,7 @@
                 id="section-bpt-ch1-divider"
                 class="Theme-Section bpt-chapter-divider"
             >
-                <p class="bpt-divider-title">Nguồn gốc của Bánh Phu Thê</p>
-                <p class="bpt-divider-sub">Bánh phu thê, lạt mềm buộc chặt</p>
+                <h2 class="bpt-divider-title">Nguồn gốc của Bánh Phu Thê</h2>
             </div>
 
             <!-- ═══════════════════════════════════════════════════════════ -->
@@ -509,7 +508,6 @@
                 class="Theme-Section bpt-chapter-divider"
             >
                 <h2 class="bpt-divider-title">Ngọt Bùi Hòa Quyện</h2>
-                <p class="bpt-divider-sub">Vẹn Tròn Đạo Phu Thê</p>
             </div>
 
             <!-- Section 0: Mở đầu — Bánh phu thê & triết lý trời tròn đất vuông -->
@@ -526,7 +524,7 @@
                         </figure>
                     </div>
                     <div class="bpt-split-scene__text">
-                        <div class="bpt-prose bpt-no-cascade">
+                        <div class="bpt-prose">
                             <h3 class="bpt-kicker">
                                 Bánh phu thê — bình dị mà tinh tế
                             </h3>
@@ -574,11 +572,32 @@
                 id="section-bpt-ch2-nghe-nhan"
                 class="Theme-Section bpt-nghe-nhan"
             >
-                <!-- Scroll-driven cross-fade reveal -->
-                <div class="bpt-nghe-nhan__reveal" aria-hidden="true">
-                    <div class="bpt-nghe-nhan__reveal-base"></div>
-                    <div class="bpt-nghe-nhan__reveal-top"></div>
+                <!-- Full-screen cinematic background with scroll-driven layers -->
+                <div class="bpt-nghe-nhan__bg" aria-hidden="true">
+                    <!-- Scroll-driven background layers -->
+                    <div
+                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--kicker bpt-nghe-nhan__bg-layer--active"
+                        data-bg-scene="kicker"
+                    ></div>
+                    <div
+                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--quote"
+                        data-bg-scene="quote"
+                    ></div>
+                    <!-- Base background image -->
+                    <div class="bpt-nghe-nhan__bg-img"></div>
+                    <div class="bpt-nghe-nhan__grain"></div>
+                    <div class="bpt-nghe-nhan__vignette"></div>
+                    <div class="bpt-nghe-nhan__scanlines"></div>
+                    <!-- Scroll-driven reveal: 3h-sang → 3h-sang-2 -->
+                    <div class="bpt-nghe-nhan__reveal" aria-hidden="true">
+                        <div class="bpt-nghe-nhan__reveal-base"></div>
+                        <div class="bpt-nghe-nhan__reveal-top"></div>
+                        <div class="bpt-nghe-nhan__reveal-bar"></div>
+                    </div>
                 </div>
+
+                <!-- Ambient floating particles -->
+                <div class="bpt-nghe-nhan__particles" aria-hidden="true"></div>
 
                 <!-- Content overlay — scroll-driven cinematic reveals -->
                 <div class="bpt-nghe-nhan__content">
@@ -769,7 +788,7 @@
                 <div class="bpt-ngu-hanh__layout">
                     <!-- Text trái -->
                     <div class="bpt-ngu-hanh__text bpt-reveal">
-                        <div class="bpt-prose bpt-no-cascade">
+                        <div class="bpt-prose">
                             <h3 class="bpt-kicker">
                                 Ngũ Hành trong chiếc bánh
                             </h3>
@@ -1160,7 +1179,7 @@
             >
                 <!-- Text content -->
                 <div class="bpt-bao-ton__content">
-                    <div class="bpt-prose bpt-prose--cascade bpt-no-cascade">
+                    <div class="bpt-prose bpt-prose--cascade">
                         <h3 class="bpt-kicker">Bảo tồn một phần hồn cốt</h3>
                         <blockquote class="bpt-ca-dao bpt-ca-dao--finale">
                             <p>
@@ -1210,9 +1229,7 @@
         <script src="js/custom/07-text-panels.js" defer></script>
         <script src="js/custom/08-magazine.js" defer></script>
         <script src="js/custom/09-ch2-reveal.js" defer></script>
-        <script src="js/custom/10-story-enhancements.js" defer></script>
         <script src="js/ch2-imgs.js"></script>
-        <script src="js/custom/cursor-hint.js" defer></script>
         <script src="js/chapters/ch2-ngu-hanh.js" defer></script>
         <script src="js/chapters/ch2-nghe-nhan.js" defer></script>
     </body>
