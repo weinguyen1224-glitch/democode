@@ -26,8 +26,15 @@
         <script defer="" src="js/footer.667703.min.js"></script>
         <title>Trang chính</title>
         <link rel="stylesheet" href="css/style-04.css" />
-        <link rel="stylesheet" href="css/custom.css" />
-        <link rel="stylesheet" href="css/chapters/ch2.css" />
+        <link rel="stylesheet" href="css/custom/base.css" />
+        <link rel="stylesheet" href="css/custom/ch1-layout.css" />
+        <link rel="stylesheet" href="css/custom/ch1-effects.css" />
+        <link rel="stylesheet" href="css/custom/ch1-scenes.css" />
+        <link rel="stylesheet" href="css/custom/ch2-enhancements.css" />
+        <link rel="stylesheet" href="css/chapters/ch2-ngu-hanh.css" />
+        <link rel="stylesheet" href="css/chapters/ch2-effects.css" />
+        <link rel="stylesheet" href="css/chapters/ch2-nghe-nhan.css" />
+        <link rel="stylesheet" href="css/chapters/ch2-bao-ton.css" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
             defer
@@ -521,7 +528,7 @@
                         </figure>
                     </div>
                     <div class="bpt-split-scene__text">
-                        <div class="bpt-prose">
+                        <div class="bpt-prose bpt-no-cascade">
                             <h3 class="bpt-kicker">
                                 Bánh phu thê — bình dị mà tinh tế
                             </h3>
@@ -569,32 +576,11 @@
                 id="section-bpt-ch2-nghe-nhan"
                 class="Theme-Section bpt-nghe-nhan"
             >
-                <!-- Full-screen cinematic background with scroll-driven layers -->
-                <div class="bpt-nghe-nhan__bg" aria-hidden="true">
-                    <!-- Scroll-driven background layers -->
-                    <div
-                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--kicker bpt-nghe-nhan__bg-layer--active"
-                        data-bg-scene="kicker"
-                    ></div>
-                    <div
-                        class="bpt-nghe-nhan__bg-layer bpt-nghe-nhan__bg-layer--quote"
-                        data-bg-scene="quote"
-                    ></div>
-                    <!-- Base background image -->
-                    <div class="bpt-nghe-nhan__bg-img"></div>
-                    <div class="bpt-nghe-nhan__grain"></div>
-                    <div class="bpt-nghe-nhan__vignette"></div>
-                    <div class="bpt-nghe-nhan__scanlines"></div>
-                    <!-- Scroll-driven reveal: 3h-sang → 3h-sang-2 -->
-                    <div class="bpt-nghe-nhan__reveal" aria-hidden="true">
-                        <div class="bpt-nghe-nhan__reveal-base"></div>
-                        <div class="bpt-nghe-nhan__reveal-top"></div>
-                        <div class="bpt-nghe-nhan__reveal-bar"></div>
-                    </div>
+                <!-- Scroll-driven cross-fade reveal -->
+                <div class="bpt-nghe-nhan__reveal" aria-hidden="true">
+                    <div class="bpt-nghe-nhan__reveal-base"></div>
+                    <div class="bpt-nghe-nhan__reveal-top"></div>
                 </div>
-
-                <!-- Ambient floating particles -->
-                <div class="bpt-nghe-nhan__particles" aria-hidden="true"></div>
 
                 <!-- Content overlay — scroll-driven cinematic reveals -->
                 <div class="bpt-nghe-nhan__content">
@@ -785,7 +771,7 @@
                 <div class="bpt-ngu-hanh__layout">
                     <!-- Text trái -->
                     <div class="bpt-ngu-hanh__text bpt-reveal">
-                        <div class="bpt-prose">
+                        <div class="bpt-prose bpt-no-cascade">
                             <h3 class="bpt-kicker">
                                 Ngũ Hành trong chiếc bánh
                             </h3>
@@ -1176,7 +1162,7 @@
             >
                 <!-- Text content -->
                 <div class="bpt-bao-ton__content">
-                    <div class="bpt-prose bpt-prose--cascade">
+                    <div class="bpt-prose bpt-prose--cascade bpt-no-cascade">
                         <h3 class="bpt-kicker">Bảo tồn một phần hồn cốt</h3>
                         <blockquote class="bpt-ca-dao bpt-ca-dao--finale">
                             <p>
@@ -1217,8 +1203,18 @@
             src="js/analytics_4.js"
             type="text/javascript"
         ></script>
-        <script src="js/custom.js" defer></script>
+        <script src="js/custom/01-scene-progress.js" defer></script>
+        <script src="js/custom/02-scroll-reveal.js" defer></script>
+        <script src="js/custom/03-storytelling.js" defer></script>
+        <script src="js/custom/04-zoom-scene.js" defer></script>
+        <script src="js/custom/05-scrollmation.js" defer></script>
+        <script src="js/custom/06-p2-cinematic.js" defer></script>
+        <script src="js/custom/07-text-panels.js" defer></script>
+        <script src="js/custom/08-magazine.js" defer></script>
+        <script src="js/custom/09-ch2-reveal.js" defer></script>
+        <script src="js/custom/10-story-enhancements.js" defer></script>
         <script src="js/ch2-imgs.js"></script>
-        <script src="js/chapters/ch2.js" defer></script>
+        <script src="js/chapters/ch2-ngu-hanh.js" defer></script>
+        <script src="js/chapters/ch2-nghe-nhan.js" defer></script>
     </body>
 </html>

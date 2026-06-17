@@ -1,0 +1,38 @@
+/* CHUONG II - NGHE NHAN - ELEMENT LEVEL ANIMATIONS */
+
+.bpt-kicker { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.bpt-kicker.is-visible { opacity: 1; transform: translateY(0); }
+
+.bpt-prose p { opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+.bpt-prose p[data-anim="scale-pop"] { transform: scale(0.8); }
+.bpt-prose p[data-anim="scale-pop"].is-visible { opacity: 1; transform: scale(1); }
+
+.bpt-prose p[data-anim="slide-up"] { transform: translateY(40px); }
+.bpt-prose p[data-anim="slide-up"].is-visible { opacity: 1; transform: translateY(0); }
+
+.bpt-prose p[data-anim="slide-right"] { transform: translateX(-60px); }
+.bpt-prose p[data-anim="slide-right"].is-visible { opacity: 1; transform: translateX(0); }
+
+.bpt-prose p[data-anim="slide-left"] { transform: translateX(60px); }
+.bpt-prose p[data-anim="slide-left"].is-visible { opacity: 1; transform: translateX(0); }
+
+.bpt-prose p[data-anim="rotate-in"] { transform: rotate(-5deg) translateY(30px); }
+.bpt-prose p[data-anim="rotate-in"].is-visible { opacity: 1; transform: rotate(0) translateY(0); }
+
+.bpt-prose p[data-anim="fade-zoom"] { transform: scale(0.95); }
+.bpt-prose p[data-anim="fade-zoom"].is-visible { opacity: 1; transform: scale(1); }
+
+/* Force scale animation for no-cascade sections */
+.bpt-no-cascade .bpt-prose p,
+.bpt-no-cascade.bpt-prose p {
+  transform: scale(0.8);
+}
+.bpt-no-cascade .bpt-prose p.is-visible,
+.bpt-no-cascade.bpt-prose p.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bpt-ca-dao { opacity: 0; transform: translateY(30px) scale(0.95); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.bpt-ca-dao.is-visible { opacity: 1; transform: translateY(0) scale(1); }

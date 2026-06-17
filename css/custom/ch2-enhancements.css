@@ -1,0 +1,356 @@
+/* ═══════════════════════════════════════════════════════════ */
+/* CHƯƠNG II — Cinematic Section Enhancements                 */
+/* ═══════════════════════════════════════════════════════════ */
+
+/* Ca-dao inline styling for p3 */
+.bpt-ca-dao--inline {
+  position: relative;
+  margin: 1.2em 0;
+  padding: 1em 1.5em;
+  border-left: 3px solid var(--color-red-thread, #972023);
+  background: rgba(151, 32, 35, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--color-ink, #221A14);
+}
+
+.bpt-ca-dao--inline p {
+  margin: 0;
+}
+
+/* Ca-dao finale — closing quote with dramatic styling */
+.bpt-ca-dao--finale {
+  position: relative;
+  margin: 2.5em auto 0;
+  padding: 2em 2.5em;
+  max-width: 580px;
+  text-align: center;
+  border: 2px solid var(--color-red-thread, #972023);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(151, 32, 35, 0.04) 0%, rgba(247, 232, 203, 0.3) 100%);
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.75;
+  color: var(--color-ink, #221A14);
+  box-shadow:
+    0 0 0 1px rgba(151, 32, 35, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.bpt-ca-dao--finale p {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+}
+
+.bpt-ca-dao--finale footer {
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+/* Ca-dao finale entrance animation */
+.bpt-ca-dao--finale::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, transparent, rgba(151, 32, 35, 0.15), transparent);
+  background-size: 200% 100%;
+  animation: ca-dao-shimmer 3s ease-in-out infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.bpt-ca-dao--finale.bpt-quote-visible::before,
+.bpt-ca-dao--finale.bpt-visible::before {
+  opacity: 1;
+}
+
+@keyframes ca-dao-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Corner accent for ca-dao finale */
+.bpt-ca-dao--finale::after {
+  content: '✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: var(--color-red-thread, #972023);
+  background: var(--color-rice-paper, #F7E8CB);
+  padding: 0 8px;
+}
+
+/* bpt-scene section enhancements — fade-in-up with stagger */
+.bpt-scene .bpt-prose {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-scene .bpt-split-scene__visual {
+  opacity: 0;
+  transform: translateX(-30px) scale(0.96);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.bpt-scene .bpt-split-scene__text {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.bpt-scene .bpt-prose.bpt-visible,
+.bpt-split-scene.bpt-visible .bpt-prose {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bpt-split-scene.bpt-visible .bpt-split-scene__visual {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.bpt-split-scene.bpt-visible .bpt-split-scene__text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger paragraphs inside prose */
+.bpt-prose.bpt-visible p,
+.bpt-split-scene.bpt-visible .bpt-prose p {
+  animation: prose-paragraph-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.bpt-prose.bpt-visible p:nth-child(1),
+.bpt-split-scene.bpt-visible .bpt-prose p:nth-child(1) { animation-delay: 0.1s; }
+.bpt-prose.bpt-visible p:nth-child(2),
+.bpt-split-scene.bpt-visible .bpt-prose p:nth-child(2) { animation-delay: 0.25s; }
+.bpt-prose.bpt-visible p:nth-child(3),
+.bpt-split-scene.bpt-visible .bpt-prose p:nth-child(3) { animation-delay: 0.4s; }
+.bpt-prose.bpt-visible p:nth-child(4),
+.bpt-split-scene.bpt-visible .bpt-prose p:nth-child(4) { animation-delay: 0.55s; }
+.bpt-prose.bpt-visible p:nth-child(5),
+.bpt-split-scene.bpt-visible .bpt-prose p:nth-child(5) { animation-delay: 0.7s; }
+
+@keyframes prose-paragraph-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* bpt-kicker entrance animation */
+.bpt-prose.bpt-visible .bpt-kicker,
+.bpt-split-scene.bpt-visible .bpt-kicker {
+  animation: kicker-entrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes kicker-entrance {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+    letter-spacing: 0.4em;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    letter-spacing: 0.2em;
+  }
+}
+
+/* Blockquote reveal animation for ch2 */
+.bpt-ca-dao.bpt-visible,
+.bpt-ca-dao.bpt-quote-visible {
+  animation: blockquote-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes blockquote-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    border-left-color: transparent;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    border-left-color: var(--color-red-thread, #972023);
+  }
+}
+
+/* bpt-scene--closing special styling */
+.bpt-scene--closing {
+  background: linear-gradient(180deg, transparent 0%, rgba(34, 26, 20, 0.03) 40%, rgba(34, 26, 20, 0.06) 100%);
+}
+
+.bpt-scene--closing .bpt-prose {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Split scene enhancement */
+.bpt-split-scene {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(24px, 4vw, 60px);
+  padding: clamp(40px, 8vh, 80px) clamp(24px, 6vw, 100px);
+}
+
+@media (max-width: 768px) {
+  .bpt-split-scene {
+    flex-direction: column;
+    padding: clamp(28px, 5vh, 48px) clamp(16px, 4vw, 32px);
+  }
+}
+
+.bpt-split-scene__visual {
+  flex: 0 0 48%;
+}
+
+.bpt-split-scene__text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Placeholder image styling */
+.bpt-placeholder-img {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bpt-placeholder-img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+/* bpt-prose paragraph spacing */
+.bpt-prose p {
+  margin-bottom: 1em;
+  line-height: 1.75;
+}
+
+.bpt-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Scene transition line between sections */
+.bpt-scene-transition {
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 3em auto 0;
+  background: linear-gradient(90deg, transparent, var(--color-red-thread, #972023), transparent);
+  opacity: 0.4;
+  border-radius: 1px;
+}
+
+/* Closing section — background texture */
+.bpt-scene--closing .bpt-prose.bpt-visible {
+  animation: closing-fade 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes closing-fade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Grain overlay for all bpt-scene sections */
+.bpt-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .bpt-scene::before {
+    display: none;
+  }
+}
+
+/* Vignette on bpt-scene sections */
+.bpt-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(34, 26, 20, 0.08) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .bpt-scene::after {
+    display: none;
+  }
+}
+
+/* bpt-scene relative positioning */
+.bpt-scene {
+  position: relative;
+  overflow: hidden;
+}
+
+/* bpt-scene z-index for content */
+.bpt-scene > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-scene .bpt-prose,
+  .bpt-scene .bpt-split-scene__visual,
+  .bpt-scene .bpt-split-scene__text {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .bpt-prose.bpt-visible p,
+  .bpt-split-scene.bpt-visible .bpt-prose p,
+  .bpt-prose.bpt-visible .bpt-kicker,
+  .bpt-split-scene.bpt-visible .bpt-kicker,
+  .bpt-ca-dao.bpt-visible,
+  .bpt-ca-dao.bpt-quote-visible,
+  .bpt-ca-dao--finale::before {
+    animation: none !important;
+  }
+  
+  .bpt-scene::before,
+  .bpt-scene::after {
+    display: none;
+  }
+}

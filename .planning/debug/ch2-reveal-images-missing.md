@@ -1,5 +1,5 @@
 ---
-status: resolved
+status: awaiting_human_verify
 trigger: "In the scroll-driven reveal effect for 3h-sang section in Chapter 2, only the horizontal bar is visible but the images (3h-sang.JPG and 3h-sang-2.JPG) are not showing."
 created: 2026-06-17T00:00:00Z
 updated: 2026-06-17T00:00:00Z
