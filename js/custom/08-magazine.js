@@ -124,14 +124,19 @@
       }
 
     } else if (phase.type === "settle") {
-      // Hold position — reading zone
+      // Hold position — reading zone, release GPU layers
       if (photo) {
         photo.style.transform = "translate3d(0, 0, 0) rotate(-2deg)";
         photo.style.opacity = "1";
+        photo.style.willChange = "auto";
       }
       if (photoFrame) {
         photoFrame.style.transform = "scale(1) rotate(-1deg)";
         photoFrame.style.opacity = "1";
+        photoFrame.style.willChange = "auto";
+      }
+      if (textEl) {
+        textEl.style.willChange = "auto";
       }
 
     } else if (phase.type === "exit") {

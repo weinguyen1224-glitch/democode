@@ -26,6 +26,7 @@
   let currentIndex = 0;
   let ticking = false;
   let _active = false;
+  let cachedTrackHeight = section.offsetHeight - window.innerHeight;
 
   // IntersectionObserver: pause scroll handler when section off-screen
   const visObs = new IntersectionObserver(
@@ -140,14 +141,13 @@
 
   function update() {
     const rect = section.getBoundingClientRect();
-    const trackHeight = section.offsetHeight - window.innerHeight;
-    if (trackHeight <= 0) {
+    if (cachedTrackHeight <= 0) {
       ticking = false;
       return;
     }
 
     // pct: 0 khi đỉnh section vào viewport → 1 khi đáy section rời viewport
-    const pct = Math.max(0, Math.min(1, -rect.top / trackHeight));
+    const pct = Math.max(0, Math.min(1, -rect.top / cachedTrackHeight));
 
     // Mỗi panel chiếm 1/N của chiều dài scroll
     const rawIndex = pct * N;
@@ -176,7 +176,10 @@
   activateSlide(0, true);
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    cachedTrackHeight = section.offsetHeight - window.innerHeight;
+    onScroll();
+  }, { passive: true });
 
   // First update in case page loads mid-scroll
   requestAnimationFrame(update);

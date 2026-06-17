@@ -459,6 +459,13 @@
   }
 }
 
+/* ── Mobile: disable infinite animations for perf ── */
+@media (max-width: 768px) {
+  .bpt-sm-text.bpt-reveal.is-visible::after {
+    animation: none;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════
    Panel p2 — Split layout: GIF trái slide-in + text phải
    GIF bắt đầu ở ngoài rìa trái (translateX), trượt vào

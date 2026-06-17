@@ -15,6 +15,7 @@
   let ticking = false;
   let activeIndex = 0;
   let activeSection = sections[0];
+  let cachedMaxScroll = document.documentElement.scrollHeight - innerHeight;
 
   const clamp = (value, min = 0, max = 1) =>
     Math.min(max, Math.max(min, value));
@@ -37,8 +38,7 @@
   sections.forEach((section) => observer.observe(section));
 
   function update() {
-    const maxScroll = document.documentElement.scrollHeight - innerHeight;
-    const pageProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
+    const pageProgress = cachedMaxScroll > 0 ? scrollY / cachedMaxScroll : 0;
     progress.style.transform = `scaleX(${pageProgress})`;
 
     const rect = activeSection.getBoundingClientRect();
@@ -57,7 +57,10 @@
   }
 
   addEventListener("scroll", requestUpdate, { passive: true });
-  addEventListener("resize", requestUpdate, { passive: true });
+  addEventListener("resize", () => {
+    cachedMaxScroll = document.documentElement.scrollHeight - innerHeight;
+    requestUpdate();
+  }, { passive: true });
   update();
 })();
 /* ═══════════════════════════════════════════════════════════ */

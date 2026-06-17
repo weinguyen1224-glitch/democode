@@ -88,6 +88,13 @@
       textEl.classList.remove("is-visible");
     }
 
+    // Release GPU layer when idle (not entering or exiting)
+    if (ep === 0 && exp === 0) {
+      textEl.style.willChange = "auto";
+    } else {
+      textEl.style.willChange = "transform, opacity";
+    }
+
     const isMobile = window.innerWidth <= 768;
     const rotation = dir * 3; // XOAY nhẹ khi bay vào
 

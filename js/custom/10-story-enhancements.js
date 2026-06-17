@@ -101,6 +101,7 @@
 // ═══════════════════════════════════════════════════════════
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.innerWidth < 769) return; // skip on mobile — too expensive per-frame
 
   const proseBlocks = document.querySelectorAll('.bpt-prose, .bpt-sm-text');
   if (!proseBlocks.length) return;

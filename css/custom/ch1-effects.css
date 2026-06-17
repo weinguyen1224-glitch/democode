@@ -287,14 +287,16 @@
   left: 0;
   top: 0;
   width: 2px;
-  height: 0;
+  height: 100%;
   background: linear-gradient(180deg, var(--color-red-thread, #972023), var(--color-sticky-rice-gold, #F8D077));
   border-radius: 2px;
-  transition: height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sidebar-progress.sidebar-in { height: 100%; }
-.sidebar-progress.sidebar-out { height: 0; top: auto; bottom: 0; transition: height 0.4s ease; }
+.sidebar-progress.sidebar-in { transform: scaleY(1); }
+.sidebar-progress.sidebar-out { transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s ease; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
