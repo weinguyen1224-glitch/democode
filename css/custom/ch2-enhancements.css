@@ -10,9 +10,9 @@
   border-left: 3px solid var(--color-red-thread, #972023);
   background: rgba(151, 32, 35, 0.06);
   border-radius: 0 8px 8px 0;
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-family: 'MJ Milestone', 'Pacifico', cursive;
   font-style: italic;
-  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  font-size: clamp(2.1rem, 2.8vw, 2.6rem);
   line-height: 1.7;
   color: var(--color-ink, #221A14);
 }
@@ -31,9 +31,9 @@
   border: 2px solid var(--color-red-thread, #972023);
   border-radius: 12px;
   background: linear-gradient(135deg, rgba(151, 32, 35, 0.04) 0%, rgba(247, 232, 203, 0.3) 100%);
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-family: 'MJ Milestone', 'Pacifico', cursive;
   font-style: italic;
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
   line-height: 1.75;
   color: var(--color-ink, #221A14);
   box-shadow:
@@ -43,7 +43,7 @@
 
 .bpt-ca-dao--finale p {
   margin: 0;
-  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+  font-size: clamp(2.3rem, 3.2vw, 3rem);
 }
 
 .bpt-ca-dao--finale footer {

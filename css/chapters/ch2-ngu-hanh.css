@@ -333,8 +333,8 @@
 }
 
 .bpt-ngu-hanh__info-name {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1rem;
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--hanh-color, var(--color-red-thread));
   margin-bottom: 4px;

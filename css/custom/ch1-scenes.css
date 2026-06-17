@@ -82,7 +82,7 @@
 }
 
 .bpt-zoom-scene__text .bpt-kicker {
-  font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+  font-size: clamp(1.6rem, 2.6vw, 1.9rem);
   margin-bottom: 12px;
 }
 
@@ -191,8 +191,8 @@
 
 .bpt-sm-placeholder::after {
   content: attr(data-label);
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   pointer-events: none;
@@ -339,7 +339,7 @@
 /* Typography override trong context tối */
 .bpt-sm-text .bpt-kicker {
   color: rgb(255 215 140);
-  font-size: clamp(0.72rem, 1.1vw, 0.88rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.76rem);
   letter-spacing: 0.2em;
   margin-bottom: 14px;
   text-transform: uppercase;

@@ -266,8 +266,8 @@
 
 .quote-deco {
   position: absolute;
-  font-family: 'Vollkorn', Georgia, serif;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-family: 'MJ Milestone', 'Pacifico', cursive;
+  font-size: clamp(6rem, 16vw, 12rem);
   color: var(--color-red-thread, #972023);
   opacity: 0;
   line-height: 1;

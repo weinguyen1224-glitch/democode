@@ -328,7 +328,7 @@
 
 .bpt-nghe-nhan__time {
   display: inline-block;
-  font-family: 'Outfit', 'Lato', sans-serif;
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
   font-size: clamp(0.7rem, 1vw, 0.85rem);
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -340,8 +340,8 @@
 }
 
 .bpt-nghe-nhan__kicker {
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -450,7 +450,7 @@
   top: -20px;
   left: clamp(16px, 3vw, 40px);
   font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(8rem, 20vw, 16rem);
   line-height: 1;
   color: var(--color-red-thread, #972023);
   opacity: 0;
@@ -468,7 +468,7 @@
   margin: 0;
   padding: 0;
   border: none;
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-family: 'MJ Milestone', 'Pacifico', cursive;
 }
 
 .bpt-nghe-nhan__quote-line {
@@ -514,8 +514,8 @@
 }
 
 .bpt-nghe-nhan__attr-name {
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.2rem);
   font-weight: 600;
   color: var(--color-sticky-rice-gold, #F8D077);
   letter-spacing: 0.02em;
@@ -524,7 +524,7 @@
 .bpt-nghe-nhan__attr-detail {
   display: block;
   margin-top: 4px;
-  font-family: 'Outfit', 'Lato', sans-serif;
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
   font-size: clamp(0.72rem, 0.9vw, 0.82rem);
   color: rgba(247, 232, 203, 0.45);
   letter-spacing: 0.12em;
@@ -689,16 +689,16 @@
 }
 
 .bpt-nghe-nhan__portrait-name {
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.9rem, 2.8vw, 2.3rem);
   font-weight: 600;
   color: var(--color-sticky-rice-gold, #F8D077);
   letter-spacing: 0.03em;
 }
 
 .bpt-nghe-nhan__portrait-sub {
-  font-family: 'Outfit', 'Lato', sans-serif;
-  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.4rem, 1.8vw, 1.6rem);
   color: rgba(247, 232, 203, 0.45);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -809,8 +809,8 @@
 }
 
 .bpt-nhn-video-bar__title {
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 2.2vw, 1.8rem);
   font-weight: 600;
   color: var(--color-rice-paper, #F7E8CB);
   letter-spacing: 0.02em;
@@ -820,8 +820,8 @@
 }
 
 .bpt-nhn-video-bar__hint {
-  font-family: 'Outfit', 'Lato', sans-serif;
-  font-size: 0.65rem;
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: 1.3rem;
   color: rgba(248, 208, 119, 0.5);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1022,7 +1022,7 @@
   }
 
   .bpt-nghe-nhan__kicker {
-    font-size: clamp(1.6rem, 8vw, 2.4rem);
+    font-size: clamp(3.2rem, 16vw, 4.8rem);
   }
 
   .bpt-nghe-nhan__lead {
@@ -1030,7 +1030,7 @@
   }
 
   .bpt-nghe-nhan__attr-name {
-    font-size: 0.85rem;
+    font-size: 1.7rem;
   }
 
   .bpt-nhn-video-bar__thumb {
@@ -1039,7 +1039,7 @@
   }
 
   .bpt-nhn-video-bar__title {
-    font-size: 0.7rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -1085,20 +1085,21 @@
 
 .bpt-bao-ton {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   color: var(--color-rice-paper, #F7E8CB);
   background: #0a0806;
+  padding: clamp(40px, 6vh, 80px) clamp(24px, 6vw, 80px);
 }
 
 .bpt-bao-ton__content {
   position: relative;
   z-index: 10;
   max-width: 720px;
-  padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
+  padding: clamp(24px, 4vh, 48px) clamp(16px, 4vw, 48px);
   text-align: center;
   opacity: 1;
   transform: none;
@@ -1119,16 +1120,16 @@
 .bpt-bao-ton__content p {
   font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  line-height: 1.9;
+  line-height: 1.65;
   color: rgba(247, 232, 203, 0.88);
-  margin: 0 0 1.4em;
+  margin: 0 0 1em;
   opacity: 1;
   transform: none;
 }
 
 .bpt-bao-ton__content .bpt-ca-dao {
-  margin-top: 32px;
-  padding: clamp(20px, 3vw, 32px);
+  margin-top: 20px;
+  padding: clamp(16px, 2vw, 24px);
   background: rgba(10, 8, 6, 0.45);
   border-left: 3px solid var(--color-sticky-rice-gold, #F8D077);
   border-radius: 4px;
@@ -1143,8 +1144,9 @@
 .bpt-bao-ton__content .bpt-ca-dao p {
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-style: italic;
+  line-height: 1.6;
   color: var(--color-sticky-rice-gold, #F8D077);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .bpt-bao-ton__content .bpt-ca-dao footer {

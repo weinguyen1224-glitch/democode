@@ -1,3 +1,37 @@
+/* ═══════════════════════════════════════════════════════════
+   @font-face — Custom fonts from COLOUR PALLET.pdf
+   ═══════════════════════════════════════════════════════════ */
+
+/* Tiêu đề chính: DNS Gibsons One Semi Bold */
+@font-face {
+  font-family: 'DNS Gibsons One';
+  src: url('/assets/fonts/dns-gibsons-one.otf') format('opentype'),
+       url('../assets/fonts/dns-gibsons-one.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tiêu đề phụ: DFVN West West Condensed */
+@font-face {
+  font-family: 'DFVN West West';
+  src: url('/assets/fonts/dfvn-west-west.otf') format('opentype'),
+       url('../assets/fonts/dfvn-west-west.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Trích dẫn: MJ Milestone Script */
+@font-face {
+  font-family: 'MJ Milestone';
+  src: url('/assets/fonts/mj-milestone.ttf') format('truetype'),
+       url('../assets/fonts/mj-milestone.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* V2 custom layer: only additive overrides, no Shorthand runtime edits. */
 #section-r44SGFDar3 .Theme-Layer-TextBlock-Container,
 #section-r44SGFDar3 .Theme-Column {
@@ -42,7 +76,7 @@
 
 .intro-card h1 {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 4.75rem);
+  font-size: clamp(4rem, 10vw, 9.5rem);
   line-height: 0.98;
   font-weight: 700;
   letter-spacing: -0.045em;
