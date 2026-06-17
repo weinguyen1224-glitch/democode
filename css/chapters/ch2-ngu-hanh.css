@@ -447,3 +447,12 @@
 @keyframes tooltipFade { to { opacity: 1; } }
 .bpt-ngu-hanh__orbit.clicked .cursor-hint-container { opacity: 0; transition: opacity 0.3s ease; }
 @media (max-width: 768px) { .cursor-hint-container { left: 50%; top: 50%; } .cursor-icon { width: 32px; height: 32px; } .cursor-tooltip { display: none; } }
+
+/* MOBILE RESPONSIVE - Cards centered */
+@media (max-width: 768px) {
+  .bpt-ngu-hanh__orbit { min-height: 500px; padding: 20px; }
+  .bpt-hanh-card { width: 100px; max-width: 28vw; }
+  .bpt-hanh-card .hc-img { width: 60px; height: 60px; }
+  .bpt-hanh-card .hc-name { font-size: 12px; }
+  .bpt-hanh-card .hc-badge { font-size: 10px; }
+}

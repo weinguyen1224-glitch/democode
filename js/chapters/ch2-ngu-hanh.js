@@ -310,10 +310,8 @@
 
     const orbit = section.querySelector('.bpt-ngu-hanh__orbit');
     if (!orbit) return;
-    const oRect = orbit.getBoundingClientRect();
-    
-    const cx = oRect.left + oRect.width / 2;
-    const cy = oRect.top + oRect.height / 2;
+    const oW = orbit.offsetWidth;
+    const oH = orbit.offsetHeight;
     const cfg = getBurstConfig();
 
     // Shrink bánh
@@ -326,13 +324,13 @@
     HANH_BURST.forEach((h, i) => {
       const rad = (h.angle * Math.PI) / 180;
       const dist = h.dist * cfg.scale;
-      const tx = cx + Math.cos(rad) * dist - cfg.cardHalfW - oRect.left;
-      const ty = cy + Math.sin(rad) * dist - cfg.cardHalfW - oRect.top;
+      // Target offset from orbit center (px)
+      const dx = Math.cos(rad) * dist;
+      const dy = Math.sin(rad) * dist;
       // Clamp so cards stay inside orbit bounds
-      const clampedTx = Math.max(4, Math.min(tx, oRect.width - cfg.cardW - 4));
-      const clampedTy = Math.max(4, Math.min(ty, oRect.height - cfg.cardW - 4));
-      const startX = cx - cfg.cardHalfW - oRect.left;
-      const startY = cy - cfg.cardHalfW - oRect.top;
+      const halfW = cfg.cardW / 2;
+      const clampedDx = Math.max(-oW / 2 + halfW + 4, Math.min(dx, oW / 2 - halfW - 4));
+      const clampedDy = Math.max(-oH / 2 + halfW + 4, Math.min(dy, oH / 2 - halfW - 4));
 
       const el = document.getElementById('bpt-hc-' + h.key);
       if (!el) return;
@@ -340,10 +338,15 @@
       const badge = el.querySelector('.hc-badge');
       const desc = el.querySelector('.hc-desc');
 
+      // Place card at orbit center, use transform for radial offset
       gsap.set(el, {
         position: 'absolute',
-        left: Math.max(0, startX),
-        top: Math.max(0, startY),
+        left: '50%',
+        top: '50%',
+        xPercent: -50,
+        yPercent: -50,
+        x: 0,
+        y: 0,
         opacity: 0,
         scale: 0.15,
         rotation: (Math.random() - 0.5) * 80,
@@ -352,8 +355,8 @@
 
       const delay = i * 0.11;
       gsap.to(el, {
-        left: clampedTx,
-        top: clampedTy,
+        x: clampedDx,
+        y: clampedDy,
         opacity: 1,
         scale: 1,
         rotation: (Math.random() - 0.5) * 10,
@@ -374,8 +377,8 @@
     if (finaleEl) {
       const fw = isMobile() ? 180 : 280;
       gsap.set(finaleEl, {
-        left: oRect.width / 2 - fw / 2,
-        top: oRect.height / 2 - 30,
+        left: oW / 2 - fw / 2,
+        top: oH / 2 - 30,
         width: fw,
       });
       setTimeout(() => {
@@ -396,8 +399,6 @@
 
     const orbit = section.querySelector('.bpt-ngu-hanh__orbit');
     if (!orbit) return;
-    const oRect = orbit.getBoundingClientRect();
-    const cfg = getBurstConfig();
 
     // Close info panel if open
     activeHanh = null;
@@ -408,10 +409,6 @@
     if (finaleEl) {
       gsap.to(finaleEl, { opacity: 0, scale: 0.85, y: 10, pointerEvents: 'none', duration: 0.35, ease: 'power2.in' });
     }
-
-    // Calculate center position for cards to return to
-    const cx = oRect.width / 2;
-    const cy = oRect.height / 2;
 
     // Animate each card back to center (reverse of burst)
     HANH_BURST.forEach((h, i) => {
@@ -428,8 +425,8 @@
 
       const delay = i * 0.07;
       gsap.to(el, {
-        left: cx - cfg.cardHalfW,
-        top: cy - cfg.cardHalfW,
+        x: 0,
+        y: 0,
         opacity: 0,
         scale: 0.15,
         rotation: (Math.random() - 0.5) * 60,
@@ -464,6 +461,7 @@
       section.querySelectorAll('.bpt-hanh-card').forEach(c => {
         c.style.opacity = '0';
         c.style.transition = '';
+        gsap.set(c, { x: 0, y: 0, xPercent: -50, yPercent: -50, scale: 1, rotation: 0 });
       });
 
       // Emit a small particle burst at center to mark the return
