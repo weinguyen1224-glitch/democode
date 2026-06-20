@@ -90,6 +90,27 @@
 }
 
 /* ──────────────────────────────────────────
+   3b. Chapter divider — image background animation
+   ────────────────────────────────────────── */
+.bpt-chapter-divider--img .bpt-chapter-divider__bg img {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.bpt-chapter-divider--img.bpt-visible .bpt-chapter-divider__bg img {
+  opacity: 1;
+}
+
+.bpt-chapter-divider--img .bpt-chapter-divider__vignette {
+  opacity: 0;
+  transition: opacity 0.8s ease 0.1s;
+}
+
+.bpt-chapter-divider--img.bpt-visible .bpt-chapter-divider__vignette {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────
    4. Closing scene — red-thread dot pulse glow
    ────────────────────────────────────────── */
 .bpt-scene-transition {
@@ -302,5 +323,10 @@
 @media (prefers-reduced-motion: reduce) {
   .cascade-word, .line-cascade-container, .kicker-char, .quote-deco, .sidebar-progress {
     animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important;
+  }
+  .bpt-chapter-divider--img .bpt-chapter-divider__bg img,
+  .bpt-chapter-divider--img .bpt-chapter-divider__vignette {
+    transition: none !important;
+    opacity: 1 !important;
   }
 }
