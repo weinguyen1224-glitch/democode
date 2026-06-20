@@ -71,7 +71,8 @@
    ────────────────────────────────────────── */
 .bpt-chapter-divider--img {
   padding: 0;
-  background: #1a0a0a;
+  height: 100vh;
+  background-color: #8B1A1A;
 }
 
 .bpt-chapter-divider__bg {
@@ -85,7 +86,7 @@
 .bpt-chapter-divider__bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -255,12 +256,9 @@
     min-height: 80vh;
   }
   .bpt-chapter-divider--img {
-    min-height: 100vh;
-    min-height: 100dvh;
-    background: #8B1A1A;
-  }
-  .bpt-chapter-divider__bg img {
-    object-fit: contain;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #8B1A1A;
   }
   .bpt-prose {
     width: 100%;
