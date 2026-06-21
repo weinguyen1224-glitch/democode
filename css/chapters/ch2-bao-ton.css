@@ -1090,8 +1090,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: var(--color-rice-paper, #F7E8CB);
-  background: #0a0806;
+  color: var(--color-ink, #221A14);
+  background: var(--color-rice-paper, #F7E8CB);
   padding: clamp(40px, 6vh, 80px) clamp(24px, 6vw, 80px);
 }
 

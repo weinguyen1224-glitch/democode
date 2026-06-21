@@ -298,6 +298,10 @@
 }
 
 /* Closing panel: thêm padding bottom để có khoảng hở */
+/* Extended panel: kéo dài thời gian ngắm background */
+.bpt-sm-panel--extended {
+  min-height: 220vh;
+}
 .bpt-sm-panel--closing {
   min-height: 110vh;
   padding-bottom: clamp(80px, 12vh, 160px);

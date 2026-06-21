@@ -147,7 +147,7 @@
   // Updated:  [0, 0.15, 0.25, 0.55, 0.8] - p1,p2 ngắn hơn, p3 sớm ở 25%
   // Target: Panel 3 (index 2) active từ ~10-15%
   // ═══════════════════════════════════════════════════════════
-  const BREAKPOINTS = [0, 0.2, 0.25, 0.55, 0.8]; // p3 starts at 20%
+  const BREAKPOINTS = [0, 0.2, 0.25, 0.7, 0.9]; // p3 starts at 20%
 
   function getIndexFromProgress(pct) {
     for (let i = BREAKPOINTS.length - 1; i >= 0; i--) {
