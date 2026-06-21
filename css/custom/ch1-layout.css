@@ -4,12 +4,12 @@
 
 /* --- Design tokens (UI-SPEC §3 + §17) --- */
 :root {
-  --color-rice-paper: #F7E8CB;
-  --color-sticky-rice-gold: #F8D077;
-  --color-betel-leaf-green: #698456;
-  --color-red-thread: #972023;
-  --color-ink: #221A14;
-  --color-cream-white: #FFF8EA;
+  --color-rice-paper: #8B1A1A;
+  --color-sticky-rice-gold: #F5DEB3;
+  --color-betel-leaf-green: #F5DEB3;
+  --color-red-thread: #F5DEB3;
+  --color-ink: #F5DEB3;
+  --color-cream-white: #A52A2A;
   --space-section: clamp(24px, 6vw, 80px);
   --space-card: clamp(24px, 4vw, 48px);
   --prose-width: min(680px, 88vw);
@@ -135,8 +135,8 @@
   left: 50%;
   width: 2px;
   height: 48px;
-  background: var(--color-red-thread);
-  opacity: 0.2;
+  background: var(--color-sticky-rice-gold);
+  opacity: 0.3;
   transform: translateX(-50%);
 }
 
@@ -193,8 +193,8 @@
   width: min(100%, 720px);
   margin: 0 auto;
   border-radius: 24px;
-  border: 1px solid rgb(151 32 35 / 0.12);
-  box-shadow: 0 24px 80px rgb(34 26 20 / 0.12);
+  border: 1px solid rgb(245 222 179 / 0.15);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.25);
   object-fit: cover;
 }
 
@@ -208,9 +208,9 @@
   font-family: 'MJ Milestone', 'Pacifico', cursive;
   font-size: clamp(2.8rem, 5.2vw, 3.8rem);
   line-height: 1.55;
-  color: var(--color-betel-leaf-green);
-  border-left: 3px solid var(--color-red-thread);
-  background: rgb(105 132 86 / 0.05);
+  color: var(--color-sticky-rice-gold);
+  border-left: 3px solid var(--color-sticky-rice-gold);
+  background: rgb(245 222 179 / 0.05);
   border-radius: 0 6px 6px 0;
 }
 
@@ -222,8 +222,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-red-thread);
-  opacity: 0.35;
+  background: var(--color-sticky-rice-gold);
+  opacity: 0.5;
   margin: 60px auto 0;
 }
 
@@ -348,7 +348,7 @@
   max-height: 90vh;
   object-fit: contain;
   border-radius: 20px;
-  box-shadow: 0 32px 100px rgb(34 26 20 / 0.15);
+  box-shadow: 0 32px 100px rgb(0 0 0 / 0.3);
 }
 
 /* Mobile: stack vertically */

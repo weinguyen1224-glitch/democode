@@ -209,7 +209,7 @@
       transparent 1px,
       transparent 32px
     ),
-    linear-gradient(160deg, #F7E8CB 0%, #EEDDB5 40%, #F8D077 100%);
+    linear-gradient(160deg, #8B1A1A 0%, #A52A2A 40%, #F5DEB3 100%);
 }
 
 .bpt-sm-placeholder--warm::after {
@@ -735,7 +735,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-red-thread, #972023), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #F5DEB3), transparent);
   transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, left 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
@@ -748,9 +748,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(151, 32, 35, 0.2) 25%,
+    rgba(245, 222, 179, 0.2) 25%,
     rgba(212, 175, 55, 0.3) 50%,
-    rgba(151, 32, 35, 0.2) 75%,
+    rgba(245, 222, 179, 0.2) 75%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -898,8 +898,8 @@
   left: -4px;
   width: 20px;
   height: 20px;
-  border-top: 2px solid rgba(151, 32, 35, 0.5);
-  border-left: 2px solid rgba(151, 32, 35, 0.5);
+  border-top: 2px solid rgba(245, 222, 179, 0.5);
+  border-left: 2px solid rgba(245, 222, 179, 0.5);
   opacity: 0;
   transition: opacity 0.5s ease 0.3s;
 }
@@ -911,8 +911,8 @@
   right: -4px;
   width: 20px;
   height: 20px;
-  border-bottom: 2px solid rgba(151, 32, 35, 0.5);
-  border-right: 2px solid rgba(151, 32, 35, 0.5);
+  border-bottom: 2px solid rgba(245, 222, 179, 0.5);
+  border-right: 2px solid rgba(245, 222, 179, 0.5);
   opacity: 0;
   transition: opacity 0.5s ease 0.3s;
 }
@@ -1010,7 +1010,7 @@
   transform: translateX(-50%);
   width: 24px;
   height: 40px;
-  border: 2px solid rgba(151, 32, 35, 0.4);
+  border: 2px solid rgba(245, 222, 179, 0.4);
   border-radius: 12px;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -1024,7 +1024,7 @@
   left: 50%;
   width: 4px;
   height: 8px;
-  background: rgba(151, 32, 35, 0.6);
+  background: rgba(245, 222, 179, 0.6);
   border-radius: 2px;
   transform: translateX(-50%);
   animation: scroll-bounce 1.5s ease-in-out infinite;

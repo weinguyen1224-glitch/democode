@@ -20,7 +20,7 @@
   width: clamp(320px, 50vw, 600px);
   height: clamp(320px, 50vw, 600px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(248,208,119,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245,222,179,0.1) 0%, transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -51,7 +51,7 @@
   width: 0;
   height: 2px;
   margin: 0 auto clamp(28px, 4vw, 48px);
-  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #F5DEB3), transparent);
   transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
