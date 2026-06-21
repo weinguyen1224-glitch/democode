@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════ */
+/* INTRO SECTION — Opening prologue before Chapter I            */
+/* ═══════════════════════════════════════════════════════════ */
+
+.bpt-intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: clamp(48px, 10vw, 120px) clamp(24px, 8vw, 80px);
+  background: var(--color-rice-paper);
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind the content */
+.bpt-intro::before {
+  content: '';
+  position: absolute;
+  width: clamp(320px, 50vw, 600px);
+  height: clamp(320px, 50vw, 600px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248,208,119,0.15) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bpt-intro__inner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+/* ─── Title ─── */
+.bpt-intro__title {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(4rem, 10vw, 7.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-betel-leaf-green);
+  margin: 0 0 clamp(20px, 3vw, 36px);
+  word-break: keep-all;
+}
+
+/* ─── Decorative line ─── */
+.bpt-intro__line {
+  display: block;
+  width: 0;
+  height: 2px;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold), transparent);
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-intro.bpt-visible .bpt-intro__line {
+  width: clamp(80px, 20vw, 160px);
+}
+
+/* ─── Body text container ─── */
+.bpt-intro__body {
+  font-family: 'PT Serif', 'Vollkorn', Georgia, serif;
+  font-size: clamp(2rem, 4.4vw, 2.4rem);
+  line-height: 1.75;
+  color: var(--color-ink);
+  margin: 0;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+/* ─── Per-line typewriter ─── */
+.bpt-intro__line-text {
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+/* Each line: 1s reveal, staggered by 1s */
+.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(1) {
+  animation: bpt-line-reveal 1s steps(104, end) 0.2s forwards;
+}
+.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(2) {
+  animation: bpt-line-reveal 1s steps(121, end) 1.2s forwards;
+}
+.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(3) {
+  animation: bpt-line-reveal 1s steps(140, end) 2.2s forwards;
+}
+
+@keyframes bpt-line-reveal {
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+/* ─── Entrance animations (initial states) ─── */
+.bpt-intro__title {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bpt-intro__line {
+  opacity: 1;
+}
+
+/* ─── Visible states ─── */
+.bpt-intro.bpt-visible .bpt-intro__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .bpt-intro__title,
+  .bpt-intro__line {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .bpt-intro__line {
+    width: clamp(80px, 20vw, 160px) !important;
+  }
+  .bpt-intro__line-text {
+    clip-path: inset(0 0% 0 0) !important;
+    animation: none !important;
+  }
+}

@@ -3,6 +3,8 @@
    Pattern B từ SCROLL_ANIMATION_SPEC.md:
    Sticky media layer, text panels scroll qua, ảnh cross-fade.
    Thuật toán: passive scroll listener + rAF + chỉ thay opacity/transform.
+
+   UPDATED: Panel 3 (ảnh bến sông) trigger sớm hơn (~10% thay vì ~40%)
    ═════════════════════════════════════════════════════════════ */
 
 (() => {
@@ -94,7 +96,7 @@
 
   function applyZoomToSlide4() {
     if (isMobile) return; // Skip zoom on mobile — too expensive
-    
+
     const slide4 = slides[ZOOM_SLIDE_INDEX];
     if (!slide4 || !slide4.classList.contains("is-active")) {
       if (slide4) {
@@ -139,6 +141,21 @@
     }
   }
 
+  // ═══════════════════════════════════════════════════════════
+  // CUSTOM BREAKPOINTS: Điều chỉnh timing để panel 3 active sớm hơn
+  // Mặc định: [0, 0.25, 0.5, 0.75, 1.0] - mỗi panel 25%
+  // Updated:  [0, 0.15, 0.25, 0.55, 0.8] - p1,p2 ngắn hơn, p3 sớm ở 25%
+  // Target: Panel 3 (index 2) active từ ~10-15%
+  // ═══════════════════════════════════════════════════════════
+  const BREAKPOINTS = [0, 0.2, 0.25, 0.55, 0.8]; // p3 starts at 20%
+
+  function getIndexFromProgress(pct) {
+    for (let i = BREAKPOINTS.length - 1; i >= 0; i--) {
+      if (pct >= BREAKPOINTS[i]) return i;
+    }
+    return 0;
+  }
+
   function update() {
     const rect = section.getBoundingClientRect();
     if (cachedTrackHeight <= 0) {
@@ -149,9 +166,8 @@
     // pct: 0 khi đỉnh section vào viewport → 1 khi đáy section rời viewport
     const pct = Math.max(0, Math.min(1, -rect.top / cachedTrackHeight));
 
-    // Mỗi panel chiếm 1/N của chiều dài scroll
-    const rawIndex = pct * N;
-    const index = Math.min(N - 1, Math.floor(rawIndex));
+    // Sử dụng custom breakpoints thay vì chia đều
+    const index = getIndexFromProgress(pct);
 
     if (index !== currentIndex) {
       activateSlide(index, false);
@@ -176,12 +192,15 @@
   activateSlide(0, true);
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => {
-    cachedTrackHeight = section.offsetHeight - window.innerHeight;
-    onScroll();
-  }, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      cachedTrackHeight = section.offsetHeight - window.innerHeight;
+      onScroll();
+    },
+    { passive: true },
+  );
 
   // First update in case page loads mid-scroll
   requestAnimationFrame(update);
 })();
-
