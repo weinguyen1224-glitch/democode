@@ -219,7 +219,7 @@
 .ch4-compare {
     position: relative;
     width: 100%;
-    max-width: 960px;
+    max-width: 1200px;
     margin: 0 auto;
     aspect-ratio: 16 / 10;
     border-radius: 14px;
@@ -324,7 +324,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c4-accent);
-    background: rgba(151, 32, 35, 0.75);
+    background: #ffff;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     padding: 6px 16px;

@@ -1,66 +1,74 @@
-/* ═══════════════════════════════════════════════════════════
-   CHƯƠNG IV — 3D Model Viewer (Three.js ES Modules)
-   ═══════════════════════════════════════════════════════════ */
-
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 (function () {
-  'use strict';
+  "use strict";
 
-  var section = document.querySelector('.ch4-3d-viewer');
-  if (!section) { console.warn('[3D] section not found'); return; }
+  var section = document.querySelector(".ch4-3d-viewer");
+  if (!section) {
+    console.warn("[3D] section not found");
+    return;
+  }
 
-  var container = document.getElementById('ch4-3d-canvas');
-  var overlay = document.getElementById('ch4-3d-overlay');
-  var selectEl = document.getElementById('ch4-3d-select');
-  var fitBtn = document.getElementById('ch4-3d-fit');
-  var spinBtn = document.getElementById('ch4-3d-spin');
+  var container = document.getElementById("ch4-3d-canvas");
+  var overlay = document.getElementById("ch4-3d-overlay");
+  var selectEl = document.getElementById("ch4-3d-select");
+  var fitBtn = document.getElementById("ch4-3d-fit");
+  var spinBtn = document.getElementById("ch4-3d-spin");
 
-  if (!container) { console.warn('[3D] canvas container not found'); return; }
+  if (!container) {
+    console.warn("[3D] canvas container not found");
+    return;
+  }
 
   var MODELS = [
     {
-      name: 'Hộp bánh + trà + đĩa',
-      url: 'preview-3d/Meshy_AI_Banh_Phu_The_Scene_3D_0613062416_image-to-3d-texture.glb',
+      name: "Hộp bánh + trà + đĩa",
+      url: "preview-3d/Meshy_AI_Banh_Phu_The_Scene_3D_0613062416_image-to-3d-texture.glb",
     },
     {
-      name: 'Nguyên hộp bánh',
-      url: 'preview-3d/Meshy_AI_Bánh_Phu_Thê_Minh_T_0613050153_texture.glb',
+      name: "Nguyên hộp bánh",
+      url: "preview-3d/Meshy_AI_Bánh_Phu_Thê_Minh_T_0613050153_texture.glb",
     },
   ];
 
   var renderer, scene, camera, controls, current;
-  var spin = false, raf = null, initialized = false;
+  var spin = false,
+    raf = null,
+    initialized = false;
 
-  console.log('[3D] script loaded, THREE:', typeof THREE, 'OrbitControls:', typeof OrbitControls, 'GLTFLoader:', typeof GLTFLoader);
+  /* ── Lấy size thật của container ──────────────────────────── */
+  function getSize() {
+    var w = container.offsetWidth || container.parentElement.offsetWidth || 390;
+    var h =
+      container.offsetHeight || container.parentElement.offsetHeight || 500;
+    return { w: w, h: h };
+  }
 
   function init() {
     if (initialized) return;
     initialized = true;
-    console.log('[3D] init()');
+    console.log("[3D] init()");
 
     /* ── Renderer ──────────────────────────────────────────── */
     renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      powerPreference: 'high-performance',
+      powerPreference: "high-performance",
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // ✅ KHÔNG set pixelRatio hay size ở đây — onResize() lo hết
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
     container.appendChild(renderer.domElement);
-    console.log('[3D] renderer created');
 
     /* ── Scene ─────────────────────────────────────────────── */
     scene = new THREE.Scene();
 
-    /* ── Camera ────────────────────────────────────────────── */
-    var w = container.clientWidth;
-    var h = container.clientHeight;
-    camera = new THREE.PerspectiveCamera(40, w / h, 0.01, 5000);
+    /* ── Camera — dùng getSize() thay vì clientWidth ────────── */
+    var s = getSize();
+    camera = new THREE.PerspectiveCamera(40, s.w / s.h, 0.01, 5000);
     camera.position.set(3, 2, 4);
 
     /* ── Controls ──────────────────────────────────────────── */
@@ -92,40 +100,58 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     scene.add(grid);
 
     /* ── Events ────────────────────────────────────────────── */
-    if (fitBtn) fitBtn.addEventListener('click', fit);
-    if (spinBtn) spinBtn.addEventListener('click', toggleSpin);
-    if (selectEl) selectEl.addEventListener('change', function () {
-      var idx = parseInt(selectEl.value, 10);
-      loadModel(MODELS[idx].url, MODELS[idx].name);
+    if (fitBtn) fitBtn.addEventListener("click", fit);
+    if (spinBtn) spinBtn.addEventListener("click", toggleSpin);
+    if (selectEl)
+      selectEl.addEventListener("change", function () {
+        var idx = parseInt(selectEl.value, 10);
+        loadModel(MODELS[idx].url, MODELS[idx].name);
+      });
+
+    window.addEventListener("resize", onResize);
+
+    // ✅ Đợi 1 frame để container có kích thước thật trong DOM
+    requestAnimationFrame(function () {
+      onResize();
+      loadModel(MODELS[0].url, MODELS[0].name);
+      animate();
     });
-
-    window.addEventListener('resize', onResize);
-    onResize();
-
-    /* ── Start ─────────────────────────────────────────────── */
-    loadModel(MODELS[0].url, MODELS[0].name);
-    animate();
   }
 
-  /* ── Lazy init via IntersectionObserver ──────────────────── */
+  /* ── onResize — source of truth cho canvas size ─────────── */
+  function onResize() {
+    if (!renderer || !camera) return;
+    var s = getSize();
+    if (s.w === 0 || s.h === 0) return;
+
+    var dpr = Math.min(window.devicePixelRatio, 2);
+    renderer.setPixelRatio(dpr);
+
+    // ✅ setSize(w, h, true) — Three.js tự set CSS = w×h px
+    //    canvas attribute tự = w*dpr × h*dpr  → sắc nét Retina
+    renderer.setSize(s.w, s.h, true);
+
+    camera.aspect = s.w / s.h;
+    camera.updateProjectionMatrix();
+  }
+
+  /* ── Lazy init ───────────────────────────────────────────── */
   var observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          console.log('[3D] section intersecting, starting init');
           observer.disconnect();
           init();
         }
       });
     },
-    { rootMargin: '200px' },
+    { rootMargin: "200px" },
   );
   observer.observe(section);
 
   /* ── Model loading ───────────────────────────────────────── */
   function loadModel(url, name) {
     if (!renderer) return;
-    console.log('[3D] loading model:', url);
     showLoading();
     clearCurrent();
 
@@ -133,33 +159,29 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     loader.load(
       url,
       function (gltf) {
-        console.log('[3D] model loaded:', name);
         hideLoading();
         current = gltf.scene || gltf;
         scene.add(current);
-
         current.traverse(function (o) {
           if (o.isMesh) {
             o.castShadow = o.receiveShadow = true;
             if (o.material) o.material.needsUpdate = true;
           }
         });
-
         fit();
       },
       function (progress) {
         if (progress.total) {
           var pct = Math.round((progress.loaded / progress.total) * 100);
-          var el = overlay ? overlay.querySelector('span') : null;
-          if (el) el.textContent = 'Đang tải ' + pct + '%…';
-          console.log('[3D] progress:', pct + '%');
+          var el = overlay ? overlay.querySelector("span") : null;
+          if (el) el.textContent = "Đang tải " + pct + "%…";
         }
       },
       function (err) {
-        console.error('[3D] load error:', url, err);
+        console.error("[3D] load error:", url, err);
         hideLoading();
-        var el = overlay ? overlay.querySelector('span') : null;
-        if (el) el.textContent = 'Lỗi tải mô hình. Mở Console để xem chi tiết.';
+        var el = overlay ? overlay.querySelector("span") : null;
+        if (el) el.textContent = "Lỗi tải mô hình. Mở Console để xem chi tiết.";
       },
     );
   }
@@ -183,7 +205,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     controls.target.set(0, 0, 0);
     controls.update();
 
-    var grid = scene.children.find(function (c) { return c.isGridHelper; });
+    var grid = scene.children.find(function (c) {
+      return c.isGridHelper;
+    });
     if (grid) grid.scale.setScalar(Math.max(1, max / 2));
   }
 
@@ -194,7 +218,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     current.traverse(function (o) {
       if (o.geometry) o.geometry.dispose();
       var mats = Array.isArray(o.material) ? o.material : [o.material];
-      mats.filter(Boolean).forEach(function (m) { if (m.dispose) m.dispose(); });
+      mats.filter(Boolean).forEach(function (m) {
+        if (m.dispose) m.dispose();
+      });
     });
     current = null;
   }
@@ -202,26 +228,16 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
   function toggleSpin() {
     spin = !spin;
     if (spinBtn) {
-      spinBtn.textContent = spin ? 'Dừng xoay' : 'Auto xoay';
-      spinBtn.classList.toggle('ch4-3d-viewer__btn--active', spin);
+      spinBtn.textContent = spin ? "Dừng xoay" : "Auto xoay";
+      spinBtn.classList.toggle("ch4-3d-viewer__btn--active", spin);
     }
   }
 
   function showLoading() {
-    if (overlay) overlay.style.opacity = '1';
+    if (overlay) overlay.style.opacity = "1";
   }
-
   function hideLoading() {
-    if (overlay) overlay.style.opacity = '0';
-  }
-
-  function onResize() {
-    if (!renderer || !camera) return;
-    var w = container.clientWidth;
-    var h = container.clientHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    if (overlay) overlay.style.opacity = "0";
   }
 
   /* ── Render loop ─────────────────────────────────────────── */
