@@ -4,387 +4,389 @@
 
 /* --- Design tokens (UI-SPEC §3 + §17) --- */
 :root {
-  --color-rice-paper: #972023;
-  --color-sticky-rice-gold: #f8d077;
-  --color-betel-leaf-green: #f8d077;
-  --color-red-thread: #f8d077;
-  --color-ink: #ffffff;
-  --color-cream-white: #972023;
-  --space-section: clamp(24px, 6vw, 80px);
-  --space-card: clamp(24px, 4vw, 48px);
-  --prose-width: min(680px, 88vw);
+    --color-rice-paper: #f7e8cb;
+    --color-sticky-rice-gold: #972023;
+    --color-betel-leaf-green: #972023;
+    --color-red-thread: #972023;
+    --color-ink: #1a1a1a;
+    --color-cream-white: #f7e8cb;
+    --space-section: clamp(24px, 6vw, 80px);
+    --space-card: clamp(24px, 4vw, 48px);
+    --prose-width: min(680px, 88vw);
 }
 
 /* ──────────────────────────────────────────
    Chapter Divider — full-bleed, red-thread
    ────────────────────────────────────────── */
 .bpt-chapter-divider {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-section);
-  background: var(--color-rice-paper);
-  overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--space-section);
+    background: var(--color-rice-paper);
+    overflow: hidden;
 }
 
 .bpt-divider-num {
-  position: relative;
-  display: block;
-  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
-  font-size: clamp(8rem, 26vw, 20rem);
-  font-weight: 700;
-  line-height: 0.88;
-  color: var(--color-red-thread);
-  margin-bottom: 16px;
-  z-index: 1;
+    position: relative;
+    display: block;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: clamp(8rem, 26vw, 20rem);
+    font-weight: 700;
+    line-height: 0.88;
+    color: var(--color-red-thread);
+    margin-bottom: 16px;
+    z-index: 1;
 }
 
 .bpt-divider-title {
-  position: relative;
-  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
-  font-size: clamp(4rem, 10vw, 7.2rem);
-  font-weight: 700;
-  line-height: 1.08;
-  color: var(--color-betel-leaf-green);
-  text-align: center;
-  margin: 0;
-  z-index: 1;
+    position: relative;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: clamp(4rem, 10vw, 7.2rem);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--color-betel-leaf-green);
+    text-align: center;
+    margin: 0;
+    z-index: 1;
 }
 
 .bpt-divider-sub {
-  position: relative;
-  font-family: 'DFVN West West', 'Vollkorn', serif;
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  font-style: italic;
-  color: var(--color-ink);
-  opacity: 0.68;
-  text-align: center;
-  margin: 10px 0 0;
-  z-index: 1;
+    position: relative;
+    font-family: "DFVN West West", "Vollkorn", serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-style: italic;
+    color: var(--color-ink);
+    opacity: 0.68;
+    text-align: center;
+    margin: 10px 0 0;
+    z-index: 1;
 }
 
 /* ──────────────────────────────────────────
    Chapter divider — full-screen image variant
    ────────────────────────────────────────── */
 .bpt-chapter-divider--img {
-  padding: 0;
-  height: 100vh;
-  background-color: #900000 !important;
-  background: #900000 !important;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--color-red-thread) !important;
+    background: var(--color-red-thread) !important;
 }
 
 .bpt-chapter-divider__bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Frame wrapper — holds the image and provides matching background */
 .bpt-chapter-divider__frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #900000;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #830101;
 }
 
 .bpt-chapter-divider__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .bpt-chapter-divider__vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 40%,
-    rgba(26, 10, 10, 0.35) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 40%,
+        rgba(26, 10, 10, 0.35) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* ──────────────────────────────────────────
    Scene — each narrative section
    ────────────────────────────────────────── */
 .bpt-scene {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-height: 80vh;
-  padding: clamp(60px, 10vh, 120px) clamp(40px, 8vw, 140px) clamp(60px, 10vh, 120px) clamp(40px, 8vw, 140px);
-  background: var(--color-cream-white);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 80vh;
+    padding: clamp(60px, 10vh, 120px) clamp(40px, 8vw, 140px)
+        clamp(60px, 10vh, 120px) clamp(40px, 8vw, 140px);
+    background: var(--color-cream-white);
 }
 
 /* Alternate subtle tint for rhythm */
 .bpt-scene:nth-of-type(even) {
-  background: var(--color-rice-paper);
+    background: var(--color-rice-paper);
 }
 
 /* Closing section: extra breathing room before transition */
 .bpt-scene--closing {
-  min-height: 90vh;
-  padding-bottom: clamp(100px, 15vh, 200px);
+    min-height: 90vh;
+    padding-bottom: clamp(100px, 15vh, 200px);
 }
 
 /* Thin red-thread between scenes */
 .bpt-scene::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  height: 48px;
-  background: var(--color-sticky-rice-gold);
-  opacity: 0.3;
-  transform: translateX(-50%);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 48px;
+    background: var(--color-sticky-rice-gold);
+    opacity: 0.3;
+    transform: translateX(-50%);
 }
 
 .bpt-scene--closing::after {
-  display: none;
+    display: none;
 }
 
 /* ──────────────────────────────────────────
    Prose — narrative text block
    ────────────────────────────────────────── */
 .bpt-prose {
-  width: 100%;
-  max-width: 100%;
+    width: 100%;
+    max-width: 100%;
 }
 
 .bpt-kicker {
-  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
-  font-size: clamp(1.6rem, 2.6vw, 1.9rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-red-thread);
-  margin: 0 0 18px;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-red-thread);
+    margin: 0 0 18px;
 }
 
 .bpt-prose h3 {
-  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
-  font-size: clamp(1.6rem, 2.6vw, 1.9rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-red-thread);
-  margin: 0 0 18px;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-red-thread);
+    margin: 0 0 18px;
 }
 
 .bpt-prose p {
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(1.2rem, 2vw, 1.65rem);
-  line-height: 1.7;
-  color: var(--color-ink);
-  margin: 0 0 1.4em;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 1.4em;
 }
 
 .bpt-prose p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .bpt-inline-visual {
-  margin: 2.4rem 0;
+    margin: 2.4rem 0;
 }
 
 .bpt-inline-visual img {
-  display: block;
-  width: min(100%, 720px);
-  margin: 0 auto;
-  border-radius: 24px;
-  border: 1px solid rgb(248 208 119 / 0.15);
-  box-shadow: 0 24px 80px rgb(0 0 0 / 0.25);
-  object-fit: cover;
+    display: block;
+    width: min(100%, 720px);
+    margin: 0 auto;
+    border-radius: 24px;
+    border: 1px solid rgb(151 32 35 / 0.15);
+    box-shadow: 0 24px 80px rgb(0 0 0 / 0.2);
+    object-fit: cover;
 }
 
 /* ──────────────────────────────────────────
    Ca dao — poetry quote inline in prose
    ────────────────────────────────────────── */
 .bpt-ca-dao {
-  position: relative;
-  margin: 2em 0;
-  padding: 28px 32px;
-  font-family: 'MJ Milestone', 'Pacifico', cursive;
-  font-size: clamp(2.8rem, 5.2vw, 3.8rem);
-  line-height: 1.55;
-  color: var(--color-sticky-rice-gold);
-  border-left: 3px solid var(--color-sticky-rice-gold);
-  background: rgb(248 208 119 / 0.05);
-  border-radius: 0 6px 6px 0;
+    position: relative;
+    margin: 2em 0;
+    padding: 28px 32px;
+    font-family: "MJ Milestone", "Pacifico", cursive;
+    font-size: clamp(2.8rem, 5.2vw, 3.8rem);
+    line-height: 1.55;
+    color: var(--color-sticky-rice-gold);
+    border-left: 3px solid var(--color-sticky-rice-gold);
+    background: rgb(151 32 35 / 0.05);
+    border-radius: 0 6px 6px 0;
 }
 
 /* ──────────────────────────────────────────
    Scene transition — fade-out red thread dot
    ────────────────────────────────────────── */
 .bpt-scene-transition {
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-sticky-rice-gold);
-  opacity: 0.5;
-  margin: 60px auto 0;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-sticky-rice-gold);
+    opacity: 0.5;
+    margin: 60px auto 0;
 }
 
 /* ──────────────────────────────────────────
    Scroll-reveal animation
    ────────────────────────────────────────── */
 .bpt-reveal {
-  opacity: 0;
-  transform: translateY(48px);
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: translateY(48px);
+    transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bpt-reveal.bpt-visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ──────────────────────────────────────────
    Responsive
    ────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .bpt-scene {
-    min-height: auto;
-    padding: clamp(48px, 8vh, 80px) clamp(20px, 5vw, 40px);
-    align-items: flex-start;
-  }
-  .bpt-chapter-divider {
-    min-height: 80vh;
-  }
-  .bpt-chapter-divider--img {
-    height: 100vh;
-    height: 100dvh;
-    background-color: #900000;
-  }
-  .bpt-prose {
-    width: 100%;
-  }
+    .bpt-scene {
+        min-height: auto;
+        padding: clamp(48px, 8vh, 80px) clamp(20px, 5vw, 40px);
+        align-items: flex-start;
+    }
+    .bpt-chapter-divider {
+        min-height: 80vh;
+    }
+    .bpt-chapter-divider--img {
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--color-red-thread);
+    }
+    .bpt-prose {
+        width: 100%;
+    }
 }
 
 @media (max-width: 375px) {
-  .bpt-prose p {
-    font-size: 1.1rem;
-  }
-  .bpt-ca-dao {
-    font-size: 2.3rem;
-    padding: 18px 20px;
-  }
+    .bpt-prose p {
+        font-size: 1.1rem;
+    }
+    .bpt-ca-dao {
+        font-size: 2.3rem;
+        padding: 18px 20px;
+    }
 }
 
 /* ──────────────────────────────────────────
    Reduced motion
    ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .bpt-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+    .bpt-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 /* ──────────────────────────────────────────
    P2 Split Scene — text left, visual right
    ────────────────────────────────────────── */
 .bpt-split-scene {
-  flex-direction: row !important;
-  align-items: stretch !important;
-  min-height: 100vh !important;
-  padding: 0 !important;
-  overflow: hidden;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+    overflow: hidden;
 }
 
 .bpt-split-scene__text {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(48px, 6vh, 100px) clamp(40px, 6vw, 80px) clamp(48px, 6vh, 100px) clamp(40px, 6vw, 100px);
-  /* No max-width constraint — text breathes freely */
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(48px, 6vh, 100px) clamp(40px, 6vw, 80px)
+        clamp(48px, 6vh, 100px) clamp(40px, 6vw, 100px);
+    /* No max-width constraint — text breathes freely */
 }
 
 .bpt-split-scene__text .bpt-kicker {
-  font-size: clamp(1.6rem, 2.6vw, 1.9rem);
-  margin-bottom: 18px;
+    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
+    margin-bottom: 18px;
 }
 
 .bpt-split-scene__text p {
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(1.2rem, 2vw, 1.65rem) !important;
-  line-height: 1.7 !important;
-  color: var(--color-ink);
-  margin: 0 0 1.4em;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-size: clamp(1.2rem, 2vw, 1.65rem) !important;
+    line-height: 1.7 !important;
+    color: var(--color-ink);
+    margin: 0 0 1.4em;
 }
 
 .bpt-split-scene__text p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .bpt-split-scene__visual {
-  flex: 0 0 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(32px, 4vw, 64px);
-  overflow: hidden;
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(32px, 4vw, 64px);
+    overflow: hidden;
 }
 
 .bpt-split-scene__visual figure {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bpt-split-scene__visual img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 20px;
-  box-shadow: 0 32px 100px rgb(0 0 0 / 0.3);
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 32px 100px rgb(0 0 0 / 0.3);
 }
 
 /* Mobile: stack vertically */
 @media (max-width: 768px) {
-  .bpt-split-scene {
-    flex-direction: column !important;
-    min-height: auto !important;
-  }
-  .bpt-split-scene__text {
-    flex: none;
-    padding: clamp(40px, 8vh, 72px) clamp(20px, 5vw, 40px) clamp(24px, 3vh, 40px);
-  }
-  .bpt-split-scene__text p {
-    font-size: clamp(1.05rem, 3.5vw, 1.25rem) !important;
-  }
-  .bpt-split-scene__visual {
-    flex: none;
-    width: 80%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 40px) clamp(40px, 8vh, 72px);
-  }
-  .bpt-split-scene__visual img {
-    max-height: 60vh;
-  }
+    .bpt-split-scene {
+        flex-direction: column !important;
+        min-height: auto !important;
+    }
+    .bpt-split-scene__text {
+        flex: none;
+        padding: clamp(40px, 8vh, 72px) clamp(20px, 5vw, 40px)
+            clamp(24px, 3vh, 40px);
+    }
+    .bpt-split-scene__text p {
+        font-size: clamp(1.05rem, 3.5vw, 1.25rem) !important;
+    }
+    .bpt-split-scene__visual {
+        flex: none;
+        width: 80%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 40px) clamp(40px, 8vh, 72px);
+    }
+    .bpt-split-scene__visual img {
+        max-height: 60vh;
+    }
 }
-

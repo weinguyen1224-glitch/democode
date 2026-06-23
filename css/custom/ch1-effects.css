@@ -9,53 +9,67 @@
 .bpt-reveal .bpt-prose > .bpt-kicker,
 .bpt-reveal .bpt-prose > p,
 .bpt-reveal .bpt-prose > blockquote {
-  opacity: 0;
-  transform: translateY(32px);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bpt-reveal .bpt-prose > .bpt-kicker {
-  transform: translateX(-24px) translateY(0);
+    transform: translateX(-24px) translateY(0);
 }
 
 /* Stagger: each child gets an increasing delay via CSS custom property */
-.bpt-reveal .bpt-prose > *:nth-child(1) { transition-delay: 0s; }
-.bpt-reveal .bpt-prose > *:nth-child(2) { transition-delay: 0.12s; }
-.bpt-reveal .bpt-prose > *:nth-child(3) { transition-delay: 0.24s; }
-.bpt-reveal .bpt-prose > *:nth-child(4) { transition-delay: 0.36s; }
-.bpt-reveal .bpt-prose > *:nth-child(5) { transition-delay: 0.48s; }
-.bpt-reveal .bpt-prose > *:nth-child(6) { transition-delay: 0.56s; }
-.bpt-reveal .bpt-prose > *:nth-child(7) { transition-delay: 0.62s; }
+.bpt-reveal .bpt-prose > *:nth-child(1) {
+    transition-delay: 0s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(2) {
+    transition-delay: 0.12s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(3) {
+    transition-delay: 0.24s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(4) {
+    transition-delay: 0.36s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(5) {
+    transition-delay: 0.48s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(6) {
+    transition-delay: 0.56s;
+}
+.bpt-reveal .bpt-prose > *:nth-child(7) {
+    transition-delay: 0.62s;
+}
 
 /* When scene is visible, reveal children */
 .bpt-reveal.bpt-visible .bpt-prose > .bpt-kicker,
 .bpt-reveal.bpt-visible .bpt-prose > p,
 .bpt-reveal.bpt-visible .bpt-prose > blockquote {
-  opacity: 1;
-  transform: translateX(0) translateY(0);
+    opacity: 1;
+    transform: translateX(0) translateY(0);
 }
 
 /* ──────────────────────────────────────────
    2. Ca-dao quote — border grows + text fades
    ────────────────────────────────────────── */
 .bpt-ca-dao {
-  border-left-width: 0;
-  border-left-style: solid;
-  border-left-color: var(--color-red-thread);
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    border-left-width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+    border-left-width: 0;
+    border-left-style: solid;
+    border-left-color: var(--color-red-thread);
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        border-left-width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 
 .bpt-ca-dao.bpt-quote-visible {
-  opacity: 1;
-  transform: translateY(0);
-  border-left-width: 3px;
+    opacity: 1;
+    transform: translateY(0);
+    border-left-width: 3px;
 }
 
 /* ──────────────────────────────────────────
@@ -64,93 +78,95 @@
 .bpt-chapter-divider .bpt-divider-num,
 .bpt-chapter-divider .bpt-divider-title,
 .bpt-chapter-divider .bpt-divider-sub {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bpt-chapter-divider.bpt-visible .bpt-divider-num {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0s;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
 }
 
 .bpt-chapter-divider.bpt-visible .bpt-divider-title {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.15s;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
 }
 
 .bpt-chapter-divider.bpt-visible .bpt-divider-sub {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.3s;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
 }
 
 /* ──────────────────────────────────────────
    3b. Chapter divider — image background animation
    ────────────────────────────────────────── */
 .bpt-chapter-divider--img .bpt-chapter-divider__bg img {
-  opacity: 0;
-  transition: opacity 0.6s ease;
+    opacity: 0;
+    transition: opacity 0.6s ease;
 }
 
 .bpt-chapter-divider--img.bpt-visible .bpt-chapter-divider__bg img {
-  opacity: 1;
+    opacity: 1;
 }
 
 .bpt-chapter-divider--img .bpt-chapter-divider__vignette {
-  opacity: 0;
-  transition: opacity 0.8s ease 0.1s;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.1s;
 }
 
 .bpt-chapter-divider--img.bpt-visible .bpt-chapter-divider__vignette {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* ──────────────────────────────────────────
    4. Closing scene — red-thread dot pulse glow
    ────────────────────────────────────────── */
 .bpt-scene-transition {
-  animation: none;
-  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+    animation: none;
+    transition:
+        opacity 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .bpt-scene--closing.bpt-visible .bpt-scene-transition {
-  animation: bpt-pulse-glow 2.4s ease-in-out 0.6s 1 forwards;
+    animation: bpt-pulse-glow 2.4s ease-in-out 0.6s 1 forwards;
 }
 
 @keyframes bpt-pulse-glow {
-  0% {
-    box-shadow: 0 0 0 0 rgb(168 34 48 / 0);
-    opacity: 0.35;
-  }
-  50% {
-    box-shadow: 0 0 12px 4px rgb(168 34 48 / 0.35);
-    opacity: 0.7;
-  }
-  100% {
-    box-shadow: 0 0 6px 2px rgb(168 34 48 / 0.15);
-    opacity: 0.55;
-  }
+    0% {
+        box-shadow: 0 0 0 0 rgb(168 34 48 / 0);
+        opacity: 0.35;
+    }
+    50% {
+        box-shadow: 0 0 12px 4px rgb(168 34 48 / 0.35);
+        opacity: 0.7;
+    }
+    100% {
+        box-shadow: 0 0 6px 2px rgb(168 34 48 / 0.15);
+        opacity: 0.55;
+    }
 }
 
 /* ──────────────────────────────────────────
    5. Split-scene visual — parallax fade-in
    ────────────────────────────────────────── */
 .bpt-split-scene .bpt-split-scene__visual img {
-  opacity: 0;
-  transform: scale(0.96) translateY(16px);
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+    opacity: 0;
+    transform: scale(0.96) translateY(16px);
+    transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
 }
 
 .bpt-split-scene.bpt-visible .bpt-split-scene__visual img {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
 
 /* ──────────────────────────────────────────
@@ -158,77 +174,80 @@
    fade as you scroll past, creating a "read and move on" feel
    ────────────────────────────────────────── */
 .bpt-prose p {
-  transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 /* ──────────────────────────────────────────
    7. Intro card — entrance animation
    ────────────────────────────────────────── */
 .intro-card {
-  opacity: 0;
-  transform: translateY(20px) scale(0.98);
-  transition:
-    opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
-    transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition:
+        opacity 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 .intro-card.bpt-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 /* ──────────────────────────────────────────
    Reduced motion override for storytelling effects
    ────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .bpt-reveal .bpt-prose > .bpt-kicker,
-  .bpt-reveal .bpt-prose > p,
-  .bpt-reveal .bpt-prose > blockquote,
-  .bpt-ca-dao,
-  .bpt-chapter-divider .bpt-divider-num,
-  .bpt-chapter-divider .bpt-divider-title,
-  .bpt-chapter-divider .bpt-divider-sub,
-  .bpt-split-scene .bpt-split-scene__visual img,
-  .intro-card {
-    opacity: 1 !important;
-    transform: none !important;
-    border-left-width: 3px !important;
-    transition: none !important;
-    animation: none !important;
-  }
+    .bpt-reveal .bpt-prose > .bpt-kicker,
+    .bpt-reveal .bpt-prose > p,
+    .bpt-reveal .bpt-prose > blockquote,
+    .bpt-ca-dao,
+    .bpt-chapter-divider .bpt-divider-num,
+    .bpt-chapter-divider .bpt-divider-title,
+    .bpt-chapter-divider .bpt-divider-sub,
+    .bpt-split-scene .bpt-split-scene__visual img,
+    .intro-card {
+        opacity: 1 !important;
+        transform: none !important;
+        border-left-width: 3px !important;
+        transition: none !important;
+        animation: none !important;
+    }
 }
-
 
 /* STORY ENHANCEMENTS CSS */
 
 .word-reveal-container .word-span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: var(--word-delay, 0s);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    transition-delay: var(--word-delay, 0s);
 }
 
 .word-reveal-active .word-span {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .line-reveal {
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 .line-reveal-inner {
-  display: block;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: transform 0.8s ease, opacity 0.6s ease;
+    display: block;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+        transform 0.8s ease,
+        opacity 0.6s ease;
 }
 
 .line-reveal-visible .line-reveal-inner {
-  transform: translateY(0);
-  opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -237,96 +256,138 @@
 
 /* 1. CASCADE WORD - Tuần tự paragraph -> word */
 .cascade-paragraph .cascade-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--cascade-delay, 0s);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+        opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--cascade-delay, 0s);
 }
 
 .cascade-paragraph.cascade-active .cascade-word {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 2. LINE CASCADE */
 .line-cascade-container {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .line-cascade-container.line-cascade-active {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 3. KICKER CHARACTER */
 .kicker-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(-5px);
-  color: var(--color-sticky-rice-gold, #f8d077);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: var(--char-delay, 0s);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-5px);
+    color: var(--color-sticky-rice-gold, #972023);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    transition-delay: var(--char-delay, 0s);
 }
 
 .kicker-reveal-active .kicker-char {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 4. OPACITY FOCUS - NO BLUR */
 .bpt-prose,
 .bpt-sm-text {
-  transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 /* 5. QUOTE DECORATION */
-.bpt-ca-dao { position: relative; }
-
-.quote-deco {
-  position: absolute;
-  font-family: 'MJ Milestone', 'Pacifico', cursive;
-  font-size: clamp(6rem, 16vw, 12rem);
-  color: var(--color-sticky-rice-gold, #f8d077);
-  opacity: 0;
-  line-height: 1;
-  pointer-events: none;
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+.bpt-ca-dao {
+    position: relative;
 }
 
-.quote-deco-before { top: -15%; left: 2%; transform: translateX(-30px) rotate(-8deg); }
-.quote-deco-after { bottom: -25%; right: 2%; transform: translateX(30px) rotate(8deg); }
+.quote-deco {
+    position: absolute;
+    font-family: "MJ Milestone", "Pacifico", cursive;
+    font-size: clamp(6rem, 16vw, 12rem);
+    color: var(--color-sticky-rice-gold, #972023);
+    opacity: 0;
+    line-height: 1;
+    pointer-events: none;
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-.bpt-ca-dao.quote-active .quote-deco-before { opacity: 0.12; transform: translateX(0) rotate(0); }
-.bpt-ca-dao.quote-active .quote-deco-after { opacity: 0.12; transform: translateX(0) rotate(0); transition-delay: 0.3s; }
+.quote-deco-before {
+    top: -15%;
+    left: 2%;
+    transform: translateX(-30px) rotate(-8deg);
+}
+.quote-deco-after {
+    bottom: -25%;
+    right: 2%;
+    transform: translateX(30px) rotate(8deg);
+}
+
+.bpt-ca-dao.quote-active .quote-deco-before {
+    opacity: 0.12;
+    transform: translateX(0) rotate(0);
+}
+.bpt-ca-dao.quote-active .quote-deco-after {
+    opacity: 0.12;
+    transform: translateX(0) rotate(0);
+    transition-delay: 0.3s;
+}
 
 /* 6. SIDEBAR PROGRESS */
 .sidebar-progress {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--color-sticky-rice-gold, #f8d077), var(--color-rice-paper, #972023));
-  border-radius: 2px;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        var(--color-sticky-rice-gold, #972023),
+        var(--color-rice-paper, #972023)
+    );
+    border-radius: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sidebar-progress.sidebar-in { transform: scaleY(1); }
-.sidebar-progress.sidebar-out { transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s ease; }
+.sidebar-progress.sidebar-in {
+    transform: scaleY(1);
+}
+.sidebar-progress.sidebar-out {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s ease;
+}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .cascade-word, .line-cascade-container, .kicker-char, .quote-deco, .sidebar-progress {
-    animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important;
-  }
-  .bpt-chapter-divider--img .bpt-chapter-divider__bg img,
-  .bpt-chapter-divider--img .bpt-chapter-divider__vignette {
-    transition: none !important;
-    opacity: 1 !important;
-  }
+    .cascade-word,
+    .line-cascade-container,
+    .kicker-char,
+    .quote-deco,
+    .sidebar-progress {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .bpt-chapter-divider--img .bpt-chapter-divider__bg img,
+    .bpt-chapter-divider--img .bpt-chapter-divider__vignette {
+        transition: none !important;
+        opacity: 1 !important;
+    }
 }

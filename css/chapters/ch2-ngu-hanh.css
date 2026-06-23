@@ -5,454 +5,609 @@
 
 /* ── Section wrapper ─────────────────────────────────────── */
 .bpt-ngu-hanh-section {
-  position: relative;
-  min-height: 100vh;
-  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
-  background: var(--color-rice-paper, #972023);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  color: var(--color-ink, #ffffff);
+    position: relative;
+    min-height: 100vh;
+    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+    background: var(--color-rice-paper, #f7e8cb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    color: var(--color-ink, #1a1a1a);
 }
 
 /* ── Layout: centered column ──────────────────────────────── */
 .bpt-ngu-hanh__layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(24px, 4vh, 48px);
-  width: 100%;
-  max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 4vh, 48px);
+    width: 100%;
+    max-width: 1200px;
 }
 
 .bpt-ngu-hanh__text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
-  max-width: 600px;
-  position: relative;
-  z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    max-width: 600px;
+    position: relative;
+    z-index: 50;
 }
 
 /* Override cascade word-by-word → scale for ngũ hành */
 .bpt-ngu-hanh__text .cascade-word {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--cascade-delay, 0s);
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+        opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--cascade-delay, 0s);
 }
 
 .bpt-ngu-hanh__text .cascade-paragraph.cascade-active .cascade-word {
-  opacity: 1;
-  transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
 }
 
 .bpt-ngu-hanh__hint {
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-style: italic;
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
-  color: var(--color-sticky-rice-gold, #f8d077);
-  opacity: 0.8;
-  animation: bpt-float-hint 2.4s ease-in-out infinite;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    color: var(--color-sticky-rice-gold, #972023);
+    opacity: 0.8;
+    animation: bpt-float-hint 2.4s ease-in-out infinite;
 }
 
 @keyframes bpt-float-hint {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
 }
 
 /* ── Orbit container ─────────────────────────────────────── */
 .bpt-ngu-hanh__orbit {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  min-height: 620px;
-  width: 100%;
-  max-width: 1200px;
-  overflow: visible;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    min-height: 620px;
+    width: 100%;
+    max-width: 1200px;
+    overflow: visible;
 }
 
 /* ── Bánh unwrapping area ───────────────────────────────── */
 .bpt-banh-wrap {
-  position: relative;
-  width: clamp(240px, 50vw, 340px);
-  height: clamp(240px, 50vw, 340px);
-  cursor: pointer;
-  z-index: 10;
+    position: relative;
+    width: clamp(240px, 50vw, 340px);
+    height: clamp(240px, 50vw, 340px);
+    cursor: pointer;
+    z-index: 10;
 }
-
 
 /* Loading placeholder for bánh frames before base64 loads */
 .bpt-banh-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 20%;
-  border-radius: 50%;
-  border: 2px solid rgba(180,130,40,0.2);
-   border-top-color: var(--color-sticky-rice-gold, #f8d077);
-  animation: bpt-spin 1.2s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.4s;
+    content: "";
+    position: absolute;
+    inset: 20%;
+    border-radius: 50%;
+    border: 2px solid rgba(180, 130, 40, 0.2);
+    border-top-color: var(--color-sticky-rice-gold, #972023);
+    animation: bpt-spin 1.2s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s;
 }
 .bpt-banh-wrap.is-loaded::after {
-  opacity: 0;
-  animation: none;
+    opacity: 0;
+    animation: none;
 }
 @keyframes bpt-spin {
-  to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .bpt-banh-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  will-change: transform, opacity;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: transform, opacity;
 }
 /* Canvas for particles/ripple FX */
 .bpt-canvas-fx {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 30;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 30;
 }
 
 /* Glow behind bánh — warm golden glow on rice-paper bg */
 .bpt-banh-glow {
-  position: absolute;
-  inset: -20%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(180,130,40,0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
+    position: absolute;
+    inset: -20%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(180, 130, 40, 0.12) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 .bpt-banh-glow.is-bright {
-  background: radial-gradient(circle, rgba(240,180,40,0.28) 0%, transparent 70%);
-  transition: background 0.5s;
+    background: radial-gradient(
+        circle,
+        rgba(240, 180, 40, 0.28) 0%,
+        transparent 70%
+    );
+    transition: background 0.5s;
 }
 
 /* Hint text below bánh */
 .bpt-banh-hint {
-  position: absolute;
-  bottom: -54px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(0.75rem, 1vw, 0.9rem);
-  color: var(--color-sticky-rice-gold, #f8d077);
-  white-space: nowrap;
-  pointer-events: none;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-align: center;
-  transition: opacity 0.3s;
+    position: absolute;
+    bottom: -54px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    color: var(--color-sticky-rice-gold, #972023);
+    white-space: nowrap;
+    pointer-events: none;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-align: center;
+    transition: opacity 0.3s;
 }
 
 .bpt-banh-hint span {
-  display: inline-block;
-  animation: bpt-float-hint 2s ease-in-out infinite;
+    display: inline-block;
+    animation: bpt-float-hint 2s ease-in-out infinite;
 }
 
 /* Progress ring SVG */
 .bpt-prog-ring {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: calc(100% + 40px);
-  height: calc(100% + 40px);
-  pointer-events: none;
-  z-index: 5;
-  opacity: 0.4;
-  transition: opacity 0.4s;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.4;
+    transition: opacity 0.4s;
 }
 
 /* ── Ngũ Hành cards — hidden until burst ────────────────── */
 .bpt-hanh-card {
-  position: absolute;
-  width: 190px;
-  opacity: 0;
-  z-index: 100;
-  pointer-events: none;
-  transform-origin: center center;
-  transition: box-shadow 0.2s;
+    position: absolute;
+    width: 190px;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    transform-origin: center center;
+    transition: box-shadow 0.2s;
 }
 
-
 .bpt-hanh-card:hover {
-  filter: brightness(1.05);
+    filter: brightness(1.05);
 }
 
 .bpt-hanh-card:focus-visible {
-  outline: 2px solid var(--color-sticky-rice-gold, #f8d077);
-  outline-offset: 4px;
-  filter: brightness(1.05);
+    outline: 2px solid var(--color-sticky-rice-gold, #972023);
+    outline-offset: 4px;
+    filter: brightness(1.05);
 }
 
 .bpt-hanh-card .hc-img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 0.25));
-  display: block;
-  margin: 0 auto 8px;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgb(0 0 0 / 0.25));
+    display: block;
+    margin: 0 auto 8px;
 }
 
 .bpt-hanh-card .hc-img-pair {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-  margin: 0 auto 8px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin: 0 auto 8px;
 }
 
 .bpt-hanh-card .hc-img-pair .hc-img {
-  width: 76px;
-  height: 76px;
-  margin: 0;
+    width: 76px;
+    height: 76px;
+    margin: 0;
 }
 
 /* SVG thủy — override hardcoded width/height */
 .bpt-hanh-card .hc-img--thuy {
-  width: 120px;
-  height: 120px;
+    width: 120px;
+    height: 120px;
 }
 
 .bpt-hanh-card .hc-img-pair .hc-img--thuy {
-  width: 76px;
-  height: 76px;
+    width: 76px;
+    height: 76px;
 }
 
 .bpt-hanh-card .hc-badge {
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  margin: 0 auto;
-  display: table;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    margin: 0 auto;
+    display: table;
 }
 
 .bpt-hanh-card .hc-name {
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 3px;
-  opacity: 0;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3px;
+    opacity: 0;
 }
 
 .bpt-hanh-card .hc-desc {
-  font-size: 12px;
-  text-align: center;
-  line-height: 1.4;
-  opacity: 0;
-  padding: 4px 6px;
-  border-radius: 8px;
-  background: rgba(245, 222, 179, 0.08);
-  color: var(--color-ink, #ffffff);
-  margin-top: 4px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 0;
+    padding: 4px 6px;
+    border-radius: 8px;
+    background: rgba(245, 222, 179, 0.08);
+    color: var(--color-ink, #1a1a1a);
+    margin-top: 4px;
 }
 
 /* Water ripple overlay */
 .bpt-water-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  pointer-events: none;
-  z-index: 25;
-  opacity: 0;
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 25;
+    opacity: 0;
 }
 
 /* Finale text */
 .bpt-finale-text {
-  position: absolute;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 200;
-  width: 280px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+    width: 280px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .bpt-finale-text:hover {
-  transform: scale(1.04);
+    transform: scale(1.04);
 }
 
 .bpt-finale-text h2 {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-sticky-rice-gold, #f8d077);
-  text-shadow: 0 0 16px rgba(245, 222, 179, 0.2);
-  margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-sticky-rice-gold, #972023);
+    text-shadow: 0 0 16px rgba(245, 222, 179, 0.2);
+    margin-bottom: 6px;
 }
 
 .bpt-finale-text p {
-  font-size: 12px;
-  color: var(--color-ink, #ffffff);
-  opacity: 0.8;
-  line-height: 1.6;
+    font-size: 12px;
+    color: var(--color-ink, #1a1a1a);
+    opacity: 0.8;
+    line-height: 1.6;
 }
 
 /* ── Info panel — positioned beside clicked card ────────── */
 .bpt-ngu-hanh__info {
-  position: absolute;
-  min-height: 80px;
-  width: 280px;
-  max-height: 320px;
-  overflow-y: auto;
-  padding: 14px 16px;
-  background: var(--color-cream-white, #9C2020);
-  border: 1px solid var(--color-sticky-rice-gold, #f8d077);
-  border-radius: 12px;
-  text-align: left;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 150;
-  box-shadow: 0 8px 24px rgba(34, 26, 20, 0.12);
-  transition: opacity 280ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
-  transform: translateY(6px) scale(0.96);
+    position: absolute;
+    min-height: 80px;
+    width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 14px 16px;
+    background: var(--color-cream-white, #9c2020);
+    border: 1px solid var(--color-sticky-rice-gold, #972023);
+    border-radius: 12px;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 150;
+    box-shadow: 0 8px 24px rgba(34, 26, 20, 0.12);
+    transition:
+        opacity 280ms ease,
+        transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(6px) scale(0.96);
 }
 
 .bpt-ngu-hanh__info.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
 }
 
 .bpt-ngu-hanh__info-name {
-  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--hanh-color, var(--color-red-thread));
-  margin-bottom: 4px;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--hanh-color, var(--color-red-thread));
+    margin-bottom: 4px;
 }
 
 .bpt-ngu-hanh__info-badge {
-  font-family: 'Vollkorn', 'PT Serif', serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--color-ink, #ffffff);
-  opacity: 0.75;
-  margin-bottom: 6px;
+    font-family: "Vollkorn", "PT Serif", serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-ink, #1a1a1a);
+    opacity: 0.75;
+    margin-bottom: 6px;
 }
 
 .bpt-ngu-hanh__info-meaning {
-  font-family: 'Vollkorn', 'PT Serif', serif;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--color-ink, #ffffff);
-  background: rgba(245, 222, 179, 0.05);
-  border-radius: 6px;
-  padding: 6px 10px;
+    font-family: "Vollkorn", "PT Serif", serif;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-ink, #1a1a1a);
+    background: rgba(245, 222, 179, 0.05);
+    border-radius: 6px;
+    padding: 6px 10px;
 }
-
 
 /* ═══════════════════════════════════════════════════════════
    CURSOR HINT ANIMATION - Con trỏ chỉ vào bánh
    ═══════════════════════════════════════════════════════════ */
 
 .cursor-hint-wrapper {
-  position: absolute;
-  pointer-events: none;
-  z-index: 100;
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
 }
 
 @keyframes cursorMove {
-  0% { transform: translate(-50px, -80px) rotate(-15deg); opacity: 0; }
-  20% { opacity: 1; }
-  50% { transform: translate(0, 0) rotate(0deg); }
-  70% { transform: translate(0, 0) rotate(0deg) scale(0.9); }
-  80% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  100% { transform: translate(-50px, -80px) rotate(-15deg); opacity: 0; }
+    0% {
+        transform: translate(-50px, -80px) rotate(-15deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    70% {
+        transform: translate(0, 0) rotate(0deg) scale(0.9);
+    }
+    80% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    100% {
+        transform: translate(-50px, -80px) rotate(-15deg);
+        opacity: 0;
+    }
 }
 
 @keyframes cursorPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.85); }
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.85);
+    }
 }
 
 @keyframes rippleClick {
-  0% { transform: scale(0); opacity: 0.6; }
-  100% { transform: scale(3); opacity: 0; }
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
 }
 
 @keyframes hintGlow {
-  0%, 100% { text-shadow: 0 0 0 transparent; }
-  50% { text-shadow: 0 0 20px var(--color-sticky-rice-gold, #f8d077); }
+    0%,
+    100% {
+        text-shadow: 0 0 0 transparent;
+    }
+    50% {
+        text-shadow: 0 0 20px var(--color-sticky-rice-gold, #972023);
+    }
 }
 
 .cursor-hint {
-  width: 32px;
-  height: 32px;
-  position: relative;
-  animation: cursorMove 3s ease-in-out infinite;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    animation: cursorMove 3s ease-in-out infinite;
 }
 
 .cursor-hint svg {
-  width: 100%;
-  height: 100%;
-  fill: var(--color-sticky-rice-gold, #f8d077);
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    width: 100%;
+    height: 100%;
+    fill: var(--color-sticky-rice-gold, #972023);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .cursor-ripple {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-  margin-top: -10px;
-  border: 2px solid var(--color-sticky-rice-gold, #f8d077);
-  border-radius: 50%;
-  opacity: 0;
-  animation: rippleClick 1s ease-out infinite;
-  animation-delay: 0.5s;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid var(--color-sticky-rice-gold, #972023);
+    border-radius: 50%;
+    opacity: 0;
+    animation: rippleClick 1s ease-out infinite;
+    animation-delay: 0.5s;
 }
 
 .bpt-ngu-hanh__hint {
-  animation: hintGlow 2s ease-in-out infinite;
+    animation: hintGlow 2s ease-in-out infinite;
 }
 
 /* Hide cursor hint after interaction */
 .bpt-ngu-hanh__orbit.clicked .cursor-hint-wrapper {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 /* CURSOR HINT */
-.cursor-hint-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 100; animation: cursorFloat 2s ease-in-out infinite; }
-@keyframes cursorFloat { 0%, 100% { transform: translate(-50%, -50%) translateX(0); } 50% { transform: translate(-50%, -50%) translateX(-8px); } }
-.cursor-icon { width: 40px; height: 40px; animation: cursorPoint 1.5s ease-in-out infinite; }
-.cursor-icon svg { width: 100%; height: 100%; fill: var(--color-sticky-rice-gold, #f8d077); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-@keyframes cursorPoint { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 5px); } }
-.cursor-ripple-ring { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border: 2px solid var(--color-sticky-rice-gold, #f8d077); border-radius: 50%; opacity: 0; animation: rippleRing 1.2s ease-out infinite; }
-.cursor-ripple-ring:nth-child(2) { animation-delay: 0.4s; }
-@keyframes rippleRing { 0% { transform: scale(0); opacity: 0.6; } 100% { transform: scale(2); opacity: 0; } }
-.cursor-tooltip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translate(-50%, -50%); background: var(--color-sticky-rice-gold, #f8d077); color: white; padding: 6px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; white-space: nowrap; opacity: 0; animation: tooltipFade 0.3s ease 1s forwards; }
-.cursor-tooltip::after { content: ""; position: absolute; left: 100%; top: 50%; transform: translate(-50%, -50%); border: 5px solid transparent; border-left-color: var(--color-sticky-rice-gold, #f8d077); }
-@keyframes tooltipFade { to { opacity: 1; } }
-.bpt-ngu-hanh__orbit.clicked .cursor-hint-container { opacity: 0; transition: opacity 0.3s ease; }
-@media (max-width: 768px) { .cursor-hint-container { left: 50%; top: 50%; } .cursor-icon { width: 32px; height: 32px; } .cursor-tooltip { display: none; } }
+.cursor-hint-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+    animation: cursorFloat 2s ease-in-out infinite;
+}
+@keyframes cursorFloat {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateX(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateX(-8px);
+    }
+}
+.cursor-icon {
+    width: 40px;
+    height: 40px;
+    animation: cursorPoint 1.5s ease-in-out infinite;
+}
+.cursor-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-sticky-rice-gold, #972023);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+@keyframes cursorPoint {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-10px, 5px);
+    }
+}
+.cursor-ripple-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border: 2px solid var(--color-sticky-rice-gold, #972023);
+    border-radius: 50%;
+    opacity: 0;
+    animation: rippleRing 1.2s ease-out infinite;
+}
+.cursor-ripple-ring:nth-child(2) {
+    animation-delay: 0.4s;
+}
+@keyframes rippleRing {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+.cursor-tooltip {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-sticky-rice-gold, #972023);
+    color: #1a1a1a;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    animation: tooltipFade 0.3s ease 1s forwards;
+}
+.cursor-tooltip::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid transparent;
+    border-left-color: var(--color-sticky-rice-gold, #972023);
+}
+@keyframes tooltipFade {
+    to {
+        opacity: 1;
+    }
+}
+.bpt-ngu-hanh__orbit.clicked .cursor-hint-container {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+@media (max-width: 768px) {
+    .cursor-hint-container {
+        left: 50%;
+        top: 50%;
+    }
+    .cursor-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .cursor-tooltip {
+        display: none;
+    }
+}
 
 /* MOBILE RESPONSIVE - Cards centered */
 @media (max-width: 768px) {
-  .bpt-ngu-hanh__orbit { min-height: 500px; padding: 20px; }
-  .bpt-hanh-card { width: 100px; max-width: 28vw; }
-  .bpt-hanh-card .hc-img { width: 60px; height: 60px; }
-  .bpt-hanh-card .hc-name { font-size: 12px; }
-  .bpt-hanh-card .hc-badge { font-size: 10px; }
+    .bpt-ngu-hanh__orbit {
+        min-height: 500px;
+        padding: 20px;
+    }
+    .bpt-hanh-card {
+        width: 100px;
+        max-width: 28vw;
+    }
+    .bpt-hanh-card .hc-img {
+        width: 60px;
+        height: 60px;
+    }
+    .bpt-hanh-card .hc-name {
+        font-size: 12px;
+    }
+    .bpt-hanh-card .hc-badge {
+        font-size: 10px;
+    }
 }

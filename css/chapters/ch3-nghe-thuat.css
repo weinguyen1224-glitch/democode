@@ -6,15 +6,14 @@
 
 /* ── Design tokens (ch3 scope) ─────────────────────────────── */
 .bpt-ch3 {
-    --c-bg: #1a1209;
-    --c-surface: #231810;
-    --c-gold: #f8d077;
-    --c-gold-dim: rgba(248, 208, 119, 0.55);
-    --c-gold-glow: rgba(248, 208, 119, 0.12);
-    --c-red: #972023;
-    --c-text: rgba(255, 255, 255, 0.88);
-    --c-text-dim: rgba(255, 255, 255, 0.52);
-    --c-border: rgba(248, 208, 119, 0.14);
+    --c-bg: #f7e8cb;
+    --c-surface: #f0ddb8;
+    --c-accent: #972023;
+    --c-accent-dim: rgba(151, 32, 35, 0.55);
+    --c-accent-glow: rgba(151, 32, 35, 0.12);
+    --c-text: #1a1a1a;
+    --c-text-dim: rgba(26, 26, 26, 0.6);
+    --c-border: rgba(151, 32, 35, 0.14);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     background: var(--c-bg);
@@ -435,7 +434,7 @@
     font-size: clamp(0.7rem, 1.2vw, 1rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     margin-bottom: 20px;
 }
 
@@ -444,7 +443,12 @@
     display: block;
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--c-accent),
+        transparent
+    );
     margin: 0 auto 28px;
     transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
@@ -459,14 +463,14 @@
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.1;
-    color: #fff;
+    color: #1a1a1a;
     letter-spacing: -0.01em;
     margin: 0 0 16px;
 }
 
 .ch3-divider__title em {
     font-style: normal;
-    color: var(--c-gold);
+    color: var(--c-accent);
 }
 
 /* Sub-kicker below title */
@@ -509,15 +513,15 @@
     display: block;
     width: 1px;
     height: 36px;
-    background: linear-gradient(to bottom, transparent, var(--c-gold-dim));
+    background: linear-gradient(to bottom, transparent, var(--c-accent-dim));
 }
 
 .ch3-divider__scroll-cue i {
     display: block;
     width: 8px;
     height: 8px;
-    border-right: 1px solid var(--c-gold-dim);
-    border-bottom: 1px solid var(--c-gold-dim);
+    border-right: 1px solid var(--c-accent-dim);
+    border-bottom: 1px solid var(--c-accent-dim);
     transform: rotate(45deg);
     font-style: normal;
 }
@@ -575,7 +579,7 @@
 /* Keep <em> gold inside rainbow — override fill on em */
 .ch3-rainbow-text em {
     font-style: normal;
-    -webkit-text-fill-color: var(--c-gold);
+    -webkit-text-fill-color: var(--c-accent);
 }
 
 /* ── Shimmer ::before (sweep of light across text) ──────────── */
@@ -661,7 +665,7 @@
 .ch3-intro__body {
     font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     line-height: 1.85;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(26, 26, 26, 0.75);
     margin: 0;
     max-width: 640px;
     margin-left: auto;
@@ -755,7 +759,7 @@
     font-size: clamp(0.65rem, 1vw, 0.78rem);
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     margin: 0 0 16px;
 }
 
@@ -763,14 +767,14 @@
     font-family: "DNS Gibsons One", Georgia, serif;
     font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     font-weight: 700;
-    color: #fff;
+    color: #1a1a1a;
     line-height: 1.2;
     margin: 0 0 20px;
 }
 
 .ch3-split__heading em {
     font-style: normal;
-    color: var(--c-gold);
+    color: var(--c-accent);
 }
 
 .ch3-split__rule {
@@ -796,7 +800,7 @@
 }
 
 .ch3-split__body strong {
-    color: #fff;
+    color: #1a1a1a;
     font-weight: 600;
 }
 
@@ -808,7 +812,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
 }
 
 .ch3-split__tag::before {
@@ -816,7 +820,7 @@
     display: inline-block;
     width: 20px;
     height: 1px;
-    background: var(--c-gold-dim);
+    background: var(--c-accent-dim);
 }
 
 /* Mobile: stack split panels */
@@ -850,7 +854,7 @@
     min-height: 60svh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: clamp(60px, 10vh, 120px) clamp(24px, 8vw, 120px);
     background: url("../../assets/chuong-3/tho-lam-banh.webp") center / cover
         no-repeat;
@@ -876,7 +880,11 @@
     position: relative;
     z-index: 1;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0;
+    padding: clamp(32px, 5vw, 56px);
+    background: rgba(247, 232, 203, 0.45);
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Big decorative mark */
@@ -885,7 +893,7 @@
     font-family: "MJ Milestone", Georgia, serif;
     font-size: clamp(5rem, 10vw, 8rem);
     line-height: 0.7;
-    color: var(--c-gold);
+    color: var(--c-accent);
     opacity: 0;
     transform: translateY(20px) scale(0.6);
     transition:
@@ -907,7 +915,7 @@
     font-family: "MJ Milestone", "Dancing Script", Georgia, serif;
     font-size: clamp(1.35rem, 2.6vw, 2rem);
     line-height: 1.65;
-    color: #fff;
+    color: #1a1a1a;
     font-style: italic;
     margin: 0 0 32px;
     font-weight: normal;
@@ -924,7 +932,7 @@
 .ch3-quote__rule {
     width: 32px;
     height: 1px;
-    background: var(--c-gold-dim);
+    background: var(--c-accent-dim);
     margin: 0 auto 12px;
 }
 
@@ -932,7 +940,7 @@
     font-family: "DNS Gibsons One", serif;
     font-size: 0.9rem;
     letter-spacing: 0.12em;
-    color: var(--c-gold);
+    color: var(--c-accent);
     font-style: normal;
 }
 
@@ -959,7 +967,7 @@
     font-size: clamp(0.7rem, 1.1vw, 0.82rem);
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     margin: 0 0 60px;
 }
 
@@ -1002,8 +1010,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--c-gold);
-    box-shadow: 0 0 0 4px rgba(248, 208, 119, 0.15);
+    background: var(--c-accent);
+    box-shadow: 0 0 0 4px rgba(151, 32, 35, 0.15);
     justify-self: center;
     opacity: 0;
     transform: scale(0);
@@ -1068,7 +1076,7 @@
     font-family: "DNS Gibsons One", Georgia, serif;
     font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: 700;
-    color: var(--c-gold);
+    color: var(--c-accent);
     margin: 0 0 10px;
 }
 
@@ -1192,7 +1200,7 @@
     align-items: center;
     justify-content: center;
     padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
-    background: linear-gradient(180deg, var(--c-bg) 0%, #0d0a07 100%);
+    background: var(--c-bg);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1205,7 +1213,7 @@
     inset: 20% 25%;
     background: radial-gradient(
         ellipse,
-        rgba(248, 208, 119, 0.08) 0%,
+        rgba(151, 32, 35, 0.08) 0%,
         transparent 70%
     );
     pointer-events: none;
@@ -1230,7 +1238,7 @@
     font-size: clamp(0.7rem, 1.1vw, 0.82rem);
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     margin: 0 0 32px;
 }
 
@@ -1242,7 +1250,7 @@
     margin: 0 auto 36px;
     border: 1px solid var(--c-border);
     box-shadow:
-        0 0 0 8px rgba(248, 208, 119, 0.05),
+        0 0 0 8px rgba(151, 32, 35, 0.05),
         0 0 60px rgba(0, 0, 0, 0.5);
     /* Zoom-in reveal */
     opacity: 0;
@@ -1274,14 +1282,14 @@
     font-family: "DNS Gibsons One", Georgia, serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     font-weight: 700;
-    color: #fff;
+    color: #1a1a1a;
     line-height: 1.2;
     margin: 0 0 16px;
 }
 
 .ch3-thanh-pham__heading em {
     font-style: normal;
-    color: var(--c-gold);
+    color: var(--c-accent);
 }
 
 .ch3-thanh-pham__body {
@@ -1366,8 +1374,12 @@
 }
 
 @keyframes ch3GrainDrift {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(2px, -2px); }
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(2px, -2px);
+    }
 }
 
 /* ── Subtle scanlines ────────────────────────────────────────── */
@@ -1397,7 +1409,7 @@
     z-index: 10;
     width: clamp(24px, 4vw, 48px);
     height: clamp(24px, 4vw, 48px);
-    border-color: rgba(248, 208, 119, 0.4);
+    border-color: rgba(151, 32, 35, 0.4);
     border-style: solid;
     border-width: 0;
     opacity: 0;
@@ -1475,7 +1487,7 @@
     font-size: clamp(0.6rem, 1vw, 0.75rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     white-space: nowrap;
 }
 
@@ -1483,7 +1495,7 @@
     display: block;
     width: 0;
     height: 1px;
-    background: var(--c-gold-dim);
+    background: var(--c-accent-dim);
     transition: width 0.8s var(--ease) 0.7s;
 }
 
@@ -1514,7 +1526,7 @@
     font-family: "DNS Gibsons One", Georgia, serif;
     font-size: clamp(2rem, 6vw, 5rem);
     font-weight: 700;
-    color: #fff;
+    color: #1a1a1a;
     line-height: 1.1;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
     opacity: 0;
@@ -1551,8 +1563,13 @@
 
 /* Continuous gentle float after reveal */
 @keyframes ch3TitleFloat {
-    0%, 100% { transform: scale(1) translateY(0); }
-    50%      { transform: scale(1) translateY(-4px); }
+    0%,
+    100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1) translateY(-4px);
+    }
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word--1 {
@@ -1573,7 +1590,12 @@
     width: 0;
     height: 2px;
     margin: 0 auto 14px;
-    background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--c-accent),
+        transparent
+    );
     transition: width 0.8s var(--ease) 0.9s;
 }
 
@@ -1586,7 +1608,7 @@
     font-family: "MJ Milestone", Georgia, serif;
     font-size: clamp(0.85rem, 1.8vw, 1.25rem);
     font-style: italic;
-    color: var(--c-gold-dim);
+    color: var(--c-accent-dim);
     margin: 0;
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
     opacity: 0;
@@ -1614,7 +1636,7 @@
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background: rgba(248, 208, 119, 0.35);
+    background: rgba(151, 32, 35, 0.35);
     opacity: 0;
 }
 
@@ -1623,58 +1645,87 @@
 }
 
 @keyframes ch3ParticleDrift {
-    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-    15%  { opacity: 0.7; }
-    50%  { opacity: 0.4; transform: translateY(-40px) scale(1); }
-    85%  { opacity: 0.6; }
-    100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    15% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.4;
+        transform: translateY(-40px) scale(1);
+    }
+    85% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.5);
+    }
 }
 
 .ch3-vid__particle--1 {
-    left: 12%; top: 70%;
-    width: 2px; height: 2px;
+    left: 12%;
+    top: 70%;
+    width: 2px;
+    height: 2px;
     animation-delay: 0s !important;
     animation-duration: 7s !important;
 }
 .ch3-vid__particle--2 {
-    left: 28%; top: 80%;
-    width: 3px; height: 3px;
+    left: 28%;
+    top: 80%;
+    width: 3px;
+    height: 3px;
     animation-delay: 1.2s !important;
     animation-duration: 9s !important;
 }
 .ch3-vid__particle--3 {
-    left: 45%; top: 75%;
-    width: 2px; height: 2px;
+    left: 45%;
+    top: 75%;
+    width: 2px;
+    height: 2px;
     animation-delay: 0.6s !important;
     animation-duration: 6s !important;
 }
 .ch3-vid__particle--4 {
-    left: 62%; top: 85%;
-    width: 4px; height: 4px;
+    left: 62%;
+    top: 85%;
+    width: 4px;
+    height: 4px;
     animation-delay: 2s !important;
     animation-duration: 10s !important;
 }
 .ch3-vid__particle--5 {
-    left: 78%; top: 72%;
-    width: 2px; height: 2px;
+    left: 78%;
+    top: 72%;
+    width: 2px;
+    height: 2px;
     animation-delay: 1.5s !important;
     animation-duration: 8s !important;
 }
 .ch3-vid__particle--6 {
-    left: 88%; top: 78%;
-    width: 3px; height: 3px;
+    left: 88%;
+    top: 78%;
+    width: 3px;
+    height: 3px;
     animation-delay: 0.8s !important;
     animation-duration: 7.5s !important;
 }
 .ch3-vid__particle--7 {
-    left: 35%; top: 90%;
-    width: 2px; height: 2px;
+    left: 35%;
+    top: 90%;
+    width: 2px;
+    height: 2px;
     animation-delay: 2.5s !important;
     animation-duration: 9.5s !important;
 }
 .ch3-vid__particle--8 {
-    left: 55%; top: 82%;
-    width: 3px; height: 3px;
+    left: 55%;
+    top: 82%;
+    width: 3px;
+    height: 3px;
     animation-delay: 3s !important;
     animation-duration: 8.5s !important;
 }
@@ -1692,7 +1743,7 @@
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(248, 208, 119, 0.12);
+    border: 1px solid rgba(151, 32, 35, 0.12);
     border-radius: 8px;
     opacity: 0;
     transform: translateY(20px) scale(0.92);
@@ -1714,8 +1765,8 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(248, 208, 119, 0.15);
-    color: var(--c-gold);
+    background: rgba(151, 32, 35, 0.15);
+    color: var(--c-accent);
 }
 
 .ch3-vid__caption-icon svg {
@@ -1733,7 +1784,7 @@
     font-family: "DNS Gibsons One", serif;
     font-size: clamp(0.7rem, 1.1vw, 0.85rem);
     letter-spacing: 0.1em;
-    color: #fff;
+    color: #1a1a1a;
 }
 
 .ch3-vid__caption-hint {
@@ -1758,27 +1809,34 @@
 }
 
 @keyframes ch3VidCueFade {
-    to { opacity: 0.6; }
+    to {
+        opacity: 0.6;
+    }
 }
 
 .ch3-vid__scroll-line {
     width: 1px;
     height: 28px;
-    background: linear-gradient(to bottom, transparent, var(--c-gold-dim));
+    background: linear-gradient(to bottom, transparent, var(--c-accent-dim));
 }
 
 .ch3-vid__scroll-arrow {
     width: 7px;
     height: 7px;
-    border-right: 1px solid var(--c-gold-dim);
-    border-bottom: 1px solid var(--c-gold-dim);
+    border-right: 1px solid var(--c-accent-dim);
+    border-bottom: 1px solid var(--c-accent-dim);
     transform: rotate(45deg);
     animation: ch3VidCueBounce 1.8s ease-in-out infinite;
 }
 
 @keyframes ch3VidCueBounce {
-    0%, 100% { transform: rotate(45deg) translateY(0); }
-    50%      { transform: rotate(45deg) translateY(4px); }
+    0%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+    }
+    50% {
+        transform: rotate(45deg) translateY(4px);
+    }
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -3,351 +3,358 @@
    ══════════════════════════════════════════════════════════════ */
 
 :root {
-  --c5-bg: #972023;
-  --c5-text: rgba(255, 255, 255, 0.92);
-  --c5-text-dim: rgba(255, 255, 255, 0.55);
-  --c5-gold: #f8d077;
-  --c5-gold-dim: rgba(248, 208, 119, 0.55);
-  --c5-border: rgba(248, 208, 119, 0.12);
-  --c5-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --c5-bg: #f7e8cb;
+    --c5-text: #1a1a1a;
+    --c5-text-dim: rgba(26, 26, 26, 0.6);
+    --c5-accent: #972023;
+    --c5-accent-dim: rgba(151, 32, 35, 0.6);
+    --c5-border: rgba(151, 32, 35, 0.12);
+    --c5-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Base wrapper ─────────────────────────────────────────── */
 .bpt-ch5 {
-  background: var(--c5-bg);
-  color: var(--c5-text);
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+    background: var(--c5-bg);
+    color: var(--c5-text);
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
 }
 
 /* ── Reveal animations ───────────────────────────────────── */
 .ch5-reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s var(--c5-ease), transform 0.7s var(--c5-ease);
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+        opacity 0.7s var(--c5-ease),
+        transform 0.7s var(--c5-ease);
 }
 
 .bpt-ch5 .ch5-visible .ch5-reveal {
-  opacity: 1;
-  transform: none;
+    opacity: 1;
+    transform: none;
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 1 — Title
    ══════════════════════════════════════════════════════════════ */
 .ch5-title {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
-  text-align: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+    text-align: center;
 }
 
 .ch5-title__inner {
-  max-width: 700px;
+    max-width: 700px;
 }
 
 .ch5-title__num {
-  display: block;
-  font-family: 'Outfit', 'Poppins', sans-serif;
-  font-size: clamp(4rem, 10vw, 8rem);
-  font-weight: 700;
-  color: var(--c5-gold);
-  opacity: 0.15;
-  line-height: 1;
-  margin-bottom: 16px;
+    display: block;
+    font-family: "Outfit", "Poppins", sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 700;
+    color: var(--c5-accent);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 16px;
 }
 
 .ch5-title__text {
-  margin: 0;
-  font-family: 'Outfit', 'Poppins', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-  color: var(--c5-text);
+    margin: 0;
+    font-family: "Outfit", "Poppins", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    color: var(--c5-text);
 }
 
 .ch5-title__line {
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--c5-gold);
-  margin: 24px auto 0;
-  border-radius: 1px;
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--c5-accent);
+    margin: 24px auto 0;
+    border-radius: 1px;
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 2 — Opening prose
    ══════════════════════════════════════════════════════════════ */
 .ch5-opening {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-opening__inner {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .ch5-opening p {
-  margin: 0 0 20px;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  line-height: 1.8;
-  color: var(--c5-text);
+    margin: 0 0 20px;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--c5-text);
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 3 — Poem quote
    ══════════════════════════════════════════════════════════════ */
 .ch5-poem {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-poem__inner {
-  max-width: 700px;
-  text-align: center;
+    max-width: 700px;
+    text-align: center;
 }
 
 .ch5-poem__quote {
-  margin: 0;
-  padding: 0;
-  border: none;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
 }
 
 .ch5-poem__quote::before {
-  content: '\201C';
-  position: absolute;
-  top: -0.5em;
-  left: -0.2em;
-  font-size: 5rem;
-  font-family: 'Vollkorn', serif;
-  color: var(--c5-gold);
-  opacity: 0.25;
-  line-height: 1;
+    content: "\201C";
+    position: absolute;
+    top: -0.5em;
+    left: -0.2em;
+    font-size: 5rem;
+    font-family: "Vollkorn", serif;
+    color: var(--c5-accent);
+    opacity: 0.25;
+    line-height: 1;
 }
 
 .ch5-poem__quote p {
-  margin: 0 0 8px;
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-  font-style: italic;
-  line-height: 1.9;
-  color: var(--c5-text);
+    margin: 0 0 8px;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-style: italic;
+    line-height: 1.9;
+    color: var(--c5-text);
 }
 
 .ch5-poem__attr {
-  margin-top: 24px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--c5-gold-dim);
+    margin-top: 24px;
+    font-family: "Outfit", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--c5-accent-dim);
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 4 — Prose: cultural layers
    ══════════════════════════════════════════════════════════════ */
 .ch5-prose {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-prose__inner {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .ch5-prose p {
-  margin: 0 0 20px;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  line-height: 1.8;
-  color: var(--c5-text);
+    margin: 0 0 20px;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--c5-text);
 }
 
 .ch5-prose em {
-  color: var(--c5-gold);
-  font-style: italic;
+    color: var(--c5-accent);
+    font-style: italic;
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 5 — Artisan quote
    ══════════════════════════════════════════════════════════════ */
 .ch5-artisan-quote {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-artisan-quote__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 80px);
-  align-items: center;
-  max-width: 1100px;
-  width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
 }
 
 .ch5-artisan-quote__img {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .ch5-artisan-quote__img img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  object-fit: cover;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
 }
 
 .ch5-artisan-quote__img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, transparent 60%, var(--c5-bg));
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--c5-bg));
+    pointer-events: none;
 }
 
 .ch5-artisan-quote__text {
-  padding: clamp(16px, 3vw, 40px) 0;
+    padding: clamp(16px, 3vw, 40px) 0;
 }
 
 .ch5-artisan-quote__blockquote {
-  margin: 0;
-  padding: 0;
-  border: none;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
 }
 
 .ch5-artisan-quote__blockquote::before {
-  content: '\201C';
-  position: absolute;
-  top: -0.4em;
-  left: -0.15em;
-  font-size: 4rem;
-  font-family: 'Vollkorn', serif;
-  color: var(--c5-gold);
-  opacity: 0.2;
-  line-height: 1;
+    content: "\201C";
+    position: absolute;
+    top: -0.4em;
+    left: -0.15em;
+    font-size: 4rem;
+    font-family: "Vollkorn", serif;
+    color: var(--c5-accent);
+    opacity: 0.2;
+    line-height: 1;
 }
 
 .ch5-artisan-quote__blockquote p {
-  margin: 0 0 14px;
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  font-style: italic;
-  line-height: 1.8;
-  color: var(--c5-text);
+    margin: 0 0 14px;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--c5-text);
 }
 
 .ch5-artisan-quote__attr {
-  margin-top: 16px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--c5-gold-dim);
+    margin-top: 16px;
+    font-family: "Outfit", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--c5-accent-dim);
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 6 — Closing prose
    ══════════════════════════════════════════════════════════════ */
 .ch5-closing {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-closing__inner {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .ch5-closing p {
-  margin: 0 0 20px;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  line-height: 1.8;
-  color: var(--c5-text);
+    margin: 0 0 20px;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--c5-text);
 }
 
 .ch5-closing__line {
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--c5-gold), transparent);
-  margin: 40px auto;
-  border-radius: 1px;
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--c5-accent),
+        transparent
+    );
+    margin: 40px auto;
+    border-radius: 1px;
 }
 
 /* ══════════════════════════════════════════════════════════════
    SECTION 7 — Final folk poem
    ══════════════════════════════════════════════════════════════ */
 .ch5-final-poem {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
-  text-align: center;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    text-align: center;
 }
 
 .ch5-final-poem__inner {
-  max-width: 600px;
+    max-width: 600px;
 }
 
 .ch5-final-poem blockquote {
-  margin: 0;
-  padding: 0;
-  border: none;
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 .ch5-final-poem p {
-  margin: 0 0 8px;
-  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-  font-style: italic;
-  line-height: 1.9;
-  color: var(--c5-text);
+    margin: 0 0 8px;
+    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-style: italic;
+    line-height: 1.9;
+    color: var(--c5-text);
 }
 
 .ch5-final-poem__attr {
-  margin-top: 24px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--c5-gold-dim);
+    margin-top: 24px;
+    font-family: "Outfit", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--c5-accent-dim);
 }
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .ch5-artisan-quote__inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+    .ch5-artisan-quote__inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
 
-  .ch5-artisan-quote__img::after {
-    background: linear-gradient(to bottom, transparent 60%, var(--c5-bg));
-  }
+    .ch5-artisan-quote__img::after {
+        background: linear-gradient(to bottom, transparent 60%, var(--c5-bg));
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ch5-reveal {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
+    .ch5-reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
 }
