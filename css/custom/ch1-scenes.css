@@ -312,12 +312,12 @@
     pointer-events: auto;
     max-width: min(520px, 80vw);
     padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
-    /* Nền tối mờ để text nổi lên ảnh */
-    background: rgb(20 15 10 / 0.72);
+    /* Nền sáng để text đen nổi lên ảnh */
+    background: rgb(255 250 235 / 0.92);
     /* backdrop-filter: blur(8px); */
     /* -webkit-backdrop-filter: blur(8px); */
     border-radius: 12px;
-    border: 1px solid rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(200 170 100 / 0.35);
     margin: clamp(24px, 4vw, 64px);
 }
 
@@ -341,7 +341,7 @@
 
 /* Typography override trong context tối */
 .bpt-sm-text .bpt-kicker {
-    color: rgb(255 215 140);
+    color: rgb(120 70 20); /* nâu đỏ ấm, nổi trên nền kem */
     font-size: clamp(1.4rem, 2.2vw, 1.76rem);
     letter-spacing: 0.2em;
     margin-bottom: 14px;
@@ -352,15 +352,15 @@
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(1.05rem, 1.7vw, 1.45rem);
     line-height: 1.82;
-    color: rgb(255 252 245); /* trắng sáng, nổi trên nền tối */
+    color: rgb(30 20 10); /* đen ấm, nổi trên nền kem sáng */
     margin: 0 0 1.2em;
 }
 
 /* Ca-dao/blockquote trong scrollmation — Override màu tối thành sáng */
 .bpt-sm-text blockquote,
 .bpt-sm-text .bpt-ca-dao {
-    color: rgb(255 220 180);
-    background: rgb(255 255 255 / 0.06);
+    color: rgb(120 70 20);
+    background: rgb(180 130 60 / 0.1);
 }
 
 .bpt-sm-text p:last-child {
@@ -432,7 +432,7 @@
         padding: clamp(20px, 5vw, 32px);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgb(34 26 20 / 0.72);
+        background: rgb(255 250 235 / 0.93);
     }
 
     .bpt-sm-text--left,
@@ -542,11 +542,11 @@
     z-index: 2;
     max-width: min(640px, 88vw);
     margin: auto;
-    background: rgb(34 26 20 / 0.35);
+    background: rgb(255 250 235 / 0.92);
     /* backdrop-filter: blur(14px); */
     /* -webkit-backdrop-filter: blur(14px); */
     border-radius: 16px;
-    border: 1px solid rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(200 170 100 / 0.35);
     padding: clamp(28px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
     text-align: center;
     will-change: transform, opacity;
@@ -570,7 +570,7 @@
         border-radius: 12px;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgb(34 26 20 / 0.78);
+        background: rgb(255 250 235 / 0.93);
     }
 }
 

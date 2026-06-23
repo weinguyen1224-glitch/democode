@@ -378,7 +378,7 @@
     background: linear-gradient(
         90deg,
         transparent,
-        var(--color-sticky-rice-gold, #972023),
+        #f5c842,
         transparent
     );
     transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
@@ -427,7 +427,7 @@
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(1.3rem, 2.5vw, 2.2rem);
     line-height: 1.9;
-    color: #1a1a1a;
+    color: rgb(255 248 220); /* chữ kem sáng trên nền tối ảnh */
     max-width: 800px;
     margin: 0;
     opacity: 0;
@@ -596,7 +596,7 @@
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(1.1rem, 1.8vw, 1.5rem);
     line-height: 2;
-    color: #1a1a1a;
+    color: rgb(255 248 220); /* chữ kem sáng */
     max-width: 960px;
     margin: 0 0 1.6em;
     opacity: 0;
@@ -607,7 +607,7 @@
 }
 
 .bpt-nghe-nhan__reflect--dim {
-    color: rgba(26, 26, 26, 0.6);
+    color: rgba(255, 240, 200, 0.7); /* kem mờ, italic */
     font-style: italic;
     font-size: clamp(0.95rem, 1.5vw, 1.25rem);
 }
@@ -630,8 +630,8 @@
 .bpt-nghe-nhan__em {
     font-style: italic;
     font-weight: 600;
-    color: var(--color-sticky-rice-gold, #972023);
-    text-shadow: 0 0 20px rgba(245, 222, 179, 0.35);
+    color: #f5c842; /* vàng sáng nổi bật */
+    text-shadow: 0 0 20px rgba(245, 200, 66, 0.5);
     position: relative;
 }
 
@@ -645,7 +645,7 @@
     background: linear-gradient(
         90deg,
         transparent,
-        var(--color-sticky-rice-gold, #972023),
+        #f5c842,
         transparent
     );
     opacity: 0.5;
