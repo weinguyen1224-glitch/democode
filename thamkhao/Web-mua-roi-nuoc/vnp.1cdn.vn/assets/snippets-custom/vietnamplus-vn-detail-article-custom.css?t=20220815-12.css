@@ -1,0 +1,114 @@
+.entry + div {
+    padding-top: 30px;
+    position: relative;
+    background: #fff;
+}
+
+.entry .sc-longform-header-cate {
+    display: none;
+}
+
+.c-news-readmore {
+    position: relative;
+    background: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 32px;
+}
+
+.c-powered {
+    position: relative;
+}
+
+@media (max-width: 769px) {
+    .bg-detail {
+        padding-top: 0;
+    }
+
+    .c-header-sticky {
+        display: block;
+        height: 46px;
+    }
+
+        .c-header-sticky .c-sticky-title, .c-header-sticky .c-sticky-cat {
+            display: none
+        }
+
+        .c-header-sticky .c-logo {
+            width: 30%;
+            height: 46px;
+            line-height: 46px;
+        }
+}
+
+.bg-detail{
+    background:#fff;
+}
+
+.c-box__title__name:hover {
+    color: #b21f24
+}
+
+.c-header-sticky {
+    z-index: 9;
+    top: 0;
+    /*background: rgb(255,255,255,0.5);*/
+}
+
+    .c-header-sticky:not(.sc-hide-on-scrolldown-hide) {
+        opacity: 1;
+    }
+
+.sc-longform-header-cate, .sc-longform-header-meta .sc-longform-header-date, .sc-longform-header-meta .sc-text {
+    display: none !important;
+}
+
+.sc-longform-header-meta{
+    padding-top: 10px;
+}
+.entry .sc-longform-header-sapo{
+    margin-top:0;
+}
+
+.entry .sc-longform-header-title {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .c-news-readmore .c-box__content ul li {
+        max-height: 30.625rem;
+        min-height: 0;
+    }
+}
+
+.c-news-readmore .c-box__content ul li .b-grid__main {
+    margin-bottom: 5px;
+}
+
+
+.sc-longform-header + .sc-story-contents .sc-story-texts,
+.sc-longform-header + .sc-story-bgscrollmation .sc-story-contents .sc-story-texts{
+	padding-top: 10vh;
+}
+@media(max-width: 1199px){
+	.sc-longform-header + .sc-story-contents .sc-story-texts,
+	.sc-longform-header + .sc-story-bgscrollmation .sc-story-contents .sc-story-texts{
+		padding-top: 0;
+	}
+}
+
+
+.entry .sc-story-bgscrollmation .sc-longform-header + .sc-story-contents  .sc-story-text,
+.entry .sc-longform-header + .sc-story-bgscrollmation .sc-story-contents  .sc-story-text{
+	margin-bottom: 10vh;
+}
+
+@media(max-width: 1199px){
+	.entry .sc-story-bgscrollmation .sc-longform-header + .sc-story-contents  .sc-story-text,
+	.entry .sc-longform-header + .sc-story-bgscrollmation .sc-story-contents  .sc-story-text{
+		margin-bottom: 0;
+	}
+}
+

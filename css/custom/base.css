@@ -53,10 +53,10 @@
   width: min(620px, 92vw);
   margin-inline: auto;
   padding: clamp(24px, 4vw, 48px);
-  color: #F5DEB3;
+  color: #ffffff;
   text-align: center;
-  background: rgb(139 26 26 / 0.85);
-  border: 1px solid rgb(245 222 179 / 0.3);
+  background: rgb(151 32 35 / 0.85);
+  border: 1px solid rgb(248 208 119 / 0.3);
   border-radius: 18px;
 /* backdrop-filter: blur(10px); */
 /* -webkit-backdrop-filter: blur(10px); */
@@ -93,13 +93,13 @@
   justify-content: center;
   margin-top: 30px;
   padding: 12px 20px;
-  color: #8B1A1A !important;
-  background: #F5DEB3 !important;
+  color: #972023 !important;
+  background: #f8d077 !important;
   border-radius: 999px;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
-  border: 1px solid rgb(139 26 26 / 0.3);
+  border: 1px solid rgb(151 32 35 / 0.3);
   box-shadow: 0 10px 28px rgb(0 0 0 / 0.35);
   transition:
     transform 180ms ease,
@@ -113,7 +113,7 @@
 }
 
 .intro-button:visited {
-  color: #8B1A1A !important;
+  color: #972023 !important;
 }
 
 @media (max-width: 700px) {
@@ -125,7 +125,7 @@
     border-radius: 14px;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    background: rgb(139 26 26 / 0.92);
+    background: rgb(151 32 35 / 0.92);
   }
 }
 
@@ -146,12 +146,12 @@
     linear-gradient(
       115deg,
       transparent 0 38%,
-      rgb(245 222 179 / 0.12) 48%,
+      rgb(248 208 119 / 0.12) 48%,
       transparent 58% 100%
     ),
     radial-gradient(
       circle at calc(var(--scene-ratio) * 100%) 50%,
-      rgb(245 222 179 / 0.08),
+      rgb(248 208 119 / 0.08),
       transparent 34%
     );
   mix-blend-mode: soft-light;
@@ -168,7 +168,7 @@
   width: 100%;
   height: 3px;
   pointer-events: none;
-  background: linear-gradient(90deg, #F5DEB3, rgb(245 222 179 / 0.42));
+  background: linear-gradient(90deg, #f8d077, rgb(248 208 119 / 0.42));
   transform: scaleX(0);
   transform-origin: left center;
   will-change: transform;
@@ -184,7 +184,7 @@
   aspect-ratio: 1;
   pointer-events: none;
   border-radius: 999px;
-  background: radial-gradient(circle, rgb(245 222 179 / 0.15), transparent 68%);
+  background: radial-gradient(circle, rgb(248 208 119 / 0.15), transparent 68%);
 /* filter: blur(28px); */
   mix-blend-mode: overlay;
   opacity: 0.72;
@@ -206,8 +206,8 @@
 .scene-progress {
   height: 6px;
   z-index: 2147483647;
-  background: linear-gradient(90deg, #F5DEB3, #E8D4B8, #F5DEB3);
-  box-shadow: 0 0 18px rgb(245 222 179 / 0.55);
+  background: linear-gradient(90deg, #f8d077, #f8d077, #f8d077);
+  box-shadow: 0 0 18px rgb(248 208 119 / 0.55);
 }
 
 .scene-wipe {
@@ -220,10 +220,10 @@
     linear-gradient(
       105deg,
       transparent 0 42%,
-      rgb(245 222 179 / 0.2) 49%,
+      rgb(248 208 119 / 0.2) 49%,
       transparent 57% 100%
     ),
-    radial-gradient(circle at 50% 50%, rgb(245 222 179 / 0.12), transparent 42%);
+    radial-gradient(circle at 50% 50%, rgb(248 208 119 / 0.12), transparent 42%);
   mix-blend-mode: screen;
   opacity: 0.14;
 /* filter: blur(0.2px); */
@@ -239,8 +239,8 @@
   width: min(46vw, 560px);
   background: radial-gradient(
     circle,
-    rgb(245 222 179 / 0.22),
-    rgb(245 222 179 / 0.08) 36%,
+    rgb(248 208 119 / 0.22),
+    rgb(248 208 119 / 0.08) 36%,
     transparent 72%
   );
 /* filter: blur(18px); */
@@ -257,38 +257,43 @@
 
 /* Red theme base colors */
 :root {
-  --color-primary: #8B1A1A;
-  --color-primary-light: #A52A2A;
-  --color-accent: #F5DEB3;
-  --color-accent-dark: #E8D4B8;
-  --color-text: #F5DEB3;
-  --color-text-dark: #F5DEB3;
+  --color-primary: #972023;
+  --color-primary-light: #972023;
+  --color-accent: #f8d077;
+  --color-accent-dark: #f8d077;
+  --color-text: #ffffff;
+  --color-text-dark: #ffffff;
 }
 
-/* Global override: light text on red backgrounds */
+/* Global override: white body text on red backgrounds */
 #article,
 #article section,
 .Theme-Section-Light,
 .Theme-Section-Dark {
-  color: #F5DEB3 !important;
+  color: #ffffff !important;
 }
 
-#article p,
+/* Headings get gold accent on red background */
 #article h1,
 #article h2,
 #article h3,
 #article h4,
 #article h5,
-#article h6,
+#article h6 {
+  color: #f8d077;
+}
+
+/* Body/content text stays white */
+#article p,
 #article span,
 #article li,
 #article td,
 #article th {
-  color: inherit;
+  color: #ffffff;
 }
 
 .Theme-Layer-TextBlock-Container {
-  color: #F5DEB3;
+  color: #ffffff;
 }
 
 /* Always-on visible transition layer: no JS dependency. */
@@ -317,7 +322,7 @@
   background: linear-gradient(
     108deg,
     transparent 0 44%,
-    rgb(245 222 179 / 0.25) 49%,
+    rgb(248 208 119 / 0.25) 49%,
     transparent 56% 100%
   );
   opacity: 0.34;
@@ -330,8 +335,8 @@
   top: 0;
   width: 100%;
   height: 5px;
-  background: linear-gradient(90deg, transparent, #F5DEB3, transparent);
-  box-shadow: 0 0 20px rgb(245 222 179 / 0.8);
+  background: linear-gradient(90deg, transparent, #f8d077, transparent);
+  box-shadow: 0 0 20px rgb(248 208 119 / 0.8);
   animation: v2-top-line 2.4s ease-in-out infinite alternate;
 }
 
@@ -343,8 +348,8 @@
   border-radius: 999px;
   background: radial-gradient(
     circle,
-    rgb(245 222 179 / 0.26),
-    rgb(245 222 179 / 0.08) 42%,
+    rgb(248 208 119 / 0.26),
+    rgb(248 208 119 / 0.08) 42%,
     transparent 72%
   );
 /* filter: blur(18px); */
@@ -360,7 +365,7 @@
   background: linear-gradient(
     180deg,
     transparent,
-    rgb(245 222 179 / 0.12),
+    rgb(248 208 119 / 0.12),
     transparent
   );
   transform: rotate(18deg);

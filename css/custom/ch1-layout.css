@@ -4,12 +4,12 @@
 
 /* --- Design tokens (UI-SPEC §3 + §17) --- */
 :root {
-  --color-rice-paper: #8B1A1A;
-  --color-sticky-rice-gold: #F5DEB3;
-  --color-betel-leaf-green: #F5DEB3;
-  --color-red-thread: #F5DEB3;
-  --color-ink: #F5DEB3;
-  --color-cream-white: #A52A2A;
+  --color-rice-paper: #972023;
+  --color-sticky-rice-gold: #f8d077;
+  --color-betel-leaf-green: #f8d077;
+  --color-red-thread: #f8d077;
+  --color-ink: #ffffff;
+  --color-cream-white: #972023;
   --space-section: clamp(24px, 6vw, 80px);
   --space-card: clamp(24px, 4vw, 48px);
   --prose-width: min(680px, 88vw);
@@ -72,7 +72,7 @@
 .bpt-chapter-divider--img {
   padding: 0;
   height: 100vh;
-  background-color: #8B1A1A;
+  background-color: #900000;
 }
 
 .bpt-chapter-divider__bg {
@@ -81,6 +81,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Frame wrapper — holds the image and provides matching background */
+.bpt-chapter-divider__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #900000;
 }
 
 .bpt-chapter-divider__bg img {
@@ -193,7 +204,7 @@
   width: min(100%, 720px);
   margin: 0 auto;
   border-radius: 24px;
-  border: 1px solid rgb(245 222 179 / 0.15);
+  border: 1px solid rgb(248 208 119 / 0.15);
   box-shadow: 0 24px 80px rgb(0 0 0 / 0.25);
   object-fit: cover;
 }
@@ -210,7 +221,7 @@
   line-height: 1.55;
   color: var(--color-sticky-rice-gold);
   border-left: 3px solid var(--color-sticky-rice-gold);
-  background: rgb(245 222 179 / 0.05);
+  background: rgb(248 208 119 / 0.05);
   border-radius: 0 6px 6px 0;
 }
 
@@ -258,7 +269,7 @@
   .bpt-chapter-divider--img {
     height: 100vh;
     height: 100dvh;
-    background-color: #8B1A1A;
+    background-color: #900000;
   }
   .bpt-prose {
     width: 100%;

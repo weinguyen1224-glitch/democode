@@ -1,0 +1,41 @@
+.preview-mode {
+            /*padding-top: 50px;*/
+        }
+
+            .preview-mode:before {
+                content: "Bạn đang xem phiên bản XEM THỬ của bài viết.";
+                position: fixed;
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.95);
+                /*box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);*/
+                display: block;
+                padding: 10px;
+                text-align: center;
+                color: #e30000;
+                font-size: 22px;
+                height: 50px;
+            }
+
+        @media(max-width:767px) {
+            .preview-mode:before {
+                content: "Phiên bản XEM THỬ";
+            }
+        }
+
+/* --- inline style --- */
+
+body:has(.c-header-sticky){
+          padding-top: 46px;
+        }
+        @media (min-width: 992px){
+          body:has(.c-header-sticky){
+            padding-top: 72px;
+          }
+        }
+
+/* --- inline style --- */
+
+.entry{}

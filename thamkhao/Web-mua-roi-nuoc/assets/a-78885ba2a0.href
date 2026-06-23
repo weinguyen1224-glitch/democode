@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="MobileOptimized" content="device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <link rel="shortcut icon" href="https://asset.1cdn.vn/vnpl/images/favicon.ico" />
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+        <meta name="robots" content="index,follow" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta property="fb:pages" content="" />
+        <link rel="canonical" href="https://mega.vietnamplus.vn/404" />
+                        <meta property="og:url" content="https://mega.vietnamplus.vn/404" />
+
+
+    
+    <meta property="og:site_name" content="Báo mega.vietnamplus.vn" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" itemprop="inLanguage" content="vi_VN" />
+    <meta property="fb:admins" content="" />
+    <meta property="fb:app_id" content="" />
+    <!--CSS-->
+        <link href="https://asset.1cdn.vn/vnpl/css/style.min.css?t=20220426-1" rel="stylesheet" />
+        <link href="https://asset.1cdn.vn/vnpl/css/custom.css?t=20221031-2" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NBPTMK0M44"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NBPTMK0M44');
+    </script>
+
+    <style type="text/css">
+        .preview-mode {
+            /*padding-top: 50px;*/
+        }
+
+            .preview-mode:before {
+                content: "Bạn đang xem phiên bản XEM THỬ của bài viết.";
+                position: fixed;
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.95);
+                /*box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);*/
+                display: block;
+                padding: 10px;
+                text-align: center;
+                color: #e30000;
+                font-size: 22px;
+                height: 50px;
+            }
+
+        @media(max-width:767px) {
+            .preview-mode:before {
+                content: "Phiên bản XEM THỬ";
+            }
+        }
+    </style>
+
+    
+</head>
+<body class="">
+    
+
+
+<div id="content">
+    <div class="khoi1100" style="margin:100px 0; text-align:center;color:#fff;" >
+        <p>
+            <h3>Không tìm thấy đường dẫn này</h3>
+        </p>
+        <p>
+            Bạn có thể quay về <a href="/">trang chủ</a> để tìm kiếm thông tin
+        </p>
+    </div>
+</div>
+
+
+    <div class="c-powered">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 text-sm-left text-center">
+                    © Bản quyền thuộc về <a target="_blank" href="https://www.vietnamplus.vn/"><span>VietnamPlus</span></a>,
+                    <span>TTXVN</span>.
+                </div>
+                <div class="col-sm-6 text-sm-right text-center">
+                    POWERED BY
+                    <a target="_blank" href="https://onecms.vn"><span>ONE</span>CMS</a> - A PRODUCT OF
+                    <span>NEKO</span>
+                </div>
+            </div>
+
+        </div>
+        <!-- container-->
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <script src="https://asset.1cdn.vn/vnpl/js/jquery-3.4.1.min.js"></script>
+    
+    <script src="https://asset.1cdn.vn/vnpl/js/custom.js?t=20220815-1"></script>
+    
+</body>
+</html>

@@ -266,7 +266,7 @@
   display: inline-block;
   opacity: 0;
   transform: translateY(-5px);
-  color: var(--color-sticky-rice-gold, #F5DEB3);
+  color: var(--color-sticky-rice-gold, #f8d077);
   transition: opacity 0.4s ease, transform 0.4s ease;
   transition-delay: var(--char-delay, 0s);
 }
@@ -289,7 +289,7 @@
   position: absolute;
   font-family: 'MJ Milestone', 'Pacifico', cursive;
   font-size: clamp(6rem, 16vw, 12rem);
-  color: var(--color-sticky-rice-gold, #F5DEB3);
+  color: var(--color-sticky-rice-gold, #f8d077);
   opacity: 0;
   line-height: 1;
   pointer-events: none;
@@ -309,7 +309,7 @@
   top: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-sticky-rice-gold, #F5DEB3), var(--color-rice-paper, #8B1A1A));
+  background: linear-gradient(180deg, var(--color-sticky-rice-gold, #f8d077), var(--color-rice-paper, #972023));
   border-radius: 2px;
   transform: scaleY(0);
   transform-origin: top;

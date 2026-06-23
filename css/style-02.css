@@ -66,14 +66,14 @@
   --Theme-BackgroundColorCustom-MrQM95-a: 1;
 }
 .Theme-Section-Light {
-  --Theme-ForegroundColor-default: #F5DEB3;
+  --Theme-ForegroundColor-default: #f8d077;
   --Theme-ForegroundColor-default-rgb: 245, 222, 179;
-  --Theme-BackgroundColor-default: #8B1A1A;
+  --Theme-BackgroundColor-default: #972023;
   --Theme-BackgroundColor-default-rgb: 139, 26, 26;
 }
 .Theme-Section-Dark {
   --Theme-BackgroundColor-default: #6B1515;
   --Theme-BackgroundColor-default-rgb: 107, 21, 21;
-  --Theme-ForegroundColor-default: #F5DEB3;
+  --Theme-ForegroundColor-default: #f8d077;
   --Theme-ForegroundColor-default-rgb: 245, 222, 179;
 }

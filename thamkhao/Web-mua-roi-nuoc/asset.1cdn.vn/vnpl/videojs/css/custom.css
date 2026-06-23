@@ -1,0 +1,335 @@
+﻿body {
+}
+
+.adv2 {
+    text-align: center;
+}
+
+.player_wrapper {
+    position: relative;
+    /*max-width: 813px;*/
+    width: 100%;
+    z-index: 10;
+}
+
+body.vjs-full-window .player_wrapper {
+    position: static;
+    z-index: 10;
+}
+
+.player_container {
+    padding-top: 56.25%;
+    z-index: 10;
+    position: relative;
+}
+
+#mainPlayer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#mainPlayer_ima-ad-container video {
+    position: relative !important;
+}
+
+#mainPlayer_ima-ad-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .adv1 {
+        display: none
+    }
+
+    .adv2 {
+        display: none
+    }
+
+    .khoi_video {
+        padding-bottom: 0;
+    }
+
+    .play_video.full:before {
+        padding-bottom: calc(100vh - 90px)
+    }
+
+    .play_video.full .player_wrapper {
+        height: 100%
+    }
+
+    #page_head {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .c-menu-smart ul li a {
+        padding-top: 7px;
+    }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .c-menu-outer {
+        display: none;
+    }
+}
+
+.video_info .detail {
+    max-height: inherit !important;
+    overflow: auto !important;
+}
+
+.video_list .topic {
+    height: auto;
+}
+/*video ontop*/
+@media only screen and (min-width: 992px) {
+    .play_video {
+        transition: .1s;
+        z-index: 4;
+    }
+
+    .aside .player_wrapper {
+        transition: .3s;
+    }
+
+    .aside {
+        position: fixed;
+        width: 26%;
+        height: 25%;
+        /*bottom: 60px;*/
+        top: 50px;
+        right: 0;
+        z-index: 9999;
+    }
+
+    .fas.fa-search {
+        margin-top: 7px;
+    }
+}
+
+.customOverlay {
+    display: none !important;
+}
+
+    .customOverlay.vjs-hidden {
+        display: block !important;
+        width: 100%;
+        left: 0;
+        border-radius: 0;
+        top: 0;
+        font-size: 16px;
+        background: linear-gradient(to top, rgba(100,50,20,0),rgb(64,62,62));
+        padding-top: 15px;
+    }
+
+@media only screen and (min-width: 650px) {
+    .aside .vjs-big-play-centered .vjs-big-play-button {
+        font-size: 2em !important;
+    }
+}
+
+@media only screen and (max-width: 649px) {
+    .vjs-big-play-centered .vjs-big-play-button {
+        font-size: 3em !important;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .c-footer-main__content {
+        margin-left: 0px;
+        margin-top: 70px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+/*load more*/
+.timeline-item {
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    padding: 12px;
+    margin: 10px auto;
+    /*max-width: 472px;*/
+    min-height: 138px;
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+
+    100% {
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 130px;
+    position: relative;
+}
+
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
+
+    .background-masker.header-top {
+        top: 0;
+        left: 33.3333%;
+        right: 0;
+        height: 10px;
+    }
+
+    .background-masker.header-left {
+        top: 10px;
+        left: 33.3333%;
+        width: 15px;
+        height: 20px;
+    }
+
+    .background-masker.header-right {
+        top: 10px;
+        left: 90%;
+        right: 0;
+        height: 20px;
+    }
+
+    .background-masker.header-bottom {
+        top: 30px;
+        left: 33.3333%;
+        right: 0;
+        height: 10px;
+    }
+
+    .background-masker.header-2-left {
+        top: 40px;
+        left: 33.3333%;
+        width: 15px;
+        height: 20px;
+    }
+
+    .background-masker.header-2-right {
+        top: 40px;
+        left: 65%;
+        right: 0;
+        height: 20px;
+    }
+
+    .background-masker.header-2-bottom {
+        top: 60px;
+        left: 33.3333%;
+        right: 0;
+        height: 15px;
+    }
+
+    .background-masker.meta-left {
+        top: 75px;
+        left: 33.3333%;
+        width: 15px;
+        height: 8px;
+    }
+
+    .background-masker.meta-right {
+        top: 75px;
+        left: 55%;
+        right: 0;
+        height: 8px;
+    }
+
+    .background-masker.meta-bottom {
+        top: 83px;
+        left: 33.3333%;
+        right: 0;
+        height: 15px;
+    }
+
+    .background-masker.description-left {
+        top: 98px;
+        left: 33.3333%;
+        width: 15px;
+        height: 12px;
+    }
+
+    .background-masker.description-right {
+        top: 98px;
+        left: 95%;
+        right: 0;
+        height: 12px;
+    }
+
+    .background-masker.description-bottom {
+        top: 110px;
+        left: 33.3333%;
+        right: 0;
+        height: 8px;
+    }
+
+    .background-masker.description-2-left {
+        top: 118px;
+        left: 33.3333%;
+        width: 15px;
+        height: 12px;
+    }
+
+    .background-masker.description-2-right {
+        top: 118px;
+        left: 87%;
+        right: 0;
+        height: 12px;
+    }
+
+    .background-masker.description-2-bottom {
+        top: 130px;
+        left: 33.3333%;
+        right: 0;
+        height: 8px;
+    }
+
+    .background-masker.description-3-left {
+        top: 138px;
+        left: 33.3333%;
+        width: 15px;
+        height: 12px;
+    }
+
+    .background-masker.description-3-right {
+        top: 138px;
+        left: 100%;
+        right: 0;
+        height: 12px;
+    }
+
+    .background-masker.description-3-bottom {
+        top: 150px;
+        left: 33.3333%;
+        right: 0;
+        bottom: 0;
+    }
+
+
+.c-video-show {
+    z-index: 3 !important;
+}
+
+.c-video-box {
+    z-index: 2;
+}

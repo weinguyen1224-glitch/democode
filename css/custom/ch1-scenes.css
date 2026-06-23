@@ -209,7 +209,7 @@
       transparent 1px,
       transparent 32px
     ),
-    linear-gradient(160deg, #8B1A1A 0%, #A52A2A 40%, #F5DEB3 100%);
+    linear-gradient(160deg, #972023 0%, #972023 40%, #f8d077 100%);
 }
 
 .bpt-sm-placeholder--warm::after {
@@ -735,7 +735,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #F5DEB3), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-sticky-rice-gold, #f8d077), transparent);
   transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, left 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
