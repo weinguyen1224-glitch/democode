@@ -1,0 +1,1220 @@
+/* ═══════════════════════════════════════════════════════════
+   CHƯƠNG IV — Lát Cắt Văn Hóa Trong Nhịp Sống Đương Đại
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --c4-bg: #972023;
+  --c4-gold: #f8d077;
+  --c4-gold-dim: rgba(248, 208, 119, 0.55);
+  --c4-gold-glow: rgba(248, 208, 119, 0.12);
+  --c4-red: #972023;
+  --c4-text: rgba(255, 255, 255, 0.92);
+  --c4-text-dim: rgba(255, 255, 255, 0.55);
+  --c4-border: rgba(248, 208, 119, 0.18);
+  --c4-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --c4-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Base article ──────────────────────────────────────────── */
+.bpt-ch4 {
+  background: var(--c4-bg) !important;
+  color: var(--c4-text) !important;
+  position: relative;
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  margin: 0;
+}
+
+.bpt-ch4 * { box-sizing: border-box; }
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLL REVEAL — per-section, CSS-only with JS trigger
+   ══════════════════════════════════════════════════════════════ */
+
+/* Hidden state — JS adds .ch4-visible to each section */
+.ch4-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s var(--c4-ease),
+    transform 0.7s var(--c4-ease);
+}
+
+.ch4-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity 0.65s var(--c4-ease),
+    transform 0.65s var(--c4-ease);
+}
+
+.ch4-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition:
+    opacity 0.65s var(--c4-ease),
+    transform 0.65s var(--c4-ease);
+}
+
+.ch4-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 0.8s var(--c4-ease),
+    transform 0.8s var(--c4-ease);
+}
+
+/* Visible state */
+.ch4-visible .ch4-reveal,
+.ch4-visible .ch4-reveal-left,
+.ch4-visible .ch4-reveal-right,
+.ch4-visible .ch4-reveal-scale {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays */
+.ch4-d1 { transition-delay: 0.08s; }
+.ch4-d2 { transition-delay: 0.16s; }
+.ch4-d3 { transition-delay: 0.24s; }
+.ch4-d4 { transition-delay: 0.32s; }
+.ch4-d5 { transition-delay: 0.40s; }
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 1: TITLE — Tiêu đề chương
+   ══════════════════════════════════════════════════════════════ */
+.ch4-title {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+
+.ch4-title::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(248, 208, 119, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(248, 208, 119, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ch4-title__inner {
+  max-width: 820px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-title__kicker {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+.ch4-title__heading {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--c4-gold);
+  margin: 0 0 28px;
+  letter-spacing: -0.02em;
+}
+
+.ch4-title__divider {
+  display: block;
+  width: 80px;
+  height: 2px;
+  margin: 0 auto 28px;
+  background: linear-gradient(90deg, transparent, var(--c4-gold), transparent);
+}
+
+.ch4-title__intro {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--c4-text);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 2: SLIDER — Tráp cưới xưa & nay
+   ══════════════════════════════════════════════════════════════ */
+.ch4-slider-section {
+  padding: clamp(60px, 10vh, 120px) clamp(16px, 4vw, 60px);
+  position: relative;
+}
+
+.ch4-slider-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(248, 208, 119, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ch4-slider__header {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vh, 56px);
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-slider__kicker {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  opacity: 0.65;
+  margin-bottom: 10px;
+}
+
+.ch4-slider__title {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  color: var(--c4-gold);
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ── Comparison container ────────────────────────────────── */
+.ch4-compare {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(248, 208, 119, 0.12);
+  z-index: 2;
+}
+
+.ch4-compare__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* NAY — nền */
+.ch4-compare--nay { z-index: 1; }
+
+/* XƯA — lớp trên, clip-path */
+.ch4-compare--xua {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+  will-change: clip-path;
+}
+
+/* ── Slider handle ──────────────────────────────────────── */
+.ch4-slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+  will-change: left;
+}
+
+.ch4-slider-handle__line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: var(--c4-gold);
+  box-shadow: 0 0 12px rgba(248, 208, 119, 0.6);
+}
+
+.ch4-slider-handle__knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c4-gold);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 24px rgba(248, 208, 119, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.15s var(--c4-ease), box-shadow 0.15s var(--c4-ease);
+}
+
+.ch4-compare:active .ch4-slider-handle__knob {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow:
+    0 6px 28px rgba(0, 0, 0, 0.5),
+    0 0 36px rgba(248, 208, 119, 0.45);
+}
+
+.ch4-slider-handle__icon {
+  font-size: 18px;
+  color: var(--c4-red);
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── Labels ─────────────────────────────────────────────── */
+.ch4-compare__label {
+  position: absolute;
+  top: 16px;
+  z-index: 5;
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  background: rgba(151, 32, 35, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 208, 119, 0.2);
+  pointer-events: none;
+  transition: opacity 0.4s var(--c4-ease);
+}
+
+.ch4-compare__label--xua { left: 16px; }
+.ch4-compare__label--nay { right: 16px; }
+
+.ch4-compare--label-fade-left .ch4-compare__label--xua { opacity: 0.25; }
+.ch4-compare--label-fade-right .ch4-compare__label--nay { opacity: 0.25; }
+
+/* ── Caption ────────────────────────────────────────────── */
+.ch4-slider-caption {
+  text-align: center;
+  margin-top: clamp(24px, 3vh, 40px);
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-slider-caption p {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--c4-text);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 3: BIỂU TƯỢNG
+   ══════════════════════════════════════════════════════════════ */
+.ch4-symbol {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+  padding-bottom: clamp(80px, 14vh, 160px);
+  position: relative;
+}
+
+.ch4-symbol::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(248, 208, 119, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(248, 208, 119, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ch4-symbol__layout {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr;
+  gap: clamp(32px, 5vw, 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-symbol__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ch4-symbol__text h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--c4-gold);
+  margin: 0 0 8px;
+}
+
+.ch4-symbol__text p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ch4-symbol__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  position: sticky;
+  top: 80px;
+}
+
+.ch4-symbol__img-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(248, 208, 119, 0.1);
+  aspect-ratio: 3 / 4;
+}
+
+.ch4-symbol__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--c4-ease);
+}
+
+.ch4-symbol__img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 4: HẠNH PHÚC LỨA ĐÔI
+   ══════════════════════════════════════════════════════════════ */
+.ch4-happiness {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+  text-align: center;
+  position: relative;
+}
+
+.ch4-happiness::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(50vw, 500px);
+  height: min(50vw, 500px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248, 208, 119, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ch4-happiness__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-happiness__icon {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: var(--c4-gold);
+}
+
+.ch4-happiness h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--c4-gold);
+  margin: 0 0 20px;
+}
+
+.ch4-happiness p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 5: VÙNG MIỀN
+   ══════════════════════════════════════════════════════════════ */
+.ch4-region {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+  position: relative;
+}
+
+.ch4-region__layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-region__img-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(248, 208, 119, 0.1);
+}
+
+.ch4-region__img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s var(--c4-ease);
+}
+
+.ch4-region__img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+.ch4-region__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ch4-region__text h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--c4-gold);
+  margin: 0 0 8px;
+}
+
+.ch4-region__text p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 6–8: PROSE BLOCKS (thích nghi, hương vị, gam màu)
+   ══════════════════════════════════════════════════════════════ */
+.ch4-prose-section {
+  padding: clamp(50px, 8vh, 100px) clamp(24px, 6vw, 80px);
+  position: relative;
+}
+
+.ch4-prose-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, rgba(248, 208, 119, 0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.ch4-prose-section__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-prose-section__layout--reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ch4-prose-section__layout--reverse .ch4-prose-section__img-wrap { order: 2; }
+.ch4-prose-section__layout--reverse .ch4-prose-section__text { order: 1; }
+
+.ch4-prose-section__layout--center {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ch4-prose-section__img-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(248, 208, 119, 0.1);
+  position: sticky;
+  top: 80px;
+}
+
+.ch4-prose-section__img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s var(--c4-ease);
+}
+
+.ch4-prose-section__img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+.ch4-prose-section__text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ch4-prose-section__text h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  color: var(--c4-gold);
+  margin: 0 0 4px;
+}
+
+.ch4-prose-section__text p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 9: DUNG HÒA
+   ══════════════════════════════════════════════════════════════ */
+.ch4-balance {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+  text-align: center;
+  position: relative;
+}
+
+.ch4-balance::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(248, 208, 119, 0.04) 0%, transparent 40%),
+    linear-gradient(315deg, rgba(248, 208, 119, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.ch4-balance__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-balance h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--c4-gold);
+  margin: 0 0 20px;
+}
+
+.ch4-balance p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 10: DU LỊCH VĂN HÓA
+   ══════════════════════════════════════════════════════════════ */
+.ch4-tourism {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+  padding-bottom: clamp(80px, 14vh, 160px);
+  position: relative;
+}
+
+.ch4-tourism__layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-tourism__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  position: sticky;
+  top: 80px;
+}
+
+.ch4-tourism__img-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(248, 208, 119, 0.1);
+  aspect-ratio: 4 / 3;
+}
+
+.ch4-tourism__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--c4-ease);
+}
+
+.ch4-tourism__img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.ch4-tourism__text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ch4-tourism__text h3 {
+  font-family: 'DNS Gibsons One', 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--c4-gold);
+  margin: 0 0 8px;
+}
+
+.ch4-tourism__text p {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION 11: KẾT
+   ══════════════════════════════════════════════════════════════ */
+.ch4-closing {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+  text-align: center;
+  position: relative;
+}
+
+.ch4-closing::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+  pointer-events: none;
+}
+
+.ch4-closing__inner {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.ch4-closing__line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 0 auto 28px;
+  background: linear-gradient(90deg, transparent, var(--c4-gold), transparent);
+}
+
+.ch4-closing p {
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.8;
+  font-style: italic;
+  color: var(--c4-text);
+}
+
+.ch4-closing p:last-child {
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--c4-gold);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   SECTION: SCROLL PATH — Bánh đi theo đường cong
+   ══════════════════════════════════════════════════════════════ */
+.ch4-path-section {
+  position: relative;
+  height: 300vh;
+}
+
+.ch4-path__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(248, 208, 119, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(248, 208, 119, 0.03) 0%, transparent 50%),
+    var(--c4-bg);
+}
+
+.ch4-path__visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+/* ── SVG path ────────────────────────────────────────────── */
+.ch4-path__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ch4-path__line {
+  fill: none;
+  stroke: var(--c4-gold);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.5;
+  stroke-dasharray: 12 6;
+}
+
+.ch4-path__line-bg {
+  fill: none;
+  stroke: var(--c4-gold);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.15;
+}
+
+/* Animated progress line */
+.ch4-path__line-progress {
+  fill: none;
+  stroke: var(--c4-gold);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(248, 208, 119, 0.4));
+  transition: stroke-dashoffset 0.05s linear;
+}
+
+/* ── Floating bánh ──────────────────────────────────────── */
+.ch4-path__bánh {
+  position: absolute;
+  width: clamp(80px, 10vw, 120px);
+  height: clamp(80px, 10vw, 120px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--c4-gold);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(248, 208, 119, 0.2);
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  pointer-events: none;
+  /* Initial position at top-left (will be overridden by JS) */
+  left: 0;
+  top: 0;
+}
+
+.ch4-path__bánh img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.ch4-path__bánh--traditional {
+  opacity: 1;
+  z-index: 2;
+}
+
+.ch4-path__bánh--modern {
+  opacity: 0;
+  z-index: 1;
+}
+
+/* ── Waypoint labels ────────────────────────────────────── */
+.ch4-path__waypoint {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s var(--c4-ease),
+    transform 0.4s var(--c4-ease);
+}
+
+.ch4-path__waypoint--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ch4-path__waypoint-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--c4-gold);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 12px rgba(248, 208, 119, 0.5);
+  margin: 0 auto 6px;
+}
+
+.ch4-path__waypoint-label {
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Start / End labels ─────────────────────────────────── */
+.ch4-path__corner-label {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.ch4-path__corner-label--start {
+  bottom: clamp(20px, 6vh, 60px);
+  left: clamp(20px, 4vw, 60px);
+}
+
+.ch4-path__corner-label--end {
+  top: clamp(20px, 6vh, 60px);
+  right: clamp(20px, 4vw, 60px);
+}
+
+.ch4-path__corner-text {
+  font-family: 'DFVN West West', 'Oswald', sans-serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  opacity: 0.15;
+  transition: opacity 0.6s var(--c4-ease), text-shadow 0.6s var(--c4-ease);
+}
+
+.ch4-path__corner-text--active {
+  opacity: 0.9;
+  text-shadow: 0 0 30px rgba(248, 208, 119, 0.4);
+}
+
+/* ── Arrow markers ──────────────────────────────────────── */
+.ch4-path__arrow {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.35;
+  transition: opacity 0.4s var(--c4-ease);
+}
+
+.ch4-path__arrow--visible {
+  opacity: 0.7;
+}
+
+.ch4-path__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ch4-path__arrow svg path {
+  fill: var(--c4-gold);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .ch4-symbol__layout,
+  .ch4-region__layout,
+  .ch4-tourism__layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .ch4-prose-section__layout,
+  .ch4-prose-section__layout--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .ch4-prose-section__layout--reverse .ch4-prose-section__img-wrap,
+  .ch4-prose-section__layout--reverse .ch4-prose-section__text {
+    order: unset;
+  }
+
+  .ch4-prose-section__img-wrap { position: static; }
+
+  .ch4-symbol__img-wrap { aspect-ratio: 4 / 3; }
+  .ch4-tourism__img-wrap { aspect-ratio: 16 / 9; }
+
+  .ch4-compare {
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+  }
+
+  .ch4-slider-handle__knob { width: 40px; height: 40px; }
+  .ch4-slider-handle__icon { font-size: 15px; }
+  .ch4-compare__label { font-size: 0.6rem; padding: 4px 10px; top: 10px; }
+  .ch4-compare__label--xua { left: 10px; }
+  .ch4-compare__label--nay { right: 10px; }
+
+  .ch4-path__bánh { width: 64px; height: 64px; }
+  .ch4-path__corner-text { font-size: clamp(1.2rem, 5vw, 2rem); }
+}
+
+@media (max-width: 480px) {
+  .ch4-compare { aspect-ratio: 3 / 4; }
+  .ch4-slider-handle__knob { width: 36px; height: 36px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   3D MODEL VIEWER — full viewport, no frame
+   ══════════════════════════════════════════════════════════════ */
+.ch4-3d-viewer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: var(--c4-bg);
+}
+
+.ch4-3d-viewer__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: clamp(24px, 4vw, 48px) 20px clamp(12px, 2vw, 24px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ch4-3d-viewer__header h3 {
+  margin: 0 0 8px;
+}
+
+.ch4-kicker {
+  display: block;
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c4-gold);
+  opacity: 0.65;
+  margin-bottom: 10px;
+}
+
+.ch4-3d-viewer__subtitle {
+  margin: 0;
+  font-family: 'Vollkorn', 'PT Serif', Georgia, serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+  color: var(--c4-text-dim);
+  line-height: 1.6;
+}
+
+/* ── Stage (canvas wrapper) — fills viewport ─────────────── */
+.ch4-3d-viewer__stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.ch4-3d-viewer__canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.ch4-3d-viewer__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── Loading overlay ─────────────────────────────────────── */
+.ch4-3d-viewer__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(13, 4, 8, 0.7);
+  backdrop-filter: blur(6px);
+  transition: opacity 0.5s var(--c4-ease);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ch4-3d-viewer__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: var(--c4-gold-dim);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.ch4-3d-viewer__spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(248, 208, 119, 0.15);
+  border-top-color: var(--c4-gold);
+  border-radius: 50%;
+  animation: ch4-spin 0.8s linear infinite;
+}
+
+@keyframes ch4-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Controls bar ────────────────────────────────────────── */
+.ch4-3d-viewer__controls {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.ch4-3d-viewer__select,
+.ch4-3d-viewer__btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--c4-text);
+  background: rgba(13, 4, 8, 0.65);
+  border: 1px solid var(--c4-border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  outline: none;
+}
+
+.ch4-3d-viewer__select:hover,
+.ch4-3d-viewer__btn:hover {
+  background: rgba(248, 208, 119, 0.1);
+  border-color: rgba(248, 208, 119, 0.35);
+  transform: translateY(-1px);
+}
+
+.ch4-3d-viewer__select:focus-visible,
+.ch4-3d-viewer__btn:focus-visible {
+  border-color: var(--c4-gold);
+  box-shadow: 0 0 0 2px rgba(248, 208, 119, 0.25);
+}
+
+.ch4-3d-viewer__select option {
+  background: #1a0a10;
+  color: var(--c4-text);
+}
+
+.ch4-3d-viewer__btn--active {
+  background: rgba(248, 208, 119, 0.18) !important;
+  border-color: var(--c4-gold) !important;
+  color: var(--c4-gold);
+}
+
+/* ── Info stats ──────────────────────────────────────────── */
+.ch4-3d-viewer__info {
+  display: none;
+}
+
+/* ── Mobile responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .ch4-3d-viewer__stage {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .ch4-3d-viewer__controls {
+    top: 10px;
+    right: 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 70%;
+  }
+
+  .ch4-3d-viewer__select,
+  .ch4-3d-viewer__btn {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  .ch4-3d-viewer__hint {
+    font-size: 0.62rem;
+    padding: 5px 12px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ch4-3d-viewer__controls {
+    max-width: 100%;
+  }
+}
+
+/* ── Hint text ───────────────────────────────────────────── */
+.ch4-3d-viewer__hint {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(13, 4, 8, 0.45);
+  padding: 8px 20px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch4-reveal, .ch4-reveal-left, .ch4-reveal-right, .ch4-reveal-scale {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .ch4-3d-viewer__spinner { animation: none; }
+}

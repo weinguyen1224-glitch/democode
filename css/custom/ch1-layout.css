@@ -72,7 +72,8 @@
 .bpt-chapter-divider--img {
   padding: 0;
   height: 100vh;
-  background-color: #900000;
+  background-color: #900000 !important;
+  background: #900000 !important;
 }
 
 .bpt-chapter-divider__bg {

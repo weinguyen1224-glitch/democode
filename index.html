@@ -37,10 +37,20 @@
         <link rel="stylesheet" href="css/chapters/ch2-nghe-nhan.css" />
         <link rel="stylesheet" href="css/chapters/ch2-bao-ton.css" />
         <link rel="stylesheet" href="css/chapters/ch3-nghe-thuat.css" />
+        <link rel="stylesheet" href="css/chapters/ch4-vanhoa.css" />
+        <link rel="stylesheet" href="css/chapters/ch5-vanhoa.css" />
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
             defer
         ></script>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+                }
+            }
+        </script>
     </head>
     <body>
         <div
@@ -1193,8 +1203,11 @@
                                 hệ..&rdquo;
                             </p>
                         </blockquote>
+
+
                     </div>
                 </div>
+
                 <span class="bpt-scene-transition" aria-hidden="true"></span>
             </div>
             <!-- /#section-bpt-ch2-bao-ton -->
@@ -1671,45 +1684,353 @@
                     </div>
 
                     <p class="ch3-thanh-pham__body ch3-up ch3-d3">
-                        Có lẽ chính ở công đoạn này, nghề làm bánh không còn đơn
-                        thuần là lao động thủ công mà trở thành một diản sống.
-                        Mỗi chiếc bánh vuông vắn, cân đối là kết tinh của sự
-                        khéo léo, kinh nghiệm và tình yêu nghề được truyền từ
-                        thế hệ này sang thế hệ khác.
+                        Và để giữ trọn vẹn cái tình, cái nghĩa gói ghém
+                        trong thức quà ấy, việc bảo quản bánh cũng cần sự
+                        tinh tế như chính cách nó được làm ra. Bánh phu thê
+                        ngon nhất là khi được thưởng thức trong vòng một đến
+                        hai ngày đầu ở nơi thoáng mát, khi hương lá vẫn còn
+                        nồng nàn và lớp vỏ bột lọc giữ được độ dẻo dai tự
+                        nhiên. Nếu muốn níu giữ hương vị ấy lâu hơn, có thể
+                        bao bọc bánh thật kỹ trong ngăn mát tủ lạnh để tránh
+                        hơi lạnh làm khô đi lớp vỏ thanh tao. Khi dùng, chỉ
+                        cần mượn chút hơi ấm từ xửng hấp hay lò vi sóng, lớp
+                        bột sẽ từ từ trở nên trong veo và mềm mượt như thuở
+                        mới ra lò. Tuy nhiên, bởi bánh là kết tinh của những
+                        nguyên liệu thuần túy không chất bảo quản, nên nếu
+                        thấy hương đã phai hay vị đã đổi, ta cũng nên dừng
+                        lại để dư âm về món bánh này luôn vẹn nguyên sự ngọt
+                        ngào và thanh khiết.
                     </p>
                 </div>
                 <span class="bpt-scene-transition" aria-hidden="true"></span>
             </div>
             <!-- /#section-bpt-ch3-thanh-pham -->
 
-            <!-- § 10 — BẢO QUẢN: Finale text -->
-            <div id="section-bpt-ch3-bao-quan" class="bpt-ch3 bpt-ch3-section">
-                <div class="ch3-bao-quan__wrap">
-                    <p class="ch3-bao-quan__kicker ch3-up">Bảo quản</p>
-                    <div class="ch3-bao-quan__body ch3-up ch3-d2">
-                        <p>
-                            Và để giữ trọn vẹn cái tình, cái nghĩa gói ghém
-                            trong thức quà ấy, việc bảo quản bánh cũng cần sự
-                            tinh tế như chính cách nó được làm ra. Bánh phu thê
-                            ngon nhất là khi được thưởng thức trong vòng một đến
-                            hai ngày đầu ở nơi thoáng mát, khi hương lá vẫn còn
-                            nồng nàn và lớp vỏ bột lọc giữ được độ dẻo dai tự
-                            nhiên. Nếu muốn níu giữ hương vị ấy lâu hơn, có thể
-                            bao bọc bánh thật kỹ trong ngăn mát tủ lạnh để tránh
-                            hơi lạnh làm khô đi lớp vỏ thanh tao. Khi dùng, chỉ
-                            cần mượn chút hơi ấm từ xửng hấp hay lò vi sóng, lớp
-                            bột sẽ từ từ trở nên trong veo và mềm mượt như thuở
-                            mới ra lò. Tuy nhiên, bởi bánh là kết tinh của những
-                            nguyên liệu thuần túy không chất bảo quản, nên nếu
-                            thấy hương đã phai hay vị đã đổi, ta cũng nên dừng
-                            lại để dư âm về món bánh này luôn vẹn nguyên sự ngọt
-                            ngào và thanh khiết.
-                        </p>
+
+            <!-- /#section-bpt-ch3-bao-quan -->
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- CHƯƠNG IV — Lát Cắt Văn Hóa Trong Nhịp Sống Đương Đại -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <div class="bpt-ch4">
+
+            <!-- Divider Chương IV -->
+            <div
+                id="section-bpt-ch4-divider"
+                class="Theme-Section bpt-chapter-divider bpt-chapter-divider--img"
+            >
+                <div class="bpt-chapter-divider__bg" aria-hidden="true">
+                    <div class="bpt-chapter-divider__frame">
+                        <img
+                            src="assets/DIVIDER/DIVIDER-04.webp"
+                            alt=""
+                            loading="lazy"
+                        />
                     </div>
                 </div>
-                <span class="bpt-scene-transition" aria-hidden="true"></span>
+                <div
+                    class="bpt-chapter-divider__vignette"
+                    aria-hidden="true"
+                ></div>
             </div>
-            <!-- /#section-bpt-ch3-bao-quan -->
+
+            <!-- Section 1: Tiêu đề chương -->
+
+
+            <!-- Section 2: Tráp cưới xưa & nay — Slider -->
+            <section class="ch4-slider-section" aria-label="Tráp cưới xưa và nay">
+                <div class="ch4-slider__header">
+                    <p class="ch4-slider__kicker ch4-reveal">So sánh</p>
+                    <h3 class="ch4-slider__title ch4-reveal ch4-d1">Tráp Cưới Xưa &amp; Nay</h3>
+                </div>
+                <div class="ch4-compare ch4-reveal-scale" role="img" aria-label="Kéo để so sánh tráp cưới xưa và nay">
+                    <img class="ch4-compare__img ch4-compare--nay" src="assets/Chương 4/trap-cuoi-nay.webp" alt="Tráp cưới ngày nay" loading="lazy" decoding="async" />
+                    <img class="ch4-compare__img ch4-compare--xua" src="assets/Chương 4/trap-cuoi-xua.webp" alt="Tráp cưới xưa" loading="lazy" decoding="async" />
+                    <div class="ch4-slider-handle">
+                        <div class="ch4-slider-handle__line"></div>
+                        <div class="ch4-slider-handle__knob">
+                            <span class="ch4-slider-handle__icon" aria-hidden="true">⇔</span>
+                        </div>
+                    </div>
+                    <span class="ch4-compare__label ch4-compare__label--xua">Xưa</span>
+                    <span class="ch4-compare__label ch4-compare__label--nay">Nay</span>
+                </div>
+
+            </section>
+
+            <!-- Section 3: Ý nghĩa biểu tượng -->
+            <section class="ch4-symbol" aria-label="Ý nghĩa biểu tượng">
+                <div class="ch4-symbol__layout">
+                    <div class="ch4-symbol__text">
+                        <h3 class="ch4-reveal-left">Trăm năm vẫn trọn nét duyên lành </h3>
+                        <p class="ch4-reveal-left ch4-d1">
+                            Dù trải qua nhiều biến động của thời gian, bánh phu thê vẫn giữ nguyên những giá trị văn hóa và tinh thần cốt lõi gắn với tình yêu, hôn nhân và hạnh phúc gia đình của người Việt. Từ lâu, bánh phu thê đã vượt ra khỏi khuôn khổ của một món ăn thông thường để trở thành một biểu tượng văn hóa gắn bó sâu sắc với đời sống tinh thần của người Việt. Trong ký ức của nhiều thế hệ, chiếc bánh không chỉ hiện diện như một phần không thể thiếu trên mâm cỗ hay trong những dịp lễ trọng, mà còn là hiện thân của những quan niệm truyền thống về tình yêu, hôn nhân và gia đình. Đặc biệt, trong các nghi lễ cưới hỏi, bánh phu thê luôn giữ một vị trí trang trọng trong mâm tráp như lời chúc phúc gửi tới đôi uyên ương về cuộc sống hôn nhân viên mãn, thủy chung và bền chặt. Từ vùng quê Kinh Bắc đến nhiều địa phương khác trên khắp cả nước, hình ảnh những cặp bánh phu thê xuất hiện trong lễ ăn hỏi đã trở thành một nét quen thuộc, phản ánh quan niệm lâu đời của người Việt rằng hôn nhân chính là sự kết hợp của hai con người, là sự gắn kết của hai gia đình, hai dòng họ và những giá trị được trao truyền qua nhiều thế hệ.
+                            Không phải ngẫu nhiên mà người xưa lựa chọn bánh phu thê giữa vô số loại bánh dân gian khác để trở thành lễ vật hôn nhân. Ngay từ tên gọi "phu thê", chiếc bánh đã mang trong mình một thông điệp son sắt về tình nghĩa vợ chồng. Đó là sự đồng hành, gắn bó và sẻ chia suốt cuộc đời. Mỗi chi tiết của chiếc bánh đều được người xưa gửi gắm những lớp nghĩa biểu tượng sâu sắc. Lớp vỏ trong suốt ôm lấy phần nhân vàng bên trong gợi nên hình ảnh của sự hòa hợp và bao bọc, như cách hai con người cùng che chở, nâng đỡ nhau xây dựng một mái ấm. Những sợi đu đủ vàng đan xen trong lớp bột dẻo trong không chỉ tạo nên vẻ đẹp thị giác mà còn gợi liên tưởng đến những sợi tơ hồng se duyên, kết nối hai số phận thành một. Hình dáng vuông vắn của chiếc bánh tượng trưng cho sự đầy đủ, trọn vẹn và ổn định, trong khi màu vàng óng của nhân đỗ xanh gợi nhắc đến sự sung túc, ấm no. Ngay cả những sợi lạt buộc bên ngoài chiếc bánh cũng được nhiều nghệ nhân lý giải như biểu tượng của sợi dây nghĩa tình, nhắc nhở vợ chồng luôn biết giữ gìn sự gắn bó và thủy chung trong cuộc sống hôn nhân. Từ lớp vỏ, phần nhân cho đến cách gói bánh trong lá dong xanh mộc mạc, mỗi yếu tố đều góp phần tạo nên một chỉnh thể giàu tính biểu tượng, khiến chiếc bánh trở thành một lời chúc phúc được thể hiện bằng hình hài cụ thể và sinh động.</p>
+                    </div>
+                    <div class="ch4-symbol__gallery ch4-reveal-right ch4-d2">
+                        <div class="ch4-symbol__img-wrap">
+                            <img src="assets/Chương 4/nghe-nhan-lam-banh.webp" alt="Nghệ nhân gói bánh phu thê" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="ch4-symbol__img-wrap">
+                            <img src="assets/Chương 4/banh-hap.webp" alt="Bánh phu thê trong nồi hấp" loading="lazy" decoding="async" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Hạnh phúc lứa đôi -->
+            <section class="ch4-happiness" aria-label="Biểu tượng hạnh phúc lứa đôi">
+                <div class="ch4-happiness__inner">
+                    <div class="ch4-happiness__icon ch4-reveal-scale">♥</div>
+
+                    <p class="ch4-reveal ch4-d1">Bởi vậy, trong tâm thức người Việt, bánh phu thê không đơn thuần là một món ăn mà còn là biểu tượng hữu hình của hạnh phúc lứa đôi. Sự hiện diện của chiếc bánh trong mâm tráp cưới chính là cách các thế hệ gửi gắm niềm tin vào một cuộc hôn nhân viên mãn và lâu bền. Khi trao đi cặp bánh phu thê, người ta cũng đồng thời trao đi những mong ước tốt đẹp nhất dành cho đôi vợ chồng trẻ: sự hòa thuận trong đời sống gia đình, sự thủy chung trong tình cảm, sự cảm thông trong những lúc khó khăn và sự đồng hành trên chặng đường dài phía trước. Chính bởi mang trong mình nhiều tầng ý nghĩa như vậy, bánh phu thê đã vượt lên trên giá trị vật chất để trở thành một biểu tượng văn hóa được gìn giữ qua nhiều thế hệ.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Lan tỏa ba miền -->
+            <section class="ch4-region" aria-label="Lan tỏa qua vùng miền">
+                <div class="ch4-region__layout">
+                    <div class="ch4-region__img-wrap ch4-reveal-left">
+                        <img src="assets/Chương 4/banh-mien-trung-nam.webp" alt="Bánh phu thê miền Trung và miền Nam" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="ch4-region__text">
+                        <h3 class="ch4-reveal-right">Vẹn tình xưa trong nếp bánh tân thời </h3>
+                        <p class="ch4-reveal-right ch4-d1">Giữa dòng chảy không ngừng của thời gian, chiếc bánh vẫn giữ được vị trí đặc biệt trong đời sống người Việt. Từ Bắc Ninh, chiếc bánh theo chân người dân đến nhiều vùng miền trên cả nước. Ở miền Bắc, người ta quen gọi là bánh phu thê — cái tên gắn trực tiếp với ý nghĩa vợ chồng hòa hợp. Trong khi đó, tại nhiều địa phương miền Trung và miền Nam, chiếc bánh lại được biết đến với tên gọi xu xê hay xu xuê, cách phát âm đã thay đổi dần theo thời gian. Sự khác biệt ấy phần nào phản ánh quá trình bản địa hóa ngôn ngữ để phù hợp với giọng nói và thói quen giao tiếp của từng vùng miền. Dù tên gọi có đôi chút khác nhau, hình ảnh cặp bánh tượng trưng cho sự gắn bó và đồng lòng của lứa đôi vẫn được gìn giữ nguyên vẹn. Chính sự đa dạng trong cách gọi đã cho thấy sức lan tỏa mạnh mẽ của thức quà này trong đời sống văn hóa của người Việt trên khắp ba miền đất nước.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Thích nghi công thức -->
+            <section class="ch4-prose-section" aria-label="Sự thích nghi công thức">
+                <div class="ch4-prose-section__layout">
+                    <div class="ch4-prose-section__img-wrap ch4-reveal-left">
+                        <img src="assets/Chương 4/banh-thich-nghi.webp" alt="Bánh phu thê đa dạng màu sắc" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="ch4-prose-section__text">
+                        <h3 class="ch4-reveal-right">Sự Thích Nghi Về Công Thức</h3>
+                        <p class="ch4-reveal-right ch4-d1">Sự biến đổi không chỉ dừng lại ở tên gọi. Trong quá trình thích nghi với điều kiện tự nhiên cũng như khẩu vị của từng địa phương, công thức chế biến bánh cũng có những điều chỉnh nhất định. Nếu bánh phu thê Đình Bảng nổi tiếng với lớp vỏ làm từ nếp, đu đủ xanh và sắc vàng tự nhiên của quả dành dành, thì ở một số nơi khác, người làm bánh linh hoạt thay đổi tỷ lệ nguyên liệu để tạo nên kết cấu phù hợp hơn với nhu cầu thưởng thức. Có nơi tăng lượng dừa nạo để mang lại vị béo đậm đà, có nơi chú trọng tạo độ trong và độ dai rõ nét hơn cho lớp vỏ, cũng có nơi giảm bớt độ ngọt nhằm phù hợp với xu hướng ẩm thực hiện đại. Những điều chỉnh ấy không làm mất đi bản sắc vốn có của chiếc bánh, mà ngược lại còn cho thấy khả năng thích ứng linh hoạt của một sản phẩm văn hóa dân gian trước những thay đổi của đời sống đương đại.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Biến tấu hương vị mới -->
+            <section class="ch4-prose-section" aria-label="Biến tấu hương vị mới">
+                <div class="ch4-prose-section__layout ch4-prose-section__layout--center">
+                    <div class="ch4-prose-section__text" style="text-align:center;">
+                        <h3 class="ch4-reveal">Biến Tấu Hương Vị Mới</h3>
+                        <p class="ch4-reveal ch4-d1">Bên cạnh sự điều chỉnh về công thức, hương vị của bánh phu thê ngày nay cũng trở nên phong phú hơn. Ngoài phần nhân truyền thống gồm đậu xanh, hạt sen và dừa nạo, nhiều cơ sở sản xuất đã phát triển thêm các phiên bản mới như nhân sầu riêng, trà xanh, khoai môn, matcha, đậu đỏ hay kết hợp cùng các loại hạt. Những biến tấu này mang đến trải nghiệm mới mẻ cho người thưởng thức, đặc biệt là giới trẻ và du khách. Dù hương vị có thay đổi, phần lớn các phiên bản vẫn giữ cấu trúc quen thuộc với lớp vỏ dẻo trong bao bọc phần nhân bên trong — hình ảnh từ lâu đã gắn liền với quan niệm về sự gắn kết và hòa hợp trong hôn nhân của người Việt.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Scroll Path — Truyền thống → Hiện đại -->
+            <section class="ch4-path-section" aria-label="Hành trình bánh phu thê từ truyền thống đến hiện đại">
+                <div class="ch4-path__sticky">
+                    <div class="ch4-path__visual">
+                        <svg class="ch4-path__svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+                            <path class="ch4-path__line-bg" d="M 0,0 C 120,240 400,120 600,280 S 940,400 1200,600" />
+                            <path class="ch4-path__line-progress" id="ch4-path-progress" d="M 0,0 C 120,240 400,120 600,280 S 940,400 1200,600" />
+                        </svg>
+                        <div class="ch4-path__bánh" id="ch4-banh-float">
+                            <img class="ch4-path__bánh--traditional" src="assets/Chương 4/banh-mien-trung-nam.webp" alt="Bánh phu thê truyền thống" loading="lazy" decoding="async" />
+                            <img class="ch4-path__bánh--modern" src="assets/Chương 4/banh-thich-nghi.webp" alt="Bánh phu thê hiện đại" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="ch4-path__waypoint" id="ch4-wp-banh" style="left:30%;top:38%;">
+                            <div class="ch4-path__waypoint-dot"></div>
+                            <div class="ch4-path__waypoint-label">Bánh</div>
+                        </div>
+                        <div class="ch4-path__waypoint" id="ch4-wp-vo" style="left:68%;top:58%;">
+                            <div class="ch4-path__waypoint-dot"></div>
+                            <div class="ch4-path__waypoint-label">Vỏ</div>
+                        </div>
+                        <div class="ch4-path__corner-label ch4-path__corner-label--start">
+                            <div class="ch4-path__corner-text" id="ch4-label-truyen-thong">Truyền Thống</div>
+                        </div>
+                        <div class="ch4-path__corner-label ch4-path__corner-label--end">
+                            <div class="ch4-path__corner-text" id="ch4-label-hien-dai">Hiện Đại</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Gam màu mới & đóng gói -->
+            <section class="ch4-prose-section" aria-label="Gam màu mới và hình thức đóng gói">
+                <div class="ch4-prose-section__layout ch4-prose-section__layout--reverse">
+                    <div class="ch4-prose-section__img-wrap ch4-reveal-right">
+                        <img src="assets/Chương 4/dap-cuoi-hien-dai.webp" alt="Đám cưới hiện đại" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="ch4-prose-section__text">
+                        <h3 class="ch4-reveal-left">Gam Màu Mới &amp; Đóng Gói Hiện Đại</h3>
+                        <p class="ch4-reveal-left ch4-d1">Bánh phu thê ngày nay còn mang những gam màu mới nhằm đáp ứng nhu cầu thẩm mỹ ngày càng đa dạng của người tiêu dùng. Nếu sắc vàng trong từ quả dành dành từ lâu đã trở thành dấu ấn đặc trưng của bánh phu thê truyền thống, thì nhiều nghệ nhân và cơ sở sản xuất hiện nay đã thử nghiệm thêm các nguyên liệu tạo màu tự nhiên khác. Từ sắc xanh dịu của lá dứa, màu đỏ cam của gấc cho đến sắc tím nhạt từ hoa đậu biếc hay lá cẩm, mỗi gam màu đều mang lại một diện mạo mới cho chiếc bánh nhưng vẫn giữ được nét gần gũi với thiên nhiên và tinh thần của món bánh dân gian.</p>
+                        <p class="ch4-reveal-left ch4-d2">Hình thức đóng gói cũng có nhiều thay đổi theo thời gian. Nếu trước đây chiếc bánh thường gắn liền với lớp lá dong xanh và những sợi lạt hồng buộc thủ công, thì ngày nay người ta dễ dàng bắt gặp những phiên bản được đặt trong hộp giấy mỹ thuật, hộp quà cưới hoặc các mẫu bao bì thiết kế hiện đại. Sự đổi mới này không chỉ giúp tăng tính thẩm mỹ mà còn đáp ứng tốt hơn nhu cầu vận chuyển, bảo quản và biếu tặng trong cuộc sống hiện nay. Thậm chí, để tiếp cận nhóm khách hàng trẻ tuổi, nhiều cơ sở sản xuất còn phát triển thêm các dòng sản phẩm với màu sắc phong phú hơn. Dẫu vậy, bên dưới những thay đổi về hình thức vẫn là phần nhân ngọt bùi quen thuộc cùng ý nghĩa biểu tượng về sự gắn kết của đôi lứa.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: Dung hòa truyền thống & đổi mới -->
+            <section class="ch4-balance" aria-label="Dung hòa truyền thống và đổi mới">
+                <div class="ch4-balance__inner">
+                    <h3 class="ch4-reveal">Dung Hòa Truyền Thống &amp; Đổi Mới</h3>
+                    <p class="ch4-reveal ch4-d1">Chính khả năng dung hòa giữa truyền thống và đổi mới đã giúp bánh phu thê duy trì sức sống bền bỉ suốt nhiều thế kỷ. Dáng vẻ bên ngoài có thể thay đổi theo từng vùng đất hay từng giai đoạn lịch sử, nhưng giá trị mà chiếc bánh chuyên chở thì vẫn luôn được gìn giữ. Từ cặp bánh mộc mạc trong mâm tráp ăn hỏi của người Kinh Bắc xưa đến những phiên bản được cách tân trong các đám cưới hiện đại, bánh phu thê vẫn kể cùng một câu chuyện về tình yêu, lòng thủy chung và khát vọng xây dựng hạnh phúc viên mãn của người Việt.</p>
+                </div>
+            </section>
+
+            <!-- Section 10: Du lịch văn hóa -->
+            <section class="ch4-tourism" aria-label="Du lịch văn hóa">
+                <div class="ch4-tourism__layout">
+                    <div class="ch4-tourism__gallery ch4-reveal-left">
+                        <div class="ch4-tourism__img-wrap">
+                            <img src="assets/Chương 4/dinh-bac-ninh.webp" alt="Đình làng Bắc Ninh" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="ch4-tourism__img-wrap">
+                            <img src="assets/Chương 4/giu-nghe.webp" alt="Nghệ nhân giữ nghề" loading="lazy" decoding="async" />
+                        </div>
+                    </div>
+                    <div class="ch4-tourism__text">
+                        <h3 class="ch4-reveal-right">Du Lịch Văn Hóa &amp; Bảo Tồn</h3>
+                        <p class="ch4-reveal-right ch4-d1">Nếu trước đây bánh phu thê chủ yếu xuất hiện trong cưới hỏi hoặc các dịp lễ trọng đại thì ngày nay, bánh phu thê đã trở thành một phần của hoạt động du lịch văn hóa tại Bắc Ninh, là thức quà được nhiều người lựa chọn để dành tặng người thân, bạn bè và đối tác như một cách gửi gắm lời chúc bình an, may mắn và hạnh phúc. Nhiều du khách tìm đến Đình Bảng để tham quan quê hương phát tích vương triều Lý hay tìm hiểu không gian văn hóa Kinh Bắc mà còn để thưởng thức và mang về những cặp bánh phu thê như một món quà mang đậm bản sắc địa phương. Đối với nhiều người, hành trình tìm đến chiếc bánh cũng là hành trình khám phá một lát cắt của văn hóa vùng đất này. Qua từng chiếc bánh, du khách có cơ hội hiểu thêm về những câu chuyện dân gian, những tập tục cưới hỏi truyền thống và cả sự khéo léo của những người thợ đã âm thầm gìn giữ nghề qua nhiều thế hệ. Từ một thức bánh dân gian được làm trong các gia đình, bánh phu thê đã từng bước trở thành một sản phẩm văn hóa đại diện cho địa phương, góp phần quảng bá hình ảnh Bắc Ninh đến với bạn bè trong và ngoài nước.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: Kết chương -->
+            <section class="ch4-closing" aria-label="Kết chương 4">
+                <div class="ch4-closing__inner">
+                    <span class="ch4-closing__line ch4-reveal-scale" aria-hidden="true"></span>
+                    <p class="ch4-reveal">Có lẽ cũng bởi vậy mà giữa dòng chảy không ngừng của thời gian, bánh phu thê vẫn giữ được chỗ đứng riêng trong lòng người Việt. Không cầu kỳ, không phô trương, chiếc bánh nhỏ bé ấy vẫn âm thầm kể câu chuyện về tình nghĩa vợ chồng, về đạo lý gia đình và về khát vọng hạnh phúc đã được gìn giữ suốt hàng trăm năm. Từ những mâm tráp cưới truyền thống cho đến những món quà mang về sau mỗi chuyến đi, bánh phu thê vẫn tiếp tục thực hiện sứ mệnh của mình: trở thành nhịp cầu kết nối giữa quá khứ và hiện tại, giữa văn hóa dân gian và đời sống đương đại, để những giá trị tốt đẹp của người Việt tiếp tục được lưu truyền trong tương lai.</p>
+                </div>
+            </section>
+
+            <!-- Section 12: 3D Model Viewer -->
+            <section class="ch4-3d-viewer" aria-label="Xem mô hình 3D bánh phu thê">
+                <div class="ch4-3d-viewer__header">
+                    <span class="ch4-kicker ch4-reveal">Trải Nghiệm Số</span>
+                    <h3 class="ch4-reveal ch4-d1">Chiêm Ngưỡng Chiếc Bánh</h3>
+                    <p class="ch4-3d-viewer__subtitle ch4-reveal ch4-d2">Kéo xoay, lăn zoom, khám phá từng chi tiết</p>
+                </div>
+                <div class="ch4-3d-viewer__stage ch4-reveal-scale ch4-d3">
+                    <div class="ch4-3d-viewer__canvas" id="ch4-3d-canvas"></div>
+                    <div class="ch4-3d-viewer__overlay" id="ch4-3d-overlay">
+                        <div class="ch4-3d-viewer__loading">
+                            <div class="ch4-3d-viewer__spinner"></div>
+                            <span>Đang tải mô hình 3D…</span>
+                        </div>
+                    </div>
+                    <div class="ch4-3d-viewer__controls">
+                        <select id="ch4-3d-select" class="ch4-3d-viewer__select" title="Chọn mô hình">
+                            <option value="0">Hộp bánh + trà + đĩa</option>
+                            <option value="1">Nguyên hộp bánh</option>
+                        </select>
+                        <button class="ch4-3d-viewer__btn" id="ch4-3d-fit" title="Phù hợp khung nhìn">Fit</button>
+                        <button class="ch4-3d-viewer__btn" id="ch4-3d-spin" title="Tự động xoay">Auto xoay</button>
+                    </div>
+                </div>
+                <div class="ch4-3d-viewer__hint" id="ch4-3d-hint">
+                    <span>Chuột trái + scroll để thoát</span>
+                </div>
+            </section>
+
+            </div><!-- /.bpt-ch4 -->
+
+            <!-- ═══════════════════════════════════════════════ -->
+            <!-- CHƯƠNG V — Giữ Nếp Kinh Bắc, Vẹn Nghĩa Trăm Năm -->
+            <!-- ═══════════════════════════════════════════════ -->
+
+            <!-- Divider Chương V -->
+            <div
+                id="section-bpt-ch5-divider"
+                class="Theme-Section bpt-chapter-divider bpt-chapter-divider--img"
+            >
+                <div class="bpt-chapter-divider__bg" aria-hidden="true">
+                    <div class="bpt-chapter-divider__frame">
+                        <img
+                            src="assets/DIVIDER/DIVIDER-05.webp"
+                            alt=""
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+                <div
+                    class="bpt-chapter-divider__vignette"
+                    aria-hidden="true"
+                ></div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════ -->
+            <!-- CHƯƠNG V — Nội dung                           -->
+            <!-- ═══════════════════════════════════════════════ -->
+            <div class="bpt-ch5">
+
+
+
+                <!-- Section 2: Mở đầu -->
+                <section class="ch5-opening" aria-label="Mở đầu chương 5">
+                    <div class="ch5-opening__inner ch5-reveal">
+                        <p>Không đơn thuần là một thức quà trong lễ cưới hỏi, bánh phu thê từ lâu đã trở thành biểu tượng thiêng liêng của đạo nghĩa vợ chồng - nơi gửi gắm lời thề nguyện về sự đồng lòng, thủy chung và son sắt. Có lẽ chính bởi những giá trị ấy mà suốt gần một thiên niên kỷ qua, chiếc bánh nhỏ bé này vẫn bền bỉ hiện diện trong những thời khắc trọng đại nhất của đời người. Từ miền đất Kinh Bắc xưa cho đến những hôn lễ hiện đại ngày nay, bánh Phu Thê vẫn được nâng niu trao tay như một lời chúc phúc vẹn tròn cho hạnh phúc lứa đôi.</p>
+                    </div>
+                </section>
+
+                <!-- Section 3: Trích dẫn thơ -->
+                <section class="ch5-poem" aria-label="Trích dẫn thơ">
+                    <div class="ch5-poem__inner ch5-reveal">
+                        <blockquote class="ch5-poem__quote">
+                            <p>"Hộp vuông xếp lá dừa xanh,</p>
+                            <p>Và đây đôi bánh cho anh, cho nàng.</p>
+                            <p>Chúc cho thắm đượm đá vàng,</p>
+                            <p>Sắt son tơ tóc buộc ràng phu thê."</p>
+                        </blockquote>
+                        <p class="ch5-poem__attr">(Bánh phu thê - Bùi Thị Ngọc Diệp)</p>
+                    </div>
+                </section>
+
+                <!-- Section 4: Trải nghiệm thưởng thức -->
+                <section class="ch5-prose" aria-label="Trải nghiệm thưởng thức">
+                    <div class="ch5-prose__inner ch5-reveal">
+                        <p>Mỗi sính lễ trong đám cưới truyền thống Việt Nam đều mang trong mình một thông điệp văn hóa riêng. Với bánh phu thê, đó là triết lý về sự hòa hợp và gắn kết vợ chồng, được gửi gắm tinh tế qua từng lớp lá, từng sợi lạt và cả hương vị của chiếc bánh. Chính vì chứa đựng nhiều lớp nghĩa như vậy mà việc thưởng thức bánh phu thê không chỉ là cảm nhận một món ăn, mà còn là hành trình khám phá những giá trị văn hóa được lưu truyền qua nhiều thế hệ.</p>
+                        <p>Từ từ tháo sợi lạt đỏ, mở chiếc hộp vuông vức bên ngoài rồi nâng lớp bánh lên tay, người dùng sẽ dần cảm nhận được vẻ đẹp của thức quà truyền thống này. Qua lớp bánh óng ánh là sắc vàng của nhân đậu xanh, màu trắng của dừa cùng hương thơm dịu nhẹ của nếp nhung. Đưa chiếc bánh lại gần, hương thơm dịu nhẹ của nếp quyện cùng mùi thơm bùi của đậu xanh và hạt sen dần lan tỏa. Đó không phải thứ hương thơm nồng đậm, mà là mùi hương nhẹ nhàng như chính tính cách của người Kinh Bắc. Sự hấp dẫn của bánh phu thê vì thế không đến từ cảm giác choáng ngợp, mà từ sự tinh tế được cảm nhận chậm rãi qua từng giác quan.</p>
+                        <p>Khi cắn một miếng bánh, vị ngọt thanh lan tỏa trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng không hề dính hay ngấy. Tiếp đó là phần nhân đậu xanh được sên kỹ cùng hạt sen, dừa nạo và đường mía, mang đến vị bùi béo vừa phải. Những sợi dừa nhỏ tạo nên cảm giác sần sật thú vị, giúp hương vị của chiếc bánh trở nên phong phú hơn. Mỗi thành phần đều có dấu ấn riêng nhưng không lấn át nhau, cùng hòa quyện để tạo nên một tổng thể cân bằng và hài hòa.</p>
+                        <p>Người xưa thường nói bánh phu thê ngon nhất khi được dùng cùng một chén trà xanh nóng. Vị chát nhẹ của trà làm dịu đi vị ngọt của bánh, đồng thời giúp những tầng hương vị trở nên rõ nét hơn. Sau khi thưởng thức, dư vị ngọt lành vẫn còn đọng lại nơi cuống họng, hòa cùng hương trà thanh mát, tạo nên cảm giác nhẹ nhàng và thư thái. Có lẽ cũng bởi vậy mà bánh phu thê không chỉ xuất hiện trong những mâm tráp cưới hỏi, mà còn trở thành thức quà để người ta ngồi lại bên nhau, nhâm nhi cùng chén trà và trò chuyện trong những dịp sum họp.</p>
+                        <p>Nhưng điều đọng lại sau cùng không chỉ là hương vị. Đó còn là ý niệm về sự gắn kết, về một mái ấm được xây dựng bằng sự đồng lòng và sẻ chia. Bởi suy cho cùng, điều mà người ta trao nhau và cùng nhau thưởng thức không chỉ là một món sính lễ đơn thuần, mà là lời nguyện ước cho một cuộc hôn nhân bền chặt - nơi hai tâm hồn nguyện cùng nắm tay nhau đi qua mọi thăng trầm của cuộc sống.</p>
+                    </div>
+                </section>
+
+                <!-- Section 5: Nghệ nhân giữ nghề + quote -->
+                <section class="ch5-artisan-quote" aria-label="Nghệ nhân giữ nghề">
+                    <div class="ch5-artisan-quote__inner">
+                        <div class="ch5-artisan-quote__img ch5-reveal">
+                            <img src="assets/Chương 4/nghe-nhan-lam-banh.webp" alt="Nghệ nhân đang ngồi làm bánh phu thê" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="ch5-artisan-quote__text ch5-reveal">
+                            <blockquote class="ch5-artisan-quote__blockquote">
+                                <p>"Bảo tồn bánh phu thê không đơn thuần là lưu giữ một công thức ẩm thực cổ truyền. Đó còn là gìn giữ một phần hồn cốt văn hóa Việt Nam, những giá trị gia đình, sự gắn bó và lòng thủy chung được trao truyền từ đời này sang đời khác. Làm bánh phải bằng cả cái tâm và gìn giữ trọn vẹn truyền thuyết của nó. Giữ bánh không chỉ là giữ nghề của gia đình, mà còn là gìn giữ một phần truyền thống của quê hương để trao lại cho thế hệ mai sau."</p>
+                            </blockquote>
+                            <p class="ch5-artisan-quote__attr">— Nghệ nhân Nguyễn Đình Minh</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6: Closing -->
+                <section class="ch5-closing" aria-label="Kết chương 5">
+                    <div class="ch5-closing__inner ch5-reveal">
+                        <p>Ngày nay, giữa dòng chảy hối hả của cuộc sống, khi những trào lưu mới liên tục được tạo ra và thay thế nhau với tốc độ chóng mặt, nhiều làng nghề truyền thống đang lặng lẽ đối mặt với bài toán của sự tồn tại. Nghề làm bánh phu thê cũng không nằm ngoài vòng xoáy ấy. Những nếp sống xưa dần đổi thay, những thói quen tiêu dùng mới xuất hiện, khiến khoảng cách giữa con người với các giá trị truyền thống đôi khi trở nên xa hơn bao giờ hết. Thế nhưng, có những điều tưởng chừng mong manh lại sở hữu sức sống bền bỉ lạ kỳ. Ở làng nghề làm bánh phu thê tại Đình Bảng và nhiều vùng quê Bắc Bộ, những nghệ nhân vẫn miệt mài gìn giữ nghề như gìn giữ một phần ký ức của dân tộc.</p>
+                        <p>Khi một làng nghề còn đỏ lửa, một chiếc bánh còn hiện diện trong lễ cưới, nghĩa là bản sắc dân tộc vẫn còn được tiếp nối trong đời sống hôm nay. Và có lẽ, chừng nào người Việt còn trân trọng những giá trị của tình yêu chân thành, còn nâng niu hạnh phúc gia đình và còn tự hào về cội nguồn văn hóa dân tộc, chừng đó chiếc bánh phu thê vẫn sẽ hiện diện trong những ngày vui, lễ cưới, những câu chuyện được kể bên mâm cỗ sum vầy. Sắc đỏ của sợi lạt, sắc xanh của lá dong và màu vàng hổ phách của lớp bánh trong veo sẽ vẫn tiếp tục kể câu chuyện kéo dài suốt hàng thế kỷ - câu chuyện về một dân tộc biết gửi gắm triết lý sống vào những điều bình dị nhất, để rồi từ một chiếc bánh nhỏ bé, kết tinh thành biểu tượng của tình yêu, của hạnh phúc và của bản sắc văn hóa Việt Nam trường tồn cùng thời gian.</p>
+                        <span class="ch5-closing__line" aria-hidden="true"></span>
+                    </div>
+                </section>
+
+                <!-- Section 7: Thơ dân gian -->
+                <section class="ch5-final-poem" aria-label="Thơ dân gian">
+                    <div class="ch5-final-poem__inner ch5-reveal">
+                        <blockquote>
+                            <p>"Đôi ta như bánh phu thê</p>
+                            <p>Đẹp duyên, vẹn nghĩa, chẳng nề gian nan."</p>
+                        </blockquote>
+                        <p class="ch5-final-poem__attr">(Thơ ca dân gian)</p>
+                    </div>
+                </section>
+
+            </div><!-- /.bpt-ch5 -->
+
         </article>
         <script src="js/inline-03.js"></script>
         <script
@@ -1730,5 +2051,7 @@
         <script src="js/chapters/ch2-ngu-hanh.js" defer></script>
         <script src="js/chapters/ch2-nghe-nhan.js" defer></script>
         <script src="js/chapters/ch3-reveal.js" defer></script>
+        <script src="js/chapters/ch4-slider.js" defer></script>
+        <script type="module" src="js/chapters/ch4-3d-viewer.js"></script>
     </body>
 </html>
