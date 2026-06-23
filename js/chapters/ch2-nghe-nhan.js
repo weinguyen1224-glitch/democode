@@ -70,17 +70,21 @@
     const revealTopEl = ngheNhan.querySelector('.bpt-nghe-nhan__reveal-top');
     if (revealTopEl) {
       let revealTicking = false;
+      let cachedVh = window.innerHeight;
+      let cachedSectionHeight = ngheNhan.offsetHeight;
+
+      function refreshCache() {
+        cachedVh = window.innerHeight;
+        cachedSectionHeight = ngheNhan.offsetHeight;
+      }
 
       function updateRevealCrossFade() {
         const rect = ngheNhan.getBoundingClientRect();
-        const vh = window.innerHeight;
-        const sectionHeight = ngheNhan.offsetHeight;
         const scrolled = -rect.top;
-        const totalScroll = sectionHeight - vh;
-        const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
-
+        const totalScroll = cachedSectionHeight - cachedVh;
+        const raw = totalScroll > 0 ? Math.max(0, Math.min(1, scrolled / totalScroll)) : 0;
+        const progress = raw < 0.001 ? 0 : raw > 0.999 ? 1 : raw * raw * (3 - 2 * raw);
         revealTopEl.style.opacity = progress;
-
         revealTicking = false;
       }
 
@@ -90,6 +94,16 @@
           revealTicking = true;
         }
       }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        refreshCache();
+        if (!revealTicking) {
+          requestAnimationFrame(updateRevealCrossFade);
+          revealTicking = true;
+        }
+      }, { passive: true });
+
+      updateRevealCrossFade();
     }
   }
 

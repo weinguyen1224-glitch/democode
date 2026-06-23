@@ -99,8 +99,8 @@
     position: relative;
     min-height: 300vh;
     overflow: clip;
-    background: #f7e8cb;
-    color: #1a1a1a;
+    background: #0d0b08;
+    color: #f7e8cb;
 }
 
 /* ── Background layers ───────────────────────────────────── */
@@ -121,9 +121,9 @@
     height: 120%;
     background: linear-gradient(
         180deg,
-        rgba(247, 232, 203, 0.6) 0%,
-        rgba(247, 232, 203, 0.4) 50%,
-        rgba(247, 232, 203, 0.2) 100%
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.35) 50%,
+        rgba(0, 0, 0, 0.2) 100%
     );
     will-change: transform;
     transition:
@@ -154,10 +154,10 @@
     background:
         linear-gradient(
             180deg,
-            rgba(247, 232, 203, 0.4) 0%,
-            rgba(247, 232, 203, 0.3) 30%,
-            rgba(247, 232, 203, 0.2) 60%,
-            rgba(247, 232, 203, 0.1) 100%
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.35) 30%,
+            rgba(0, 0, 0, 0.25) 60%,
+            rgba(0, 0, 0, 0.15) 100%
         ),
         url("../../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG");
     background-size: cover;
@@ -175,8 +175,8 @@
     inset: 0;
     background: radial-gradient(
         ellipse 80% 60% at 50% 40%,
-        rgba(247, 232, 203, 0.1) 0%,
-        rgba(247, 232, 203, 0.2) 100%
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.65) 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -189,8 +189,8 @@
     inset: 0;
     background: radial-gradient(
         ellipse 75% 70% at 50% 45%,
-        rgba(247, 232, 203, 0.2) 0%,
-        rgba(247, 232, 203, 0.3) 100%
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.65) 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -202,8 +202,8 @@
     max-width: 860px;
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px);
-    background: rgba(247, 232, 203, 0.85);
-    border: 1px solid rgba(151, 32, 35, 0.15);
+    background: rgba(10, 8, 5, 0.72);
+    border: 1px solid rgba(245, 200, 66, 0.25);
     border-radius: 4px;
     z-index: 5;
 }
@@ -270,13 +270,14 @@
 
 /* ── Scroll-driven cross-fade reveal: 3h-sang → 3h-sang-2 ──── */
 .bpt-nghe-nhan__reveal {
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     z-index: 6;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .bpt-nghe-nhan__reveal-base {
@@ -346,7 +347,7 @@
     font-size: clamp(0.7rem, 1vw, 0.85rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(26, 26, 26, 0.7);
+    color: rgba(247, 232, 203, 0.75);
     margin-bottom: 20px;
     opacity: 0;
     transform: translateY(20px);
@@ -462,8 +463,8 @@
     position: relative;
     max-width: 780px;
     padding: clamp(32px, 5vw, 64px);
-    background: rgba(247, 232, 203, 0.85);
-    border: 1px solid rgba(151, 32, 35, 0.15);
+    background: rgba(10, 8, 5, 0.72);
+    border: 1px solid rgba(245, 200, 66, 0.25);
     border-radius: 4px;
     /* backdrop-filter: blur(12px); */
     /* -webkit-backdrop-filter: blur(12px); */
@@ -505,7 +506,7 @@
 .bpt-nghe-nhan__quote-line {
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     line-height: 2;
-    color: #1a1a1a;
+    color: rgba(247, 232, 203, 0.92);
     margin: 0 0 1.2em;
     opacity: 0;
     transform: translateX(-30px);
@@ -581,7 +582,7 @@
     margin-top: 4px;
     font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.72rem, 0.9vw, 0.82rem);
-    color: rgba(26, 26, 26, 0.5);
+    color: rgba(247, 232, 203, 0.55);
     letter-spacing: 0.12em;
     text-transform: uppercase;
 }
