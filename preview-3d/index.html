@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Model Preview UI/UX</title>
+        <style>
+            :root {
+                color-scheme: dark;
+                --bg: #08090d;
+                --panel: rgba(18, 20, 28, 0.72);
+                --line: rgba(255, 255, 255, 0.12);
+                --text: #f5f7fb;
+                --muted: #aab1c2;
+                --accent: #8fd3ff;
+                --ok: #a8ffcb;
+                --bad: #ffb4bd;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body,
+            #app {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            body {
+                font-family:
+                    Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    sans-serif;
+                background: radial-gradient(
+                    circle at 20% 10%,
+                    #17213c 0,
+                    #08090d 36%,
+                    #050507 100%
+                );
+                color: var(--text);
+            }
+            canvas {
+                display: block;
+            }
+            .shell {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+            }
+            .top {
+                position: absolute;
+                left: 18px;
+                right: 18px;
+                top: 16px;
+                display: flex;
+                gap: 12px;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            .card {
+                pointer-events: auto;
+                background: var(--panel);
+                border: 1px solid var(--line);
+                box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+                backdrop-filter: blur(18px);
+                border-radius: 20px;
+            }
+            .brand {
+                padding: 14px 16px;
+                min-width: 260px;
+            }
+            .brand h1 {
+                font-size: 16px;
+                margin: 0 0 4px;
+            }
+            .brand p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .controls {
+                display: flex;
+                gap: 8px;
+                padding: 10px;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            .btn,
+            select {
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.07);
+                color: var(--text);
+                border-radius: 999px;
+                padding: 9px 12px;
+                font: inherit;
+                font-size: 13px;
+                outline: none;
+            }
+            .btn {
+                cursor: pointer;
+                transition:
+                    0.18s transform,
+                    0.18s background;
+            }
+            .btn:hover {
+                transform: translateY(-1px);
+                background: rgba(255, 255, 255, 0.12);
+            }
+            select {
+                max-width: min(52vw, 420px);
+            }
+            option {
+                background: #11131a;
+            }
+            .side {
+                position: absolute;
+                left: 18px;
+                bottom: 18px;
+                width: min(420px, calc(100vw - 36px));
+                padding: 14px 16px;
+            }
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                margin-top: 12px;
+            }
+            .stat {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                padding: 10px;
+            }
+            .stat b {
+                display: block;
+                font-size: 12px;
+                color: var(--muted);
+                font-weight: 600;
+            }
+            .stat span {
+                font-size: 14px;
+            }
+            .drop {
+                position: absolute;
+                inset: 16px;
+                border: 1px dashed transparent;
+                border-radius: 26px;
+                display: grid;
+                place-items: center;
+                opacity: 0;
+                transition: 0.2s;
+                pointer-events: none;
+            }
+            .drag .drop {
+                opacity: 1;
+                border-color: rgba(143, 211, 255, 0.6);
+                background: rgba(8, 9, 13, 0.58);
+                backdrop-filter: blur(10px);
+            }
+            .drop div {
+                padding: 18px 22px;
+                border-radius: 18px;
+                background: rgba(0, 0, 0, 0.45);
+                border: 1px solid var(--line);
+            }
+            #status {
+                color: var(--muted);
+                font-size: 13px;
+                margin-top: 8px;
+            }
+            .bad {
+                color: var(--bad);
+            }
+            .ok {
+                color: var(--ok);
+            }
+            @media (max-width: 720px) {
+                .top {
+                    display: block;
+                }
+                .controls {
+                    margin-top: 10px;
+                    justify-content: flex-start;
+                }
+                .brand {
+                    min-width: 0;
+                }
+                select {
+                    max-width: 100%;
+                    width: 100%;
+                }
+                .side {
+                    font-size: 13px;
+                }
+                .stats {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <div class="shell">
+            <div class="top">
+                <div class="brand card">
+                    <h1>Model Preview</h1>
+                    <p>
+                        Xoay: kéo chuột · Zoom: lăn · Pan: chuột phải · Kéo-thả
+                        model để xem nhanh
+                    </p>
+                    <div id="status">Đang khởi tạo...</div>
+                </div>
+                <div class="controls card">
+                    <select id="modelSelect" title="Chọn model"></select>
+                    <button class="btn" id="openFile">Mở file</button>
+                    <button class="btn" id="fitBtn">Fit</button>
+                    <button class="btn" id="spinBtn">Auto xoay</button>
+                    <input
+                        id="fileInput"
+                        type="file"
+                        hidden
+                        accept=".glb,.gltf,.obj,.fbx"
+                    />
+                </div>
+            </div>
+            <div class="side card">
+                <b>Thông tin</b>
+                <div class="stats">
+                    <div class="stat">
+                        <b>Định dạng</b><span id="fmt">-</span>
+                    </div>
+                    <div class="stat">
+                        <b>Kích thước</b><span id="dims">-</span>
+                    </div>
+                    <div class="stat">
+                        <b>Mesh</b><span id="meshes">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="drop"><div>Thả file model vào đây</div></div>
+        </div>
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+                }
+            }
+        </script>
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+            import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+            import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+            import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
+
+            const models = [
+                {
+                    name: "Hộp bánh + trà + đĩa bánh",
+                    url: "./Meshy_AI_Banh_Phu_The_Scene_3D_0613062416_image-to-3d-texture.glb",
+                },
+                {
+                    name: "Nguyên hộp bánh",
+                    url: "./Meshy_AI_Bánh_Phu_Thê_Minh_T_0613050153_texture.glb",
+                },
+            ];
+
+            const app = document.querySelector("#app"),
+                statusEl = document.querySelector("#status"),
+                select = document.querySelector("#modelSelect");
+            const fmtEl = document.querySelector("#fmt"),
+                dimsEl = document.querySelector("#dims"),
+                meshesEl = document.querySelector("#meshes");
+            const renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: "high-performance",
+            });
+            renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+            renderer.setSize(innerWidth, innerHeight);
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.08;
+            app.appendChild(renderer.domElement);
+            const scene = new THREE.Scene();
+            scene.background = null;
+            const camera = new THREE.PerspectiveCamera(
+                45,
+                innerWidth / innerHeight,
+                0.01,
+                5000,
+            );
+            camera.position.set(3, 2, 4);
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.06;
+            scene.add(new THREE.HemisphereLight(0xffffff, 0x293040, 2.3));
+            const key = new THREE.DirectionalLight(0xffffff, 2.8);
+            key.position.set(4, 7, 5);
+            scene.add(key);
+            const rim = new THREE.DirectionalLight(0x8fd3ff, 1.4);
+            rim.position.set(-5, 3, -4);
+            scene.add(rim);
+            const floor = new THREE.GridHelper(12, 24, 0x52617a, 0x222938);
+            floor.material.transparent = true;
+            floor.material.opacity = 0.34;
+            scene.add(floor);
+            let current,
+                spin = false,
+                raf;
+
+            models.forEach((m, i) =>
+                select.add(new Option(m.name, m.url, i === 0, i === 0)),
+            );
+            select.onchange = () =>
+                load(select.value, select.selectedOptions[0].text);
+            document.querySelector("#fitBtn").onclick = fit;
+            document.querySelector("#spinBtn").onclick = () => {
+                spin = !spin;
+                status(`Auto xoay: ${spin ? "bật" : "tắt"}`, "ok");
+            };
+            document.querySelector("#openFile").onclick = () =>
+                fileInput.click();
+            fileInput.onchange = (e) =>
+                e.target.files[0] && loadFile(e.target.files[0]);
+            ["dragenter", "dragover"].forEach((ev) =>
+                addEventListener(ev, (e) => {
+                    e.preventDefault();
+                    document.body.classList.add("drag");
+                }),
+            );
+            ["dragleave", "drop"].forEach((ev) =>
+                addEventListener(ev, (e) => {
+                    e.preventDefault();
+                    document.body.classList.remove("drag");
+                }),
+            );
+            addEventListener(
+                "drop",
+                (e) =>
+                    e.dataTransfer.files[0] &&
+                    loadFile(e.dataTransfer.files[0]),
+            );
+
+            function status(text, cls = "") {
+                statusEl.className = cls;
+                statusEl.textContent = text;
+            }
+            function ext(name) {
+                return name.split(".").pop().toLowerCase();
+            }
+            function loaderFor(name) {
+                const e = ext(name);
+                if (e === "glb" || e === "gltf") return new GLTFLoader();
+                if (e === "obj") return new OBJLoader();
+                if (e === "fbx") return new FBXLoader();
+                throw new Error("Chỉ hỗ trợ GLB/GLTF/OBJ/FBX");
+            }
+            function load(url, name = url) {
+                status("Đang tải model...");
+                clearModel();
+                loaderFor(url).load(
+                    url,
+                    (obj) => show(obj.scene || obj, name),
+                    (p) => {
+                        if (p.total)
+                            status(
+                                `Đang tải ${Math.round((p.loaded / p.total) * 100)}%`,
+                            );
+                    },
+                    (err) => fail(err),
+                );
+            }
+            function loadFile(file) {
+                const url = URL.createObjectURL(file);
+                status(`Đang mở ${file.name}...`);
+                clearModel();
+                try {
+                    loaderFor(file.name).load(
+                        url,
+                        (obj) => {
+                            show(obj.scene || obj, file.name);
+                            URL.revokeObjectURL(url);
+                        },
+                        undefined,
+                        (err) => {
+                            URL.revokeObjectURL(url);
+                            fail(err);
+                        },
+                    );
+                } catch (e) {
+                    fail(e);
+                }
+            }
+            function clearModel() {
+                if (!current) return;
+                scene.remove(current);
+                current.traverse?.((o) => {
+                    if (o.geometry) o.geometry.dispose();
+                    const mats = Array.isArray(o.material)
+                        ? o.material
+                        : [o.material];
+                    mats.filter(Boolean).forEach((m) => m.dispose?.());
+                });
+                current = null;
+            }
+            function show(object, name) {
+                current = object;
+                scene.add(current);
+                current.traverse((o) => {
+                    if (o.isMesh) {
+                        o.castShadow = o.receiveShadow = true;
+                        if (o.material) o.material.needsUpdate = true;
+                    }
+                });
+                fit();
+                const box = new THREE.Box3().setFromObject(current),
+                    size = box.getSize(new THREE.Vector3());
+                let meshCount = 0;
+                current.traverse((o) => {
+                    if (o.isMesh) meshCount++;
+                });
+                fmtEl.textContent = ext(name).toUpperCase();
+                dimsEl.textContent = `${size.x.toFixed(2)} × ${size.y.toFixed(2)} × ${size.z.toFixed(2)}`;
+                meshesEl.textContent = meshCount;
+                status(`Đã tải: ${name}`, "ok");
+            }
+            function fit() {
+                if (!current) return;
+                const box = new THREE.Box3().setFromObject(current),
+                    size = box.getSize(new THREE.Vector3()),
+                    center = box.getCenter(new THREE.Vector3());
+                current.position.sub(center);
+                const max = Math.max(size.x, size.y, size.z) || 1,
+                    dist = max * 2.25;
+                camera.position.set(dist, dist * 0.62, dist);
+                camera.near = max / 200;
+                camera.far = max * 200;
+                camera.updateProjectionMatrix();
+                controls.target.set(0, 0, 0);
+                controls.update();
+                floor.scale.setScalar(Math.max(1, max / 2));
+            }
+            function fail(err) {
+                console.error(err);
+                status(
+                    "Không tải được. Chạy: python3 -m http.server 8000 rồi mở http://localhost:8000/model-preview-all.html",
+                    "bad",
+                );
+            }
+            function animate() {
+                raf = requestAnimationFrame(animate);
+                if (current && spin) current.rotation.y += 0.004;
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            addEventListener("resize", () => {
+                camera.aspect = innerWidth / innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(innerWidth, innerHeight);
+            });
+            load(models[0].url, models[0].name);
+            animate();
+        </script>
+    </body>
+</html>
