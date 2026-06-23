@@ -754,83 +754,7 @@
                         </p>
                     </div>
 
-                    <!-- Scene 5: Video bar — click to expand -->
-                    <div
-                        class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--video-bar"
-                    >
-                        <div class="bpt-nhn-video-bar" id="bpt-nhn-video-bar">
-                            <div class="bpt-nhn-video-bar__thumb">
-                                <img
-                                    src="assets/chuong-2/minh họa bánh.png"
-                                    alt="Quy trình gói bánh"
-                                    loading="lazy"
-                                />
-                                <div class="bpt-nhn-video-bar__play-icon">
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M8 5v14l11-7L8 5z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="bpt-nhn-video-bar__label">
-                                <span class="bpt-nhn-video-bar__title"
-                                    >Kỳ công gói bánh Phu Thê</span
-                                >
-                                <span class="bpt-nhn-video-bar__hint"
-                                    >Nhấn để xem</span
-                                >
-                            </div>
-                            <div class="bpt-nhn-video-bar__progress">
-                                <div
-                                    class="bpt-nhn-video-bar__progress-fill"
-                                ></div>
-                            </div>
-                        </div>
 
-                        <!-- Expanded video overlay -->
-                        <div
-                            class="bpt-nhn-video-overlay"
-                            id="bpt-nhn-video-overlay"
-                        >
-                            <div class="bpt-nhn-video-overlay__backdrop"></div>
-                            <div class="bpt-nhn-video-overlay__container">
-                                <video
-                                    class="bpt-nhn-video-overlay__video"
-                                    controls
-                                    preload="none"
-                                    poster="assets/chuong-2/minh họa bánh.png"
-                                >
-                                    <source
-                                        src="assets/chuong-2/video-goi-banh.MP4"
-                                        type="video/mp4"
-                                    />
-                                </video>
-                                <button
-                                    class="bpt-nhn-video-overlay__close"
-                                    id="bpt-nhn-video-close"
-                                    aria-label="Đóng video"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M18 6L6 18M6 6l12 12"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Scroll indicator -->
@@ -1525,6 +1449,90 @@
                 </div>
             </div>
             <!-- /#section-bpt-ch3-quote -->
+
+            <!-- § 6b — VIDEO: Gói bánh phu thê (fullscreen) -->
+            <div id="section-bpt-ch3-video" class="bpt-ch3 bpt-ch3-section">
+                <!-- Cinematic overlays -->
+                <div class="ch3-vid__vignette" aria-hidden="true"></div>
+                <div class="ch3-vid__grain" aria-hidden="true"></div>
+                <div class="ch3-vid__scanlines" aria-hidden="true"></div>
+
+                <!-- Corner ornaments -->
+                <div class="ch3-vid__corner ch3-vid__corner--tl" aria-hidden="true"></div>
+                <div class="ch3-vid__corner ch3-vid__corner--tr" aria-hidden="true"></div>
+                <div class="ch3-vid__corner ch3-vid__corner--bl" aria-hidden="true"></div>
+                <div class="ch3-vid__corner ch3-vid__corner--br" aria-hidden="true"></div>
+
+                <!-- Top eyebrow label -->
+                <div class="ch3-vid__eyebrow">
+                    <span class="ch3-vid__eyebrow-line" aria-hidden="true"></span>
+                    <span class="ch3-vid__eyebrow-text">Chương III</span>
+                    <span class="ch3-vid__eyebrow-line" aria-hidden="true"></span>
+                </div>
+
+                <!-- Center title overlay -->
+                <div class="ch3-vid__title-block">
+                    <h3 class="ch3-vid__title">
+                        <span class="ch3-vid__title-word ch3-vid__title-word--1">Kỳ</span>
+                        <span class="ch3-vid__title-word ch3-vid__title-word--2">công</span>
+                        <span class="ch3-vid__title-word ch3-vid__title-word--3">gói</span>
+                        <span class="ch3-vid__title-word ch3-vid__title-word--4">bánh</span>
+                    </h3>
+                    <div class="ch3-vid__rule" aria-hidden="true"></div>
+                    <p class="ch3-vid__subtitle">Phu Thê — truyền thống bằng đôi bàn tay</p>
+                </div>
+
+                <!-- Floating particles -->
+                <div class="ch3-vid__particles" aria-hidden="true">
+                    <div class="ch3-vid__particle ch3-vid__particle--1"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--2"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--3"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--4"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--5"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--6"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--7"></div>
+                    <div class="ch3-vid__particle ch3-vid__particle--8"></div>
+                </div>
+
+                <!-- Bottom caption bar -->
+                <div class="ch3-vid__caption">
+                    <div class="ch3-vid__caption-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="ch3-vid__caption-text">
+                        <span class="ch3-vid__caption-title">Gói bánh phu thê</span>
+                        <span class="ch3-vid__caption-hint">Đình Bảng — Bắc Ninh</span>
+                    </div>
+                </div>
+
+                <!-- Scroll cue -->
+                <div class="ch3-vid__scroll-cue" aria-hidden="true">
+                    <div class="ch3-vid__scroll-line"></div>
+                    <div class="ch3-vid__scroll-arrow"></div>
+                </div>
+
+                <!-- Video player -->
+                <div class="ch3-video__wrap">
+                    <div class="ch3-video__container">
+                        <video
+                            class="ch3-video__player"
+                            controls
+                            preload="none"
+                            playsinline
+                            poster="assets/chuong-3/pho-bot-vang-khay.webp"
+                        >
+                            <source
+                                src="assets/chuong-2/video-goi-banh.MP4"
+                                type="video/mp4"
+                            />
+                            Trình duyệt của bạn không hỗ trợ phát video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <!-- /#section-bpt-ch3-video -->
 
             <!-- § 7 — Ủ BỘT & NẶN BÁNH: Split scene -->
             <div
