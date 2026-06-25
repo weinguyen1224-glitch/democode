@@ -129,7 +129,7 @@
     z-index: 2;
 }
 
-.ch4-title__kicker {
+#article .ch4-title__kicker {
     color: var(--c4-accent);
     opacity: 0.7;
     margin-bottom: 16px;
@@ -137,7 +137,7 @@
 }
 
 .ch4-title__heading {
-    font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+    font-size: clamp(3rem, 6vw, 5.6rem);
     line-height: 1.05;
     color: var(--c4-accent);
     margin: 0 0 28px;
@@ -157,7 +157,7 @@
     );
 }
 
-.ch4-title__intro {
+#article .ch4-title__intro {
     font-size: clamp(1rem, 1.6vw, 1.2rem);
     line-height: 1.75;
     color: var(--c4-text);
@@ -200,7 +200,6 @@
 }
 
 .ch4-slider__title {
-    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
     color: var(--c4-accent);
     margin: 0;
 }
@@ -399,7 +398,6 @@
 }
 
 .ch4-symbol__text h3 {
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
 }
@@ -478,7 +476,6 @@
 }
 
 .ch4-happiness h3 {
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 20px;
 }
@@ -533,7 +530,6 @@
 }
 
 .ch4-region__text h3 {
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
 }
@@ -620,7 +616,6 @@
 }
 
 .ch4-prose-section__text h3 {
-    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     color: var(--c4-accent);
     margin: 0 0 4px;
 }
@@ -658,7 +653,6 @@
 }
 
 .ch4-balance h3 {
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 20px;
 }
@@ -724,7 +718,6 @@
 }
 
 .ch4-tourism__text h3 {
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
 }

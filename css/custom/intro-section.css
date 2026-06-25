@@ -40,9 +40,7 @@
 
 /* ─── Title ─── */
 .bpt-intro__title {
-    font-family: "MJ Milestone", "Pacifico", cursive;
     font-size: clamp(4rem, 10vw, 7.2rem);
-    font-weight: 700;
     line-height: 1.15;
     color: var(--color-betel-leaf-green);
     margin: 0 0 clamp(20px, 3vw, 36px);
@@ -69,7 +67,7 @@
 }
 
 /* ─── Body text container ─── */
-.bpt-intro__body {
+#article .bpt-intro__body {
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(0.85rem, 3.8vw, 1.65rem);
     font-weight: 700;

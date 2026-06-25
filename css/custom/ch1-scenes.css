@@ -83,7 +83,6 @@
 }
 
 .bpt-zoom-scene__text .bpt-kicker {
-    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
     margin-bottom: 12px;
 }
 
@@ -343,11 +342,9 @@
 
 /* Typography override trong context tối */
 .bpt-sm-text .bpt-kicker {
-    color: rgb(120 70 20); /* nâu đỏ ấm, nổi trên nền kem */
-    font-size: clamp(1.4rem, 2.2vw, 1.76rem);
+    color: rgb(120 70 20);
     letter-spacing: 0.2em;
     margin-bottom: 14px;
-    text-transform: uppercase;
 }
 
 .bpt-sm-text p {

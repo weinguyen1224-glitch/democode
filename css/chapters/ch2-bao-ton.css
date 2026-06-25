@@ -147,7 +147,7 @@
 }
 
 .bpt-nghe-nhan__bg-layer--kicker {
-    background-image: url("../../assets/chuong-2/3h-sang.JPG");
+    background-image: url("../../assets/chuong-2/3h-sang.webp");
 }
 
 .bpt-nghe-nhan__bg-layer--quote {
@@ -159,7 +159,7 @@
             rgba(0, 0, 0, 0.25) 60%,
             rgba(0, 0, 0, 0.15) 100%
         ),
-        url("../../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.JPG");
+        url("../../assets/chuong-2/NGHỆ%20NHÂN%20NGUYỄN%20ĐÌNH%20MINH.webp");
     background-size: cover;
     background-position: center 35%;
 }
@@ -283,7 +283,7 @@
 .bpt-nghe-nhan__reveal-base {
     position: absolute;
     inset: 0;
-    background-image: url("../../assets/chuong-2/3h-sang.JPG");
+    background-image: url("../../assets/chuong-2/3h-sang.webp");
     background-size: cover;
     background-position: center 35%;
 }
@@ -291,7 +291,7 @@
 .bpt-nghe-nhan__reveal-top {
     position: absolute;
     inset: 0;
-    background-image: url("../../assets/chuong-2/3h-sang-2.JPG");
+    background-image: url("../../assets/chuong-2/3h-sang-2.webp");
     background-size: cover;
     background-position: center 35%;
     opacity: 0;
@@ -424,7 +424,7 @@
     z-index: 1;
 }
 
-.bpt-nghe-nhan__lead {
+#article .bpt-nghe-nhan__lead {
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(1.3rem, 2.5vw, 2.2rem);
     line-height: 1.9;
@@ -503,7 +503,7 @@
     font-family: "MJ Milestone", "Pacifico", cursive;
 }
 
-.bpt-nghe-nhan__quote-line {
+#article .bpt-nghe-nhan__quote-line {
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     line-height: 2;
     color: rgba(247, 232, 203, 0.92);
@@ -593,7 +593,7 @@
     align-items: center;
 }
 
-.bpt-nghe-nhan__reflect {
+#article .bpt-nghe-nhan__reflect {
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
     font-size: clamp(1.1rem, 1.8vw, 1.5rem);
     line-height: 2;
@@ -607,7 +607,7 @@
         transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.bpt-nghe-nhan__reflect--dim {
+#article .bpt-nghe-nhan__reflect--dim {
     color: rgba(255, 240, 200, 0.7); /* kem mờ, italic */
     font-style: italic;
     font-size: clamp(0.95rem, 1.5vw, 1.25rem);
@@ -1191,9 +1191,9 @@
 .bpt-bao-ton__content {
     position: relative;
     z-index: 10;
-    max-width: 1500px;
-    padding: clamp(24px, 4vh, 48px) clamp(16px, 4vw, 48px);
-    text-align: center;
+    max-width: none;
+    padding: clamp(24px, 4vh, 48px) clamp(40px, 8vw, 120px);
+    text-align: justify;
     opacity: 1;
     transform: none;
 }

@@ -51,7 +51,6 @@
 
 .ch5-title__num {
     display: block;
-    font-family: "Outfit", "Poppins", sans-serif;
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 700;
     color: var(--c5-accent);
@@ -62,7 +61,6 @@
 
 .ch5-title__text {
     margin: 0;
-    font-family: "Outfit", "Poppins", sans-serif;
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -145,7 +143,7 @@
     color: var(--c5-text);
 }
 
-.ch5-poem__attr {
+#article .ch5-poem__attr {
     margin-top: 24px;
     font-family: "Outfit", sans-serif;
     font-size: 0.8rem;
@@ -254,7 +252,7 @@
     color: var(--c5-text);
 }
 
-.ch5-artisan-quote__attr {
+#article .ch5-artisan-quote__attr {
     margin-top: 16px;
     font-family: "Outfit", sans-serif;
     font-size: 0.8rem;
@@ -329,7 +327,7 @@
     color: var(--c5-text);
 }
 
-.ch5-final-poem__attr {
+#article .ch5-final-poem__attr {
     margin-top: 24px;
     font-family: "Outfit", sans-serif;
     font-size: 0.8rem;

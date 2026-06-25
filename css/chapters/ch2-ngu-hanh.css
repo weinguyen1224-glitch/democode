@@ -29,10 +29,11 @@
 .bpt-ngu-hanh__text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 24px;
-    text-align: center;
-    max-width: 600px;
+    text-align: justify;
+    max-width: none;
+    width: 100%;
     position: relative;
     z-index: 50;
 }
@@ -58,6 +59,8 @@
     font-size: clamp(0.85rem, 1.2vw, 1rem);
     color: var(--color-sticky-rice-gold, #972023);
     opacity: 0.8;
+    text-align: center;
+    width: 100%;
     animation: bpt-float-hint 2.4s ease-in-out infinite;
 }
 
@@ -308,7 +311,6 @@
 
 .bpt-finale-text h2 {
     font-size: 20px;
-    font-weight: 700;
     color: var(--color-sticky-rice-gold, #972023);
     text-shadow: 0 0 16px rgba(245, 222, 179, 0.2);
     margin-bottom: 6px;

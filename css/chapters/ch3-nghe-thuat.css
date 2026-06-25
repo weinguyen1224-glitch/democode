@@ -430,7 +430,7 @@
 /* Roman numeral */
 .ch3-divider__num {
     display: block;
-    font-family: "DNS Gibsons One", "Oswald", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.7rem, 1.2vw, 1rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -459,7 +459,7 @@
 
 /* Chapter title */
 .ch3-divider__title {
-    font-family: "DNS Gibsons One", "Oswald", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.1;
@@ -475,7 +475,7 @@
 
 /* Sub-kicker below title */
 .ch3-divider__sub {
-    font-family: "DNS Gibsons One", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.75rem, 1.4vw, 0.95rem);
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -536,12 +536,7 @@
     align-items: center;
     justify-content: center;
     padding: clamp(60px, 10vh, 120px) clamp(24px, 8vw, 120px);
-    background: linear-gradient(
-        180deg,
-        var(--c-red) 0%,
-        #7a1a1c 60%,
-        var(--c-bg) 100%
-    );
+    background: var(--c-bg);
     text-align: center;
 }
 
@@ -550,69 +545,15 @@
     margin: 0 auto;
 }
 
-/* ── Rainbow gradient text ───────────────────────────────────── */
-.ch3-rainbow-text {
-    position: relative;
-    background: linear-gradient(
-        -225deg,
-        #ff0000 0%,
-        #ff7300 15%,
-        #ffff00 30%,
-        #00ff6a 45%,
-        #002aff 60%,
-        #7b00ff 75%,
-        #e100ff 90%,
-        #ff0000 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    font-family: "DNS Gibsons One", Georgia, serif;
+/* ── Solid accent heading (matching other titles) ──────────── */
+.ch3-intro__heading {
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.6rem, 3.5vw, 2.8rem);
     font-weight: 700;
     line-height: 1.25;
     margin: 0 0 32px;
-}
-
-/* Keep <em> gold inside rainbow — override fill on em */
-.ch3-rainbow-text em {
-    font-style: normal;
-    -webkit-text-fill-color: var(--c-accent);
-}
-
-/* ── Shimmer ::before (sweep of light across text) ──────────── */
-@keyframes ch3ShimmerSweep {
-    0% {
-        transform: translateX(-100%) skewX(-15deg);
-    }
-    100% {
-        transform: translateX(350%) skewX(-15deg);
-    }
-}
-
-.ch3-rainbow-text::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-        100deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.25) 45%,
-        rgba(255, 255, 255, 0.5) 50%,
-        rgba(255, 255, 255, 0.25) 55%,
-        transparent 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-}
-
-#section-bpt-ch3-intro.bpt-visible .ch3-rainbow-text::before {
-    animation: ch3ShimmerSweep 2s ease-in-out 0.8s both;
+    color: var(--c-accent);
+    opacity: 0;
 }
 
 /* ── Bounce entrance animation ───────────────────────────────── */
@@ -640,30 +581,13 @@
     }
 }
 
-.ch3-bounce-text {
-    opacity: 0;
-}
-
-#section-bpt-ch3-intro.bpt-visible .ch3-bounce-text {
+#section-bpt-ch3-intro.bpt-visible .ch3-intro__heading {
     animation: ch3BounceEntrance 1s var(--ease-spring) both;
 }
 
-/* ── Continuous rainbow color cycling (after entrance) ────────── */
-@keyframes ch3RainbowCycle {
-    to {
-        background-position: -200% center;
-    }
-}
-
-#section-bpt-ch3-intro.bpt-visible .ch3-rainbow-text {
-    animation:
-        ch3BounceEntrance 1s var(--ease-spring) both,
-        ch3RainbowCycle 4s linear 1.2s infinite;
-}
-
 /* ── Body text ────────────────────────────────────────────────── */
-.ch3-intro__body {
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+#article .ch3-intro__body {
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: rgba(26, 26, 26, 0.75);
     margin: 0;
@@ -755,7 +679,7 @@
 }
 
 .ch3-split__eyebrow {
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.65rem, 1vw, 0.78rem);
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -764,7 +688,7 @@
 }
 
 .ch3-split__heading {
-    font-family: "DNS Gibsons One", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     font-weight: 700;
     color: #1a1a1a;
@@ -793,13 +717,13 @@
     transform: scaleX(1);
 }
 
-.ch3-split__body {
-    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+#article .ch3-split__body {
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: var(--c-text-dim);
 }
 
-.ch3-split__body strong {
+#article .ch3-split__body strong {
     color: #1a1a1a;
     font-weight: 600;
 }
@@ -937,7 +861,7 @@
 }
 
 .ch3-quote__name {
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: 0.9rem;
     letter-spacing: 0.12em;
     color: var(--c-accent);
@@ -963,7 +887,7 @@
 
 .ch3-timeline__label {
     text-align: center;
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.7rem, 1.1vw, 0.82rem);
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -1063,7 +987,7 @@
 
 .ch3-step__num {
     display: block;
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 700;
     color: var(--c-red);
@@ -1073,7 +997,7 @@
 }
 
 .ch3-step__title {
-    font-family: "DNS Gibsons One", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: 700;
     color: var(--c-accent);
@@ -1234,7 +1158,7 @@
 }
 
 .ch3-thanh-pham__kicker {
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.7rem, 1.1vw, 0.82rem);
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -1279,7 +1203,7 @@
 }
 
 .ch3-thanh-pham__heading {
-    font-family: "DNS Gibsons One", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     font-weight: 700;
     color: #1a1a1a;
@@ -1292,11 +1216,11 @@
     color: var(--c-accent);
 }
 
-.ch3-thanh-pham__body {
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+#article .ch3-thanh-pham__body {
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: var(--c-text-dim);
-    max-width: 540px;
+    max-width: 640px;
     margin: 0 auto;
 }
 
@@ -1483,7 +1407,7 @@
 }
 
 .ch3-vid__eyebrow-text {
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.6rem, 1vw, 0.75rem);
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -1523,7 +1447,7 @@
 }
 
 .ch3-vid__title-word {
-    font-family: "DNS Gibsons One", Georgia, serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(2rem, 6vw, 5rem);
     font-weight: 700;
     color: #1a1a1a;
@@ -1604,7 +1528,7 @@
 }
 
 /* Subtitle */
-.ch3-vid__subtitle {
+#article .ch3-vid__subtitle {
     font-family: "MJ Milestone", Georgia, serif;
     font-size: clamp(0.85rem, 1.8vw, 1.25rem);
     font-style: italic;
@@ -1781,7 +1705,7 @@
 }
 
 .ch3-vid__caption-title {
-    font-family: "DNS Gibsons One", serif;
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.7rem, 1.1vw, 0.85rem);
     letter-spacing: 0.1em;
     color: #1a1a1a;
@@ -1859,8 +1783,7 @@
     .ch3-anim-jackInTheBox,
     .ch3-anim-rotateIn,
     .ch3-anim-bounceIn,
-    .ch3-bounce-text,
-    .ch3-rainbow-text::before,
+    .ch3-intro__heading,
     .ch3-divider__bg img,
     .ch3-split__rule,
     .ch3-quote__mark,

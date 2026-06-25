@@ -18,7 +18,7 @@
           entry.target.querySelectorAll(".bpt-reveal").forEach((el) => {
             el.classList.add("bpt-visible");
           });
-          entry.target.querySelectorAll(".bpt-split-scene").forEach((el) => {
+          entry.target.querySelectorAll(".bpt-split-scene, .bpt-scene__centered").forEach((el) => {
             el.classList.add("bpt-visible");
           });
           sceneObs.unobserve(entry.target);

@@ -30,11 +30,21 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   .bpt-kicker — unified title style across all chapters
+   .bpt-title — shared base class for ALL titles
    ═══════════════════════════════════════════════════════════ */
-.bpt-kicker {
-    font-family: "Outfit", sans-serif;
-    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
+.bpt-title {
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   .bpt-kicker — unified kicker style across all chapters
+   ═══════════════════════════════════════════════════════════ */
+#article .bpt-kicker {
+    font-family: "DNS Gibsons One", "Oswald", sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
