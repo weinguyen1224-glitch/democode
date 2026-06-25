@@ -29,6 +29,19 @@
     font-display: swap;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   .bpt-kicker — unified title style across all chapters
+   ═══════════════════════════════════════════════════════════ */
+.bpt-kicker {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.6rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-red-thread);
+    margin: 0 0 18px;
+}
+
 /* V2 custom layer: only additive overrides, no Shorthand runtime edits. */
 #section-r44SGFDar3 .Theme-Layer-TextBlock-Container,
 #section-r44SGFDar3 .Theme-Column {

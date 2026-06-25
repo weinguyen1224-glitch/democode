@@ -130,20 +130,15 @@
 }
 
 .ch4-title__kicker {
-    font-family: "Outfit", "Poppins", sans-serif;
-    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
     color: var(--c4-accent);
     opacity: 0.7;
     margin-bottom: 16px;
+    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
 }
 
 .ch4-title__heading {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(2.2rem, 5.5vw, 4.8rem);
     line-height: 1.05;
-    font-weight: 700;
     color: var(--c4-accent);
     margin: 0 0 28px;
     letter-spacing: -0.02em;
@@ -198,21 +193,16 @@
 }
 
 .ch4-slider__kicker {
-    font-family: "Outfit", "Poppins", sans-serif;
-    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
     color: var(--c4-accent);
     opacity: 0.65;
     margin-bottom: 10px;
+    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
 }
 
 .ch4-slider__title {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.6rem, 3.5vw, 2.8rem);
     color: var(--c4-accent);
     margin: 0;
-    font-weight: 700;
 }
 
 /* ── Comparison container ────────────────────────────────── */
@@ -319,7 +309,7 @@
     position: absolute;
     top: 16px;
     z-index: 5;
-    font-family: "Outfit", "Poppins", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: clamp(0.65rem, 1vw, 0.8rem);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -409,7 +399,6 @@
 }
 
 .ch4-symbol__text h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
@@ -489,7 +478,6 @@
 }
 
 .ch4-happiness h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 20px;
@@ -545,7 +533,6 @@
 }
 
 .ch4-region__text h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
@@ -633,7 +620,6 @@
 }
 
 .ch4-prose-section__text h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.4rem, 2.8vw, 2.2rem);
     color: var(--c4-accent);
     margin: 0 0 4px;
@@ -672,7 +658,6 @@
 }
 
 .ch4-balance h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 20px;
@@ -739,7 +724,6 @@
 }
 
 .ch4-tourism__text h3 {
-    font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     color: var(--c4-accent);
     margin: 0 0 8px;
@@ -952,7 +936,7 @@
 }
 
 .ch4-path__waypoint-label {
-    font-family: "Outfit", "Poppins", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: clamp(0.7rem, 1.1vw, 0.85rem);
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -1128,7 +1112,7 @@
 
 .ch4-kicker {
     display: block;
-    font-family: "Outfit", "Poppins", sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: clamp(0.65rem, 1vw, 0.8rem);
     font-weight: 600;
     letter-spacing: 0.22em;

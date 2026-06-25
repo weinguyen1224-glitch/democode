@@ -310,7 +310,7 @@
 /* ── Text block nổi lên ảnh ── */
 .bpt-sm-text {
     pointer-events: auto;
-    max-width: min(520px, 80vw);
+    max-width: min(760px, 92vw);
     padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
     /* Nền sáng để text đen nổi lên ảnh */
     background: rgb(255 250 235 / 0.92);
@@ -323,19 +323,21 @@
 
 /* Vị trí: left / right / center */
 .bpt-sm-text--left {
+    max-width: min(800px, 95vw);
     margin-left: clamp(24px, 5vw, 100px);
     margin-right: auto;
 }
 
 .bpt-sm-text--right {
+    max-width: min(580px, 85vw);
     margin-left: auto;
     margin-right: clamp(24px, 5vw, 100px);
 }
 
 .bpt-sm-text--center {
+    max-width: min(540px, 82vw);
     margin-left: auto;
     margin-right: auto;
-    max-width: min(640px, 88vw);
     text-align: center;
 }
 
@@ -540,7 +542,7 @@
 .bpt-sm-panel--cinematic .bpt-sm-text {
     position: relative;
     z-index: 2;
-    max-width: min(640px, 88vw);
+    max-width: min(780px, 92vw);
     margin: auto;
     background: rgb(255 250 235 / 0.92);
     /* backdrop-filter: blur(14px); */
@@ -554,6 +556,14 @@
 
 .bpt-sm-panel--cinematic .bpt-sm-text .bpt-kicker {
     text-align: center;
+}
+
+/* Box từ điển tích đến cung đình (p2-p5) */
+#section-bpt-ch1-p2 .bpt-sm-text,
+#section-bpt-ch1-p3 .bpt-sm-text,
+#section-bpt-ch1-p4 .bpt-sm-text,
+#section-bpt-ch1-p5 .bpt-sm-text {
+    max-width: min(740px, 92vw);
 }
 
 /* Mobile */
@@ -602,8 +612,8 @@
 }
 
 .bpt-sm-panel--magazine .bpt-sm-text--left {
-    flex: 0 0 48%;
-    max-width: 540px;
+    flex: 1 1 auto;
+    max-width: min(700px, 90vw);
     margin-left: 0;
     margin-right: auto;
 }
