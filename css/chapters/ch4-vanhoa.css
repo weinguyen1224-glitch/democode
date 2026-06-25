@@ -74,21 +74,186 @@
     transform: none;
 }
 
-/* Stagger delays */
+/* Stagger delays — transition (ch4-reveal*) + animation (ch4-anim*) */
 .ch4-d1 {
     transition-delay: 0.08s;
+    animation-delay: 0.1s;
 }
 .ch4-d2 {
     transition-delay: 0.16s;
+    animation-delay: 0.2s;
 }
 .ch4-d3 {
     transition-delay: 0.24s;
+    animation-delay: 0.3s;
 }
 .ch4-d4 {
     transition-delay: 0.32s;
+    animation-delay: 0.4s;
 }
 .ch4-d5 {
     transition-delay: 0.4s;
+    animation-delay: 0.5s;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   IMAGE KEYFRAME ANIMATIONS — unique per section
+   ══════════════════════════════════════════════════════════════ */
+
+/* § Slider — fly in from top-left with zoom */
+@keyframes ch4ZoomAndFade {
+    from {
+        opacity: 0;
+        transform: translate3d(calc(-60vw), calc(-60vh), 0) scale(0.2) rotate(-20deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1.06) rotate(2deg);
+    }
+    75% {
+        transform: translate3d(0, 0, 0) scale(0.97) rotate(-1deg);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0);
+    }
+}
+
+/* § Symbol — flip entrance from left screen edge */
+@keyframes ch4FlipInX {
+    from {
+        opacity: 0;
+        transform: translate3d(-60vw, 0, 0) perspective(800px) rotateY(-120deg) scale(0.4);
+    }
+    40% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(15deg) scale(1.04);
+    }
+    60% {
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(-8deg) scale(0.98);
+    }
+    80% {
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(3deg) scale(1.01);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(0) scale(1);
+    }
+}
+
+/* § Region — spin entrance from right edge */
+@keyframes ch4SpinFromRight {
+    from {
+        opacity: 0;
+        transform: translate3d(60vw, 0, 0) rotate(270deg) scale(0.4);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(-15deg) scale(1.05);
+    }
+    80% {
+        transform: translate3d(0, 0, 0) rotate(5deg) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+
+/* § Prose (Thích nghi) — jack-in-the-box from right edge */
+@keyframes ch4JackInTheBox {
+    from {
+        opacity: 0;
+        transform: translate3d(60vw, 0, 0) scale(0.1) rotate(30deg);
+    }
+    45% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1.08) rotate(-8deg);
+    }
+    65% {
+        transform: translate3d(0, 0, 0) scale(0.95) rotate(4deg);
+    }
+    82% {
+        transform: translate3d(0, 0, 0) scale(1.02) rotate(-2deg);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0);
+    }
+}
+
+/* § Prose (Gam màu) — roll in from left */
+@keyframes ch4RollIn {
+    from {
+        opacity: 0;
+        transform: translate3d(-60vw, 0, 0) rotate(-120deg) scale(0.4);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(10deg) scale(1.04);
+    }
+    80% {
+        transform: translate3d(0, 0, 0) rotate(-4deg) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+
+/* § Tourism — drop from top with bounce */
+@keyframes ch4DropFromTop {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -60vh, 0) rotate(15deg) scale(0.4);
+    }
+    55% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(-5deg) scale(1.04);
+    }
+    75% {
+        transform: translate3d(0, 0, 0) rotate(2deg) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+
+/* Hidden state for animated images */
+.ch4-anim-zoomAndFade,
+.ch4-anim-flipInX,
+.ch4-anim-spinFromRight,
+.ch4-anim-jackInTheBox,
+.ch4-anim-rollIn,
+.ch4-anim-dropFromTop {
+    opacity: 0;
+}
+
+/* Animation trigger — parent section gets .ch4-visible from JS */
+.ch4-visible .ch4-anim-zoomAndFade {
+    animation: ch4ZoomAndFade 1.2s var(--c4-ease) both;
+}
+.ch4-visible .ch4-anim-flipInX {
+    animation: ch4FlipInX 1s var(--c4-ease) both;
+}
+.ch4-visible .ch4-anim-spinFromRight {
+    animation: ch4SpinFromRight 1.2s var(--c4-ease) both;
+}
+.ch4-visible .ch4-anim-jackInTheBox {
+    animation: ch4JackInTheBox 1s var(--c4-ease-spring) both;
+}
+.ch4-visible .ch4-anim-rollIn {
+    animation: ch4RollIn 1s var(--c4-ease) both;
+}
+.ch4-visible .ch4-anim-dropFromTop {
+    animation: ch4DropFromTop 1s var(--c4-ease) both;
+}
+
+/* Gallery images — slightly longer duration for 2-image sections */
+.ch4-symbol__gallery .ch4-anim-flipInX,
+.ch4-tourism__gallery .ch4-anim-dropFromTop {
+    animation-duration: 1.2s;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -346,7 +511,7 @@
 }
 
 .ch4-slider-caption p {
-    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.7;
     color: var(--c4-text);
     max-width: 700px;
@@ -381,12 +546,11 @@
 }
 
 .ch4-symbol__layout {
-    display: grid;
-    grid-template-columns: 2fr 1.1fr;
+    display: flex;
+    flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 1200px;
+    max-width: 840px;
     margin: 0 auto;
-    align-items: start;
     position: relative;
     z-index: 2;
 }
@@ -403,7 +567,7 @@
 }
 
 .ch4-symbol__text p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -412,15 +576,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    position: sticky;
-    top: 80px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .ch4-symbol__img-wrap {
     border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(151, 32, 35, 0.1);
+    background: var(--c4-bg);
     aspect-ratio: 3 / 4;
 }
 
@@ -429,6 +592,8 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 12px;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -481,7 +646,7 @@
 }
 
 .ch4-happiness p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -495,27 +660,32 @@
 }
 
 .ch4-region__layout {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 1200px;
+    max-width: 840px;
     margin: 0 auto;
-    align-items: center;
     position: relative;
     z-index: 2;
 }
 
 .ch4-region__img-wrap {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ch4-region__img-wrap {
     border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(151, 32, 35, 0.1);
+    background: var(--c4-bg);
 }
 
 .ch4-region__img-wrap img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 14px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -535,7 +705,7 @@
 }
 
 .ch4-region__text p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -561,47 +731,38 @@
 }
 
 .ch4-prose-section__layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 1200px;
+    max-width: 840px;
     margin: 0 auto;
-    align-items: start;
     position: relative;
     z-index: 2;
 }
 
-.ch4-prose-section__layout--reverse {
-    grid-template-columns: 1fr 1fr;
-}
-
-.ch4-prose-section__layout--reverse .ch4-prose-section__img-wrap {
-    order: 2;
-}
-.ch4-prose-section__layout--reverse .ch4-prose-section__text {
-    order: 1;
-}
-
 .ch4-prose-section__layout--center {
-    grid-template-columns: 1fr;
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .ch4-prose-section__img-wrap {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ch4-prose-section__img-wrap {
     border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(151, 32, 35, 0.1);
-    position: sticky;
-    top: 80px;
+    background: var(--c4-bg);
 }
 
 .ch4-prose-section__img-wrap img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 14px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -621,7 +782,7 @@
 }
 
 .ch4-prose-section__text p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -658,7 +819,7 @@
 }
 
 .ch4-balance p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -673,12 +834,11 @@
 }
 
 .ch4-tourism__layout {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 1200px;
+    max-width: 840px;
     margin: 0 auto;
-    align-items: center;
     position: relative;
     z-index: 2;
 }
@@ -687,15 +847,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    position: sticky;
-    top: 80px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .ch4-tourism__img-wrap {
     border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(151, 32, 35, 0.1);
+    background: var(--c4-bg);
     aspect-ratio: 4 / 3;
 }
 
@@ -704,6 +863,8 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 12px;
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -723,7 +884,7 @@
 }
 
 .ch4-tourism__text p {
-    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     margin: 0;
 }
@@ -773,7 +934,7 @@
 
 .ch4-closing p {
     font-family: "Vollkorn", "PT Serif", Georgia, serif;
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.8;
     font-style: italic;
     color: var(--c4-text);
@@ -1003,23 +1164,9 @@
 @media (max-width: 768px) {
     .ch4-symbol__layout,
     .ch4-region__layout,
-    .ch4-tourism__layout {
-        grid-template-columns: 1fr;
+    .ch4-tourism__layout,
+    .ch4-prose-section__layout {
         gap: 28px;
-    }
-
-    .ch4-prose-section__layout,
-    .ch4-prose-section__layout--reverse {
-        grid-template-columns: 1fr;
-    }
-
-    .ch4-prose-section__layout--reverse .ch4-prose-section__img-wrap,
-    .ch4-prose-section__layout--reverse .ch4-prose-section__text {
-        order: unset;
-    }
-
-    .ch4-prose-section__img-wrap {
-        position: static;
     }
 
     .ch4-symbol__img-wrap {
@@ -1302,6 +1449,16 @@
     .ch4-reveal-right,
     .ch4-reveal-scale {
         transition: none;
+        opacity: 1;
+        transform: none;
+    }
+    .ch4-anim-zoomAndFade,
+    .ch4-anim-flipInX,
+    .ch4-anim-spinFromRight,
+    .ch4-anim-jackInTheBox,
+    .ch4-anim-rollIn,
+    .ch4-anim-dropFromTop {
+        animation: none;
         opacity: 1;
         transform: none;
     }

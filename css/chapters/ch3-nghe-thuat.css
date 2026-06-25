@@ -115,108 +115,157 @@
 /* ── Image entrance animations (Animate.css-inspired) ───────── */
 /* Each keyframe defines the animation; .ch3-anim-* classes apply it */
 
-@keyframes ch3FadeInUp {
-    from {
+/* §4 VỎ VÀNG — zoom from center with rotation */
+@keyframes ch3FlipSwoop {
+    0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translate3d(calc(-40vw - 30%), -30vh, 0) rotateY(90deg) scale(0.4);
     }
-    to {
+    60% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0) rotateY(-8deg) scale(1.03);
+    }
+    80% {
+        transform: translate3d(0, 0, 0) rotateY(3deg) scale(0.99);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotateY(0) scale(1);
     }
 }
 
-@keyframes ch3ZoomIn {
-    from {
+@keyframes ch3DriftUp {
+    0% {
         opacity: 0;
-        transform: scale(0.55);
+        transform: translate3d(0, 60px, 0) rotate(6deg) scale(0.9);
     }
-    to {
+    60% {
         opacity: 1;
-        transform: scale(1);
+        transform: translate3d(0, -8px, 0) rotate(-2deg) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
     }
 }
 
+/* §5 NHÂN BÁNH — slide left with roll */
 @keyframes ch3SlideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-60px);
+        transform: translate3d(calc(-50vw - 50%), 0, 0);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes ch3SlideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes ch3RollIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100%) rotate(-120deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) rotate(0);
-    }
-}
-
-@keyframes ch3JackInTheBox {
     0% {
         opacity: 0;
-        transform: scale(0.1) rotate(-30deg);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.08) rotate(5deg);
+        transform: translate3d(calc(-50vw - 50%), 0, 0) rotate(-180deg) scale(0.6);
     }
     70% {
-        transform: scale(0.95) rotate(-2deg);
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(12deg) scale(1.05);
+    }
+    85% {
+        transform: translate3d(0, 0, 0) rotate(-4deg) scale(0.98);
     }
     100% {
         opacity: 1;
-        transform: scale(1) rotate(0);
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
     }
 }
 
-@keyframes ch3RotateIn {
-    from {
-        opacity: 0;
-        transform: rotate(-10deg) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-}
-
-@keyframes ch3BounceIn {
+/* §7 BỘ — tumble & pop from right */
+@keyframes ch3SpinFromRight {
     0% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: translate3d(calc(50vw + 50%), 0, 0) rotate(270deg) scale(0.3);
+    }
+    55% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(-15deg) scale(1.06);
+    }
+    75% {
+        transform: translate3d(0, 0, 0) rotate(6deg) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+
+@keyframes ch3PopSpin {
+    0% {
+        opacity: 0;
+        transform: translate3d(calc(50vw + 30%), 0, 0) rotate(-120deg) scale(0);
     }
     50% {
         opacity: 1;
-        transform: scale(1.12);
+        transform: translate3d(0, 0, 0) rotate(20deg) scale(1.15);
     }
-    65% {
-        transform: scale(0.92);
+    70% {
+        transform: translate3d(0, 0, 0) rotate(-8deg) scale(0.93);
     }
-    80% {
-        transform: scale(1.04);
+    85% {
+        transform: translate3d(0, 0, 0) rotate(3deg) scale(1.03);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+
+/* §8 HẤP & GÓI — drop from top + left slide */
+@keyframes ch3DropIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, calc(-50vh - 50%), 0) rotate(15deg) scale(0.5);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(-5deg) scale(1.04);
+    }
+    80% {
+        transform: translate3d(0, 0, 0) rotate(2deg) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    }
+}
+@keyframes ch3SlideInRight {
+    from {
+        opacity: 0;
+        transform: translate3d(calc(50vw + 50%), 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes ch3BounceSpin {
+    0% {
+        opacity: 0;
+        transform: translate3d(calc(50vw + 40%), 0, 0) rotate(360deg) scale(0.2);
+    }
+    45% {
+        opacity: 1;
+        transform: translate3d(0, -20px, 0) rotate(-30deg) scale(1.1);
+    }
+    65% {
+        transform: translate3d(0, 8px, 0) rotate(12deg) scale(0.95);
+    }
+    80% {
+        transform: translate3d(0, -3px, 0) rotate(-4deg) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0) scale(1);
     }
 }
 
@@ -236,28 +285,40 @@
 
 /* Triggered state — play animation */
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp {
-    animation: ch3FadeInUp 0.7s var(--ease) both;
+    animation: ch3DriftUp 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-zoomIn {
-    animation: ch3ZoomIn 0.7s var(--ease-spring) both;
+    animation: ch3FlipSwoop 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInLeft {
-    animation: ch3SlideInLeft 0.65s var(--ease) both;
+    animation: ch3SlideInLeft 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInRight {
-    animation: ch3SlideInRight 0.65s var(--ease) both;
+    animation: ch3SlideInRight 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn {
-    animation: ch3RollIn 0.7s var(--ease) both;
+    animation: ch3RollIn 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox {
-    animation: ch3JackInTheBox 0.75s var(--ease-spring) both;
+    animation: ch3PopSpin 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn {
-    animation: ch3RotateIn 0.7s var(--ease-spring) both;
+    animation: ch3SpinFromRight 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn {
-    animation: ch3BounceIn 0.75s var(--ease-spring) both;
+    animation: ch3BounceSpin 1.8s var(--ease) both;
+    will-change: transform, opacity;
+}
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop {
+    animation: ch3DropIn 1.8s var(--ease) both;
+    will-change: transform, opacity;
 }
 
 /* Animation stagger delays — override transition-delay with animation-delay */
@@ -268,8 +329,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d1,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d1,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d1,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d1 {
-    animation-delay: 0.08s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d1,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d1 {
+    animation-delay: 0.1s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d2,
@@ -279,8 +341,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d2,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d2,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d2,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d2 {
-    animation-delay: 0.18s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d2,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d2 {
+    animation-delay: 0.22s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d3,
@@ -290,8 +353,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d3,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d3,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d3,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d3 {
-    animation-delay: 0.28s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d3,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d3 {
+    animation-delay: 0.38s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d4,
@@ -301,8 +365,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d4,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d4,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d4,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d4 {
-    animation-delay: 0.4s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d4,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d4 {
+    animation-delay: 0.55s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d5,
@@ -312,8 +377,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d5,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d5,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d5,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d5 {
-    animation-delay: 0.52s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d5,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d5 {
+    animation-delay: 0.9s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d6,
@@ -323,8 +389,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d6,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d6,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d6,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d6 {
-    animation-delay: 0.64s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d6,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d6 {
+    animation-delay: 1.1s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d7,
@@ -334,8 +401,9 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn.ch3-d7,
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d7,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d7,
-.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d7 {
-    animation-delay: 0.76s;
+.bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d7,
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d7 {
+    animation-delay: 1.3s;
 }
 
 /* Override Ken Burns for animated mosaic images */
@@ -346,8 +414,49 @@
 .ch3-split__mosaic .ch3-anim-rollIn,
 .ch3-split__mosaic .ch3-anim-jackInTheBox,
 .ch3-split__mosaic .ch3-anim-rotateIn,
-.ch3-split__mosaic .ch3-anim-bounceIn {
+.ch3-split__mosaic .ch3-anim-bounceIn,
+.ch3-split__mosaic .ch3-anim-dropFromTop {
     transform: none;
+}
+
+/* Slow smooth mosaic animations — override base durations */
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-fadeInUp {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-zoomIn {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-slideInLeft {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-slideInRight {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-rollIn {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-jackInTheBox {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-rotateIn {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-bounceIn {
+    animation-duration: 1.8s;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-dropFromTop {
+    animation-duration: 1.8s;
+}
+
+/* Mosaic images appear AFTER text — delay each image stagger */
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d1 {
+    animation-delay: 0.6s !important;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d2 {
+    animation-delay: 0.8s !important;
+}
+.bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d3 {
+    animation-delay: 1.0s !important;
 }
 
 /* Override thanh-pham container reveal for animation class */
@@ -548,7 +657,7 @@
 /* ── Solid accent heading (matching other titles) ──────────── */
 .ch3-intro__heading {
     font-family: "DNS Gibsons One", "Oswald", sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
     font-weight: 700;
     line-height: 1.25;
     margin: 0 0 32px;
@@ -599,30 +708,72 @@
 /* § 3 — Nguyên liệu cards removed */
 
 /* ─────────────────────────────────────────────────────────────
+   § 3 — HERO (nguyên liệu — background image + text overlay)
+   ───────────────────────────────────────────────────────────── */
+
+.ch3-hero {
+    position: relative;
+    min-height: 80svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ch3-hero__bg {
+    position: absolute;
+    inset: 0;
+}
+
+.ch3-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ch3-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+.ch3-hero__content {
+    position: relative;
+    z-index: 2;
+    width: min(88%, 720px);
+    padding: 40px 24px;
+    text-align: center;
+    color: #fff;
+}
+
+.ch3-hero__body p {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    line-height: 1.85;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+#article .ch3-hero__body p {
+    color: #fff;
+}
+
+/* ─────────────────────────────────────────────────────────────
    § 4 — SPLIT SCENE (shared layout for vỏ vàng & nhân bánh)
    ───────────────────────────────────────────────────────────── */
 
 .ch3-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70svh;
-    overflow: hidden;
-}
-
-.ch3-split--reverse {
-    direction: rtl;
-}
-
-.ch3-split--reverse > * {
-    direction: ltr;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 5vw, 64px);
+    padding: clamp(50px, 8vh, 100px) clamp(24px, 6vw, 80px);
 }
 
 /* Visual panel (image side) */
 .ch3-split__visual {
     position: relative;
-    overflow: hidden;
-    background: #0d0a07;
-    min-height: clamp(280px, 45vh, 600px);
+    width: 100%;
+    min-height: clamp(260px, 50vh, 600px);
 }
 
 .ch3-split__visual img {
@@ -642,14 +793,20 @@
     transform: scale(1);
 }
 
+.ch3-split__visual:hover img {
+    transform: scale(1.03);
+}
+
 /* Mosaic grid of 3 images */
 .ch3-split__mosaic {
-    position: absolute;
-    inset: 0;
     display: grid;
     grid-template-rows: 60% 40%;
     grid-template-columns: 60% 40%;
     gap: 3px;
+    max-width: 720px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto;
+    background: transparent;
 }
 
 .ch3-split__mosaic img {
@@ -657,6 +814,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
     transition: transform 8s ease-in-out;
     transform: scale(1.05);
 }
@@ -669,13 +828,17 @@
     transform: scale(1);
 }
 
+.ch3-split__visual:hover .ch3-split__mosaic img {
+    transform: scale(1.03);
+}
+
 /* Text panel */
 .ch3-split__text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(40px, 6vh, 80px) clamp(28px, 5vw, 72px);
-    background: var(--c-surface);
+    width: min(88%, 760px);
+    margin: 0 auto;
 }
 
 .ch3-split__eyebrow {
@@ -750,16 +913,22 @@
 /* Mobile: stack split panels */
 @media (max-width: 768px) {
     .ch3-split {
-        grid-template-columns: 1fr;
-        direction: ltr;
+        padding: clamp(36px, 6vh, 60px) clamp(16px, 4vw, 24px);
+        gap: clamp(24px, 4vw, 40px);
     }
 
-    .ch3-split--reverse > * {
-        direction: ltr;
+    .ch3-split__text {
+        width: 100%;
     }
 
     .ch3-split__visual {
+        width: 100%;
         min-height: 260px;
+    }
+
+    .ch3-split__mosaic img {
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .ch3-split__visual img {
@@ -1783,6 +1952,7 @@
     .ch3-anim-jackInTheBox,
     .ch3-anim-rotateIn,
     .ch3-anim-bounceIn,
+    .ch3-anim-dropFromTop,
     .ch3-intro__heading,
     .ch3-divider__bg img,
     .ch3-split__rule,

@@ -677,16 +677,11 @@
                 <!-- Content overlay — scroll-driven cinematic reveals -->
                 <div class="bpt-nghe-nhan__content">
                     <!-- Scene 1: Kicker — fades in from darkness -->
-                    <div
-                        class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--kicker"
-                    >
-
-                        <div class="bpt-nghe-nhan__kicker-line"></div>
-                    </div>
 
                     <!-- Scene 2: Opening paragraph — slides up letter by letter -->
                     <div
                         class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--intro"
+                        style="font-size: 2ch;"
                     >
                         <p class="bpt-nghe-nhan__lead" style="color: white;">
                             Để có những cặp bánh tươi ngon kịp trao tay khách
@@ -695,56 +690,22 @@
                         </p>
                     </div>
 
-                    <!-- Scene 3: Artisan portrait + quote overlaid -->
+                    <!-- Scene 3: Quote image overlay -->
                     <div
                         class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--portrait"
                     >
-                        <div class="bpt-nghe-nhan__portrait-wrap">
-                            <img
-                                class="bpt-nghe-nhan__portrait"
-                                src="assets/chuong-2/NGHỆ NHÂN NGUYỄN ĐÌNH MINH.webp"
-                                alt="Nghệ nhân Nguyễn Đình Minh"
-                                loading="lazy"
-                            />
-                            <div class="bpt-nghe-nhan__portrait-overlay"></div>
-                        </div>
-                        <div class="bpt-nghe-nhan__quote-frame">
-                            <div class="bpt-nghe-nhan__quote-mark">"</div>
-                            <blockquote class="bpt-nghe-nhan__blockquote">
-                                <p class="bpt-nghe-nhan__quote-line">
-                                    Làm ra được một mẻ bánh là cả một sự kỳ công
-                                    của gia đình.
-                                </p>
-                                <p class="bpt-nghe-nhan__quote-line">
-                                    Từ lúc tờ mờ sáng, chúng tôi đã phải thức
-                                    giấc để chuẩn bị nhân bánh.
-                                </p>
-                                <p class="bpt-nghe-nhan__quote-line">
-                                    Riêng phần nhân đậu xanh sau khi sên xong,
-                                    phải đợi thêm 3 đến 4 tiếng cho nguội hẳn
-                                    thì mới có thể bắt tay vào nặn bánh.
-                                </p>
-                                <p class="bpt-nghe-nhan__quote-line">
-                                    Mọi công đoạn đều phải tuân thủ đúng nhịp độ
-                                    thời gian, không thể vội vàng, cũng chẳng
-                                    thể làm dối.
-                                </p>
-                            </blockquote>
-                            <div class="bpt-nghe-nhan__quote-attr">
-                                <span class="bpt-nghe-nhan__attr-dash">—</span>
-                                <span class="bpt-nghe-nhan__attr-name"
-                                    >Nghệ nhân Nguyễn Đình Minh</span
-                                >
-                                <span class="bpt-nghe-nhan__attr-detail"
-                                    >68 tuổi · Làng Đình Bảng</span
-                                >
-                            </div>
-                        </div>
+                        <img
+                            class="bpt-nghe-nhan__quote-image"
+                            src="assets/trích dẫn 1.png"
+                            alt="Trích dẫn nghệ nhân"
+                            loading="lazy"
+                        />
                     </div>
 
                     <!-- Scene 4: Closing reflection — cascade reveal -->
                     <div
                         class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--closing"
+                        style="font-size: 2ch"
                     >
                         <p class="bpt-nghe-nhan__reflect" style="color: white;">
                             Người thợ không chỉ làm bánh bằng công thức, mà bằng
@@ -758,7 +719,10 @@
                         </p>
                         <p
                             class="bpt-nghe-nhan__reflect bpt-nghe-nhan__reflect--dim"
-                            style="color: white;"
+                            style="color: white;
+
+                            "
+
                         >
                             Từng chiếc bánh được tạo ra mang vị ngọt của đường
                             nếp, thấm đượm cả những giọt mồ hôi và tấm lòng sắt
@@ -1260,23 +1224,23 @@
             </div>
             <!-- /#section-bpt-ch3-intro -->
 
-            <!-- § 3 — NGUYÊN LIỆU: Split scene — image left, text right -->
+            <!-- § 3 — NGUYÊN LIỆU: Hero — background image + text overlay -->
             <div
                 id="section-bpt-ch3-nguyen-lieu"
-                class="bpt-ch3 bpt-ch3-section ch3-split ch3-split--reverse"
+                class="bpt-ch3 bpt-ch3-section ch3-hero"
             >
-                <div class="ch3-split__visual ch3-right">
+                <div class="ch3-hero__bg">
                     <img
-                        class="ch3-anim-zoomIn ch3-d1"
                         src="assets/chuong-3/pho-bot-vang-2-nguoi.webp"
                         alt="Thợ làm bánh đang chuẩn bị nguyên liệu"
                         loading="lazy"
                         decoding="async"
                     />
                 </div>
-                <div class="ch3-split__text ch3-left">
-                    <div class="ch3-split__body">
-                        <p>
+                <div class="ch3-hero__overlay" aria-hidden="true"></div>
+                <div class="ch3-hero__content">
+                    <div class="ch3-hero__body">
+                        <p class="ch3-anim-fadeInUp ch3-d2">
                             Công việc làm bánh thường bắt đầu từ ba giờ sáng.
                             Khi mọi người còn đang say giấc, những người thợ
                             làm bánh đã tất bật chuẩn bị nguyên liệu và chế
@@ -1311,33 +1275,8 @@
                 id="section-bpt-ch3-vo-vang"
                 class="bpt-ch3 bpt-ch3-section ch3-split"
             >
-                <div class="ch3-split__visual ch3-left">
-                    <div class="ch3-split__mosaic">
-                        <img
-                            class="ch3-anim-slideInLeft ch3-d1"
-                            src="assets/chuong-3/may-nhao-vo-banh.webp"
-                            alt="Máy nhào vỏ bánh"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-zoomIn ch3-d2"
-                            src="assets/chuong-3/may-nhao-vo-banh-02.webp"
-                            alt="Nhào vỏ bánh với bột"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-fadeInUp ch3-d3"
-                            src="assets/chuong-3/vo-banh-da-nhao.webp"
-                            alt="Vỏ bánh đã nhào xong"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-                </div>
-                <div class="ch3-split__text ch3-right">
-                    <div class="ch3-split__body">
+                <div class="ch3-split__text">
+                    <div class="ch3-split__body ch3-anim-fadeInUp ch3-d3">
                         <p>
                             Điểm đặc biệt làm nên bản sắc riêng của bánh phu thê
                             Đình Bảng nằm ở lớp vỏ vàng trong đặc trưng. Đây
@@ -1363,41 +1302,41 @@
                         </p>
                     </div>
                 </div>
+                <div class="ch3-split__visual">
+                    <div class="ch3-split__mosaic">
+                        <img
+                            class="ch3-anim-zoomIn ch3-d1"
+                            src="assets/chuong-3/may-nhao-vo-banh.webp"
+                            alt="Máy nhào vỏ bánh"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-fadeInUp ch3-d2"
+                            src="assets/chuong-3/may-nhao-vo-banh-02.webp"
+                            alt="Nhào vỏ bánh với bột"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-fadeInUp ch3-d3"
+                            src="assets/chuong-3/vo-banh-da-nhao.webp"
+                            alt="Vỏ bánh đã nhào xong"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                </div>
             </div>
             <!-- /#section-bpt-ch3-vang -->
 
             <!-- § 5 — NHÂN BÁNH: Split scene reverse -->
             <div
                 id="section-bpt-ch3-nhan-banh"
-                class="bpt-ch3 bpt-ch3-section ch3-split ch3-split--reverse"
+                class="bpt-ch3 bpt-ch3-section ch3-split"
             >
-                <div class="ch3-split__visual ch3-right">
-                    <div class="ch3-split__mosaic">
-                        <img
-                            class="ch3-anim-slideInRight ch3-d1"
-                            src="assets/chuong-3/ngam-dau-nuoc-01.webp"
-                            alt="Ngâm đậu xanh"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-zoomIn ch3-d2"
-                            src="assets/chuong-3/nhan-dau-dua-duong-01.webp"
-                            alt="Nhân đậu, dừa, đường"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-fadeInUp ch3-d3"
-                            src="assets/chuong-3/nhan-banh-quay.webp"
-                            alt="Quấy nhân nhuyễn"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-                </div>
-                <div class="ch3-split__text ch3-left">
-                    <div class="ch3-split__body">
+                <div class="ch3-split__text">
+                    <div class="ch3-split__body ch3-anim-fadeInUp ch3-d3">
                         <p>
                             Nếu lớp vỏ tạo nên diện mạo đặc trưng thì phần nhân
                             chính là nơi lưu giữ chiều sâu hương vị của chiếc
@@ -1420,6 +1359,31 @@
                         </p>
                     </div>
 
+                </div>
+                <div class="ch3-split__visual">
+                    <div class="ch3-split__mosaic">
+                        <img
+                            class="ch3-anim-slideInLeft ch3-d1"
+                            src="assets/chuong-3/ngam-dau-nuoc-01.webp"
+                            alt="Ngâm đậu xanh"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-rollIn ch3-d2"
+                            src="assets/chuong-3/nhan-dau-dua-duong-01.webp"
+                            alt="Nhân đậu, dừa, đường"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-rollIn ch3-d3"
+                            src="assets/chuong-3/nhan-banh-quay.webp"
+                            alt="Quấy nhân nhuyễn"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
                 </div>
             </div>
             <!-- /#section-bpt-ch3-nhan-banh -->
@@ -1545,36 +1509,11 @@
                 id="section-bpt-ch3-bo"
                 class="bpt-ch3 bpt-ch3-section ch3-split"
             >
-                <div class="ch3-split__visual ch3-left">
-                    <div class="ch3-split__mosaic">
-                        <img
-                            class="ch3-anim-rollIn ch3-d1"
-                            src="assets/chuong-3/tron-bot-vo-dau.webp"
-                            alt="Trộn bột vỏ với đậu"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-slideInLeft ch3-d2"
-                            src="assets/chuong-3/pho-bot-vang-khay.webp"
-                            alt="Phở bột vàng ra khay"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-zoomIn ch3-d3"
-                            src="assets/chuong-3/cat-bot-vang.webp"
-                            alt="Cắt bột vàng thành khối"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-                </div>
-                <div class="ch3-split__text ch3-right">
+                <div class="ch3-split__text">
 
 
                     <hr class="ch3-split__rule" />
-                    <div class="ch3-split__body">
+                    <div class="ch3-split__body ch3-anim-fadeInUp ch3-d3">
                         <p>
                             Muốn tạo ra được lớp vỏ vàng trong đặc trưng, lượng
                             nước cốt dành dành trong quá trình ủ bột phải được
@@ -1601,41 +1540,41 @@
                     </div>
 
                 </div>
+                <div class="ch3-split__visual">
+                    <div class="ch3-split__mosaic">
+                        <img
+                            class="ch3-anim-rotateIn ch3-d1"
+                            src="assets/chuong-3/tron-bot-vo-dau.webp"
+                            alt="Trộn bột vỏ với đậu"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-jackInTheBox ch3-d2"
+                            src="assets/chuong-3/pho-bot-vang-khay.webp"
+                            alt="Phở bột vàng ra khay"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-jackInTheBox ch3-d3"
+                            src="assets/chuong-3/cat-bot-vang.webp"
+                            alt="Cắt bột vàng thành khối"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                </div>
             </div>
             <!-- /#section-bpt-ch3-bo -->
 
             <!-- § 8 — HẤP & GÓI: Split scene reverse -->
             <div
                 id="section-bpt-ch3-hap-goi"
-                class="bpt-ch3 bpt-ch3-section ch3-split ch3-split--reverse"
+                class="bpt-ch3 bpt-ch3-section ch3-split"
             >
-                <div class="ch3-split__visual ch3-right">
-                    <div class="ch3-split__mosaic">
-                        <img
-                            class="ch3-anim-slideInRight ch3-d1"
-                            src="assets/chuong-3/chuan-bi-la-chuoi.webp"
-                            alt="Chuẩn bị lá chuối"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-jackInTheBox ch3-d2"
-                            src="assets/chuong-3/goi-banh-01.webp"
-                            alt="Gói bánh trong lá chuối"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                        <img
-                            class="ch3-anim-rotateIn ch3-d3"
-                            src="assets/chuong-3/banh-goi-truoc-hap.webp"
-                            alt="Bánh gói xong trước khi hấp"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-                </div>
-                <div class="ch3-split__text ch3-left">
-                    <div class="ch3-split__body">
+                <div class="ch3-split__text">
+                    <div class="ch3-split__body ch3-anim-fadeInUp ch3-d3">
                         <p>
                             Sau khi được tạo hình, những chiếc bánh được xếp
                             ngay ngắn vào xửng hấp. Dưới làn hơi nóng, lớp bột
@@ -1654,6 +1593,31 @@
                     </div>
 
                 </div>
+                <div class="ch3-split__visual">
+                    <div class="ch3-split__mosaic">
+                        <img
+                            class="ch3-anim-slideInLeft ch3-d1"
+                            src="assets/chuong-3/chuan-bi-la-chuoi.webp"
+                            alt="Chuẩn bị lá chuối"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-dropFromTop ch3-d2"
+                            src="assets/chuong-3/goi-banh-01.webp"
+                            alt="Gói bánh trong lá chuối"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <img
+                            class="ch3-anim-dropFromTop ch3-d3"
+                            src="assets/chuong-3/banh-goi-truoc-hap.webp"
+                            alt="Bánh gói xong trước khi hấp"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                </div>
             </div>
             <!-- /#section-bpt-ch3-hap-goi -->
 
@@ -1663,15 +1627,6 @@
                 class="bpt-ch3 bpt-ch3-section"
             >
                 <div class="ch3-thanh-pham__wrap">
-                    <div class="ch3-thanh-pham__image ch3-anim-jackInTheBox">
-                        <img
-                            src="assets/chuong-3/banh-goi-truoc-hap-02.webp"
-                            alt="Bánh phu thê thành phẩm — trong veo như ngọc"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-
                     <p class="ch3-thanh-pham__body ch3-up ch3-d3">
                         Và để giữ trọn vẹn cái tình, cái nghĩa gói ghém
                         trong thức quà ấy, việc bảo quản bánh cũng cần sự
@@ -1690,6 +1645,15 @@
                         lại để dư âm về món bánh này luôn vẹn nguyên sự ngọt
                         ngào và thanh khiết.
                     </p>
+
+                    <div class="ch3-thanh-pham__image ch3-anim-jackInTheBox">
+                        <img
+                            src="assets/chuong-3/banh-goi-truoc-hap-02.webp"
+                            alt="Bánh phu thê thành phẩm — trong veo như ngọc"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
                 </div>
                 <span class="bpt-scene-transition" aria-hidden="true"></span>
             </div>
@@ -1732,7 +1696,7 @@
                     <p class="ch4-slider__kicker bpt-kicker ch4-reveal">So sánh</p>
                     <h3 class="bpt-title ch4-slider__title bpt-kicker ch4-reveal ch4-d1">Tráp Cưới Xưa &amp; Nay</h3>
                 </div>
-                <div class="ch4-compare ch4-reveal-scale" role="img" aria-label="Kéo để so sánh tráp cưới xưa và nay">
+                <div class="ch4-compare" role="img" aria-label="Kéo để so sánh tráp cưới xưa và nay">
                     <img class="ch4-compare__img ch4-compare--nay" src="assets/Chương 4/trap-cuoi-nay.webp" alt="Tráp cưới ngày nay" loading="lazy" decoding="async" />
                     <img class="ch4-compare__img ch4-compare--xua" src="assets/Chương 4/trap-cuoi-xua.webp" alt="Tráp cưới xưa" loading="lazy" decoding="async" />
                     <div class="ch4-slider-handle">
@@ -1756,12 +1720,12 @@
                             Dù trải qua nhiều biến động của thời gian, bánh phu thê vẫn giữ nguyên những giá trị văn hóa và tinh thần cốt lõi gắn với tình yêu, hôn nhân và hạnh phúc gia đình của người Việt. Từ lâu, bánh phu thê đã vượt ra khỏi khuôn khổ của một món ăn thông thường để trở thành một biểu tượng văn hóa gắn bó sâu sắc với đời sống tinh thần của người Việt. Trong ký ức của nhiều thế hệ, chiếc bánh không chỉ hiện diện như một phần không thể thiếu trên mâm cỗ hay trong những dịp lễ trọng, mà còn là hiện thân của những quan niệm truyền thống về tình yêu, hôn nhân và gia đình. Đặc biệt, trong các nghi lễ cưới hỏi, bánh phu thê luôn giữ một vị trí trang trọng trong mâm tráp như lời chúc phúc gửi tới đôi uyên ương về cuộc sống hôn nhân viên mãn, thủy chung và bền chặt. Từ vùng quê Kinh Bắc đến nhiều địa phương khác trên khắp cả nước, hình ảnh những cặp bánh phu thê xuất hiện trong lễ ăn hỏi đã trở thành một nét quen thuộc, phản ánh quan niệm lâu đời của người Việt rằng hôn nhân chính là sự kết hợp của hai con người, là sự gắn kết của hai gia đình, hai dòng họ và những giá trị được trao truyền qua nhiều thế hệ.
                             Không phải ngẫu nhiên mà người xưa lựa chọn bánh phu thê giữa vô số loại bánh dân gian khác để trở thành lễ vật hôn nhân. Ngay từ tên gọi "phu thê", chiếc bánh đã mang trong mình một thông điệp son sắt về tình nghĩa vợ chồng. Đó là sự đồng hành, gắn bó và sẻ chia suốt cuộc đời. Mỗi chi tiết của chiếc bánh đều được người xưa gửi gắm những lớp nghĩa biểu tượng sâu sắc. Lớp vỏ trong suốt ôm lấy phần nhân vàng bên trong gợi nên hình ảnh của sự hòa hợp và bao bọc, như cách hai con người cùng che chở, nâng đỡ nhau xây dựng một mái ấm. Những sợi đu đủ vàng đan xen trong lớp bột dẻo trong không chỉ tạo nên vẻ đẹp thị giác mà còn gợi liên tưởng đến những sợi tơ hồng se duyên, kết nối hai số phận thành một. Hình dáng vuông vắn của chiếc bánh tượng trưng cho sự đầy đủ, trọn vẹn và ổn định, trong khi màu vàng óng của nhân đỗ xanh gợi nhắc đến sự sung túc, ấm no. Ngay cả những sợi lạt buộc bên ngoài chiếc bánh cũng được nhiều nghệ nhân lý giải như biểu tượng của sợi dây nghĩa tình, nhắc nhở vợ chồng luôn biết giữ gìn sự gắn bó và thủy chung trong cuộc sống hôn nhân. Từ lớp vỏ, phần nhân cho đến cách gói bánh trong lá dong xanh mộc mạc, mỗi yếu tố đều góp phần tạo nên một chỉnh thể giàu tính biểu tượng, khiến chiếc bánh trở thành một lời chúc phúc được thể hiện bằng hình hài cụ thể và sinh động.</p>
                     </div>
-                    <div class="ch4-symbol__gallery ch4-reveal-right ch4-d2">
+                    <div class="ch4-symbol__gallery">
                         <div class="ch4-symbol__img-wrap">
-                            <img src="assets/Chương 4/nghe-nhan-lam-banh.webp" alt="Nghệ nhân gói bánh phu thê" loading="lazy" decoding="async" />
+                            <img class="ch4-anim-flipInX ch4-d1" src="assets/Chương 4/nghe-nhan-lam-banh.webp" alt="Nghệ nhân gói bánh phu thê" loading="lazy" decoding="async" />
                         </div>
                         <div class="ch4-symbol__img-wrap">
-                            <img src="assets/Chương 4/banh-hap.webp" alt="Bánh phu thê trong nồi hấp" loading="lazy" decoding="async" />
+                            <img class="ch4-anim-flipInX ch4-d2" src="assets/Chương 4/banh-hap.webp" alt="Bánh phu thê trong nồi hấp" loading="lazy" decoding="async" />
                         </div>
                     </div>
                 </div>
@@ -1779,8 +1743,8 @@
             <!-- Section 5: Lan tỏa ba miền -->
             <section class="ch4-region" aria-label="Lan tỏa qua vùng miền">
                 <div class="ch4-region__layout">
-                    <div class="ch4-region__img-wrap ch4-reveal-left">
-                        <img src="assets/Chương 4/banh-mien-trung-nam.webp" alt="Bánh phu thê miền Trung và miền Nam" loading="lazy" decoding="async" />
+                    <div class="ch4-region__img-wrap">
+                        <img class="ch4-anim-spinFromRight" src="assets/Chương 4/banh-mien-trung-nam.webp" alt="Bánh phu thê miền Trung và miền Nam" loading="lazy" decoding="async" />
                     </div>
                     <div class="ch4-region__text">
                         <h3 class="bpt-title bpt-kicker ch4-reveal-right">Vẹn tình xưa trong nếp bánh tân thời </h3>
@@ -1792,8 +1756,8 @@
             <!-- Section 6: Thích nghi công thức -->
             <section class="ch4-prose-section" aria-label="Sự thích nghi công thức">
                 <div class="ch4-prose-section__layout">
-                    <div class="ch4-prose-section__img-wrap ch4-reveal-left">
-                        <img src="assets/Chương 4/banh-thich-nghi.webp" alt="Bánh phu thê đa dạng màu sắc" loading="lazy" decoding="async" />
+                    <div class="ch4-prose-section__img-wrap">
+                        <img class="ch4-anim-jackInTheBox" src="assets/Chương 4/banh-thich-nghi.webp" alt="Bánh phu thê đa dạng màu sắc" loading="lazy" decoding="async" />
                     </div>
                     <div class="ch4-prose-section__text">
 
@@ -1844,14 +1808,14 @@
 
             <!-- Section 8: Gam màu mới & đóng gói -->
             <section class="ch4-prose-section" aria-label="Gam màu mới và hình thức đóng gói">
-                <div class="ch4-prose-section__layout ch4-prose-section__layout--reverse">
-                    <div class="ch4-prose-section__img-wrap ch4-reveal-right">
-                        <img src="assets/Chương 4/dap-cuoi-hien-dai.webp" alt="Đám cưới hiện đại" loading="lazy" decoding="async" />
-                    </div>
+                <div class="ch4-prose-section__layout">
                     <div class="ch4-prose-section__text">
                         <h3 class="bpt-title bpt-kicker ch4-reveal-left">...</h3>
                         <p class="ch4-reveal-left ch4-d1">Bánh phu thê ngày nay còn mang những gam màu mới nhằm đáp ứng nhu cầu thẩm mỹ ngày càng đa dạng của người tiêu dùng. Nếu sắc vàng trong từ quả dành dành từ lâu đã trở thành dấu ấn đặc trưng của bánh phu thê truyền thống, thì nhiều nghệ nhân và cơ sở sản xuất hiện nay đã thử nghiệm thêm các nguyên liệu tạo màu tự nhiên khác. Từ sắc xanh dịu của lá dứa, màu đỏ cam của gấc cho đến sắc tím nhạt từ hoa đậu biếc hay lá cẩm, mỗi gam màu đều mang lại một diện mạo mới cho chiếc bánh nhưng vẫn giữ được nét gần gũi với thiên nhiên và tinh thần của món bánh dân gian.</p>
                         <p class="ch4-reveal-left ch4-d2">Hình thức đóng gói cũng có nhiều thay đổi theo thời gian. Nếu trước đây chiếc bánh thường gắn liền với lớp lá dong xanh và những sợi lạt hồng buộc thủ công, thì ngày nay người ta dễ dàng bắt gặp những phiên bản được đặt trong hộp giấy mỹ thuật, hộp quà cưới hoặc các mẫu bao bì thiết kế hiện đại. Sự đổi mới này không chỉ giúp tăng tính thẩm mỹ mà còn đáp ứng tốt hơn nhu cầu vận chuyển, bảo quản và biếu tặng trong cuộc sống hiện nay. Thậm chí, để tiếp cận nhóm khách hàng trẻ tuổi, nhiều cơ sở sản xuất còn phát triển thêm các dòng sản phẩm với màu sắc phong phú hơn. Dẫu vậy, bên dưới những thay đổi về hình thức vẫn là phần nhân ngọt bùi quen thuộc cùng ý nghĩa biểu tượng về sự gắn kết của đôi lứa.</p>
+                    </div>
+                    <div class="ch4-prose-section__img-wrap">
+                        <img class="ch4-anim-rollIn" src="assets/Chương 4/dap-cuoi-hien-dai.webp" alt="Đám cưới hiện đại" loading="lazy" decoding="async" />
                     </div>
                 </div>
             </section>
@@ -1867,17 +1831,17 @@
             <!-- Section 10: Du lịch văn hóa -->
             <section class="ch4-tourism" aria-label="Du lịch văn hóa">
                 <div class="ch4-tourism__layout">
-                    <div class="ch4-tourism__gallery ch4-reveal-left">
-                        <div class="ch4-tourism__img-wrap">
-                            <img src="assets/Chương 4/dinh-bac-ninh.webp" alt="Đình làng Bắc Ninh" loading="lazy" decoding="async" />
-                        </div>
-                        <div class="ch4-tourism__img-wrap">
-                            <img src="assets/Chương 4/giu-nghe.webp" alt="Nghệ nhân giữ nghề" loading="lazy" decoding="async" />
-                        </div>
-                    </div>
                     <div class="ch4-tourism__text">
-                        <h3 class="bpt-title bpt-kicker ch4-reveal-right">Từ thức bánh dân gian đến đến  niềm tự hào Kinh Bắc</h3>
-                        <p class="ch4-reveal-right ch4-d1">Từ một thức bánh dân gian gắn với phong tục cưới hỏi, bánh phu thê đã dần trở thành biểu tượng văn hóa của vùng đất Bắc Ninh, đại diện cho bản sắc xứ Kinh Bắc trong đời sống đương đại. Nếu trước đây bánh phu thê chủ yếu xuất hiện trong cưới hỏi hoặc các dịp lễ trọng đại thì ngày nay, bánh phu thê đã trở thành một phần của hoạt động du lịch văn hóa tại Bắc Ninh, là thức quà được nhiều người lựa chọn để dành tặng người thân, bạn bè và đối tác như một cách gửi gắm lời chúc bình an, may mắn và hạnh phúc. Nhiều du khách tìm đến Đình Bảng để tham quan quê hương phát tích vương triều Lý hay tìm hiểu không gian văn hóa Kinh Bắc mà còn để thưởng thức và mang về những cặp bánh phu thê như một món quà mang đậm bản sắc địa phương. Đối với nhiều người, hành trình tìm đến chiếc bánh cũng là hành trình khám phá một lát cắt của văn hóa vùng đất này. Qua từng chiếc bánh, du khách có cơ hội hiểu thêm về những câu chuyện dân gian, những tập tục cưới hỏi truyền thống và cả sự khéo léo của những người thợ đã âm thầm gìn giữ nghề qua nhiều thế hệ. Từ một thức bánh dân gian được làm trong các gia đình, bánh phu thê đã từng bước trở thành một sản phẩm văn hóa đại diện cho địa phương, góp phần quảng bá hình ảnh Bắc Ninh đến với bạn bè trong và ngoài nước.</p>
+                        <h3 class="bpt-title bpt-kicker ch4-reveal-left">Từ thức bánh dân gian đến đến  niềm tự hào Kinh Bắc</h3>
+                        <p class="ch4-reveal-left ch4-d1">Từ một thức bánh dân gian gắn với phong tục cưới hỏi, bánh phu thê đã dần trở thành biểu tượng văn hóa của vùng đất Bắc Ninh, đại diện cho bản sắc xứ Kinh Bắc trong đời sống đương đại. Nếu trước đây bánh phu thê chủ yếu xuất hiện trong cưới hỏi hoặc các dịp lễ trọng đại thì ngày nay, bánh phu thê đã trở thành một phần của hoạt động du lịch văn hóa tại Bắc Ninh, là thức quà được nhiều người lựa chọn để dành tặng người thân, bạn bè và đối tác như một cách gửi gắm lời chúc bình an, may mắn và hạnh phúc. Nhiều du khách tìm đến Đình Bảng để tham quan quê hương phát tích vương triều Lý hay tìm hiểu không gian văn hóa Kinh Bắc mà còn để thưởng thức và mang về những cặp bánh phu thê như một món quà mang đậm bản sắc địa phương. Đối với nhiều người, hành trình tìm đến chiếc bánh cũng là hành trình khám phá một lát cắt của văn hóa vùng đất này. Qua từng chiếc bánh, du khách có cơ hội hiểu thêm về những câu chuyện dân gian, những tập tục cưới hỏi truyền thống và cả sự khéo léo của những người thợ đã âm thầm gìn giữ nghề qua nhiều thế hệ. Từ một thức bánh dân gian được làm trong các gia đình, bánh phu thê đã từng bước trở thành một sản phẩm văn hóa đại diện cho địa phương, góp phần quảng bá hình ảnh Bắc Ninh đến với bạn bè trong và ngoài nước.</p>
+                    </div>
+                    <div class="ch4-tourism__gallery">
+                        <div class="ch4-tourism__img-wrap">
+                            <img class="ch4-anim-dropFromTop ch4-d1" src="assets/Chương 4/dinh-bac-ninh.webp" alt="Đình làng Bắc Ninh" loading="lazy" decoding="async" />
+                        </div>
+                        <div class="ch4-tourism__img-wrap">
+                            <img class="ch4-anim-dropFromTop ch4-d2" src="assets/Chương 4/giu-nghe.webp" alt="Nghệ nhân giữ nghề" loading="lazy" decoding="async" />
+                        </div>
                     </div>
                 </div>
             </section>

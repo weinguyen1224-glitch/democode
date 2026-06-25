@@ -32,8 +32,10 @@
     align-items: flex-start;
     gap: 24px;
     text-align: justify;
-    max-width: none;
+    max-width: 840px;
     width: 100%;
+    margin: 0 auto;
+    padding: clamp(24px, 4vh, 48px) clamp(40px, 8vw, 120px);
     position: relative;
     z-index: 50;
 }
