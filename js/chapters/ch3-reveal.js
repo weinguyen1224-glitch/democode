@@ -42,7 +42,8 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('bpt-visible');
-            io.unobserve(entry.target); /* fire once */
+          } else {
+            entry.target.classList.remove('bpt-visible');
           }
         });
       },

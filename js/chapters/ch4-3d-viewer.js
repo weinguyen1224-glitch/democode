@@ -93,12 +93,6 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     fill.position.set(-2, -1, 3);
     scene.add(fill);
 
-    /* ── Floor grid ────────────────────────────────────────── */
-    var grid = new THREE.GridHelper(12, 24, 0x8b3040, 0x4a1520);
-    grid.material.transparent = true;
-    grid.material.opacity = 0.25;
-    scene.add(grid);
-
     /* ── Events ────────────────────────────────────────────── */
     if (fitBtn) fitBtn.addEventListener("click", fit);
     if (spinBtn) spinBtn.addEventListener("click", toggleSpin);
@@ -196,7 +190,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     current.position.sub(center);
 
     var max = Math.max(size.x, size.y, size.z) || 1;
-    var dist = max * 2.25;
+    var dist = max * 0.7875;
     camera.position.set(dist, dist * 0.62, dist);
     camera.near = max / 200;
     camera.far = max * 200;
@@ -205,10 +199,6 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     controls.target.set(0, 0, 0);
     controls.update();
 
-    var grid = scene.children.find(function (c) {
-      return c.isGridHelper;
-    });
-    if (grid) grid.scale.setScalar(Math.max(1, max / 2));
   }
 
   /* ── Helpers ─────────────────────────────────────────────── */

@@ -100,7 +100,17 @@
               entry.target.classList.contains('ch5-final-poem')) {
             entry.target.classList.add('ch5-visible');
           }
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('ch4-visible');
+          if (entry.target.classList.contains('ch5-title') ||
+              entry.target.classList.contains('ch5-opening') ||
+              entry.target.classList.contains('ch5-poem') ||
+              entry.target.classList.contains('ch5-prose') ||
+              entry.target.classList.contains('ch5-artisan-quote') ||
+              entry.target.classList.contains('ch5-closing') ||
+              entry.target.classList.contains('ch5-final-poem')) {
+            entry.target.classList.remove('ch5-visible');
+          }
         }
       });
     }, {
@@ -123,15 +133,23 @@
     if (!section) return;
 
     var pathEl = document.getElementById('ch4-path-progress');
-    var bánhEl = document.getElementById('ch4-banh-float');
-    var imgTrad = section.querySelector('.ch4-path__bánh--traditional');
-    var imgMod = section.querySelector('.ch4-path__bánh--modern');
+    var floatingEl = document.getElementById('ch4-floating');
+    var floatTrad = document.getElementById('ch4-float-trad');
+    var floatMod = document.getElementById('ch4-float-mod');
     var wpBánh = document.getElementById('ch4-wp-banh');
     var wpVỏ = document.getElementById('ch4-wp-vo');
     var labelTruyen = document.getElementById('ch4-label-truyen-thong');
     var labelHien = document.getElementById('ch4-label-hien-dai');
 
-    if (!pathEl || !bánhEl) return;
+    // Corner image containers
+    var cornerTrad = document.getElementById('ch4-corner-images-trad');
+    var cornerMod = document.getElementById('ch4-corner-images-mod');
+    var tradBanh = document.getElementById('ch4-trad-banh');
+    var tradVo = document.getElementById('ch4-trad-vo');
+    var modBanh = document.getElementById('ch4-mod-banh');
+    var modVo = document.getElementById('ch4-mod-vo');
+
+    if (!pathEl || !floatingEl) return;
 
     var pathLength = pathEl.getTotalLength();
 
@@ -142,6 +160,24 @@
     // Waypoint positions along path (0-1)
     var waypointBánh = 0.30;
     var waypointVỏ = 0.65;
+
+    function cycleImages(imgSet, progress, zoneStart, zoneEnd) {
+      if (!imgSet) return;
+      var imgs = imgSet.querySelectorAll('img');
+      if (imgs.length === 0) return;
+      var zoneWidth = zoneEnd - zoneStart;
+      if (zoneWidth <= 0) zoneWidth = 0.01;
+      var zoneProgress = Math.max(0, Math.min(0.999, (progress - zoneStart) / zoneWidth));
+      var activeIndex = Math.floor(zoneProgress * imgs.length) % imgs.length;
+      if (activeIndex < 0) activeIndex = 0;
+      imgs.forEach(function (img, i) {
+        if (i === activeIndex) {
+          img.classList.add('ch4-path__corner-img--active');
+        } else {
+          img.classList.remove('ch4-path__corner-img--active');
+        }
+      });
+    }
 
     function onScroll() {
       var rect = section.getBoundingClientRect();
@@ -157,58 +193,75 @@
       var actualX = ctm.a * point.x + ctm.c * point.y + ctm.e;
       var actualY = ctm.b * point.x + ctm.d * point.y + ctm.f;
 
-      // Position bánh relative to visual container (where SVG lives)
+      // Position floating element relative to visual container
       var visualRect = section.querySelector('.ch4-path__visual').getBoundingClientRect();
       var left = actualX - visualRect.left;
       var top = actualY - visualRect.top;
 
-      bánhEl.style.left = left + 'px';
-      bánhEl.style.top = top + 'px';
+      floatingEl.style.left = left + 'px';
+      floatingEl.style.top = top + 'px';
+
+      // Position waypoints on the SVG path
+      function positionWaypoint(wpEl, wpProgress) {
+        if (!wpEl) return;
+        var pt = pathEl.getPointAtLength(wpProgress * pathLength);
+        var ctm2 = pathEl.getScreenCTM();
+        var wx = ctm2.a * pt.x + ctm2.c * pt.y + ctm2.e - visualRect.left;
+        var wy = ctm2.b * pt.x + ctm2.d * pt.y + ctm2.f - visualRect.top;
+        wpEl.style.left = wx + 'px';
+        wpEl.style.top = wy + 'px';
+      }
+      positionWaypoint(wpBánh, waypointBánh);
+      positionWaypoint(wpVỏ, waypointVỏ);
 
       // Update progress line
       pathEl.style.strokeDashoffset = pathLength * (1 - progress);
 
-      // Cross-fade images
-      if (imgTrad && imgMod) {
-        imgTrad.style.opacity = 1 - progress;
-        imgMod.style.opacity = progress;
+      // Floating element: cross-fade between traditional and modern
+      if (floatTrad && floatMod) {
+        floatTrad.style.opacity = 1 - progress;
+        floatMod.style.opacity = progress;
       }
 
-      // Waypoint visibility
-      if (wpBánh) {
-        var dBánh = Math.abs(progress - waypointBánh);
-        if (dBánh < 0.12) {
-          wpBánh.classList.add('ch4-path__waypoint--visible');
-        } else {
-          wpBánh.classList.remove('ch4-path__waypoint--visible');
-        }
+      // Zones: bánh = 0.24→0.70, vỏ = 0.64→1.0 (start before node so images appear AT node)
+      var fadeLen = 0.06;
+      var banhZoneStart = waypointBánh - fadeLen;
+      var banhZoneEnd = 0.70;
+      var voZoneStart = waypointVỏ - fadeLen;
+      var voZoneEnd = 1.0;
+
+      function zoneOpacity(p, start, end) {
+        if (p < start || p > end) return 0;
+        var fadeIn = Math.min(1, (p - start) / fadeLen);
+        var fadeOut = Math.min(1, (end - p) / fadeLen);
+        return Math.min(fadeIn, fadeOut);
       }
 
-      if (wpVỏ) {
-        var dVỏ = Math.abs(progress - waypointVỏ);
-        if (dVỏ < 0.12) {
-          wpVỏ.classList.add('ch4-path__waypoint--visible');
-        } else {
-          wpVỏ.classList.remove('ch4-path__waypoint--visible');
-        }
+      var banhOpacity = zoneOpacity(progress, banhZoneStart, banhZoneEnd);
+      var voOpacity = zoneOpacity(progress, voZoneStart, voZoneEnd);
+
+      // Outer container visible when either zone is active
+      if (cornerTrad && cornerMod) {
+        var cornerOpacity = Math.max(banhOpacity, voOpacity);
+        cornerTrad.style.opacity = cornerOpacity;
+        cornerMod.style.opacity = cornerOpacity;
+
+        // Cross-fade inner sets using opacity (no display toggle)
+        if (tradBanh) tradBanh.style.opacity = banhOpacity;
+        if (tradVo) tradVo.style.opacity = voOpacity;
+        if (modBanh) modBanh.style.opacity = banhOpacity;
+        if (modVo) modVo.style.opacity = voOpacity;
+
+        // Cycle images within each set
+        cycleImages(tradBanh, progress, banhZoneStart, banhZoneEnd);
+        cycleImages(modBanh, progress, banhZoneStart, banhZoneEnd);
+        cycleImages(tradVo, progress, voZoneStart, voZoneEnd);
+        cycleImages(modVo, progress, voZoneStart, voZoneEnd);
       }
 
-      // Corner labels activation
-      if (labelTruyen) {
-        if (progress < 0.3) {
-          labelTruyen.classList.add('ch4-path__corner-text--active');
-        } else {
-          labelTruyen.classList.remove('ch4-path__corner-text--active');
-        }
-      }
-
-      if (labelHien) {
-        if (progress > 0.7) {
-          labelHien.classList.add('ch4-path__corner-text--active');
-        } else {
-          labelHien.classList.remove('ch4-path__corner-text--active');
-        }
-      }
+      // Waypoint labels always visible
+      if (wpBánh) wpBánh.classList.add('ch4-path__waypoint--visible');
+      if (wpVỏ) wpVỏ.classList.add('ch4-path__waypoint--visible');
     }
 
     // Use passive scroll listener for performance

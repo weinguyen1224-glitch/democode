@@ -104,7 +104,8 @@
 @keyframes ch4ZoomAndFade {
     from {
         opacity: 0;
-        transform: translate3d(calc(-60vw), calc(-60vh), 0) scale(0.2) rotate(-20deg);
+        transform: translate3d(calc(-60vw), calc(-60vh), 0) scale(0.2)
+            rotate(-20deg);
     }
     50% {
         opacity: 1;
@@ -123,17 +124,21 @@
 @keyframes ch4FlipInX {
     from {
         opacity: 0;
-        transform: translate3d(-60vw, 0, 0) perspective(800px) rotateY(-120deg) scale(0.4);
+        transform: translate3d(-60vw, 0, 0) perspective(800px) rotateY(-120deg)
+            scale(0.4);
     }
     40% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(15deg) scale(1.04);
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(15deg)
+            scale(1.04);
     }
     60% {
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(-8deg) scale(0.98);
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(-8deg)
+            scale(0.98);
     }
     80% {
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(3deg) scale(1.01);
+        transform: translate3d(0, 0, 0) perspective(800px) rotateY(3deg)
+            scale(1.01);
     }
     to {
         opacity: 1;
@@ -523,7 +528,7 @@
    ══════════════════════════════════════════════════════════════ */
 .ch4-symbol {
     padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
-    padding-bottom: clamp(80px, 14vh, 160px);
+    padding-bottom: clamp(40px, 6vh, 80px);
     position: relative;
 }
 
@@ -576,7 +581,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     width: 100%;
 }
@@ -584,17 +589,59 @@
 .ch4-symbol__img-wrap {
     border-radius: 12px;
     background: var(--c4-bg);
-    aspect-ratio: 3 / 4;
+    width: 100%;
 }
 
 .ch4-symbol__img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
     border-radius: 12px;
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s var(--c4-ease);
+}
+
+/* Grid 2 ảnh ngang bằng nhau trong section biểu tượng */
+.ch4-symbol__grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 2vw, 24px);
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ch4-symbol__grid-2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Chú thích ảnh */
+.ch4-symbol__caption {
+    grid-column: 1 / -1;
+    display: block;
+    text-align: center;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin: 4px 0 0;
+}
+
+/* Ảnh đơn trong region text */
+.ch4-region__text .ch4-region__img-single {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ch4-region__text .ch4-region__img-single img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .ch4-symbol__img-wrap:hover img {
@@ -718,6 +765,10 @@
     position: relative;
 }
 
+.ch4-prose-section--last {
+    padding-bottom: clamp(10px, 1vh, 20px);
+}
+
 .ch4-prose-section::before {
     content: "";
     position: absolute;
@@ -747,7 +798,7 @@
 }
 
 .ch4-prose-section__img-wrap {
-    max-width: 600px;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
 }
@@ -828,7 +879,7 @@
    SECTION 10: DU LỊCH VĂN HÓA
    ══════════════════════════════════════════════════════════════ */
 .ch4-tourism {
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+    padding: clamp(20px, 5vh, 120px) clamp(24px, 6vw, 80px);
     padding-bottom: clamp(80px, 14vh, 160px);
     position: relative;
 }
@@ -897,7 +948,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+    padding: clamp(20px, 4vh, 60px) clamp(24px, 6vw, 100px) clamp(60px, 10vh, 120px);
     text-align: center;
     position: relative;
 }
@@ -1024,7 +1075,7 @@
 }
 
 /* ── Floating bánh ──────────────────────────────────────── */
-.ch4-path__bánh {
+.ch4-path__floating {
     position: absolute;
     width: clamp(80px, 10vw, 120px);
     height: clamp(80px, 10vw, 120px);
@@ -1038,26 +1089,25 @@
     transform: translate(-50%, -50%);
     will-change: left, top;
     pointer-events: none;
-    /* Initial position at top-left (will be overridden by JS) */
     left: 0;
     top: 0;
 }
 
-.ch4-path__bánh img {
+.ch4-path__floating img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
-.ch4-path__bánh--traditional {
+.ch4-path__floating--trad {
     opacity: 1;
     z-index: 2;
 }
 
-.ch4-path__bánh--modern {
+.ch4-path__floating--mod {
     opacity: 0;
     z-index: 1;
 }
@@ -1067,16 +1117,11 @@
     position: absolute;
     z-index: 5;
     pointer-events: none;
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-        opacity 0.4s var(--c4-ease),
-        transform 0.4s var(--c4-ease);
+    transform: translate(-50%, -50%);
 }
 
 .ch4-path__waypoint--visible {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .ch4-path__waypoint-dot {
@@ -1109,13 +1154,15 @@
 }
 
 .ch4-path__corner-label--start {
-    bottom: clamp(20px, 6vh, 60px);
-    left: clamp(20px, 4vw, 60px);
+    bottom: clamp(20px, 4vh, 50px);
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .ch4-path__corner-label--end {
-    top: clamp(20px, 6vh, 60px);
-    right: clamp(20px, 4vw, 60px);
+    top: clamp(20px, 4vh, 50px);
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .ch4-path__corner-text {
@@ -1125,15 +1172,58 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--c4-accent);
-    opacity: 0.15;
-    transition:
-        opacity 0.6s var(--c4-ease),
-        text-shadow 0.6s var(--c4-ease);
+    opacity: 0.9;
+    text-shadow: 0 0 30px rgba(151, 32, 35, 0.4);
 }
 
 .ch4-path__corner-text--active {
     opacity: 0.9;
     text-shadow: 0 0 30px rgba(151, 32, 35, 0.4);
+}
+
+/* ── Corner images ────────────────────────────────────── */
+.ch4-path__corner-images {
+    position: absolute;
+    width: clamp(200px, 28vw, 360px);
+    height: clamp(150px, 20vw, 270px);
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Traditional: bottom-left */
+.ch4-path__corner-images--trad {
+    bottom: clamp(60px, 16vh, 180px);
+    left: clamp(20px, 4vw, 60px);
+}
+
+/* Modern: top-right */
+.ch4-path__corner-images--mod {
+    top: clamp(60px, 16vh, 180px);
+    right: clamp(20px, 4vw, 60px);
+}
+
+.ch4-path__corner-img-set {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.ch4-path__corner-img-set img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.ch4-path__corner-img-set img.ch4-path__corner-img--active {
+    opacity: 1;
 }
 
 /* ── Arrow markers ──────────────────────────────────────── */
@@ -1170,7 +1260,11 @@
     }
 
     .ch4-symbol__img-wrap {
-        aspect-ratio: 4 / 3;
+        width: 100%;
+    }
+
+    .ch4-symbol__gallery {
+        max-width: 100%;
     }
     .ch4-tourism__img-wrap {
         aspect-ratio: 16 / 9;
@@ -1200,9 +1294,18 @@
         right: 10px;
     }
 
-    .ch4-path__bánh {
-        width: 64px;
-        height: 64px;
+    .ch4-path__floating {
+        width: clamp(60px, 15vw, 80px);
+        height: clamp(60px, 15vw, 80px);
+    }
+
+    .ch4-path__corner-images {
+        width: clamp(140px, 35vw, 200px);
+        height: clamp(100px, 25vw, 150px);
+    }
+
+    .ch4-path__corner-text {
+        font-size: clamp(1.2rem, 3vw, 2rem);
     }
     .ch4-path__corner-text {
         font-size: clamp(1.2rem, 5vw, 2rem);
