@@ -337,7 +337,7 @@
     max-width: min(540px, 82vw);
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: left;
 }
 
 /* Typography override trong context tối */

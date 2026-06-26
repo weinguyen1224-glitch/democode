@@ -77,25 +77,13 @@
     max-width: 820px;
     margin-inline: auto;
     overflow-wrap: break-word;
-}
-
-/* ─── Per-line typewriter ─── */
-.bpt-intro__line-text {
-    display: block;
-    text-wrap: pretty;
+    text-align: left;
     clip-path: inset(0 100% 0 0);
     will-change: clip-path;
 }
 
-/* Each line: 1s reveal, staggered by 1s */
-.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(1) {
-    animation: bpt-line-reveal 1s steps(104, end) 0.2s forwards;
-}
-.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(2) {
-    animation: bpt-line-reveal 1s steps(121, end) 1.2s forwards;
-}
-.bpt-intro.bpt-visible .bpt-intro__line-text:nth-child(3) {
-    animation: bpt-line-reveal 1s steps(140, end) 2.2s forwards;
+.bpt-intro.bpt-visible .bpt-intro__body {
+    animation: bpt-line-reveal 1.8s steps(200, end) 0.2s forwards;
 }
 
 @keyframes bpt-line-reveal {
@@ -134,7 +122,7 @@
     .bpt-intro__line {
         width: clamp(80px, 20vw, 160px) !important;
     }
-    .bpt-intro__line-text {
+    .bpt-intro__body {
         clip-path: inset(0 0% 0 0) !important;
         animation: none !important;
     }

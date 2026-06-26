@@ -253,6 +253,11 @@
 
 .bpt-scene__centered .bpt-prose p {
     text-indent: 2em;
+    text-align: left !important;
+}
+
+.bpt-scene__centered .bpt-prose .bpt-kicker {
+    text-align: left !important;
 }
 
 /* Split scene enhancement */

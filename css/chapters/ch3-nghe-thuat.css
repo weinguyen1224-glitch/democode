@@ -788,6 +788,7 @@
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
 }
 
 /* § 3 — Nguyên liệu cards removed */
@@ -1106,6 +1107,7 @@
     font-style: italic;
     margin: 0 0 32px;
     font-weight: normal;
+    text-align: left;
 }
 
 /* Attribution */
