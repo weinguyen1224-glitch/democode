@@ -488,43 +488,239 @@
                 transform: none;
             }
 
-            /* Grid cell stagger */
+            /* Grid cell — hidden by default */
             .ch5-grid__cell {
                 opacity: 0;
-                transform: translateY(40px) scale(0.95);
-                transition:
-                    opacity 0.6s var(--c5-ease),
-                    transform 0.6s var(--c5-ease);
             }
 
             .ch5-grid__cell.ch5-visible {
                 opacity: 1;
-                transform: translateY(0) scale(1);
             }
 
-            .ch5-grid__cell:nth-child(1) {
-                transition-delay: 0s;
+            /* ── Creative entrance keyframes ──────────────────── */
+            @keyframes ch5-anim-spin-in {
+                0% {
+                    opacity: 0;
+                    transform: translateY(60px) rotate(360deg) scale(0.3);
+                    filter: blur(6px);
+                }
+                50% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                75% {
+                    transform: translateY(-8px) rotate(-10deg) scale(1.04);
+                }
+                90% {
+                    transform: translateY(3px) rotate(3deg) scale(0.98);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) rotate(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(2) {
-                transition-delay: 0.1s;
+
+            @keyframes ch5-anim-flip-y {
+                0% {
+                    opacity: 0;
+                    transform: perspective(800px) rotateY(-120deg) scale(0.6);
+                    filter: blur(4px);
+                }
+                40% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                70% {
+                    transform: perspective(800px) rotateY(15deg) scale(1.02);
+                }
+                85% {
+                    transform: perspective(800px) rotateY(-5deg) scale(0.99);
+                }
+                100% {
+                    opacity: 1;
+                    transform: perspective(800px) rotateY(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(3) {
-                transition-delay: 0.2s;
+
+            @keyframes ch5-anim-slide-rotate-tl {
+                0% {
+                    opacity: 0;
+                    transform: translate(-100px, -60px) rotate(-25deg) scale(0.5);
+                    filter: blur(4px);
+                }
+                50% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                75% {
+                    transform: translate(8px, 5px) rotate(4deg) scale(1.03);
+                }
+                90% {
+                    transform: translate(-3px, -2px) rotate(-1deg) scale(0.99);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(0, 0) rotate(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(4) {
-                transition-delay: 0.3s;
+
+            @keyframes ch5-anim-bounce-up {
+                0% {
+                    opacity: 0;
+                    transform: translateY(120px) scale(0.4);
+                    filter: blur(6px);
+                }
+                40% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                55% {
+                    transform: translateY(-20px) scale(1.06);
+                }
+                70% {
+                    transform: translateY(10px) scale(0.97);
+                }
+                82% {
+                    transform: translateY(-5px) scale(1.02);
+                }
+                92% {
+                    transform: translateY(2px) scale(0.99);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(5) {
-                transition-delay: 0.4s;
+
+            @keyframes ch5-anim-flip-x {
+                0% {
+                    opacity: 0;
+                    transform: perspective(800px) rotateX(100deg) translateY(40px) scale(0.5);
+                    filter: blur(4px);
+                }
+                40% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                65% {
+                    transform: perspective(800px) rotateX(-12deg) translateY(-8px) scale(1.03);
+                }
+                80% {
+                    transform: perspective(800px) rotateX(5deg) translateY(3px) scale(0.99);
+                }
+                100% {
+                    opacity: 1;
+                    transform: perspective(800px) rotateX(0) translateY(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(6) {
-                transition-delay: 0.5s;
+
+            @keyframes ch5-anim-slide-rotate-tr {
+                0% {
+                    opacity: 0;
+                    transform: translate(100px, -60px) rotate(25deg) scale(0.5);
+                    filter: blur(4px);
+                }
+                50% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                75% {
+                    transform: translate(-8px, 5px) rotate(-4deg) scale(1.03);
+                }
+                90% {
+                    transform: translate(3px, -2px) rotate(1deg) scale(0.99);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(0, 0) rotate(0) scale(1);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(7) {
-                transition-delay: 0.6s;
+
+            @keyframes ch5-anim-zoom-elastic {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.15) rotate(20deg);
+                    filter: blur(8px);
+                }
+                40% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                55% {
+                    transform: scale(1.12) rotate(-5deg);
+                }
+                70% {
+                    transform: scale(0.92) rotate(2deg);
+                }
+                82% {
+                    transform: scale(1.04) rotate(-1deg);
+                }
+                92% {
+                    transform: scale(0.98) rotate(0.5deg);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) rotate(0);
+                    filter: blur(0);
+                }
             }
-            .ch5-grid__cell:nth-child(8) {
-                transition-delay: 0.7s;
+
+            @keyframes ch5-anim-curve-br {
+                0% {
+                    opacity: 0;
+                    transform: translate(80px, 80px) rotate(20deg) scale(0.4);
+                    filter: blur(5px);
+                }
+                40% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                65% {
+                    transform: translate(-12px, -8px) rotate(-5deg) scale(1.05);
+                }
+                80% {
+                    transform: translate(5px, 3px) rotate(2deg) scale(0.98);
+                }
+                92% {
+                    transform: translate(-2px, -1px) rotate(-0.5deg) scale(1.01);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(0, 0) rotate(0) scale(1);
+                    filter: blur(0);
+                }
+            }
+
+            /* Apply unique animation per cell */
+            .ch5-grid__cell--anim-1.ch5-visible {
+                animation: ch5-anim-spin-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+            }
+            .ch5-grid__cell--anim-2.ch5-visible {
+                animation: ch5-anim-flip-y 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+            .ch5-grid__cell--anim-3.ch5-visible {
+                animation: ch5-anim-slide-rotate-tl 1.1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+            }
+            .ch5-grid__cell--anim-4.ch5-visible {
+                animation: ch5-anim-bounce-up 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+            .ch5-grid__cell--anim-5.ch5-visible {
+                animation: ch5-anim-flip-x 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
+            }
+            .ch5-grid__cell--anim-6.ch5-visible {
+                animation: ch5-anim-slide-rotate-tr 1.1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+            }
+            .ch5-grid__cell--anim-7.ch5-visible {
+                animation: ch5-anim-zoom-elastic 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+            .ch5-grid__cell--anim-8.ch5-visible {
+                animation: ch5-anim-curve-br 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
             }
 
             /* ═══════════════════════════════════════════════════════
@@ -731,10 +927,101 @@
                 opacity: 1;
             }
 
+            /* ── Prose figure entrance animations ─────────────── */
+            @keyframes ch5-anim-prose-slide-left {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-80px) rotate(-3deg) scale(0.9);
+                    filter: blur(4px);
+                }
+                55% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                78% {
+                    transform: translateX(8px) rotate(0.5deg) scale(1.015);
+                }
+                90% {
+                    transform: translateX(-3px) rotate(-0.2deg) scale(0.995);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0) rotate(0) scale(1);
+                    filter: blur(0);
+                }
+            }
+
+            @keyframes ch5-anim-prose-zoom-in {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.65) rotate(3deg);
+                    filter: blur(5px);
+                }
+                45% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                65% {
+                    transform: scale(1.04) rotate(-1deg);
+                }
+                80% {
+                    transform: scale(0.98) rotate(0.3deg);
+                }
+                92% {
+                    transform: scale(1.01) rotate(-0.1deg);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) rotate(0);
+                    filter: blur(0);
+                }
+            }
+
+            @keyframes ch5-anim-prose-flip-in {
+                0% {
+                    opacity: 0;
+                    transform: perspective(1000px) rotateX(70deg) translateY(30px);
+                    filter: blur(4px);
+                }
+                45% {
+                    opacity: 1;
+                    filter: blur(0);
+                }
+                68% {
+                    transform: perspective(1000px) rotateX(-6deg) translateY(-4px);
+                }
+                82% {
+                    transform: perspective(1000px) rotateX(3deg) translateY(2px);
+                }
+                92% {
+                    transform: perspective(1000px) rotateX(-1deg) translateY(-0.5px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: perspective(1000px) rotateX(0) translateY(0);
+                    filter: blur(0);
+                }
+            }
+
+            .ch5-prose__figure--anim-1.ch5-visible {
+                animation: ch5-anim-prose-slide-left 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+
+            .ch5-prose__figure--anim-2.ch5-visible {
+                animation: ch5-anim-prose-zoom-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+
+            .ch5-prose__swipe-figure--anim-1.ch5-visible {
+                animation: ch5-anim-prose-flip-in 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+            }
+
             @media (prefers-reduced-motion: reduce) {
                 .ch5-reveal,
-                .ch5-grid__cell {
+                .ch5-grid__cell,
+                .ch5-prose__figure,
+                .ch5-prose__swipe-figure {
                     transition: none;
+                    animation: none;
                     opacity: 1;
                     transform: none;
                 }
@@ -828,17 +1115,17 @@
             <section class="ch5-prose" aria-label="Trải nghiệm thưởng thức">
                 <div class="ch5-prose__inner ch5-reveal">
                     <p>Mỗi sính lễ trong đám cưới truyền thống Việt Nam đều mang trong mình một thông điệp văn hóa riêng. Với bánh phu thê, đó là triết lý về sự hòa hợp và gắn kết vợ chồng, được gửi gắm tinh tế qua từng lớp lá, từng sợi lạt và cả hương vị của chiếc bánh. Chính vì chứa đựng nhiều lớp nghĩa như vậy mà việc thưởng thức bánh phu thê không chỉ là cảm nhận một món ăn, mà còn là hành trình khám phá những giá trị văn hóa được lưu truyền qua nhiều thế hệ.</p>
-                    <figure class="ch5-prose__figure ch5-reveal">
+                    <figure class="ch5-prose__figure ch5-reveal ch5-prose__figure--anim-1">
                         <img src="assets/chuong-5/1.1.webp" alt="Bánh phu thê được gói trong lá dong" loading="lazy" decoding="async" />
                     </figure>
                     <p>Từ từ tháo sợi lạt đỏ, mở chiếc hộp vuông vức bên ngoài rồi nâng lớp bánh lên tay, người dùng sẽ dần cảm nhận được vẻ đẹp của thức quà truyền thống này. Qua lớp bánh óng ánh là sắc vàng của nhân đậu xanh, màu trắng của dừa cùng hương thơm dịu nhẹ của nếp nhung. Đưa chiếc bánh lại gần, hương thơm dịu nhẹ của nếp quyện cùng mùi thơm bùi của đậu xanh và hạt sen dần lan tỏa. Đó không phải thứ hương thơm nồng đậm, mà là mùi hương nhẹ nhàng như chính tính cách của người Kinh Bắc. Sự hấp dẫn của bánh phu thê vì thế không đến từ cảm giác choáng ngợp, mà từ sự tinh tế được cảm nhận chậm rãi qua từng giác quan.</p>
                     <p>Khi cắn một miếng bánh, vị ngọt thanh lan tỏa trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng không hề dính hay ngấy. Tiếp đó là phần nhân đậu xanh được sên kỹ cùng hạt sen, dừa nạo và đường mía, mang đến vị bùi béo vừa phải. Những sợi dừa nhỏ tạo nên cảm giác sần sật thú vị, giúp hương vị của chiếc bánh trở nên phong phú hơn. Mỗi thành phần đều có dấu ấn riêng nhưng không lấn át nhau, cùng hòa quyện để tạo nên một tổng thể cân bằng và hài hòa.</p>
-                    <figure class="ch5-prose__figure ch5-reveal">
+                    <figure class="ch5-prose__figure ch5-reveal ch5-prose__figure--anim-2">
                         <img src="assets/chuong-5/2.1.webp" alt="Bánh phu thê sau khi hấp" loading="lazy" decoding="async" />
                     </figure>
                     <p>Người xưa thường nói bánh phu thê ngon nhất khi được dùng cùng một chén trà xanh nóng. Vị chát nhẹ của trà làm dịu đi vị ngọt của bánh, đồng thời giúp những tầng hương vị trở nên rõ nét hơn. Sau khi thưởng thức, dư vị ngọt lành vẫn còn đọng lại nơi cuống họng, hòa cùng hương trà thanh mát, tạo nên cảm giác nhẹ nhàng và thư thái. Có lẽ cũng bởi vậy mà bánh phu thê không chỉ xuất hiện trong những mâm tráp cưới hỏi, mà còn trở thành thức quà để người ta ngồi lại bên nhau, nhâm nhi cùng chén trà và trò chuyện trong những dịp sum họp.</p>
                     <p>Nhưng điều đọng lại sau cùng không chỉ là hương vị. Đó còn là ý niệm về sự gắn kết, về một mái ấm được xây dựng bằng sự đồng lòng và sẻ chia. Bởi suy cho cùng, điều mà người ta trao nhau và cùng nhau thưởng thức không chỉ là một món sính lễ đơn thuần, mà là lời nguyện ước cho một cuộc hôn nhân bền chặt - nơi hai tâm hồn nguyện cùng nắm tay nhau đi qua mọi thăng trầm của cuộc sống.</p>
-                    <figure class="ch5-prose__swipe-figure ch5-reveal" data-hswipe>
+                    <figure class="ch5-prose__swipe-figure ch5-reveal ch5-prose__swipe-figure--anim-1" data-hswipe>
                         <img class="ch5-prose__swipe-img ch5-prose__swipe-img--base" src="assets/chuong-5/3.1.webp" alt="Bánh phu thê thưởng thức cùng trà" loading="lazy" decoding="async" />
                         <img class="ch5-prose__swipe-img ch5-prose__swipe-img--reveal" src="assets/chuong-5/3.2.webp" alt="Bánh phu thê xếp chồng" loading="lazy" decoding="async" />
                         <div class="ch5-prose__swipe-line" aria-hidden="true"></div>
@@ -864,7 +1151,7 @@
                     class="ch5-grid ch5-grid--layout-a"
                     style="margin-bottom: clamp(8px, 1.5vw, 16px)"
                 >
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-1" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/2.1.webp"
                             alt="Bánh phu thê cắt thành cục trên khay"
@@ -875,7 +1162,7 @@
                             Bánh phu thê cắt thành cục, xếp ngay ngắn trên khay
                         </div>
                     </div>
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-2" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/3.1.webp"
                             alt="Bánh phu thê cùng trà nóng"
@@ -893,7 +1180,7 @@
                     class="ch5-grid ch5-grid--layout-b"
                     style="margin-bottom: clamp(8px, 1.5vw, 16px)"
                 >
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-3" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/1.1.webp"
                             alt="Bánh phu thê được gói trong lá dong"
@@ -904,7 +1191,7 @@
                             Bánh phu thê được gói trong lá dong xanh
                         </div>
                     </div>
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-4" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (1).webp"
                             alt="Nghệ nhân đang nấu nhân bánh"
@@ -915,7 +1202,7 @@
                             Nghệ nhân tỉ mỉ nấu nhân bánh phu thê
                         </div>
                     </div>
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-5" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (2).webp"
                             alt="Đang gói bánh phu thê trong lá dong"
@@ -930,7 +1217,7 @@
 
                 <!-- Row 3: 3 images -->
                 <div class="ch5-grid ch5-grid--layout-b">
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-6" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (3).webp"
                             alt="Bánh phu thê cắt sẵn trên khay"
@@ -941,7 +1228,7 @@
                             Bánh phu thê cắt sẵn, chờ đóng gói
                         </div>
                     </div>
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-7" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed.webp"
                             alt="Nghệ nhân cắt bánh phu thê"
@@ -952,7 +1239,7 @@
                             Nghệ nhân cắt bánh phu thê thành từng phần
                         </div>
                     </div>
-                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                    <div class="ch5-grid__cell ch5-grid__cell--anim-8" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/3.2.webp"
                             alt="Bánh xu xê — phiên bản miền Nam"
@@ -1095,6 +1382,11 @@
                                 if (entry.isIntersecting) {
                                     entry.target.classList.add("ch5-visible");
                                     revealObserver.unobserve(entry.target);
+                                    if (entry.target.classList.contains("ch5-grid__cell")) {
+                                        entry.target.addEventListener("animationend", function () {
+                                            this.style.animation = "none";
+                                        }, { once: true });
+                                    }
                                 }
                             });
                         },
