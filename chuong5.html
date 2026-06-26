@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0,minimum-scale=1.0,viewport-fit=cover"
+        />
+        <meta name="robots" content="noindex" />
+        <meta name="referrer" content="no-referrer-when-downgrade" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Chương V — Giữ Nếp Kinh Bắc, Vẹn Nghĩa Trăm Năm"
+        />
+        <title>Chương V — Giữ Nếp Kinh Bắc, Vẹn Nghĩa Trăm Năm</title>
+
+        <!-- Fonts -->
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Mulish:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@400;700&family=Outfit:wght@400;700&family=Pacifico&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@400;700&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        />
+
+        <!-- Base styles -->
+        <link rel="stylesheet" href="css/custom/base.css" />
+        <link rel="stylesheet" href="css/chapters/ch5-vanhoa.css" />
+
+        <style>
+            /* ═══════════════════════════════════════════════════════
+               CHUONG 5 — SPLIT + WIPE + GRID
+               ═══════════════════════════════════════════════════════ */
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: var(--c5-bg);
+                color: var(--c5-text);
+                font-family: "Vollkorn", "PT Serif", Georgia, serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                overflow-x: hidden;
+            }
+
+            /* ── Chapter Divider ─────────────────────────────────── */
+            .ch5-divider {
+                width: 100%;
+                background: #e5bf4d;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .ch5-divider__frame {
+                width: 100%;
+                max-width: 1400px;
+            }
+
+            .ch5-divider__frame img {
+                display: block;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            /* ── Hero Title Section ──────────────────────────────── */
+            .ch5-hero {
+                min-height: 80vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 60px);
+                text-align: center;
+                background: var(--c5-bg);
+            }
+
+            .ch5-hero__inner {
+                max-width: 800px;
+            }
+
+            .ch5-hero__kicker {
+                font-family: "Outfit", sans-serif;
+                font-size: 0.85rem;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: var(--c5-accent);
+                margin-bottom: 16px;
+            }
+
+            .ch5-hero__title {
+                margin: 0;
+                font-family: "DNS Gibsons One", "Oswald", sans-serif;
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-weight: 700;
+                line-height: 1.2;
+                color: var(--c5-text);
+            }
+
+            .ch5-hero__line {
+                display: block;
+                width: 60px;
+                height: 2px;
+                background: var(--c5-accent);
+                margin: 32px auto 0;
+                border-radius: 1px;
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               SPLIT SCREEN — Text left + Wipe images right
+               ═══════════════════════════════════════════════════════ */
+            .ch5-split {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                min-height: 100vh;
+                position: relative;
+            }
+
+            /* Text side */
+            .ch5-split__text {
+                display: flex;
+                align-items: center;
+                padding: clamp(40px, 6vw, 80px);
+                background: var(--c5-bg);
+            }
+
+            .ch5-split__text-inner {
+                max-width: 520px;
+            }
+
+            .ch5-split__kicker {
+                font-family: "Outfit", sans-serif;
+                font-size: 0.8rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--c5-accent);
+                margin-bottom: 12px;
+            }
+
+            .ch5-split__heading {
+                font-family: "DNS Gibsons One", "Oswald", sans-serif;
+                font-size: clamp(1.4rem, 3vw, 2.2rem);
+                font-weight: 700;
+                line-height: 1.3;
+                color: var(--c5-text);
+                margin: 0 0 20px;
+            }
+
+            .ch5-split__body p {
+                margin: 0 0 16px;
+                font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+                line-height: 1.8;
+                color: var(--c5-text);
+            }
+
+            /* Image side — Wipe container */
+            .ch5-split__visual {
+                position: relative;
+                overflow: hidden;
+                background: #1a1a1a;
+            }
+
+            /* Both images stacked */
+            .ch5-split__img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Image 1: base layer (always visible) */
+            .ch5-split__img--base {
+                z-index: 1;
+            }
+
+            /* Image 2: reveal layer (clipped by wipe) */
+            .ch5-split__img--reveal {
+                z-index: 2;
+                clip-path: inset(0 0 100% 0);
+                /* Starts fully clipped from bottom */
+            }
+
+            /* Wipe line indicator — horizontal line moving top→bottom */
+            .ch5-split__wipe-line {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                height: 3px;
+                background: linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(255, 255, 255, 0.9),
+                    transparent
+                );
+                z-index: 3;
+                pointer-events: none;
+                opacity: 0;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            /* Labels on images */
+            .ch5-split__label {
+                position: absolute;
+                bottom: 24px;
+                z-index: 4;
+                padding: 8px 16px;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(8px);
+                color: #fff;
+                font-family: "Outfit", sans-serif;
+                font-size: 0.75rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                border-radius: 4px;
+            }
+
+            .ch5-split__label--base {
+                left: 24px;
+            }
+
+            .ch5-split__label--reveal {
+                right: 24px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .ch5-split__label--reveal.is-visible {
+                opacity: 1;
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               PHOTO GRID — Large section
+               ═══════════════════════════════════════════════════════ */
+            .ch5-gallery {
+                padding: clamp(48px, 8vw, 100px) clamp(16px, 3vw, 40px);
+                background: var(--c5-bg);
+            }
+
+            .ch5-gallery__header {
+                text-align: center;
+                margin-bottom: clamp(40px, 6vw, 80px);
+            }
+
+            .ch5-gallery__kicker {
+                font-family: "Outfit", sans-serif;
+                font-size: 0.8rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--c5-accent-dim);
+                margin-bottom: 8px;
+            }
+
+            .ch5-gallery__title {
+                font-family: "DNS Gibsons One", "Oswald", sans-serif;
+                font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+                font-weight: 700;
+                color: var(--c5-text);
+                margin: 0;
+            }
+
+            /* Grid Layout — Asymmetric mosaic */
+            .ch5-grid {
+                display: grid;
+                gap: clamp(8px, 1.5vw, 16px);
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .ch5-grid--layout-a {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .ch5-grid--layout-b {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .ch5-grid--layout-c {
+                grid-template-columns: 1fr 2fr;
+            }
+
+            .ch5-grid__cell {
+                position: relative;
+                overflow: hidden;
+                border-radius: 4px;
+                background: #2a2a2a;
+                cursor: pointer;
+                transition: transform 0.4s var(--c5-ease);
+            }
+
+            .ch5-grid__cell:hover {
+                transform: scale(1.01);
+            }
+
+            .ch5-grid__cell img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s var(--c5-ease);
+            }
+
+            .ch5-grid__cell:hover img {
+                transform: scale(1.05);
+            }
+
+            .ch5-grid__caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: clamp(12px, 2vw, 20px);
+                background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    transparent 100%
+                );
+                color: #fff;
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+                line-height: 1.5;
+                opacity: 0;
+                transform: translateY(10px);
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+            }
+
+            .ch5-grid__cell:hover .ch5-grid__caption {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .ch5-grid__cell--tall {
+                grid-row: span 2;
+            }
+
+            .ch5-grid__cell--wide {
+                grid-column: span 2;
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               POEM / QUOTE SECTIONS
+               ═══════════════════════════════════════════════════════ */
+            .ch5-poem {
+                min-height: 60vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                text-align: center;
+                background: var(--c5-bg);
+            }
+
+            .ch5-poem__inner {
+                max-width: 700px;
+            }
+
+            .ch5-poem blockquote {
+                margin: 0;
+                padding: 0;
+                border: none;
+                position: relative;
+            }
+
+            .ch5-poem blockquote::before {
+                content: "\201C";
+                position: absolute;
+                top: -0.5em;
+                left: -0.2em;
+                font-size: 5rem;
+                font-family: "Vollkorn", serif;
+                color: var(--c5-accent);
+                opacity: 0.25;
+                line-height: 1;
+            }
+
+            .ch5-poem p {
+                margin: 0 0 8px;
+                font-family: "Vollkorn", "PT Serif", Georgia, serif;
+                font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+                font-style: italic;
+                line-height: 1.9;
+                color: var(--c5-text);
+            }
+
+            .ch5-poem__attr {
+                margin-top: 24px;
+                font-family: "Outfit", sans-serif;
+                font-size: 0.8rem;
+                letter-spacing: 0.06em;
+                color: var(--c5-accent-dim);
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               CLOSING / FINAL
+               ═══════════════════════════════════════════════════════ */
+            .ch5-closing {
+                min-height: 80vh;
+                display: flex;
+                align-items: center;
+                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                background: var(--c5-bg);
+            }
+
+            .ch5-closing__inner {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .ch5-closing p {
+                margin: 0 0 20px;
+                font-size: clamp(1rem, 1.5vw, 1.15rem);
+                line-height: 1.85;
+                color: var(--c5-text);
+            }
+
+            .ch5-closing__line {
+                display: block;
+                width: 60px;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--c5-accent),
+                    transparent
+                );
+                margin: 40px auto;
+                border-radius: 1px;
+            }
+
+            .ch5-final {
+                min-height: 50vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                text-align: center;
+                background: var(--c5-bg);
+            }
+
+            .ch5-final__inner {
+                max-width: 600px;
+            }
+
+            .ch5-final blockquote {
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+
+            .ch5-final p {
+                margin: 0 0 8px;
+                font-family: "Vollkorn", "PT Serif", Georgia, serif;
+                font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+                font-style: italic;
+                line-height: 1.9;
+                color: var(--c5-text);
+            }
+
+            .ch5-final__attr {
+                margin-top: 24px;
+                font-family: "Outfit", sans-serif;
+                font-size: 0.8rem;
+                letter-spacing: 0.06em;
+                color: var(--c5-accent-dim);
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               SCROLL REVEAL
+               ═══════════════════════════════════════════════════════ */
+            .ch5-reveal {
+                opacity: 0;
+                transform: translateY(32px);
+                transition:
+                    opacity 0.7s var(--c5-ease),
+                    transform 0.7s var(--c5-ease);
+            }
+
+            .ch5-reveal.ch5-visible {
+                opacity: 1;
+                transform: none;
+            }
+
+            /* Grid cell stagger */
+            .ch5-grid__cell {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+                transition:
+                    opacity 0.6s var(--c5-ease),
+                    transform 0.6s var(--c5-ease);
+            }
+
+            .ch5-grid__cell.ch5-visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            .ch5-grid__cell:nth-child(1) {
+                transition-delay: 0s;
+            }
+            .ch5-grid__cell:nth-child(2) {
+                transition-delay: 0.1s;
+            }
+            .ch5-grid__cell:nth-child(3) {
+                transition-delay: 0.2s;
+            }
+            .ch5-grid__cell:nth-child(4) {
+                transition-delay: 0.3s;
+            }
+            .ch5-grid__cell:nth-child(5) {
+                transition-delay: 0.4s;
+            }
+            .ch5-grid__cell:nth-child(6) {
+                transition-delay: 0.5s;
+            }
+            .ch5-grid__cell:nth-child(7) {
+                transition-delay: 0.6s;
+            }
+            .ch5-grid__cell:nth-child(8) {
+                transition-delay: 0.7s;
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               LIGHTBOX
+               ═══════════════════════════════════════════════════════ */
+            .ch5-lightbox {
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                background: rgba(0, 0, 0, 0.92);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+                cursor: zoom-out;
+            }
+
+            .ch5-lightbox.is-active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .ch5-lightbox img {
+                max-width: 90vw;
+                max-height: 90vh;
+                object-fit: contain;
+                border-radius: 4px;
+                box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+                transform: scale(0.9);
+                transition: transform 0.3s var(--c5-ease);
+            }
+
+            .ch5-lightbox.is-active img {
+                transform: scale(1);
+            }
+
+            .ch5-lightbox__close {
+                position: absolute;
+                top: 24px;
+                right: 24px;
+                width: 48px;
+                height: 48px;
+                border: none;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                color: #fff;
+                font-size: 1.5rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s ease;
+            }
+
+            .ch5-lightbox__close:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .ch5-lightbox__caption {
+                position: absolute;
+                bottom: 32px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: rgba(255, 255, 255, 0.8);
+                font-family: "Outfit", sans-serif;
+                font-size: 0.9rem;
+                text-align: center;
+                max-width: 80vw;
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               RESPONSIVE
+               ═══════════════════════════════════════════════════════ */
+            @media (max-width: 900px) {
+                .ch5-split {
+                    grid-template-columns: 1fr;
+                    min-height: auto;
+                }
+
+                .ch5-split__visual {
+                    min-height: 60vh;
+                }
+
+                .ch5-grid--layout-a,
+                .ch5-grid--layout-b,
+                .ch5-grid--layout-c {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .ch5-grid__cell--tall {
+                    grid-row: span 1;
+                }
+
+                .ch5-grid__cell--wide {
+                    grid-column: span 2;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .ch5-grid--layout-a,
+                .ch5-grid--layout-b,
+                .ch5-grid--layout-c {
+                    grid-template-columns: 1fr;
+                }
+
+                .ch5-grid__cell--wide {
+                    grid-column: span 1;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .ch5-reveal,
+                .ch5-grid__cell {
+                    transition: none;
+                    opacity: 1;
+                    transform: none;
+                }
+
+                .ch5-split__img--reveal {
+                    clip-path: none;
+                }
+
+                .ch5-split__wipe-line {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <article id="article" role="main">
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- DIVIDER — Chương V                                  -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <div class="ch5-divider">
+                <div class="ch5-divider__frame">
+                    <img
+                        src="assets/DIVIDER/DIVIDER-05.webp"
+                        alt=""
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- HERO — Tiêu đề chương                               -->
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- SPLIT 1 — Mở đầu: Bánh phu thê & đạo nghĩa         -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="ch5-split" aria-label="Mở đầu chương 5" data-wipe>
+                <div class="ch5-split__text">
+                    <div class="ch5-split__text-inner ch5-reveal">
+                        <p class="ch5-split__kicker">Mở đầu</p>
+                        <h3 class="ch5-split__heading">
+                            Không đơn thuần là thức quà trong lễ cưới hỏi
+                        </h3>
+                        <div class="ch5-split__body">
+                            <p>
+                                Bánh phu thê từ lâu đã trở thành biểu tượng
+                                thiêng liêng của đạo nghĩa vợ chồng — nơi gửi
+                                gắm lời thề nguyện về sự đồng lòng, thủy chung
+                                và son sắt.
+                            </p>
+                            <p>
+                                Có lẽ chính bởi những giá trị ấy mà suốt gần một
+                                thiên niên kỷ qua, chiếc bánh nhỏ bé này vẫn bền
+                                bỉ hiện diện trong những thời khắc trọng đại
+                                nhất của đời người.
+                            </p>
+                            <p>
+                                Từ miền đất Kinh Bắc xưa cho đến những hôn lễ
+                                hiện đại ngày nay, bánh Phu Thê vẫn được nâng
+                                niu trao tay như một lời chúc phúc vẹn tròn cho
+                                hạnh phúc lứa đôi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ch5-split__visual">
+                    <img
+                        class="ch5-split__img ch5-split__img--base"
+                        src="assets/chuong-5/536300584_1491519355310587_1545632895752552905_n.webp"
+                        alt="Bánh phu thê trong nghi lễ cưới hỏi"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <img
+                        class="ch5-split__img ch5-split__img--reveal"
+                        src="assets/chuong-5/banh-phu-the-cung-tra-nong_1753240498 (1).webp"
+                        alt="Bánh phu thê cùng trà nóng"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
+                    <span class="ch5-split__label ch5-split__label--base"
+                        >Lễ cưới hỏi</span
+                    >
+                    <span class="ch5-split__label ch5-split__label--reveal"
+                        >Trà nóng</span
+                    >
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- POEM — Trích dẫn thơ                                -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="ch5-poem" aria-label="Trích dẫn thơ">
+                <div class="ch5-poem__inner ch5-reveal">
+                    <blockquote>
+                        <p>"Hộp vuông xếp lá dừa xanh,</p>
+                        <p>Và đây đôi bánh cho anh, cho nàng.</p>
+                        <p>Chúc cho thắm đượm đá vàng,</p>
+                        <p>Sắt son tơ tóc buộc ràng phu thê."</p>
+                    </blockquote>
+                    <p class="ch5-poem__attr">
+                        (Bánh phu thê — Bùi Thị Ngọc Diệp)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- SPLIT 2 — Trải nghiệm thưởng thức                   -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section
+                class="ch5-split"
+                aria-label="Trải nghiệm thưởng thức"
+                data-wipe
+            >
+                <div class="ch5-split__text">
+                    <div class="ch5-split__text-inner ch5-reveal">
+                        <p class="ch5-split__kicker">Trải nghiệm</p>
+                        <h3 class="ch5-split__heading">
+                            Hành trình khám phá từng giác quan
+                        </h3>
+                        <div class="ch5-split__body">
+                            <p>
+                                Mỗi sính lễ trong đám cưới truyền thống Việt Nam
+                                đều mang trong mình một thông điệp văn hóa
+                                riêng. Với bánh phu thê, đó là triết lý về sự
+                                hòa hợp và gắn kết vợ chồng.
+                            </p>
+                            <p>
+                                Từ từ tháo sợi lạt đỏ, mở chiếc hộp vuông vức
+                                bên ngoài rồi nâng lớp bánh lên tay, người dùng
+                                sẽ dần cảm nhận được vẻ đẹp của thức quà truyền
+                                thống này.
+                            </p>
+                            <p>
+                                Qua lớp bánh óng ánh là sắc vàng của nhân đậu
+                                xanh, màu trắng của dừa cùng hương thơm dịu nhẹ
+                                của nếp nhung.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ch5-split__visual">
+                    <img
+                        class="ch5-split__img ch5-split__img--base"
+                        src="assets/chuong-5/IMG_9652.webp"
+                        alt="Bánh phu thê được gói trong lá dong"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <img
+                        class="ch5-split__img ch5-split__img--reveal"
+                        src="assets/chuong-5/unnamed (1).webp"
+                        alt="Cặp bánh phu thê"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
+                    <span class="ch5-split__label ch5-split__label--base"
+                        >Lá dong xanh</span
+                    >
+                    <span class="ch5-split__label ch5-split__label--reveal"
+                        >Cặp bánh</span
+                    >
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- SPLIT 3 — Hương vị & cảm nhận                       -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section
+                class="ch5-split"
+                aria-label="Hương vị và cảm nhận"
+                data-wipe
+            >
+                <div class="ch5-split__text">
+                    <div class="ch5-split__text-inner ch5-reveal">
+                        <p class="ch5-split__kicker">Hương vị</p>
+                        <h3 class="ch5-split__heading">
+                            Vị ngọt thanh lan tỏa nơi đầu lưỡi
+                        </h3>
+                        <div class="ch5-split__body">
+                            <p>
+                                Khi cắn một miếng bánh, vị ngọt thanh lan tỏa
+                                trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm
+                                từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng
+                                không hề dính hay ngấy.
+                            </p>
+                            <p>
+                                Tiếp đó là phần nhân đậu xanh được sên kỹ cùng
+                                hạt sen, dừa nạo và đường mía, mang đến vị bùi
+                                béo vừa phải.
+                            </p>
+                            <p>
+                                Người xưa thường nói bánh phu thê ngon nhất khi
+                                được dùng cùng một chén trà xanh nóng. Vị chát
+                                nhẹ của trà làm dịu đi vị ngọt của bánh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ch5-split__visual">
+                    <img
+                        class="ch5-split__img ch5-split__img--base"
+                        src="assets/chuong-5/unnamed (2).webp"
+                        alt="Bánh phu thê trên mâm cỗ cưới"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <img
+                        class="ch5-split__img ch5-split__img--reveal"
+                        src="assets/chuong-5/unnamed (3).webp"
+                        alt="Bánh phu thê trong hộp quà"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
+                    <span class="ch5-split__label ch5-split__label--base"
+                        >Mâm cỗ cưới</span
+                    >
+                    <span class="ch5-split__label ch5-split__label--reveal"
+                        >Hộp quà</span
+                    >
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- PHOTO GRID — 8 ảnh lớn                              -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="ch5-gallery" aria-label="Ảnh lưới_program 5">
+                <div class="ch5-gallery__header ch5-reveal">
+                    <p class="ch5-gallery__kicker">Hình ảnh</p>
+                    <h3 class="ch5-gallery__title">
+                        Bánh Phu Thê Trong Đời Sống
+                    </h3>
+                </div>
+
+                <!-- Row 1: 2 images -->
+                <div
+                    class="ch5-grid ch5-grid--layout-a"
+                    style="margin-bottom: clamp(8px, 1.5vw, 16px)"
+                >
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/536300584_1491519355310587_1545632895752552905_n.webp"
+                            alt="Bánh phu thê trong nghi lễ cưới hỏi"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh phu thê trong nghi lễ cưới hỏi truyền thống
+                        </div>
+                    </div>
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/banh-phu-the-cung-tra-nong_1753240498 (1).webp"
+                            alt="Bánh phu thê cùng trà nóng"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Thưởng thức bánh phu thê cùng trà nóng
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: 3 images -->
+                <div
+                    class="ch5-grid ch5-grid--layout-b"
+                    style="margin-bottom: clamp(8px, 1.5vw, 16px)"
+                >
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/IMG_9652.webp"
+                            alt="Bánh phu thê được gói trong lá dong"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh phu thê được gói trong lá dong xanh
+                        </div>
+                    </div>
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/unnamed (1).webp"
+                            alt="Cặp bánh phu thê"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Cặp bánh phu thê — biểu tượng tình nghĩa vợ chồng
+                        </div>
+                    </div>
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/unnamed (2).webp"
+                            alt="Bánh phu thê trên mâm cỗ cưới"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh phu thê trên mâm cỗ cưới truyền thống
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: 3 images -->
+                <div class="ch5-grid ch5-grid--layout-b">
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/unnamed (3).webp"
+                            alt="Bánh phu thê trong hộp quà"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh phu thê trong hộp quà tinh tế
+                        </div>
+                    </div>
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/unnamed.webp"
+                            alt="Bánh phu thê hiện đại"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh phu thê phiên bản hiện đại
+                        </div>
+                    </div>
+                    <div class="ch5-grid__cell" onclick="openLightbox(this)">
+                        <img
+                            src="assets/chuong-5/xu-xe-3.webp"
+                            alt="Bánh xu xê — phiên bản miền Nam"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <div class="ch5-grid__caption">
+                            Bánh xu xê — phiên bản miền Nam
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- SPLIT 4 — Nghệ nhân giữ nghề                        -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section
+                class="ch5-split"
+                aria-label="Nghệ nhân giữ nghề"
+                data-wipe
+            >
+                <div class="ch5-split__text">
+                    <div class="ch5-split__text-inner ch5-reveal">
+                        <p class="ch5-split__kicker">Nghệ nhân</p>
+                        <h3 class="ch5-split__heading">
+                            Gìn giữ nghề như gìn giữ ký ức dân tộc
+                        </h3>
+                        <div class="ch5-split__body">
+                            <p>
+                                "Bảo tồn bánh phu thê không đơn thuần là lưu giữ
+                                một công thức ẩm thực cổ truyền. Đó còn là gìn
+                                giữ một phần hồn cốt văn hóa Việt Nam."
+                            </p>
+                            <p>
+                                "Làm bánh phải bằng cả cái tâm và gìn giữ trọn
+                                vẹn truyền thuyết của nó. Giữ bánh không chỉ là
+                                giữ nghề của gia đình, mà còn là gìn giữ một
+                                phần truyền thống của quê hương để trao lại cho
+                                thế hệ mai sau."
+                            </p>
+                            <p
+                                style="
+                                    font-style: italic;
+                                    color: var(--c5-accent-dim);
+                                "
+                            >
+                                — Nghệ nhân Nguyễn Đình Minh
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ch5-split__visual">
+                    <img
+                        class="ch5-split__img ch5-split__img--base"
+                        src="assets/chuong-5/unnamed.webp"
+                        alt="Bánh phu thê hiện đại"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <img
+                        class="ch5-split__img ch5-split__img--reveal"
+                        src="assets/chuong-5/xu-xe-3.webp"
+                        alt="Bánh xu xê"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
+                    <span class="ch5-split__label ch5-split__label--base"
+                        >Hiện đại</span
+                    >
+                    <span class="ch5-split__label ch5-split__label--reveal"
+                        >Xu xê</span
+                    >
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- CLOSING — Kết chương                                -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="ch5-closing" aria-label="Kết chương 5">
+                <div class="ch5-closing__inner ch5-reveal">
+                    <p>
+                        Ngày nay, giữa dòng chảy hối hả của cuộc sống, khi những
+                        trào lưu mới liên tục được tạo ra và thay thế nhau với
+                        tốc độ chóng mặt, nhiều làng nghề truyền thống đang lặng
+                        lẽ đối mặt với bài toán của sự tồn tại.
+                    </p>
+                    <p>
+                        Thế nhưng, có những điều tưởng chừng mong manh lại sở
+                        hữu sức sống bền bỉ lạ kỳ. Ở làng nghề làm bánh phu thê
+                        tại Đình Bảng và nhiều vùng quê Bắc Bộ, những nghệ nhân
+                        vẫn miệt mài gìn giữ nghề như gìn giữ một phần ký ức của
+                        dân tộc.
+                    </p>
+                    <p>
+                        Sắc đỏ của sợi lạt, sắc xanh của lá dong và màu vàng hổ
+                        phách của lớp bánh trong veo sẽ vẫn tiếp tục kể câu
+                        chuyện kéo dài suốt hàng thế kỷ — câu chuyện về một dân
+                        tộc biết gửi gắm triết lý sống vào những điều bình dị
+                        nhất.
+                    </p>
+                    <span class="ch5-closing__line" aria-hidden="true"></span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- FINAL POEM — Thơ dân gian                           -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="ch5-final" aria-label="Thơ dân gian">
+                <div class="ch5-final__inner ch5-reveal">
+                    <blockquote>
+                        <p>"Đôi ta như bánh phu thê</p>
+                        <p>Đẹp duyên, vẹn nghĩa, chẳng nề gian nan."</p>
+                    </blockquote>
+                    <p class="ch5-final__attr">(Thơ ca dân gian)</p>
+                </div>
+            </section>
+        </article>
+
+        <!-- Lightbox -->
+        <div class="ch5-lightbox" id="ch5-lightbox" onclick="closeLightbox()">
+            <button class="ch5-lightbox__close" aria-label="Đóng">
+                &times;
+            </button>
+            <img src="" alt="" id="ch5-lightbox-img" />
+            <div class="ch5-lightbox__caption" id="ch5-lightbox-caption"></div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            (function () {
+                /* ── Scroll Reveal ────────────────────────────────── */
+                var reveals = document.querySelectorAll(
+                    ".ch5-reveal, .ch5-grid__cell",
+                );
+                if (reveals.length) {
+                    var revealObserver = new IntersectionObserver(
+                        function (entries) {
+                            entries.forEach(function (entry) {
+                                if (entry.isIntersecting) {
+                                    entry.target.classList.add("ch5-visible");
+                                    revealObserver.unobserve(entry.target);
+                                }
+                            });
+                        },
+                        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+                    );
+
+                    reveals.forEach(function (el) {
+                        revealObserver.observe(el);
+                    });
+                }
+
+                /* ── Wipe/Reveal Effect on Scroll ─────────────────── */
+                var wipeSections = document.querySelectorAll("[data-wipe]");
+                if (!wipeSections.length) return;
+
+                function updateWipe(section) {
+                    var revealImg = section.querySelector(
+                        ".ch5-split__img--reveal",
+                    );
+                    var wipeLine = section.querySelector(
+                        ".ch5-split__wipe-line",
+                    );
+                    var revealLabel = section.querySelector(
+                        ".ch5-split__label--reveal",
+                    );
+                    if (!revealImg || !wipeLine) return;
+
+                    var rect = section.getBoundingClientRect();
+                    var viewportH = window.innerHeight;
+
+                    // Raw progress: 0 = section top enters viewport, 1 = section bottom exits
+                    var rawProgress =
+                        1 - (rect.bottom - viewportH * 0.3) / (rect.height + viewportH * 0.4);
+                    rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+                    // Buffered wipe: pause at start & end so both images are visible
+                    // 0.00 – 0.25: show image 1 fully (no wipe)
+                    // 0.25 – 0.75: gradual wipe 0% → 100%
+                    // 0.75 – 1.00: show image 2 fully (wipe done)
+                    var wipeProgress;
+                    if (rawProgress < 0.25) {
+                        wipeProgress = 0;
+                    } else if (rawProgress > 0.75) {
+                        wipeProgress = 1;
+                    } else {
+                        // Map 0.25–0.75 → 0–1
+                        wipeProgress = (rawProgress - 0.25) / 0.5;
+                    }
+
+                    // Apply wipe: clip-path from bottom (vertical wipe)
+                    var clipBottom = 100 - wipeProgress * 100;
+                    revealImg.style.clipPath =
+                        "inset(0 0 " + clipBottom + "% 0)";
+
+                    // Move wipe line
+                    var linePos = wipeProgress * 100;
+                    wipeLine.style.top = linePos + "%";
+                    wipeLine.style.opacity =
+                        wipeProgress > 0.01 && wipeProgress < 0.99
+                            ? "1"
+                            : "0";
+
+                    // Show reveal label
+                    if (revealLabel) {
+                        if (wipeProgress > 0.5) {
+                            revealLabel.classList.add("is-visible");
+                        } else {
+                            revealLabel.classList.remove("is-visible");
+                        }
+                    }
+                }
+
+                // Scroll handler for wipe effect
+                var ticking = false;
+                window.addEventListener(
+                    "scroll",
+                    function () {
+                        if (!ticking) {
+                            requestAnimationFrame(function () {
+                                wipeSections.forEach(function (section) {
+                                    var rect = section.getBoundingClientRect();
+                                    if (
+                                        rect.top < window.innerHeight &&
+                                        rect.bottom > 0
+                                    ) {
+                                        updateWipe(section);
+                                    }
+                                });
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    },
+                    { passive: true },
+                );
+
+                // Initial call
+                wipeSections.forEach(function (section) {
+                    var rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        updateWipe(section);
+                    }
+                });
+            })();
+
+            /* ── Lightbox ───────────────────────────────────────── */
+            function openLightbox(cell) {
+                var img = cell.querySelector("img");
+                var caption = cell.querySelector(".ch5-grid__caption");
+                var lightbox = document.getElementById("ch5-lightbox");
+                var lightboxImg = document.getElementById("ch5-lightbox-img");
+                var lightboxCaption = document.getElementById(
+                    "ch5-lightbox-caption",
+                );
+
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.textContent = caption
+                    ? caption.textContent
+                    : "";
+                lightbox.classList.add("is-active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                var lightbox = document.getElementById("ch5-lightbox");
+                lightbox.classList.remove("is-active");
+                document.body.style.overflow = "";
+            }
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") closeLightbox();
+            });
+        </script>
+    </body>
+</html>
