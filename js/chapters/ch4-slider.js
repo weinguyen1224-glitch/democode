@@ -75,7 +75,10 @@
     var sections = document.querySelectorAll(
       '.ch4-title, .ch4-slider-section, .ch4-symbol, .ch4-happiness, .ch4-region, .ch4-prose-section, .ch4-path-section, .ch4-balance, .ch4-tourism, .ch4-closing, .ch4-3d-viewer, .ch5-title, .ch5-opening, .ch5-poem, .ch5-prose, .ch5-artisan-quote, .ch5-closing, .ch5-final-poem'
     );
-    if (!sections.length) return;
+    // Observe gallery elements directly so they trigger when scrolled into view,
+    // not when their tall parent section first enters at 5%
+    var galleries = document.querySelectorAll('.ch4-symbol__gallery, .ch4-tourism__gallery');
+    if (!sections.length && !galleries.length) return;
 
     if (!('IntersectionObserver' in window)) {
       sections.forEach(function (s) {
@@ -119,6 +122,7 @@
     });
 
     sections.forEach(function (s) { observer.observe(s); });
+    galleries.forEach(function (g) { observer.observe(g); });
 
     // Reveal title immediately
     var title = document.querySelector('.ch4-title');

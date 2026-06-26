@@ -11,14 +11,16 @@
   const textBlocks = document.querySelectorAll(".bpt-prose, .bpt-sm-text");
   if (!textBlocks.length) return;
 
-  /** Adjust opacity based on distance from viewport center */
+  /** Adjust opacity based on distance from viewport center — skip off-screen */
   function updateOpacity(frame) {
     const vh = frame ? frame.viewportH : window.innerHeight;
     const viewportCenter = vh / 2;
     const maxDistance = vh * 0.5;
+    const margin = vh * 0.3;
 
     textBlocks.forEach((block) => {
       const rect = block.getBoundingClientRect();
+      if (rect.bottom < -margin || rect.top > vh + margin) return;
       const blockCenter = rect.top + rect.height / 2;
       const distance = Math.abs(blockCenter - viewportCenter);
       const opacity = Math.max(0.5, 1 - (distance / maxDistance) * 0.5);

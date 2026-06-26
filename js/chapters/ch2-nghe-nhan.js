@@ -65,45 +65,39 @@
     '.bpt-nghe-nhan__scene--kicker, .bpt-nghe-nhan__scene--intro, .bpt-nghe-nhan__scene--portrait, .bpt-nghe-nhan__scene--closing'
   ).forEach(el => sceneObs.observe(el));
 
-  /* ── Scroll-driven cross-fade reveal: 3h-sang → 3h-sang-2 ── */
+  /* ── Scroll-driven cross-fade reveal: integrated with ScrollEngine ── */
   if (ngheNhan) {
     const revealTopEl = ngheNhan.querySelector('.bpt-nghe-nhan__reveal-top');
     if (revealTopEl) {
-      let revealTicking = false;
-      let cachedVh = window.innerHeight;
-      let cachedSectionHeight = ngheNhan.offsetHeight;
-
-      function refreshCache() {
-        cachedVh = window.innerHeight;
-        cachedSectionHeight = ngheNhan.offsetHeight;
-      }
-
-      function updateRevealCrossFade() {
+      function updateRevealCrossFade(frame) {
         const rect = ngheNhan.getBoundingClientRect();
         const scrolled = -rect.top;
-        const totalScroll = cachedSectionHeight - cachedVh;
+        const totalScroll = ngheNhan.offsetHeight - frame.viewportH;
         const raw = totalScroll > 0 ? Math.max(0, Math.min(1, scrolled / totalScroll)) : 0;
         const progress = raw < 0.001 ? 0 : raw > 0.999 ? 1 : raw * raw * (3 - 2 * raw);
         revealTopEl.style.opacity = progress;
-        revealTicking = false;
+        return true;
       }
 
-      window.addEventListener('scroll', () => {
-        if (!revealTicking) {
-          requestAnimationFrame(updateRevealCrossFade);
-          revealTicking = true;
-        }
-      }, { passive: true });
-
-      window.addEventListener('resize', () => {
-        refreshCache();
-        if (!revealTicking) {
-          requestAnimationFrame(updateRevealCrossFade);
-          revealTicking = true;
-        }
-      }, { passive: true });
-
-      updateRevealCrossFade();
+      if (window.BPT && window.BPT.ScrollEngine) {
+        window.BPT.ScrollEngine.register({
+          id: 'ch2-crossfade',
+          priority: window.BPT.ScrollEngine.PRIORITY.NORMAL,
+          update: updateRevealCrossFade,
+        });
+      } else {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              updateRevealCrossFade({ viewportH: window.innerHeight });
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+        updateRevealCrossFade({ viewportH: window.innerHeight });
+      }
     }
   }
 

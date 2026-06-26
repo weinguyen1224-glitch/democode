@@ -255,10 +255,16 @@
     animation: ch4DropFromTop 1s var(--c4-ease) both;
 }
 
-/* Gallery images — slightly longer duration for 2-image sections */
+/* Gallery images — animate only when gallery itself is visible, not just parent section */
 .ch4-symbol__gallery .ch4-anim-flipInX,
 .ch4-tourism__gallery .ch4-anim-dropFromTop {
-    animation-duration: 1.2s;
+    animation: none;
+}
+.ch4-symbol__gallery.ch4-visible .ch4-anim-flipInX {
+    animation: ch4FlipInX 1.2s var(--c4-ease) both;
+}
+.ch4-tourism__gallery.ch4-visible .ch4-anim-dropFromTop {
+    animation: ch4DropFromTop 1.2s var(--c4-ease) both;
 }
 
 /* ══════════════════════════════════════════════════════════════

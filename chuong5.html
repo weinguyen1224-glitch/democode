@@ -348,11 +348,11 @@
                POEM / QUOTE SECTIONS
                ═══════════════════════════════════════════════════════ */
             .ch5-poem {
-                min-height: 60vh;
+                min-height: auto;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 60px);
                 text-align: center;
                 background: var(--c5-bg);
             }
@@ -401,10 +401,10 @@
                CLOSING / FINAL
                ═══════════════════════════════════════════════════════ */
             .ch5-closing {
-                min-height: 80vh;
+                min-height: auto;
                 display: flex;
                 align-items: center;
-                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 60px);
                 background: var(--c5-bg);
             }
 
@@ -436,11 +436,11 @@
             }
 
             .ch5-final {
-                min-height: 50vh;
+                min-height: auto;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+                padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 60px);
                 text-align: center;
                 background: var(--c5-bg);
             }
@@ -637,6 +637,100 @@
                 }
             }
 
+            /* ═══════════════════════════════════════════════════════
+               PROSE — Inline Figures & Horizontal Swipe
+               ═══════════════════════════════════════════════════════ */
+            .ch5-prose__figure {
+                margin: clamp(24px, 4vw, 48px) 0;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .ch5-prose__figure img {
+                display: block;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            /* Horizontal swipe container */
+            .ch5-prose__swipe-figure {
+                position: relative;
+                margin: clamp(24px, 4vw, 48px) 0;
+                border-radius: 4px;
+                overflow: hidden;
+                aspect-ratio: 16 / 10;
+                background: #1a1a1a;
+            }
+
+            .ch5-prose__swipe-img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Base layer always visible */
+            .ch5-prose__swipe-img--base {
+                z-index: 1;
+            }
+
+            /* Reveal layer — clipped from right (horizontal wipe) */
+            .ch5-prose__swipe-img--reveal {
+                z-index: 2;
+                clip-path: inset(0 100% 0 0);
+            }
+
+            /* Horizontal wipe line — vertical line moving left→right */
+            .ch5-prose__swipe-line {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: 3px;
+                background: linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(255, 255, 255, 0.9),
+                    transparent
+                );
+                z-index: 3;
+                pointer-events: none;
+                opacity: 0;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            /* Labels */
+            .ch5-prose__swipe-label {
+                position: absolute;
+                bottom: 16px;
+                z-index: 4;
+                padding: 6px 14px;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(8px);
+                color: #fff;
+                font-family: "Outfit", sans-serif;
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                border-radius: 4px;
+            }
+
+            .ch5-prose__swipe-label--base {
+                left: 16px;
+            }
+
+            .ch5-prose__swipe-label--reveal {
+                right: 16px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .ch5-prose__swipe-label--reveal.is-visible {
+                opacity: 1;
+            }
+
             @media (prefers-reduced-motion: reduce) {
                 .ch5-reveal,
                 .ch5-grid__cell {
@@ -650,6 +744,14 @@
                 }
 
                 .ch5-split__wipe-line {
+                    display: none;
+                }
+
+                .ch5-prose__swipe-img--reveal {
+                    clip-path: none;
+                }
+
+                .ch5-prose__swipe-line {
                     display: none;
                 }
             }
@@ -674,59 +776,32 @@
             <!-- HERO — Tiêu đề chương                               -->
 
             <!-- ═══════════════════════════════════════════════════ -->
-            <!-- SPLIT 1 — Mở đầu: Bánh phu thê & đạo nghĩa         -->
+            <!-- PROSE — Mở đầu: Bánh phu thê & đạo nghĩa           -->
             <!-- ═══════════════════════════════════════════════════ -->
-            <section class="ch5-split" aria-label="Mở đầu chương 5" data-wipe>
-                <div class="ch5-split__text">
-                    <div class="ch5-split__text-inner ch5-reveal">
-                        <p class="ch5-split__kicker">Mở đầu</p>
-                        <h3 class="ch5-split__heading">
-                            Không đơn thuần là thức quà trong lễ cưới hỏi
-                        </h3>
-                        <div class="ch5-split__body">
-                            <p>
-                                Bánh phu thê từ lâu đã trở thành biểu tượng
-                                thiêng liêng của đạo nghĩa vợ chồng — nơi gửi
-                                gắm lời thề nguyện về sự đồng lòng, thủy chung
-                                và son sắt.
-                            </p>
-                            <p>
-                                Có lẽ chính bởi những giá trị ấy mà suốt gần một
-                                thiên niên kỷ qua, chiếc bánh nhỏ bé này vẫn bền
-                                bỉ hiện diện trong những thời khắc trọng đại
-                                nhất của đời người.
-                            </p>
-                            <p>
-                                Từ miền đất Kinh Bắc xưa cho đến những hôn lễ
-                                hiện đại ngày nay, bánh Phu Thê vẫn được nâng
-                                niu trao tay như một lời chúc phúc vẹn tròn cho
-                                hạnh phúc lứa đôi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="ch5-split__visual">
-                    <img
-                        class="ch5-split__img ch5-split__img--base"
-                        src="assets/chuong-5/536300584_1491519355310587_1545632895752552905_n.webp"
-                        alt="Bánh phu thê trong nghi lễ cưới hỏi"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <img
-                        class="ch5-split__img ch5-split__img--reveal"
-                        src="assets/chuong-5/banh-phu-the-cung-tra-nong_1753240498 (1).webp"
-                        alt="Bánh phu thê cùng trà nóng"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
-                    <span class="ch5-split__label ch5-split__label--base"
-                        >Lễ cưới hỏi</span
-                    >
-                    <span class="ch5-split__label ch5-split__label--reveal"
-                        >Trà nóng</span
-                    >
+            <section class="ch5-prose" aria-label="Mở đầu chương 5">
+                <div class="ch5-prose__inner ch5-reveal">
+                    <p class="ch5-split__kicker">Mở đầu</p>
+                    <h3 class="ch5-split__heading">
+                        Không đơn thuần là thức quà trong lễ cưới hỏi
+                    </h3>
+                    <p>
+                        Bánh phu thê từ lâu đã trở thành biểu tượng
+                        thiêng liêng của đạo nghĩa vợ chồng — nơi gửi
+                        gắm lời thề nguyện về sự đồng lòng, thủy chung
+                        và son sắt.
+                    </p>
+                    <p>
+                        Có lẽ chính bởi những giá trị ấy mà suốt gần một
+                        thiên niên kỷ qua, chiếc bánh nhỏ bé này vẫn bền
+                        bỉ hiện diện trong những thời khắc trọng đại
+                        nhất của đời người.
+                    </p>
+                    <p>
+                        Từ miền đất Kinh Bắc xưa cho đến những hôn lễ
+                        hiện đại ngày nay, bánh Phu Thê vẫn được nâng
+                        niu trao tay như một lời chúc phúc vẹn tròn cho
+                        hạnh phúc lứa đôi.
+                    </p>
                 </div>
             </section>
 
@@ -748,121 +823,28 @@
             </section>
 
             <!-- ═══════════════════════════════════════════════════ -->
-            <!-- SPLIT 2 — Trải nghiệm thưởng thức                   -->
+            <!-- PROSE — Trải nghiệm & Hương vị                     -->
             <!-- ═══════════════════════════════════════════════════ -->
-            <section
-                class="ch5-split"
-                aria-label="Trải nghiệm thưởng thức"
-                data-wipe
-            >
-                <div class="ch5-split__text">
-                    <div class="ch5-split__text-inner ch5-reveal">
-                        <p class="ch5-split__kicker">Trải nghiệm</p>
-                        <h3 class="ch5-split__heading">
-                            Hành trình khám phá từng giác quan
-                        </h3>
-                        <div class="ch5-split__body">
-                            <p>
-                                Mỗi sính lễ trong đám cưới truyền thống Việt Nam
-                                đều mang trong mình một thông điệp văn hóa
-                                riêng. Với bánh phu thê, đó là triết lý về sự
-                                hòa hợp và gắn kết vợ chồng.
-                            </p>
-                            <p>
-                                Từ từ tháo sợi lạt đỏ, mở chiếc hộp vuông vức
-                                bên ngoài rồi nâng lớp bánh lên tay, người dùng
-                                sẽ dần cảm nhận được vẻ đẹp của thức quà truyền
-                                thống này.
-                            </p>
-                            <p>
-                                Qua lớp bánh óng ánh là sắc vàng của nhân đậu
-                                xanh, màu trắng của dừa cùng hương thơm dịu nhẹ
-                                của nếp nhung.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="ch5-split__visual">
-                    <img
-                        class="ch5-split__img ch5-split__img--base"
-                        src="assets/chuong-5/IMG_9652.webp"
-                        alt="Bánh phu thê được gói trong lá dong"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <img
-                        class="ch5-split__img ch5-split__img--reveal"
-                        src="assets/chuong-5/unnamed (1).webp"
-                        alt="Cặp bánh phu thê"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
-                    <span class="ch5-split__label ch5-split__label--base"
-                        >Lá dong xanh</span
-                    >
-                    <span class="ch5-split__label ch5-split__label--reveal"
-                        >Cặp bánh</span
-                    >
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- SPLIT 3 — Hương vị & cảm nhận                       -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <section
-                class="ch5-split"
-                aria-label="Hương vị và cảm nhận"
-                data-wipe
-            >
-                <div class="ch5-split__text">
-                    <div class="ch5-split__text-inner ch5-reveal">
-                        <p class="ch5-split__kicker">Hương vị</p>
-                        <h3 class="ch5-split__heading">
-                            Vị ngọt thanh lan tỏa nơi đầu lưỡi
-                        </h3>
-                        <div class="ch5-split__body">
-                            <p>
-                                Khi cắn một miếng bánh, vị ngọt thanh lan tỏa
-                                trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm
-                                từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng
-                                không hề dính hay ngấy.
-                            </p>
-                            <p>
-                                Tiếp đó là phần nhân đậu xanh được sên kỹ cùng
-                                hạt sen, dừa nạo và đường mía, mang đến vị bùi
-                                béo vừa phải.
-                            </p>
-                            <p>
-                                Người xưa thường nói bánh phu thê ngon nhất khi
-                                được dùng cùng một chén trà xanh nóng. Vị chát
-                                nhẹ của trà làm dịu đi vị ngọt của bánh.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="ch5-split__visual">
-                    <img
-                        class="ch5-split__img ch5-split__img--base"
-                        src="assets/chuong-5/unnamed (2).webp"
-                        alt="Bánh phu thê trên mâm cỗ cưới"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <img
-                        class="ch5-split__img ch5-split__img--reveal"
-                        src="assets/chuong-5/unnamed (3).webp"
-                        alt="Bánh phu thê trong hộp quà"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <div class="ch5-split__wipe-line" aria-hidden="true"></div>
-                    <span class="ch5-split__label ch5-split__label--base"
-                        >Mâm cỗ cưới</span
-                    >
-                    <span class="ch5-split__label ch5-split__label--reveal"
-                        >Hộp quà</span
-                    >
+            <section class="ch5-prose" aria-label="Trải nghiệm thưởng thức">
+                <div class="ch5-prose__inner ch5-reveal">
+                    <p>Mỗi sính lễ trong đám cưới truyền thống Việt Nam đều mang trong mình một thông điệp văn hóa riêng. Với bánh phu thê, đó là triết lý về sự hòa hợp và gắn kết vợ chồng, được gửi gắm tinh tế qua từng lớp lá, từng sợi lạt và cả hương vị của chiếc bánh. Chính vì chứa đựng nhiều lớp nghĩa như vậy mà việc thưởng thức bánh phu thê không chỉ là cảm nhận một món ăn, mà còn là hành trình khám phá những giá trị văn hóa được lưu truyền qua nhiều thế hệ.</p>
+                    <figure class="ch5-prose__figure ch5-reveal">
+                        <img src="assets/chuong-5/1.1.webp" alt="Bánh phu thê được gói trong lá dong" loading="lazy" decoding="async" />
+                    </figure>
+                    <p>Từ từ tháo sợi lạt đỏ, mở chiếc hộp vuông vức bên ngoài rồi nâng lớp bánh lên tay, người dùng sẽ dần cảm nhận được vẻ đẹp của thức quà truyền thống này. Qua lớp bánh óng ánh là sắc vàng của nhân đậu xanh, màu trắng của dừa cùng hương thơm dịu nhẹ của nếp nhung. Đưa chiếc bánh lại gần, hương thơm dịu nhẹ của nếp quyện cùng mùi thơm bùi của đậu xanh và hạt sen dần lan tỏa. Đó không phải thứ hương thơm nồng đậm, mà là mùi hương nhẹ nhàng như chính tính cách của người Kinh Bắc. Sự hấp dẫn của bánh phu thê vì thế không đến từ cảm giác choáng ngợp, mà từ sự tinh tế được cảm nhận chậm rãi qua từng giác quan.</p>
+                    <p>Khi cắn một miếng bánh, vị ngọt thanh lan tỏa trước tiên nơi đầu lưỡi. Lớp vỏ dẻo mềm được làm từ nếp và đu đủ xanh tạo cảm giác dai nhẹ nhưng không hề dính hay ngấy. Tiếp đó là phần nhân đậu xanh được sên kỹ cùng hạt sen, dừa nạo và đường mía, mang đến vị bùi béo vừa phải. Những sợi dừa nhỏ tạo nên cảm giác sần sật thú vị, giúp hương vị của chiếc bánh trở nên phong phú hơn. Mỗi thành phần đều có dấu ấn riêng nhưng không lấn át nhau, cùng hòa quyện để tạo nên một tổng thể cân bằng và hài hòa.</p>
+                    <figure class="ch5-prose__figure ch5-reveal">
+                        <img src="assets/chuong-5/2.1.webp" alt="Bánh phu thê sau khi hấp" loading="lazy" decoding="async" />
+                    </figure>
+                    <p>Người xưa thường nói bánh phu thê ngon nhất khi được dùng cùng một chén trà xanh nóng. Vị chát nhẹ của trà làm dịu đi vị ngọt của bánh, đồng thời giúp những tầng hương vị trở nên rõ nét hơn. Sau khi thưởng thức, dư vị ngọt lành vẫn còn đọng lại nơi cuống họng, hòa cùng hương trà thanh mát, tạo nên cảm giác nhẹ nhàng và thư thái. Có lẽ cũng bởi vậy mà bánh phu thê không chỉ xuất hiện trong những mâm tráp cưới hỏi, mà còn trở thành thức quà để người ta ngồi lại bên nhau, nhâm nhi cùng chén trà và trò chuyện trong những dịp sum họp.</p>
+                    <p>Nhưng điều đọng lại sau cùng không chỉ là hương vị. Đó còn là ý niệm về sự gắn kết, về một mái ấm được xây dựng bằng sự đồng lòng và sẻ chia. Bởi suy cho cùng, điều mà người ta trao nhau và cùng nhau thưởng thức không chỉ là một món sính lễ đơn thuần, mà là lời nguyện ước cho một cuộc hôn nhân bền chặt - nơi hai tâm hồn nguyện cùng nắm tay nhau đi qua mọi thăng trầm của cuộc sống.</p>
+                    <figure class="ch5-prose__swipe-figure ch5-reveal" data-hswipe>
+                        <img class="ch5-prose__swipe-img ch5-prose__swipe-img--base" src="assets/chuong-5/3.1.webp" alt="Bánh phu thê thưởng thức cùng trà" loading="lazy" decoding="async" />
+                        <img class="ch5-prose__swipe-img ch5-prose__swipe-img--reveal" src="assets/chuong-5/3.2.webp" alt="Bánh phu thê xếp chồng" loading="lazy" decoding="async" />
+                        <div class="ch5-prose__swipe-line" aria-hidden="true"></div>
+                        <span class="ch5-prose__swipe-label ch5-prose__swipe-label--base">Thưởng thức</span>
+                        <span class="ch5-prose__swipe-label ch5-prose__swipe-label--reveal">Xếp chồng</span>
+                    </figure>
                 </div>
             </section>
 
@@ -884,18 +866,18 @@
                 >
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
-                            src="assets/chuong-5/536300584_1491519355310587_1545632895752552905_n.webp"
-                            alt="Bánh phu thê trong nghi lễ cưới hỏi"
+                            src="assets/chuong-5/2.1.webp"
+                            alt="Bánh phu thê cắt thành cục trên khay"
                             loading="lazy"
                             decoding="async"
                         />
                         <div class="ch5-grid__caption">
-                            Bánh phu thê trong nghi lễ cưới hỏi truyền thống
+                            Bánh phu thê cắt thành cục, xếp ngay ngắn trên khay
                         </div>
                     </div>
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
-                            src="assets/chuong-5/banh-phu-the-cung-tra-nong_1753240498 (1).webp"
+                            src="assets/chuong-5/3.1.webp"
                             alt="Bánh phu thê cùng trà nóng"
                             loading="lazy"
                             decoding="async"
@@ -913,7 +895,7 @@
                 >
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
-                            src="assets/chuong-5/IMG_9652.webp"
+                            src="assets/chuong-5/1.1.webp"
                             alt="Bánh phu thê được gói trong lá dong"
                             loading="lazy"
                             decoding="async"
@@ -925,23 +907,23 @@
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (1).webp"
-                            alt="Cặp bánh phu thê"
+                            alt="Nghệ nhân đang nấu nhân bánh"
                             loading="lazy"
                             decoding="async"
                         />
                         <div class="ch5-grid__caption">
-                            Cặp bánh phu thê — biểu tượng tình nghĩa vợ chồng
+                            Nghệ nhân tỉ mỉ nấu nhân bánh phu thê
                         </div>
                     </div>
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (2).webp"
-                            alt="Bánh phu thê trên mâm cỗ cưới"
+                            alt="Đang gói bánh phu thê trong lá dong"
                             loading="lazy"
                             decoding="async"
                         />
                         <div class="ch5-grid__caption">
-                            Bánh phu thê trên mâm cỗ cưới truyền thống
+                            Gói bánh phu thê trong lá dong, thao tác tỉ mỉ
                         </div>
                     </div>
                 </div>
@@ -951,28 +933,28 @@
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed (3).webp"
-                            alt="Bánh phu thê trong hộp quà"
+                            alt="Bánh phu thê cắt sẵn trên khay"
                             loading="lazy"
                             decoding="async"
                         />
                         <div class="ch5-grid__caption">
-                            Bánh phu thê trong hộp quà tinh tế
+                            Bánh phu thê cắt sẵn, chờ đóng gói
                         </div>
                     </div>
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
                             src="assets/chuong-5/unnamed.webp"
-                            alt="Bánh phu thê hiện đại"
+                            alt="Nghệ nhân cắt bánh phu thê"
                             loading="lazy"
                             decoding="async"
                         />
                         <div class="ch5-grid__caption">
-                            Bánh phu thê phiên bản hiện đại
+                            Nghệ nhân cắt bánh phu thê thành từng phần
                         </div>
                     </div>
                     <div class="ch5-grid__cell" onclick="openLightbox(this)">
                         <img
-                            src="assets/chuong-5/xu-xe-3.webp"
+                            src="assets/chuong-5/3.2.webp"
                             alt="Bánh xu xê — phiên bản miền Nam"
                             loading="lazy"
                             decoding="async"
@@ -1032,7 +1014,7 @@
                     />
                     <img
                         class="ch5-split__img ch5-split__img--reveal"
-                        src="assets/chuong-5/xu-xe-3.webp"
+                        src="assets/chuong-5/3.2.webp"
                         alt="Bánh xu xê"
                         loading="lazy"
                         decoding="async"
@@ -1217,6 +1199,86 @@
                     }
                 });
             })();
+
+            /* ── Horizontal Swipe Effect ──────────────────────── */
+            var hSwipeFigures = document.querySelectorAll("[data-hswipe]");
+            if (hSwipeFigures.length) {
+                function updateHSwipe(fig) {
+                    var revealImg = fig.querySelector(".ch5-prose__swipe-img--reveal");
+                    var swipeLine = fig.querySelector(".ch5-prose__swipe-line");
+                    var revealLabel = fig.querySelector(".ch5-prose__swipe-label--reveal");
+                    if (!revealImg || !swipeLine) return;
+
+                    var rect = fig.getBoundingClientRect();
+                    var viewportH = window.innerHeight;
+
+                    var rawProgress =
+                        1 - (rect.bottom - viewportH * 0.3) / (rect.height + viewportH * 0.4);
+                    rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+                    var swipeProgress;
+                    if (rawProgress < 0.25) {
+                        swipeProgress = 0;
+                    } else if (rawProgress > 0.75) {
+                        swipeProgress = 1;
+                    } else {
+                        swipeProgress = (rawProgress - 0.25) / 0.5;
+                    }
+
+                    // Horizontal wipe: clip from right
+                    var clipRight = 100 - swipeProgress * 100;
+                    revealImg.style.clipPath =
+                        "inset(0 " + clipRight + "% 0 0)";
+
+                    // Move swipe line horizontally
+                    var linePos = swipeProgress * 100;
+                    swipeLine.style.left = linePos + "%";
+                    swipeLine.style.opacity =
+                        swipeProgress > 0.01 && swipeProgress < 0.99
+                            ? "1"
+                            : "0";
+
+                    // Show reveal label
+                    if (revealLabel) {
+                        if (swipeProgress > 0.5) {
+                            revealLabel.classList.add("is-visible");
+                        } else {
+                            revealLabel.classList.remove("is-visible");
+                        }
+                    }
+                }
+
+                var hSwipeTicking = false;
+                window.addEventListener(
+                    "scroll",
+                    function () {
+                        if (!hSwipeTicking) {
+                            requestAnimationFrame(function () {
+                                hSwipeFigures.forEach(function (fig) {
+                                    var rect = fig.getBoundingClientRect();
+                                    if (
+                                        rect.top < window.innerHeight &&
+                                        rect.bottom > 0
+                                    ) {
+                                        updateHSwipe(fig);
+                                    }
+                                });
+                                hSwipeTicking = false;
+                            });
+                            hSwipeTicking = true;
+                        }
+                    },
+                    { passive: true },
+                );
+
+                // Initial call
+                hSwipeFigures.forEach(function (fig) {
+                    var rect = fig.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        updateHSwipe(fig);
+                    }
+                });
+            }
 
             /* ── Lightbox ───────────────────────────────────────── */
             function openLightbox(cell) {

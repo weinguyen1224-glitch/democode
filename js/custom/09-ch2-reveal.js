@@ -46,7 +46,7 @@
   }
 
   // Parallax effect on placeholder images within split scenes
-  // Skip on mobile for performance
+  // Skip on mobile for performance — integrated with ScrollEngine
   const splitVisuals = document.querySelectorAll(
     ".bpt-split-scene__visual .bpt-placeholder-img",
   );
@@ -55,28 +55,35 @@
     !matchMedia("(prefers-reduced-motion: reduce)").matches &&
     window.innerWidth >= 769
   ) {
-    let ticking = false;
-    function updateParallax() {
+    function updateParallax(frame) {
+      const vh = frame ? frame.viewportH : window.innerHeight;
       splitVisuals.forEach((img) => {
         const rect = img.getBoundingClientRect();
-        const vh = window.innerHeight;
-        if (rect.top < vh && rect.bottom > 0) {
-          const progress = (vh - rect.top) / (vh + rect.height);
-          const shift = (progress - 0.5) * 20; // ±10px parallax
-          img.style.transform = `translateY(${shift.toFixed(1)}px)`;
-        }
+        if (rect.bottom < 0 || rect.top > vh) return;
+        const progress = (vh - rect.top) / (vh + img.offsetHeight);
+        const shift = (progress - 0.5) * 20;
+        img.style.transform = `translateY(${shift.toFixed(1)}px)`;
       });
-      ticking = false;
+      return true;
     }
-    window.addEventListener(
-      "scroll",
-      () => {
+
+    if (window.BPT && window.BPT.ScrollEngine) {
+      window.BPT.ScrollEngine.register({
+        id: 'ch2-parallax',
+        priority: window.BPT.ScrollEngine.PRIORITY.LOW,
+        update: updateParallax,
+      });
+    } else {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
         if (!ticking) {
-          requestAnimationFrame(updateParallax);
+          requestAnimationFrame(() => {
+            updateParallax({ viewportH: window.innerHeight });
+            ticking = false;
+          });
           ticking = true;
         }
-      },
-      { passive: true },
-    );
+      }, { passive: true });
+    }
   }
 })();
