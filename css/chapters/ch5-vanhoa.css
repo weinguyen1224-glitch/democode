@@ -94,8 +94,8 @@
 
 .ch5-opening p {
     margin: 0 0 20px;
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.8;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.75;
     color: var(--c5-text);
 }
 
@@ -168,8 +168,8 @@
 
 .ch5-prose p {
     margin: 0 0 20px;
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.8;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.75;
     color: var(--c5-text);
 }
 
@@ -264,10 +264,9 @@
    SECTION 6 — Closing prose
    ══════════════════════════════════════════════════════════════ */
 .ch5-closing {
-    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-closing__inner {
@@ -277,8 +276,8 @@
 
 .ch5-closing p {
     margin: 0 0 20px;
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.8;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.75;
     color: var(--c5-text);
 }
 
@@ -292,7 +291,7 @@
         var(--c5-accent),
         transparent
     );
-    margin: 40px auto;
+    margin: 24px auto;
     border-radius: 1px;
 }
 
@@ -300,11 +299,10 @@
    SECTION 7 — Final folk poem
    ══════════════════════════════════════════════════════════════ */
 .ch5-final-poem {
-    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 60px);
     text-align: center;
 }
 
