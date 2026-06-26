@@ -995,6 +995,9 @@
     line-height: 1.8;
     font-style: italic;
     color: var(--c4-text);
+    text-align: left;
+    margin-inline: auto;
+    max-width: 56ch;
 }
 
 .ch4-closing p:last-child {
