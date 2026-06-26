@@ -1447,6 +1447,29 @@
     }
 }
 
+@keyframes ch3-thanh-pham-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.96);
+        filter: blur(8px);
+    }
+    40% {
+        opacity: 1;
+        filter: blur(0);
+    }
+    70% {
+        transform: translateY(-6px) scale(1.01);
+    }
+    85% {
+        transform: translateY(3px) scale(0.995);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
 .ch3-thanh-pham__kicker {
     font-family: "DNS Gibsons One", "Oswald", sans-serif;
     font-size: clamp(0.7rem, 1.1vw, 0.82rem);
@@ -1457,18 +1480,18 @@
 }
 
 .ch3-thanh-pham__image {
-    width: min(1000px, 92vw);
+    width: min(1100px, 96vw);
     overflow: hidden;
     border-radius: 12px;
     margin: 0 auto;
     position: relative;
     opacity: 0;
-    transform: translateY(120px) scale(0.93);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+    transform: translateY(80px) scale(0.96);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
 }
 
 #section-bpt-ch3-thanh-pham.bpt-visible .ch3-thanh-pham__image {
-    animation: ch3FlyFromBot 1.1s var(--ease) 0.2s forwards;
+    animation: ch3-thanh-pham-reveal 1.2s var(--ease) 0.15s forwards;
 }
 
 .ch3-thanh-pham__image img {
@@ -2257,6 +2280,27 @@
     .ch3-gallery__grid--4,
     .ch3-gallery__grid--2 {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ── Thành phẩm — mobile ────────────────────────────────── */
+@media (max-width: 768px) {
+    #section-bpt-ch3-thanh-pham {
+        padding: clamp(32px, 6vh, 60px) clamp(12px, 3vw, 24px);
+    }
+
+    .ch3-thanh-pham__heading {
+        font-size: clamp(2rem, 8vw, 3.2rem);
+        margin-bottom: 20px;
+    }
+
+    .ch3-thanh-pham__image {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .ch3-thanh-pham__image img {
+        border-radius: 10px;
     }
 }
 

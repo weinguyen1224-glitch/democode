@@ -3061,24 +3061,12 @@
                             entries.forEach(function (entry) {
                                 if (entry.isIntersecting) {
                                     entry.target.classList.add("ch5-visible");
-                                    revealObserver.unobserve(entry.target);
-                                    if (
-                                        entry.target.classList.contains(
-                                            "ch5-grid__cell",
-                                        )
-                                    ) {
-                                        entry.target.addEventListener(
-                                            "animationend",
-                                            function () {
-                                                this.style.animation = "none";
-                                            },
-                                            { once: true },
-                                        );
-                                    }
+                                } else {
+                                    entry.target.classList.remove("ch5-visible");
                                 }
                             });
                         },
-                        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+                        { threshold: 0.05, rootMargin: "0px 0px -10px 0px" },
                     );
 
                     reveals.forEach(function (el) {
