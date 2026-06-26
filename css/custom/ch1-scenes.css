@@ -563,6 +563,14 @@
     max-width: min(740px, 92vw);
 }
 
+/* Panel giai thoại — trải giàn, không giới hạn max-width */
+[data-sm-panel="1"] .bpt-sm-text--center {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
     .bpt-sm-cinematic-bg {
