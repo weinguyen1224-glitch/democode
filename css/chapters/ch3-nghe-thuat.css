@@ -26,55 +26,55 @@
 
 .ch3-fade {
     opacity: 0;
-    transition: opacity 0.7s var(--ease);
+    transition: opacity 0.54s var(--ease);
 }
 
 .ch3-up {
     opacity: 0;
     transform: translateY(32px);
     transition:
-        opacity 0.7s var(--ease),
-        transform 0.7s var(--ease);
+        opacity 0.54s var(--ease),
+        transform 0.54s var(--ease);
 }
 
 .ch3-left {
     opacity: 0;
     transform: translateX(-48px);
     transition:
-        opacity 0.65s var(--ease),
-        transform 0.65s var(--ease);
+        opacity 0.5s var(--ease),
+        transform 0.5s var(--ease);
 }
 
 .ch3-right {
     opacity: 0;
     transform: translateX(48px);
     transition:
-        opacity 0.65s var(--ease),
-        transform 0.65s var(--ease);
+        opacity 0.5s var(--ease),
+        transform 0.5s var(--ease);
 }
 
 .ch3-scale {
     opacity: 0;
     transform: scale(0.88);
     transition:
-        opacity 0.8s var(--ease),
-        transform 0.8s var(--ease);
+        opacity 0.62s var(--ease),
+        transform 0.62s var(--ease);
 }
 
 .ch3-scale-spring {
     opacity: 0;
     transform: scale(0.72);
     transition:
-        opacity 0.6s var(--ease-spring),
-        transform 0.6s var(--ease-spring);
+        opacity 0.46s var(--ease-spring),
+        transform 0.46s var(--ease-spring);
 }
 
 .ch3-down {
     opacity: 0;
     transform: translateY(-28px);
     transition:
-        opacity 0.65s var(--ease),
-        transform 0.65s var(--ease);
+        opacity 0.5s var(--ease),
+        transform 0.5s var(--ease);
 }
 
 /* Triggered state */
@@ -91,25 +91,25 @@
 
 /* Stagger delays — applied via nth-child or explicit classes */
 .ch3-d1 {
-    transition-delay: 0.08s;
+    transition-delay: 0.06s;
 }
 .ch3-d2 {
-    transition-delay: 0.18s;
+    transition-delay: 0.14s;
 }
 .ch3-d3 {
-    transition-delay: 0.28s;
+    transition-delay: 0.22s;
 }
 .ch3-d4 {
-    transition-delay: 0.4s;
+    transition-delay: 0.31s;
 }
 .ch3-d5 {
-    transition-delay: 0.52s;
+    transition-delay: 0.4s;
 }
 .ch3-d6 {
-    transition-delay: 0.64s;
+    transition-delay: 0.49s;
 }
 .ch3-d7 {
-    transition-delay: 0.76s;
+    transition-delay: 0.59s;
 }
 
 /* ── Image entrance animations (Animate.css-inspired) ───────── */
@@ -271,6 +271,48 @@
     }
 }
 
+/* ── Gallery fly-in animations (smooth, pixel-based) ─────────── */
+@keyframes ch3FlyFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-160px) scale(0.93);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+@keyframes ch3FlyFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(160px) scale(0.93);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+@keyframes ch3FlyFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-160px) scale(0.93);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+@keyframes ch3FlyFromBot {
+    from {
+        opacity: 0;
+        transform: translateY(160px) scale(0.93);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 /* Reveal atoms — animation-based (not transition-based) */
 /* Start hidden; .bpt-visible triggers the keyframe animation */
 
@@ -281,45 +323,65 @@
 .ch3-anim-rollIn,
 .ch3-anim-jackInTheBox,
 .ch3-anim-rotateIn,
-.ch3-anim-bounceIn {
+.ch3-anim-bounceIn,
+.ch3-anim-flyLeft,
+.ch3-anim-flyRight,
+.ch3-anim-flyTop,
+.ch3-anim-flyBot {
     opacity: 0;
 }
 
 /* Triggered state — play animation */
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp {
-    animation: ch3DriftUp 1.8s var(--ease) both;
+    animation: ch3DriftUp 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-zoomIn {
-    animation: ch3FlipSwoop 1.8s var(--ease) both;
+    animation: ch3FlipSwoop 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInLeft {
-    animation: ch3SlideInLeft 1.8s var(--ease) both;
+    animation: ch3SlideInLeft 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInRight {
-    animation: ch3SlideInRight 1.8s var(--ease) both;
+    animation: ch3SlideInRight 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn {
-    animation: ch3RollIn 1.8s var(--ease) both;
+    animation: ch3RollIn 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox {
-    animation: ch3PopSpin 1.8s var(--ease) both;
+    animation: ch3PopSpin 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn {
-    animation: ch3SpinFromRight 1.8s var(--ease) both;
+    animation: ch3SpinFromRight 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn {
-    animation: ch3BounceSpin 1.8s var(--ease) both;
+    animation: ch3BounceSpin 1.39s var(--ease) both;
     will-change: transform, opacity;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop {
-    animation: ch3DropIn 1.8s var(--ease) both;
+    animation: ch3DropIn 1.39s var(--ease) both;
+    will-change: transform, opacity;
+}
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft {
+    animation: ch3FlyFromLeft 0.85s var(--ease) both;
+    will-change: transform, opacity;
+}
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight {
+    animation: ch3FlyFromRight 0.85s var(--ease) both;
+    will-change: transform, opacity;
+}
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop {
+    animation: ch3FlyFromTop 0.85s var(--ease) both;
+    will-change: transform, opacity;
+}
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot {
+    animation: ch3FlyFromBot 0.85s var(--ease) both;
     will-change: transform, opacity;
 }
 
@@ -332,8 +394,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d1,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d1,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d1,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d1 {
-    animation-delay: 0.1s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d1,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d1,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d1,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d1,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d1 {
+    animation-delay: 0.08s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d2,
@@ -344,8 +410,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d2,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d2,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d2,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d2 {
-    animation-delay: 0.22s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d2,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d2,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d2,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d2,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d2 {
+    animation-delay: 0.17s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d3,
@@ -356,8 +426,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d3,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d3,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d3,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d3 {
-    animation-delay: 0.38s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d3,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d3,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d3,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d3,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d3 {
+    animation-delay: 0.29s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d4,
@@ -368,8 +442,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d4,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d4,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d4,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d4 {
-    animation-delay: 0.55s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d4,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d4,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d4,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d4,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d4 {
+    animation-delay: 0.42s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d5,
@@ -380,8 +458,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d5,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d5,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d5,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d5 {
-    animation-delay: 0.9s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d5,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d5,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d5,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d5,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d5 {
+    animation-delay: 0.69s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d6,
@@ -392,8 +474,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d6,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d6,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d6,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d6 {
-    animation-delay: 1.1s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d6,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d6,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d6,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d6,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d6 {
+    animation-delay: 0.85s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp.ch3-d7,
@@ -404,8 +490,12 @@
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox.ch3-d7,
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn.ch3-d7,
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn.ch3-d7,
-.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d7 {
-    animation-delay: 1.3s;
+.bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop.ch3-d7,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyLeft.ch3-d7,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyRight.ch3-d7,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyTop.ch3-d7,
+.bpt-ch3-section.bpt-visible .ch3-anim-flyBot.ch3-d7 {
+    animation-delay: 1s;
 }
 
 /* Override Ken Burns for animated mosaic images */
@@ -417,48 +507,52 @@
 .ch3-split__mosaic .ch3-anim-jackInTheBox,
 .ch3-split__mosaic .ch3-anim-rotateIn,
 .ch3-split__mosaic .ch3-anim-bounceIn,
-.ch3-split__mosaic .ch3-anim-dropFromTop {
+.ch3-split__mosaic .ch3-anim-dropFromTop,
+.ch3-split__mosaic .ch3-anim-flyLeft,
+.ch3-split__mosaic .ch3-anim-flyRight,
+.ch3-split__mosaic .ch3-anim-flyTop,
+.ch3-split__mosaic .ch3-anim-flyBot {
     transform: none;
 }
 
 /* Slow smooth mosaic animations — override base durations */
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-fadeInUp {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-zoomIn {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-slideInLeft {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-slideInRight {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-rollIn {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-jackInTheBox {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-rotateIn {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-bounceIn {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-anim-dropFromTop {
-    animation-duration: 1.8s;
+    animation-duration: 1.39s;
 }
 
 /* Mosaic images appear AFTER text — delay each image stagger */
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d1 {
-    animation-delay: 0.6s !important;
+    animation-delay: 0.46s !important;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d2 {
-    animation-delay: 0.8s !important;
+    animation-delay: 0.62s !important;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d3 {
-    animation-delay: 1s !important;
+    animation-delay: 0.77s !important;
 }
 
 /* Override thanh-pham container reveal for animation class */
@@ -504,8 +598,8 @@
     /* scale-up on reveal via ch3-scale parent */
     transform: scale(1.06);
     transition:
-        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 1.2s ease;
+        transform 1.08s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.92s ease;
     opacity: 0;
 }
 
@@ -560,7 +654,7 @@
         transparent
     );
     margin: 0 auto 28px;
-    transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    transition: width 0.69s cubic-bezier(0.22, 1, 0.36, 1) 0.23s;
 }
 
 #section-bpt-ch3-divider.bpt-visible .ch3-divider__rule {
@@ -604,7 +698,7 @@
     align-items: center;
     gap: 6px;
     opacity: 0;
-    animation: ch3CuePulse 1.8s ease-in-out 1.8s infinite;
+    animation: ch3CuePulse 1.39s ease-in-out 1.39s infinite;
 }
 
 @keyframes ch3CuePulse {
@@ -692,7 +786,7 @@
 }
 
 #section-bpt-ch3-intro.bpt-visible .ch3-intro__heading {
-    animation: ch3BounceEntrance 1s var(--ease-spring) both;
+    animation: ch3BounceEntrance 0.77s var(--ease-spring) both;
 }
 
 /* ── Body text ────────────────────────────────────────────────── */
@@ -745,7 +839,7 @@
     width: 100%;
     max-width: 1100px;
     padding: 40px 24px;
-    text-align: center;
+    text-align: left;
     color: #fff;
 }
 
@@ -768,7 +862,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    padding: clamp(50px, 8vh, 100px) clamp(24px, 6vw, 80px);
+    padding: clamp(50px, 8vh, 100px) clamp(24px, 6vw, 80px) clamp(20px, 3vh, 40px);
 }
 
 /* Visual panel (image side) */
@@ -787,7 +881,7 @@
     object-position: center;
     display: block;
     /* Subtle Ken Burns — GPU: only transform */
-    transition: transform 8s ease-in-out;
+    transition: transform 6.16s ease-in-out;
     transform: scale(1.04);
 }
 
@@ -829,7 +923,7 @@
     object-fit: cover;
     border-radius: 14px;
     box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
-    transition: transform 8s ease-in-out;
+    transition: transform 6.16s ease-in-out;
     transform: scale(1.05);
 }
 
@@ -887,7 +981,7 @@
     /* Animate from 0 width */
     transform-origin: left;
     transform: scaleX(0);
-    transition: transform 0.6s var(--ease) 0.4s;
+    transition: transform 0.46s var(--ease) 0.31s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-split__rule {
@@ -927,7 +1021,7 @@
 /* Mobile: stack split panels */
 @media (max-width: 768px) {
     .ch3-split {
-        padding: clamp(36px, 6vh, 60px) clamp(16px, 4vw, 24px);
+        padding: clamp(36px, 6vh, 60px) clamp(16px, 4vw, 24px) clamp(14px, 2vh, 28px);
         gap: clamp(24px, 4vw, 40px);
     }
 
@@ -940,16 +1034,12 @@
         min-height: 260px;
     }
 
-    .ch3-split__mosaic img {
-        border-radius: 0;
-        box-shadow: none;
+    .ch3-hero__content {
+        padding: 24px 16px;
     }
 
-    .ch3-split__visual img {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        height: 280px;
+    .ch3-hero__body p {
+        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
     }
 }
 
@@ -1004,8 +1094,8 @@
     opacity: 0;
     transform: translateY(20px) scale(0.6);
     transition:
-        opacity 0.7s var(--ease-spring),
-        transform 0.7s var(--ease-spring);
+        opacity 0.54s var(--ease-spring),
+        transform 0.54s var(--ease-spring);
     margin-bottom: 8px;
     user-select: none;
     /* Dim so it's decorative, not dominant */
@@ -1090,7 +1180,7 @@
     /* Draw line on reveal */
     transform-origin: top;
     transform: translateX(-50%) scaleY(0);
-    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    transition: transform 0.92s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 
 #section-bpt-ch3-timeline.bpt-visible .ch3-timeline__spine {
@@ -1123,8 +1213,8 @@
     opacity: 0;
     transform: scale(0);
     transition:
-        opacity 0.4s var(--ease-spring),
-        transform 0.4s var(--ease-spring);
+        opacity 0.31s var(--ease-spring),
+        transform 0.31s var(--ease-spring);
 }
 
 #section-bpt-ch3-timeline.bpt-visible .ch3-step__dot {
@@ -1133,13 +1223,13 @@
 }
 
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(2) .ch3-step__dot {
-    transition-delay: 0.3s;
+    transition-delay: 0.23s;
 }
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(3) .ch3-step__dot {
-    transition-delay: 0.6s;
+    transition-delay: 0.46s;
 }
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(4) .ch3-step__dot {
-    transition-delay: 0.9s;
+    transition-delay: 0.69s;
 }
 
 /* Image thumbnail */
@@ -1155,7 +1245,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 6s ease-in-out;
+    transition: transform 4.62s ease-in-out;
     transform: scale(1.04);
 }
 
@@ -1211,8 +1301,8 @@
 .ch3-step .ch3-step__text {
     opacity: 0;
     transition:
-        opacity 0.65s var(--ease),
-        transform 0.65s var(--ease);
+        opacity 0.5s var(--ease),
+        transform 0.5s var(--ease);
 }
 
 .ch3-step:nth-child(odd) .ch3-step__img {
@@ -1232,25 +1322,25 @@
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(1) .ch3-step__text {
     opacity: 1;
     transform: none;
-    transition-delay: 0.15s;
+    transition-delay: 0.12s;
 }
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(2) .ch3-step__img,
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(2) .ch3-step__text {
     opacity: 1;
     transform: none;
-    transition-delay: 0.35s;
+    transition-delay: 0.27s;
 }
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(3) .ch3-step__img,
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(3) .ch3-step__text {
     opacity: 1;
     transform: none;
-    transition-delay: 0.55s;
+    transition-delay: 0.42s;
 }
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(4) .ch3-step__img,
 #section-bpt-ch3-timeline.bpt-visible .ch3-step:nth-child(4) .ch3-step__text {
     opacity: 1;
     transform: none;
-    transition-delay: 0.75s;
+    transition-delay: 0.58s;
 }
 
 /* Mobile: single column timeline */
@@ -1326,7 +1416,7 @@
     pointer-events: none;
     z-index: 0;
     opacity: 0;
-    transition: opacity 1.2s ease 0.3s;
+    transition: opacity 0.92s ease 0.23s;
 }
 
 #section-bpt-ch3-thanh-pham.bpt-visible::before {
@@ -1363,8 +1453,8 @@
     opacity: 0;
     transform: scale(0.82);
     transition:
-        opacity 1s var(--ease),
-        transform 1s var(--ease);
+        opacity 0.77s var(--ease),
+        transform 0.77s var(--ease);
 }
 
 #section-bpt-ch3-thanh-pham.bpt-visible .ch3-thanh-pham__image {
@@ -1377,7 +1467,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 10s ease-in-out;
+    transition: transform 7.7s ease-in-out;
     transform: scale(1.08);
 }
 
@@ -1455,7 +1545,7 @@
         rgba(0, 0, 0, 0.6) 100%
     );
     opacity: 0;
-    transition: opacity 1.2s ease 0.3s;
+    transition: opacity 0.92s ease 0.23s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__vignette {
@@ -1472,12 +1562,12 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
     background-size: 200px 200px;
     mix-blend-mode: overlay;
-    transition: opacity 1.5s ease 0.6s;
+    transition: opacity 1.16s ease 0.46s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__grain {
     opacity: 0.18;
-    animation: ch3GrainDrift 0.4s steps(2) infinite;
+    animation: ch3GrainDrift 0.31s steps(2) infinite;
 }
 
 @keyframes ch3GrainDrift {
@@ -1503,7 +1593,7 @@
         rgba(0, 0, 0, 0.06) 2px,
         rgba(0, 0, 0, 0.06) 4px
     );
-    transition: opacity 1s ease 0.8s;
+    transition: opacity 0.77s ease 0.62s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__scanlines {
@@ -1529,8 +1619,8 @@
     border-left-width: 1px;
     transform: translate(-12px, -12px) scale(0.6);
     transition:
-        opacity 0.6s ease 0.5s,
-        transform 0.6s var(--ease-spring) 0.5s;
+        opacity 0.46s ease 0.39s,
+        transform 0.46s var(--ease-spring) 0.39s;
 }
 .ch3-vid__corner--tr {
     top: clamp(16px, 3vh, 32px);
@@ -1539,8 +1629,8 @@
     border-right-width: 1px;
     transform: translate(12px, -12px) scale(0.6);
     transition:
-        opacity 0.6s ease 0.6s,
-        transform 0.6s var(--ease-spring) 0.6s;
+        opacity 0.46s ease 0.46s,
+        transform 0.46s var(--ease-spring) 0.46s;
 }
 .ch3-vid__corner--bl {
     bottom: clamp(16px, 3vh, 32px);
@@ -1549,8 +1639,8 @@
     border-left-width: 1px;
     transform: translate(-12px, 12px) scale(0.6);
     transition:
-        opacity 0.6s ease 0.7s,
-        transform 0.6s var(--ease-spring) 0.7s;
+        opacity 0.46s ease 0.54s,
+        transform 0.46s var(--ease-spring) 0.54s;
 }
 .ch3-vid__corner--br {
     bottom: clamp(16px, 3vh, 32px);
@@ -1559,8 +1649,8 @@
     border-right-width: 1px;
     transform: translate(12px, 12px) scale(0.6);
     transition:
-        opacity 0.6s ease 0.8s,
-        transform 0.6s var(--ease-spring) 0.8s;
+        opacity 0.46s ease 0.62s,
+        transform 0.46s var(--ease-spring) 0.62s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__corner {
@@ -1580,8 +1670,8 @@
     transform: translateX(-50%) translateY(-20px);
     opacity: 0;
     transition:
-        opacity 0.7s ease 0.4s,
-        transform 0.7s var(--ease) 0.4s;
+        opacity 0.54s ease 0.31s,
+        transform 0.54s var(--ease) 0.31s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__eyebrow {
@@ -1603,7 +1693,7 @@
     width: 0;
     height: 1px;
     background: var(--c-accent-dim);
-    transition: width 0.8s var(--ease) 0.7s;
+    transition: width 0.62s var(--ease) 0.54s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__eyebrow-line {
@@ -1644,23 +1734,23 @@
 /* Staggered scale-up for each word */
 .ch3-vid__title-word--1 {
     transition:
-        opacity 0.5s var(--ease-spring) 0.3s,
-        transform 0.5s var(--ease-spring) 0.3s;
+        opacity 0.39s var(--ease-spring) 0.23s,
+        transform 0.39s var(--ease-spring) 0.23s;
 }
 .ch3-vid__title-word--2 {
     transition:
-        opacity 0.5s var(--ease-spring) 0.45s,
-        transform 0.5s var(--ease-spring) 0.45s;
+        opacity 0.39s var(--ease-spring) 0.35s,
+        transform 0.39s var(--ease-spring) 0.35s;
 }
 .ch3-vid__title-word--3 {
     transition:
-        opacity 0.5s var(--ease-spring) 0.6s,
-        transform 0.5s var(--ease-spring) 0.6s;
+        opacity 0.39s var(--ease-spring) 0.46s,
+        transform 0.39s var(--ease-spring) 0.46s;
 }
 .ch3-vid__title-word--4 {
     transition:
-        opacity 0.5s var(--ease-spring) 0.75s,
-        transform 0.5s var(--ease-spring) 0.75s;
+        opacity 0.39s var(--ease-spring) 0.58s,
+        transform 0.39s var(--ease-spring) 0.58s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word {
@@ -1680,16 +1770,16 @@
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word--1 {
-    animation: ch3TitleFloat 4s ease-in-out 1.2s infinite;
+    animation: ch3TitleFloat 3.08s ease-in-out 0.92s infinite;
 }
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word--2 {
-    animation: ch3TitleFloat 4s ease-in-out 1.4s infinite;
+    animation: ch3TitleFloat 3.08s ease-in-out 1.08s infinite;
 }
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word--3 {
-    animation: ch3TitleFloat 4s ease-in-out 1.6s infinite;
+    animation: ch3TitleFloat 3.08s ease-in-out 1.23s infinite;
 }
 #section-bpt-ch3-video.bpt-visible .ch3-vid__title-word--4 {
-    animation: ch3TitleFloat 4s ease-in-out 1.8s infinite;
+    animation: ch3TitleFloat 3.08s ease-in-out 1.39s infinite;
 }
 
 /* Gold rule under title */
@@ -1703,7 +1793,7 @@
         var(--c-accent),
         transparent
     );
-    transition: width 0.8s var(--ease) 0.9s;
+    transition: width 0.62s var(--ease) 0.69s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__rule {
@@ -1721,8 +1811,8 @@
     opacity: 0;
     transform: translateY(16px);
     transition:
-        opacity 0.6s ease 1.1s,
-        transform 0.6s var(--ease) 1.1s;
+        opacity 0.46s ease 0.85s,
+        transform 0.46s var(--ease) 0.85s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__subtitle {
@@ -1748,7 +1838,7 @@
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__particle {
-    animation: ch3ParticleDrift 8s ease-in-out infinite;
+    animation: ch3ParticleDrift 6.16s ease-in-out infinite;
 }
 
 @keyframes ch3ParticleDrift {
@@ -1778,63 +1868,63 @@
     width: 2px;
     height: 2px;
     animation-delay: 0s !important;
-    animation-duration: 7s !important;
+    animation-duration: 5.39s !important;
 }
 .ch3-vid__particle--2 {
     left: 28%;
     top: 80%;
     width: 3px;
     height: 3px;
-    animation-delay: 1.2s !important;
-    animation-duration: 9s !important;
+    animation-delay: 0.92s !important;
+    animation-duration: 6.93s !important;
 }
 .ch3-vid__particle--3 {
     left: 45%;
     top: 75%;
     width: 2px;
     height: 2px;
-    animation-delay: 0.6s !important;
-    animation-duration: 6s !important;
+    animation-delay: 0.46s !important;
+    animation-duration: 4.62s !important;
 }
 .ch3-vid__particle--4 {
     left: 62%;
     top: 85%;
     width: 4px;
     height: 4px;
-    animation-delay: 2s !important;
-    animation-duration: 10s !important;
+    animation-delay: 1.54s !important;
+    animation-duration: 7.7s !important;
 }
 .ch3-vid__particle--5 {
     left: 78%;
     top: 72%;
     width: 2px;
     height: 2px;
-    animation-delay: 1.5s !important;
-    animation-duration: 8s !important;
+    animation-delay: 1.16s !important;
+    animation-duration: 6.16s !important;
 }
 .ch3-vid__particle--6 {
     left: 88%;
     top: 78%;
     width: 3px;
     height: 3px;
-    animation-delay: 0.8s !important;
-    animation-duration: 7.5s !important;
+    animation-delay: 0.62s !important;
+    animation-duration: 5.78s !important;
 }
 .ch3-vid__particle--7 {
     left: 35%;
     top: 90%;
     width: 2px;
     height: 2px;
-    animation-delay: 2.5s !important;
-    animation-duration: 9.5s !important;
+    animation-delay: 1.93s !important;
+    animation-duration: 7.32s !important;
 }
 .ch3-vid__particle--8 {
     left: 55%;
     top: 82%;
     width: 3px;
     height: 3px;
-    animation-delay: 3s !important;
-    animation-duration: 8.5s !important;
+    animation-delay: 2.31s !important;
+    animation-duration: 6.54s !important;
 }
 
 /* ── Bottom caption bar ──────────────────────────────────────── */
@@ -1855,8 +1945,8 @@
     opacity: 0;
     transform: translateY(20px) scale(0.92);
     transition:
-        opacity 0.6s ease 1.3s,
-        transform 0.6s var(--ease-spring) 1.3s;
+        opacity 0.46s ease 1s,
+        transform 0.46s var(--ease-spring) 1s;
 }
 
 #section-bpt-ch3-video.bpt-visible .ch3-vid__caption {
@@ -1912,7 +2002,7 @@
     align-items: center;
     gap: 6px;
     opacity: 0;
-    animation: ch3VidCueFade 1.5s ease 2s forwards;
+    animation: ch3VidCueFade 1.16s ease 1.54s forwards;
 }
 
 @keyframes ch3VidCueFade {
@@ -1933,7 +2023,7 @@
     border-right: 1px solid var(--c-accent-dim);
     border-bottom: 1px solid var(--c-accent-dim);
     transform: rotate(45deg);
-    animation: ch3VidCueBounce 1.8s ease-in-out infinite;
+    animation: ch3VidCueBounce 1.39s ease-in-out infinite;
 }
 
 @keyframes ch3VidCueBounce {
@@ -1966,8 +2056,12 @@
     .ch3-anim-jackInTheBox,
     .ch3-anim-rotateIn,
     .ch3-anim-bounceIn,
-    .ch3-anim-dropFromTop,
-    .ch3-intro__heading,
+.ch3-anim-dropFromTop,
+.ch3-anim-flyLeft,
+.ch3-anim-flyRight,
+.ch3-anim-flyTop,
+.ch3-anim-flyBot,
+.ch3-intro__heading,
     .ch3-divider__bg img,
     .ch3-split__rule,
     .ch3-quote__mark,
@@ -2016,7 +2110,7 @@
    ───────────────────────────────────────────────────────────── */
 
 .ch3-gallery {
-    padding: clamp(40px, 6vh, 80px) clamp(24px, 6vw, 80px);
+    padding: clamp(40px, 6vh, 80px) clamp(24px, 6vw, 80px) clamp(16px, 2.5vh, 32px);
     background: var(--c-bg);
 }
 
@@ -2065,8 +2159,8 @@
     opacity: 0;
     transform: translateY(24px);
     transition:
-        opacity 0.7s var(--ease),
-        transform 0.7s var(--ease);
+        opacity 0.54s var(--ease),
+        transform 0.54s var(--ease);
 }
 
 .bpt-ch3-section.bpt-visible .ch3-gallery__item {
@@ -2075,16 +2169,16 @@
 }
 
 .bpt-ch3-section.bpt-visible .ch3-gallery__item:nth-child(1) {
-    transition-delay: 0.1s;
+    transition-delay: 0.08s;
 }
 .bpt-ch3-section.bpt-visible .ch3-gallery__item:nth-child(2) {
-    transition-delay: 0.2s;
+    transition-delay: 0.15s;
 }
 .bpt-ch3-section.bpt-visible .ch3-gallery__item:nth-child(3) {
-    transition-delay: 0.3s;
+    transition-delay: 0.23s;
 }
 .bpt-ch3-section.bpt-visible .ch3-gallery__item:nth-child(4) {
-    transition-delay: 0.4s;
+    transition-delay: 0.31s;
 }
 
 .ch3-gallery__item img {
@@ -2092,7 +2186,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 6s ease-in-out;
+    transition: transform 4.62s ease-in-out;
     transform: scale(1.05);
 }
 
@@ -2114,8 +2208,8 @@
     opacity: 0;
     transform: translateY(12px);
     transition:
-        opacity 0.6s var(--ease) 0.4s,
-        transform 0.6s var(--ease) 0.4s;
+        opacity 0.46s var(--ease) 0.31s,
+        transform 0.46s var(--ease) 0.31s;
 }
 
 .bpt-ch3-section.bpt-visible .ch3-gallery__caption {
@@ -2132,7 +2226,11 @@
 .ch3-gallery__item.ch3-anim-bounceIn,
 .ch3-gallery__item.ch3-anim-dropFromTop,
 .ch3-gallery__item.ch3-anim-zoomIn,
-.ch3-gallery__item.ch3-anim-fadeInUp {
+.ch3-gallery__item.ch3-anim-fadeInUp,
+.ch3-gallery__item.ch3-anim-flyLeft,
+.ch3-gallery__item.ch3-anim-flyRight,
+.ch3-gallery__item.ch3-anim-flyTop,
+.ch3-gallery__item.ch3-anim-flyBot {
     opacity: 0;
     transform: none;
     transition: none;
@@ -2146,7 +2244,11 @@
 .bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-bounceIn,
 .bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-dropFromTop,
 .bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-zoomIn,
-.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-fadeInUp {
+.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-fadeInUp,
+.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-flyLeft,
+.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-flyRight,
+.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-flyTop,
+.bpt-ch3-section.bpt-visible .ch3-gallery__item.ch3-anim-flyBot {
     opacity: 1;
 }
 
@@ -2156,10 +2258,6 @@
     .ch3-gallery__grid--4,
     .ch3-gallery__grid--2 {
         grid-template-columns: 1fr;
-    }
-
-    .ch3-gallery__item {
-        border-radius: 0;
     }
 }
 
