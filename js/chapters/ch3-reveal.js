@@ -12,12 +12,18 @@
   const CH3_SECTIONS = [
     'section-bpt-ch3-divider',
     'section-bpt-ch3-intro',
+    'section-bpt-ch3-gallery-1',
     'section-bpt-ch3-nguyen-lieu',
+    'section-bpt-ch3-gallery-2',
     'section-bpt-ch3-vo-vang',
     'section-bpt-ch3-nhan-banh',
     'section-bpt-ch3-quote',
     'section-bpt-ch3-bo',
+    'section-bpt-ch3-gallery-5',
+    'section-bpt-ch3-video',
     'section-bpt-ch3-hap-goi',
+    'section-bpt-ch3-bao-quan',
+    'section-bpt-ch3-video-2',
     'section-bpt-ch3-thanh-pham',
   ];
 

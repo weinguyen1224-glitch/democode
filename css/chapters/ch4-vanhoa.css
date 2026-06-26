@@ -288,7 +288,7 @@
 }
 
 .ch4-title__inner {
-    max-width: 820px;
+    max-width: 1100px;
     text-align: center;
     position: relative;
     z-index: 2;
@@ -326,7 +326,7 @@
     font-size: clamp(1rem, 1.6vw, 1.2rem);
     line-height: 1.75;
     color: var(--c4-text);
-    max-width: 680px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -514,7 +514,7 @@
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.7;
     color: var(--c4-text);
-    max-width: 700px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -549,7 +549,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 840px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -628,7 +628,7 @@
 }
 
 .ch4-happiness__inner {
-    max-width: 680px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -663,7 +663,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 840px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -734,14 +734,14 @@
     display: flex;
     flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 840px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
 }
 
 .ch4-prose-section__layout--center {
-    max-width: 720px;
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -807,7 +807,7 @@
 }
 
 .ch4-balance__inner {
-    max-width: 720px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -837,7 +837,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(32px, 5vw, 64px);
-    max-width: 840px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -914,7 +914,7 @@
 }
 
 .ch4-closing__inner {
-    max-width: 700px;
+    max-width: 1100px;
     position: relative;
     z-index: 2;
 }
