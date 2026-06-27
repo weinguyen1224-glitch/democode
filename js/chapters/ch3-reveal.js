@@ -1,15 +1,13 @@
 /* ─────────────────────────────────────────────────────────────
    js/chapters/ch3-reveal.js
    IntersectionObserver for Chapter III sections.
-   Adds .bpt-visible when section enters viewport (once).
-   Pure IO — no scroll listener, no rAF loop.
+   Toggles .bpt-visible — animations replay on scroll back.
    ───────────────────────────────────────────────────────────── */
 
 (function () {
   'use strict';
 
-  /* IDs of every ch3 section that needs .bpt-visible toggled */
-  const CH3_SECTIONS = [
+  var CH3_SECTIONS = [
     'section-bpt-ch3-divider',
     'section-bpt-ch3-intro',
     'section-bpt-ch3-gallery-1',
@@ -29,7 +27,6 @@
 
   function init() {
     if (!('IntersectionObserver' in window)) {
-      /* Fallback: show all immediately */
       CH3_SECTIONS.forEach(function (id) {
         var el = document.getElementById(id);
         if (el) el.classList.add('bpt-visible');
@@ -48,7 +45,7 @@
         });
       },
       {
-        threshold: 0.15,
+        threshold: 0.1,
         rootMargin: '0px 0px -5% 0px',
       }
     );

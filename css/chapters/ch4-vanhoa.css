@@ -275,7 +275,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 80px);
+    padding: clamp(32px, 6vh, 80px) clamp(12px, 3vw, 40px);
     position: relative;
     overflow: hidden;
 }
@@ -345,7 +345,7 @@
    SECTION 2: SLIDER — Tráp cưới xưa & nay
    ══════════════════════════════════════════════════════════════ */
 .ch4-slider-section {
-    padding: clamp(60px, 10vh, 120px) clamp(16px, 4vw, 60px);
+    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 40px);
     position: relative;
 }
 
@@ -363,7 +363,7 @@
 
 .ch4-slider__header {
     text-align: center;
-    margin-bottom: clamp(32px, 5vh, 56px);
+    margin-bottom: clamp(16px, 3vh, 32px);
     position: relative;
     z-index: 2;
 }
@@ -533,8 +533,7 @@
    SECTION 3: BIỂU TƯỢNG
    ══════════════════════════════════════════════════════════════ */
 .ch4-symbol {
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
-    padding-bottom: clamp(40px, 6vh, 80px);
+    padding: clamp(40px, 6vh, 80px) 0 0;
     position: relative;
 }
 
@@ -559,9 +558,8 @@
 .ch4-symbol__layout {
     display: flex;
     flex-direction: column;
-    gap: clamp(32px, 5vw, 64px);
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: clamp(16px, 2.5vw, 32px);
+    width: 100%;
     position: relative;
     z-index: 2;
 }
@@ -570,6 +568,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ch4-symbol__text h3 {
@@ -586,24 +587,25 @@
 .ch4-symbol__gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    max-width: 1000px;
-    margin: 0 auto;
+    gap: 0;
     width: 100%;
 }
 
 .ch4-symbol__img-wrap {
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--c4-bg);
     width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
 }
 
 .ch4-symbol__img-wrap img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    border-radius: 12px;
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+    box-shadow: none;
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -611,18 +613,16 @@
 .ch4-symbol__grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(12px, 2vw, 24px);
+    gap: 0;
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
 }
 
 .ch4-symbol__grid-2 img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 0;
+    box-shadow: none;
 }
 
 /* Chú thích ảnh */
@@ -658,7 +658,7 @@
    SECTION 4: HẠNH PHÚC LỨA ĐÔI
    ══════════════════════════════════════════════════════════════ */
 .ch4-happiness {
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 64px);
     text-align: center;
     position: relative;
 }
@@ -681,10 +681,13 @@
 }
 
 .ch4-happiness__inner {
+    width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     z-index: 2;
+    text-align: left;
 }
 
 .ch4-happiness__icon {
@@ -708,22 +711,20 @@
    SECTION 5: VÙNG MIỀN
    ══════════════════════════════════════════════════════════════ */
 .ch4-region {
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 80px);
+    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 40px);
     position: relative;
 }
 
 .ch4-region__layout {
     display: flex;
     flex-direction: column;
-    gap: clamp(32px, 5vw, 64px);
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: clamp(16px, 2.5vw, 32px);
+    width: 100%;
     position: relative;
     z-index: 2;
 }
 
 .ch4-region__img-wrap {
-    max-width: 600px;
     width: 100%;
     margin: 0 auto;
 }
@@ -750,6 +751,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ch4-region__text h3 {
@@ -767,12 +771,12 @@
    SECTION 6–8: PROSE BLOCKS (thích nghi, hương vị, gam màu)
    ══════════════════════════════════════════════════════════════ */
 .ch4-prose-section {
-    padding: clamp(50px, 8vh, 100px) clamp(24px, 6vw, 80px);
+    padding: clamp(32px, 5vh, 64px) clamp(12px, 3vw, 40px);
     position: relative;
 }
 
 .ch4-prose-section--last {
-    padding-bottom: clamp(10px, 1vh, 20px);
+    padding-bottom: clamp(6px, 1vh, 12px);
 }
 
 .ch4-prose-section::before {
@@ -790,23 +794,27 @@
 .ch4-prose-section__layout {
     display: flex;
     flex-direction: column;
-    gap: clamp(32px, 5vw, 64px);
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: clamp(16px, 2.5vw, 32px);
+    width: 100%;
     position: relative;
     z-index: 2;
 }
 
 .ch4-prose-section__layout--center {
-    max-width: 1100px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .ch4-prose-section__img-wrap {
-    max-width: 900px;
     width: 100%;
     margin: 0 auto;
+}
+
+.ch4-prose-section__img-wrap--small {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ch4-prose-section__img-wrap {
@@ -831,6 +839,9 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ch4-prose-section__text h3 {
@@ -848,7 +859,7 @@
    SECTION 9: DUNG HÒA
    ══════════════════════════════════════════════════════════════ */
 .ch4-balance {
-    padding: clamp(60px, 10vh, 120px) clamp(24px, 6vw, 100px);
+    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 64px);
     text-align: center;
     position: relative;
 }
@@ -864,10 +875,13 @@
 }
 
 .ch4-balance__inner {
+    width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     z-index: 2;
+    text-align: left;
 }
 
 .ch4-balance h3 {
@@ -885,17 +899,15 @@
    SECTION 10: DU LỊCH VĂN HÓA
    ══════════════════════════════════════════════════════════════ */
 .ch4-tourism {
-    padding: clamp(20px, 5vh, 120px) clamp(24px, 6vw, 80px);
-    padding-bottom: clamp(80px, 14vh, 160px);
+    padding: clamp(16px, 3vh, 64px) 0 0;
     position: relative;
 }
 
 .ch4-tourism__layout {
     display: flex;
     flex-direction: column;
-    gap: clamp(32px, 5vw, 64px);
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: clamp(16px, 2.5vw, 32px);
+    width: 100%;
     position: relative;
     z-index: 2;
 }
@@ -903,14 +915,13 @@
 .ch4-tourism__gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    max-width: 600px;
+    gap: 0;
     width: 100%;
     margin: 0 auto;
 }
 
 .ch4-tourism__img-wrap {
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--c4-bg);
     aspect-ratio: 4 / 3;
 }
@@ -920,8 +931,8 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 12px;
-    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+    box-shadow: none;
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -933,6 +944,9 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .ch4-tourism__text h3 {
@@ -954,7 +968,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(20px, 4vh, 60px) clamp(24px, 6vw, 100px) clamp(60px, 10vh, 120px);
+    padding: clamp(16px, 3vh, 40px) clamp(12px, 3vw, 64px) clamp(40px, 6vh, 80px);
     text-align: center;
     position: relative;
 }
@@ -971,7 +985,10 @@
 }
 
 .ch4-closing__inner {
+    width: 100%;
     max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     z-index: 2;
 }
@@ -996,8 +1013,6 @@
     font-style: italic;
     color: var(--c4-text);
     text-align: left;
-    margin-inline: auto;
-    max-width: 56ch;
 }
 
 .ch4-closing p:last-child {
@@ -1265,7 +1280,7 @@
     .ch4-region__layout,
     .ch4-tourism__layout,
     .ch4-prose-section__layout {
-        gap: 28px;
+        gap: 20px;
     }
 
     .ch4-symbol__img-wrap {
@@ -1273,7 +1288,7 @@
     }
 
     .ch4-symbol__gallery {
-        max-width: 100%;
+        width: 100%;
     }
     .ch4-tourism__img-wrap {
         aspect-ratio: 16 / 9;
