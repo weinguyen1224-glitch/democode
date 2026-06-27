@@ -345,7 +345,7 @@
    SECTION 2: SLIDER — Tráp cưới xưa & nay
    ══════════════════════════════════════════════════════════════ */
 .ch4-slider-section {
-    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 40px);
+    padding: clamp(40px, 6vh, 80px) 0;
     position: relative;
 }
 
@@ -387,14 +387,12 @@
     max-width: 1200px;
     margin: 0 auto;
     aspect-ratio: 16 / 10;
-    border-radius: 14px;
+    border-radius: 0;
     overflow: hidden;
     cursor: ew-resize;
     user-select: none;
     -webkit-user-select: none;
-    box-shadow:
-        0 24px 80px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(151, 32, 35, 0.12);
+    box-shadow: none;
     z-index: 2;
 }
 
@@ -711,7 +709,7 @@
    SECTION 5: VÙNG MIỀN
    ══════════════════════════════════════════════════════════════ */
 .ch4-region {
-    padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 40px);
+    padding: clamp(40px, 6vh, 80px) 0;
     position: relative;
 }
 
@@ -730,7 +728,7 @@
 }
 
 .ch4-region__img-wrap {
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--c4-bg);
 }
 
@@ -738,8 +736,8 @@
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 14px;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+    border-radius: 0;
+    box-shadow: none;
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -771,7 +769,7 @@
    SECTION 6–8: PROSE BLOCKS (thích nghi, hương vị, gam màu)
    ══════════════════════════════════════════════════════════════ */
 .ch4-prose-section {
-    padding: clamp(32px, 5vh, 64px) clamp(12px, 3vw, 40px);
+    padding: clamp(32px, 5vh, 64px) 0;
     position: relative;
 }
 
@@ -818,7 +816,7 @@
 }
 
 .ch4-prose-section__img-wrap {
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--c4-bg);
 }
 
@@ -826,8 +824,8 @@
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 14px;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+    box-shadow: none;
     transition: transform 0.5s var(--c4-ease);
 }
 
@@ -1210,11 +1208,11 @@
     position: absolute;
     width: clamp(200px, 28vw, 360px);
     height: clamp(150px, 20vw, 270px);
-    border-radius: 12px;
+    border-radius: 0;
     overflow: hidden;
     opacity: 0;
     transition: opacity 0.8s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: none;
 }
 
 /* Traditional: bottom-left */
@@ -1296,7 +1294,7 @@
 
     .ch4-compare {
         aspect-ratio: 4 / 3;
-        border-radius: 10px;
+        border-radius: 0;
     }
 
     .ch4-slider-handle__knob {
