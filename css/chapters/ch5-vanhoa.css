@@ -24,8 +24,8 @@
     opacity: 0;
     transform: translateY(32px);
     transition:
-        opacity 0.7s var(--c5-ease),
-        transform 0.7s var(--c5-ease);
+        opacity 0.91s var(--c5-ease),
+        transform 0.91s var(--c5-ease);
 }
 
 .bpt-ch5 .ch5-visible .ch5-reveal {
