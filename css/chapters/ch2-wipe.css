@@ -64,7 +64,7 @@ img { max-width: 100%; display: block; }
 /* ── Wipe Section (shared) ───────────────────────────────── */
 .ch2-wipe {
     position: relative;
-    height: 300vh;
+    height: 200vh;
 }
 
 .ch2-wipe__sticky {

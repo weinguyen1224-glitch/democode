@@ -164,6 +164,7 @@
   /* ── Particle system (canvas) ─────────────────────────── */
   let particles = [];
   let rafP = null;
+  const MAX_PARTICLES = 150;
 
   function addParticles(n, colors, ox, oy, spread) {
     const cw = canvas.width;
@@ -171,7 +172,8 @@
     ox = ox || cw / 2;
     oy = oy || ch / 2;
     spread = spread || 5;
-    for (let i = 0; i < n; i++) {
+    const toAdd = Math.min(n, MAX_PARTICLES - particles.length);
+    for (let i = 0; i < toAdd; i++) {
       const a = Math.random() * Math.PI * 2;
       const sp = 0.8 + Math.random() * spread;
       particles.push({
@@ -200,7 +202,6 @@
         p.y += p.vy;
         p.vy += 0.09;
         p.alpha -= p.decay;
-        ctx2d.save();
         ctx2d.globalAlpha = Math.max(0, p.alpha);
         ctx2d.fillStyle = p.color;
         if (p.shape === "sq") {
@@ -210,7 +211,6 @@
           ctx2d.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx2d.fill();
         }
-        ctx2d.restore();
       }
       if (particles.length) rafP = requestAnimationFrame(tick);
       else {

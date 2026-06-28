@@ -26,6 +26,9 @@
         <script defer="" src="js/footer.667703.min.js"></script>
         <title>Trang chính</title>
         <link rel="stylesheet" href="css/style-04.css" />
+        <!-- Preload wipe images for smooth first scroll -->
+        <link rel="preload" as="image" href="assets/chương-3/wipe1.webp" />
+        <link rel="preload" as="image" href="assets/chương-3/wipe2.webp" />
         <style>
             .bpt-chapter-divider--img,
             .bpt-chapter-divider--img .bpt-chapter-divider__frame {
@@ -1417,7 +1420,7 @@
                     >
                         <div class="bpt-sm-text bpt-sm-text--right bpt-reveal">
                             <h3 class="bpt-title bpt-kicker">
-                                Lời ban truyền định danh cho hạnh phúc lứa đôi
+                                ...Lời ban truyền định danh cho hạnh phúc lứa đôi
                             </h3>
                             <p>
                                 Lại có một giai thoại khác mà người dân làng
@@ -1585,7 +1588,11 @@
                         </div>
                     </div>
                 </div>
+                <p class="ch2-gallery__caption">
+                    "Nguyên liệu làm bánh được chọn lọc và chuẩn bị một cách kỹ càng." (Nguồn: Tất Hiếu)
+                </p>
             </div>
+            <!-- /#section-bpt-ch2-gallery-1 -->
 
             <!-- Section 3: Nghệ nhân & Quy trình -->
             <div
@@ -2427,11 +2434,6 @@
                             playsinline
                             poster="assets/chuong-3/pho-bot-vang-khay.webp"
                         >
-                            <source
-                                src="assets/chuong-2/video-goi-banh.MP4"
-                                type="video/mp4"
-                            />
-                            Trình duyệt của bạn không hỗ trợ phát video.
                         </video>
                     </div>
                 </div>
@@ -2481,7 +2483,7 @@
             <!-- § 6c — IMAGE GALLERY: 5.1–5.2 -->
             <div id="section-bpt-ch3-gallery-5" class="bpt-ch3 bpt-ch3-section ch3-gallery">
                 <div class="ch3-gallery__grid ch3-gallery__grid--2">
-                    <div class="ch3-gallery__item ch3-anim-revealDrop ch3-d1">
+                    <div class="ch3-gallery__item ch3-anim-slideInLeft">
                         <img
                             src="assets/chương-3/5.1.webp"
                             alt="Bánh phu thê được hoàn thiện"
@@ -2489,7 +2491,7 @@
                             decoding="async"
                         />
                     </div>
-                    <div class="ch3-gallery__item ch3-anim-revealRise ch3-d2">
+                    <div class="ch3-gallery__item ch3-anim-slideInLeft">
                         <img
                             src="assets/chương-3/5.2.webp"
                             alt="Xếp bánh vào xửng hấp"
@@ -2587,11 +2589,6 @@
                             playsinline
                             poster="assets/chuong-3/pho-bot-vang-khay.webp"
                         >
-                            <source
-                                src="assets/chuong-2/video-goi-banh.MP4"
-                                type="video/mp4"
-                            />
-                            Trình duyệt của bạn không hỗ trợ phát video.
                         </video>
                     </div>
                 </div>

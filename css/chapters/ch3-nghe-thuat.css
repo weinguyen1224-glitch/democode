@@ -21,6 +21,12 @@
     position: relative;
 }
 
+/* ── Performance: skip rendering off-screen sections ──────── */
+.bpt-ch3-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+}
+
 /* ── Shared reveal atoms (ch4-style: transition-based, simple) ── */
 /* All animated elements start hidden; .bpt-visible triggers them */
 
@@ -568,7 +574,7 @@
 
 .ch3-wipe {
     position: relative;
-    height: 300vh;
+    height: 200vh;
 }
 
 .ch3-wipe__sticky {

@@ -97,7 +97,7 @@
 /* ── Section wrapper — full viewport height ──────────────── */
 .bpt-nghe-nhan {
     position: relative;
-    min-height: 300vh;
+    min-height: 200vh;
     overflow: clip;
     background: #0d0b08;
     color: #f7e8cb;
@@ -141,7 +141,6 @@
     background-size: cover;
     background-position: center 35%;
     opacity: 0;
-    will-change: transform, opacity;
     transition: opacity 0.8s ease;
     z-index: 5;
 }
@@ -312,7 +311,6 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(151, 32, 35, 0.15), transparent);
     pointer-events: none;
-    will-change: transform, opacity;
 }
 
 /* ── Content overlay ─────────────────────────────────────── */
@@ -321,7 +319,7 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    min-height: 300vh;
+    min-height: 200vh;
 }
 
 /* ── Individual scenes ───────────────────────────────────── */
@@ -963,7 +961,7 @@
 /* ── Responsive: Tablet ──────────────────────────────────── */
 @media (max-width: 768px) {
     .bpt-nghe-nhan {
-        min-height: 300vh;
+        min-height: 200vh;
     }
 
     .bpt-nghe-nhan__scene {

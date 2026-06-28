@@ -407,8 +407,14 @@
 
 /* ── Ch2 Image Gallery (nhan-dau-xanh layout) ─────────────── */
 .ch2-gallery {
-    padding: clamp(12px, 2vw, 24px) 0 0;
+    padding: clamp(12px, 2vw, 24px) 0;
     background: var(--color-rice-paper, #f7e8cb);
+}
+
+.ch2-gallery__caption {
+    max-width: 900px;
+    margin: clamp(8px, 1.5vh, 16px) auto 0;
+    padding: 0 clamp(16px, 5vw, 80px);
 }
 
 .ch2-gallery__grid--nhan-dau-xanh {
