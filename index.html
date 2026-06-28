@@ -2140,47 +2140,56 @@
             </div>
             <!-- /#section-bpt-ch3-gallery-1 -->
 
-            <!-- § 3 — NGUYÊN LIỆU: Hero — background image + text overlay -->
+            <!-- § 3 — NGUYÊN LIỆU: Wipe scroll — bg image wipes to reveal second image -->
             <div
                 id="section-bpt-ch3-nguyen-lieu"
-                class="bpt-ch3 bpt-ch3-section ch3-hero"
+                class="bpt-ch3 bpt-ch3-section ch3-wipe"
+                data-ch3-wipe
             >
-                <div class="ch3-hero__bg">
+                <div class="ch3-wipe__sticky">
                     <img
+                        class="ch3-wipe__bottom"
+                        src="assets/chương-3/wipe2.webp"
+                        alt="Thợ làm bánh đang chuẩn bị nhân"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <img
+                        class="ch3-wipe__top"
                         src="assets/chương-3/wipe1.webp"
                         alt="Thợ làm bánh đang chuẩn bị nguyên liệu"
                         loading="lazy"
                         decoding="async"
                     />
-                </div>
-                <div class="ch3-hero__overlay" aria-hidden="true"></div>
-                <div class="ch3-hero__content">
-                    <div class="ch3-hero__body">
-                        <p class="ch3-anim-fadeInUp ch3-d2">
-                            Công việc làm bánh thường bắt đầu từ ba giờ sáng.
-                            Khi mọi người còn đang say giấc, những người thợ
-                            làm bánh đã tất bật chuẩn bị nguyên liệu và chế
-                            biến nhân cho một mẻ bánh mới. Người làm nghề quan
-                            niệm rằng muốn có chiếc bánh ngon trước hết phải có
-                            nguyên liệu tốt. Từ xa xưa, các cụ thường lựa chọn
-                            nếp cái hoa vàng để làm bánh bởi độ thơm và độ dẻo
-                            đặc biệt, ngày nay nhiều gia đình chuyển sang sử
-                            dụng nếp nhung nhưng vẫn giữ nguyên tiêu chuẩn
-                            khắt khe trong việc chọn gạo. Đỗ xanh phải là loại
-                            đỗ bở, thơm, đường phải là đường mía để tạo vị
-                            ngọt thanh, đu đủ xanh phải đạt độ già vừa phải
-                            để giữ được độ giòn khi hòa quyện cùng lớp bột.
-                            Sự kỹ lưỡng ấy không đơn thuần là yêu cầu nghề
-                            nghiệp. Với người Đình Bảng, bánh phu thê từ lâu
-                            đã là lễ vật xuất hiện trong những dịp trọng đại
-                            của đời người. Bởi vậy, việc lựa chọn nguyên liệu
-                            cũng giống như sự chuẩn bị cho một lời chúc phúc
-                            gửi tới đôi uyên ương. Một chiếc bánh ngon phải
-                            bắt đầu từ những nguyên liệu tốt nhất, cũng như
-                            một cuộc hôn nhân bền vững cần được xây dựng từ
-                            sự chân thành và chu đáo ngay từ những điều nhỏ
-                            nhất.
-                        </p>
+                    <div class="ch3-wipe__overlay" aria-hidden="true"></div>
+                    <div class="ch3-wipe__content">
+                        <div class="ch3-wipe__body">
+                            <p class="ch3-anim-fadeInUp ch3-d2">
+                                Công việc làm bánh thường bắt đầu từ ba giờ sáng.
+                                Khi mọi người còn đang say giấc, những người thợ
+                                làm bánh đã tất bật chuẩn bị nguyên liệu và chế
+                                biến nhân cho một mẻ bánh mới. Người làm nghề quan
+                                niệm rằng muốn có chiếc bánh ngon trước hết phải có
+                                nguyên liệu tốt. Từ xa xưa, các cụ thường lựa chọn
+                                nếp cái hoa vàng để làm bánh bởi độ thơm và độ dẻo
+                                đặc biệt, ngày nay nhiều gia đình chuyển sang sử
+                                dụng nếp nhung nhưng vẫn giữ nguyên tiêu chuẩn
+                                khắt khe trong việc chọn gạo. Đỗ xanh phải là loại
+                                đỗ bở, thơm, đường phải là đường mía để tạo vị
+                                ngọt thanh, đu đủ xanh phải đạt độ già vừa phải
+                                để giữ được độ giòn khi hòa quyện cùng lớp bột.
+                                Sự kỹ lưỡng ấy không đơn thuần là yêu cầu nghề
+                                nghiệp. Với người Đình Bảng, bánh phu thê từ lâu
+                                đã là lễ vật xuất hiện trong những dịp trọng đại
+                                của đời người. Bởi vậy, việc lựa chọn nguyên liệu
+                                cũng giống như sự chuẩn bị cho một lời chúc phúc
+                                gửi tới đôi uyên ương. Một chiếc bánh ngon phải
+                                bắt đầu từ những nguyên liệu tốt nhất, cũng như
+                                một cuộc hôn nhân bền vững cần được xây dựng từ
+                                sự chân thành và chu đáo ngay từ những điều nhỏ
+                                nhất.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3162,6 +3171,57 @@
 
                 /* ── Wipe/Reveal Effect on Scroll ─────────────────── */
                 var wipeSections = document.querySelectorAll("[data-wipe]");
+
+                /* ── Ch3 Wipe Effect (scroll-triggered) ──────────── */
+                var ch3Wipes = document.querySelectorAll("[data-ch3-wipe]");
+                if (ch3Wipes.length) {
+                    function updateCh3Wipe(section) {
+                        var topImg = section.querySelector(".ch3-wipe__top");
+                        if (!topImg) return;
+
+                        var rect = section.getBoundingClientRect();
+                        var wrapperHeight = section.offsetHeight;
+                        var windowHeight = window.innerHeight;
+
+                        var scrolled = -rect.top;
+                        var scrollRange = wrapperHeight - windowHeight;
+
+                        var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+
+                        var clipBottom = progress * 100;
+                        topImg.style.clipPath = "inset(0 0 " + clipBottom + "% 0)";
+                    }
+
+                    var ch3WipeTicking = false;
+                    window.addEventListener(
+                        "scroll",
+                        function () {
+                            if (!ch3WipeTicking) {
+                                requestAnimationFrame(function () {
+                                    ch3Wipes.forEach(function (section) {
+                                        var rect = section.getBoundingClientRect();
+                                        if (
+                                            rect.top < window.innerHeight &&
+                                            rect.bottom > 0
+                                        ) {
+                                            updateCh3Wipe(section);
+                                        }
+                                    });
+                                    ch3WipeTicking = false;
+                                });
+                                ch3WipeTicking = true;
+                            }
+                        },
+                        { passive: true },
+                    );
+
+                    ch3Wipes.forEach(function (section) {
+                        var rect = section.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            updateCh3Wipe(section);
+                        }
+                    });
+                }
                 if (!wipeSections.length) return;
 
                 function updateWipe(section) {

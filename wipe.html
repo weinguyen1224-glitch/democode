@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wipe Scroll Effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        .spacer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .wipe-wrapper {
+            height: 300vh;
+            position: relative;
+        }
+
+        .wipe-sticky {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .wipe-sticky img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wipe-top {
+            z-index: 2;
+            clip-path: inset(0 0 0 0);
+        }
+
+        .wipe-bottom {
+            z-index: 1;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ade80, #22d3ee);
+            width: 0%;
+            z-index: 100;
+            transition: width 0.05s linear;
+        }
+
+        .hint {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="spacer">Cuộn xuống để xem hiệu ứng wipe ↓</div>
+
+    <div class="wipe-wrapper" id="wipeWrapper">
+        <div class="wipe-sticky" id="wipeSticky">
+            <img class="wipe-bottom" src="assets/chương-3/wipe2.webp" alt="After">
+            <img class="wipe-top" id="wipeTop" src="assets/chương-3/wipe1.webp" alt="Before">
+        </div>
+    </div>
+
+    <div class="hint">Hết hiệu ứng</div>
+
+    <div class="spacer">Cuộn tiếp ↓</div>
+
+    <script>
+        const wipeWrapper = document.getElementById('wipeWrapper');
+        const wipeTop = document.getElementById('wipeTop');
+        const progressBar = document.getElementById('progressBar');
+
+        function updateWipe() {
+            const rect = wipeWrapper.getBoundingClientRect();
+            const wrapperHeight = wipeWrapper.offsetHeight;
+            const windowHeight = window.innerHeight;
+
+            const scrolled = -rect.top;
+            const scrollRange = wrapperHeight - windowHeight;
+
+            const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+
+            const clipBottom = progress * 100;
+            wipeTop.style.clipPath = `inset(0 0 ${clipBottom}% 0)`;
+
+            progressBar.style.width = `${progress * 100}%`;
+        }
+
+        window.addEventListener('scroll', updateWipe, { passive: true });
+        window.addEventListener('resize', updateWipe);
+        updateWipe();
+    </script>
+</body>
+</html>
