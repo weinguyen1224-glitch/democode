@@ -21,7 +21,14 @@
           entry.target.querySelectorAll(".bpt-split-scene, .bpt-scene__centered").forEach((el) => {
             el.classList.add("bpt-visible");
           });
-          sceneObs.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove("bpt-visible");
+          entry.target.querySelectorAll(".bpt-reveal").forEach((el) => {
+            el.classList.remove("bpt-visible");
+          });
+          entry.target.querySelectorAll(".bpt-split-scene, .bpt-scene__centered").forEach((el) => {
+            el.classList.remove("bpt-visible");
+          });
         }
       });
     },

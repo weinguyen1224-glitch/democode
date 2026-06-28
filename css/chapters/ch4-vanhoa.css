@@ -829,6 +829,17 @@
     transition: transform 0.5s var(--c4-ease);
 }
 
+.ch4-prose-section__img-wrap img[alt*="xu xuê"],
+.ch4-prose-section__img-wrap img[alt*="miền Trung"] {
+    transform: scale(1.5);
+    transform-origin: center center;
+}
+
+.ch4-prose-section__img-wrap:has(img[alt*="xu xuê"]),
+.ch4-prose-section__img-wrap:has(img[alt*="miền Trung"]) {
+    overflow: visible;
+}
+
 .ch4-prose-section__img-wrap:hover img {
     transform: scale(1.03);
 }
