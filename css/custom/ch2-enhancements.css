@@ -405,6 +405,91 @@
     z-index: 3;
 }
 
+/* ── Ch2 Image Gallery (nhan-dau-xanh layout) ─────────────── */
+.ch2-gallery {
+    padding: clamp(12px, 2vw, 24px) 0 0;
+    background: var(--color-rice-paper, #f7e8cb);
+}
+
+.ch2-gallery__grid--nhan-dau-xanh {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.5vw, 16px);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__item {
+    aspect-ratio: auto;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__item--wide {
+    width: 100%;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__item--wide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: clamp(8px, 1.5vw, 16px);
+    width: 100%;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__bottom-row .ch2-gallery__item--left,
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__bottom-row .ch2-gallery__item--right {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ch2-gallery__grid--nhan-dau-xanh .ch2-gallery__bottom-row .ch2-gallery__item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Animation: hidden by default */
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInLeft,
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition:
+        opacity 0.63s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.63s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
+    transform: translateX(40px);
+}
+
+#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
+    transition-duration: 0.98s;
+}
+
+/* Animation: trigger when section visible */
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInLeft,
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInRight,
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInRight-slow {
+    opacity: 1;
+    transform: none;
+}
+
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d1 { transition-delay: 0.07s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d2 { transition-delay: 0.21s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d3 { transition-delay: 0.35s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d4 { transition-delay: 0.49s; }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .bpt-scene .bpt-prose,
@@ -424,8 +509,14 @@
     .bpt-scene__centered.bpt-visible .bpt-kicker,
     .bpt-ca-dao.bpt-visible,
     .bpt-ca-dao.bpt-quote-visible,
-    .bpt-ca-dao--finale::before {
+    .bpt-ca-dao--finale::before,
+    #section-bpt-ch2-gallery-1 .ch2-anim-slideInLeft,
+    #section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
+    #section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
         animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 
     .bpt-scene::before,

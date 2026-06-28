@@ -1,0 +1,372 @@
+/* ═══════════════════════════════════════════════════════════
+   CHƯƠNG II — Standalone Wipe-based Redesign
+   Lightweight: CSS-only wipe transitions, no heavy JS.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --c-bg: #f7e8cb;
+    --c-accent: #972023;
+    --c-text: #1a1a1a;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: "Vollkorn", "Georgia", serif;
+    background: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ── Divider ─────────────────────────────────────────────── */
+.ch2-divider {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 320px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ch2-divider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ch2-divider__vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+}
+
+.ch2-divider__title {
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* ── Wipe Section (shared) ───────────────────────────────── */
+.ch2-wipe {
+    position: relative;
+    height: 300vh;
+}
+
+.ch2-wipe__sticky {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.ch2-wipe__sticky img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ch2-wipe__bottom {
+    z-index: 1;
+}
+
+.ch2-wipe__top-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    clip-path: inset(0 0 0 0);
+}
+
+.ch2-wipe__top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ch2-wipe__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.ch2-wipe__overlay--warm {
+    background: linear-gradient(135deg, rgba(247, 232, 203, 0.55), rgba(151, 32, 35, 0.15));
+}
+
+.ch2-wipe__overlay--dark {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), rgba(26, 26, 26, 0.25));
+}
+
+.ch2-wipe__overlay--golden {
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.4), rgba(247, 232, 203, 0.3));
+}
+
+.ch2-wipe__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px clamp(24px, 6vw, 80px);
+}
+
+.ch2-wipe__body {
+    max-width: 800px;
+    width: 100%;
+}
+
+.ch2-wipe__body p {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.85;
+    color: #fff;
+    text-shadow:
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 0, 0, 0.25);
+    margin: 0;
+}
+
+.ch2-wipe__body p + p {
+    margin-top: 1.2em;
+}
+
+.ch2-wipe__body em {
+    font-style: italic;
+    color: #f7e8cb;
+}
+
+/* ── Reveal Animation (fade up) ──────────────────────────── */
+.ch2-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.7s var(--ease),
+        transform 0.7s var(--ease);
+}
+
+.bpt-visible .ch2-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.bpt-visible .ch2-reveal-d1 { transition-delay: 0.1s; }
+.bpt-visible .ch2-reveal-d2 { transition-delay: 0.25s; }
+.bpt-visible .ch2-reveal-d3 { transition-delay: 0.4s; }
+
+/* ── Gallery (simple grid) ───────────────────────────────── */
+.ch2-gallery {
+    padding: clamp(24px, 4vh, 60px) clamp(16px, 5vw, 80px);
+    background: var(--c-bg);
+}
+
+.ch2-gallery__title {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    color: var(--c-accent);
+    text-align: center;
+    margin-bottom: clamp(16px, 3vh, 32px);
+}
+
+.ch2-gallery__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(8px, 1.5vw, 16px);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ch2-gallery__item {
+    overflow: hidden;
+    border-radius: 4px;
+    line-height: 0;
+}
+
+.ch2-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+}
+
+.ch2-gallery__item:hover img {
+    transform: scale(1.03);
+}
+
+.ch2-gallery__item--full {
+    grid-column: 1 / -1;
+}
+
+.ch2-gallery__item--full img {
+    height: auto;
+    object-fit: contain;
+}
+
+.ch2-gallery__caption {
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.6);
+    text-align: center;
+    margin-top: clamp(8px, 1.5vh, 16px);
+    font-style: italic;
+}
+
+/* ── Five Elements Cards ─────────────────────────────────── */
+.ch2-ngu-hanh {
+    padding: clamp(40px, 8vh, 80px) clamp(24px, 6vw, 80px);
+    background: var(--c-bg);
+    text-align: center;
+}
+
+.ch2-ngu-hanh__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--c-accent);
+    margin-bottom: clamp(8px, 2vh, 16px);
+}
+
+.ch2-ngu-hanh__intro {
+    max-width: 700px;
+    margin: 0 auto clamp(24px, 4vh, 48px);
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    line-height: 1.75;
+    color: var(--c-text);
+}
+
+.ch2-hanh-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 24px);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.ch2-hanh-card {
+    flex: 0 0 clamp(140px, 18vw, 180px);
+    padding: clamp(16px, 2vh, 28px) clamp(12px, 1.5vw, 20px);
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.ch2-hanh-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+}
+
+.ch2-hanh-card__name {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.ch2-hanh-card__label {
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+
+.ch2-hanh-card__desc {
+    font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.ch2-hc-moc { background: linear-gradient(135deg, #4A7C59, #3a6347); }
+.ch2-hc-kim { background: linear-gradient(135deg, #8A8070, #6d6558); }
+.ch2-hc-tho { background: linear-gradient(135deg, #D4A843, #b8912e); }
+.ch2-hc-hoa { background: linear-gradient(135deg, #972023, #7a1a1c); }
+.ch2-hc-thuy { background: linear-gradient(135deg, #6B9BC3, #5580a0); }
+
+/* ── Closing Section ─────────────────────────────────────── */
+.ch2-closing {
+    padding: clamp(40px, 8vh, 80px) clamp(24px, 6vw, 100px);
+    background: var(--c-bg);
+    text-align: center;
+}
+
+.ch2-closing__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ch2-closing__content p {
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    line-height: 1.85;
+    color: var(--c-text);
+    text-align: justify;
+    margin-bottom: 1em;
+}
+
+.ch2-closing__content p:last-child {
+    margin-bottom: 0;
+}
+
+.ch2-closing__content em {
+    font-style: italic;
+    color: var(--c-accent);
+}
+
+.ch2-closing__line {
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin: clamp(24px, 4vh, 48px) auto 0;
+    background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+    opacity: 0.4;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .ch2-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .ch2-wipe__top-layer {
+        clip-path: none !important;
+    }
+
+    .ch2-gallery__item img {
+        transition: none !important;
+    }
+
+    .ch2-hanh-card {
+        transition: none !important;
+    }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .ch2-hanh-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ch2-hanh-card {
+        width: 100%;
+        max-width: 280px;
+    }
+}

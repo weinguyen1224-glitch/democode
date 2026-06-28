@@ -4,7 +4,7 @@
 (() => {
   // Reveal animations for bpt-split-scene and bpt-scene sections
   const sceneEls = document.querySelectorAll(
-    "#section-bpt-ch2-mo-dau, #section-bpt-ch2-nghe-nhan, #section-bpt-ch2-bao-ton",
+    "#section-bpt-ch2-mo-dau, #section-bpt-ch2-nghe-nhan, #section-bpt-ch2-bao-ton, #section-bpt-ch2-gallery-1",
   );
 
   if (!sceneEls.length) return;
