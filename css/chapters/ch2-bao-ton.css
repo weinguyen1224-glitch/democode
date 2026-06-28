@@ -147,6 +147,9 @@
 
 .bpt-nghe-nhan__bg-layer--kicker {
     background-image: url("../../assets/chuong-2/3h-sang.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .bpt-nghe-nhan__bg-layer--quote {
@@ -283,8 +286,9 @@
     position: absolute;
     inset: 0;
     background-image: url("../../assets/chuong-2/3h-sang.webp");
-    background-size: cover;
-    background-position: center 35%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .bpt-nghe-nhan__reveal-top {

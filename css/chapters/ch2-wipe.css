@@ -103,10 +103,6 @@ img { max-width: 100%; display: block; }
     display: block;
 }
 
-.ch2-wipe__sticky .ch2-wipe__top--contain {
-    object-fit: contain;
-}
-
 .ch2-wipe__overlay {
     position: absolute;
     inset: 0;
