@@ -412,9 +412,13 @@
 }
 
 .ch2-gallery__caption {
-    max-width: 900px;
-    margin: clamp(8px, 1.5vh, 16px) auto 0;
+    width: 100%;
+    margin-top: clamp(8px, 1.5vh, 16px);
     padding: 0 clamp(16px, 5vw, 80px);
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(26, 26, 26, 0.6);
+    font-style: italic;
 }
 
 .ch2-gallery__grid--nhan-dau-xanh {
