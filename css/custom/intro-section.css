@@ -68,7 +68,7 @@
 
 /* ─── Body text container ─── */
 #article .bpt-intro__body {
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-size: clamp(0.85rem, 3.8vw, 1.65rem);
     font-weight: 700;
     line-height: 1.7;

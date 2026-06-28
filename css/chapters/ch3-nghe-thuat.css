@@ -247,79 +247,79 @@
 
 /* Triggered state — play animation */
 .bpt-ch3-section.bpt-visible .ch3-anim-fadeInUp {
-    animation: ch3DriftUp 1s var(--ease) both;
+    animation: ch3DriftUp 2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-zoomIn {
-    animation: ch3FlipSwoop 1.1s var(--ease) both;
+    animation: ch3FlipSwoop 2.2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInLeft {
-    animation: ch3SlideInLeft 0.9s var(--ease) both;
+    animation: ch3SlideInLeft 1.8s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-slideInRight {
-    animation: ch3SlideInRight 0.9s var(--ease) both;
+    animation: ch3SlideInRight 1.8s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rollIn {
-    animation: ch3RollIn 1s var(--ease) both;
+    animation: ch3RollIn 2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-jackInTheBox {
-    animation: ch3PopSpin 1s var(--ease) both;
+    animation: ch3PopSpin 2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-rotateIn {
-    animation: ch3SpinFromRight 1s var(--ease) both;
+    animation: ch3SpinFromRight 2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-bounceIn {
-    animation: ch3BounceSpin 1.1s var(--ease) both;
+    animation: ch3BounceSpin 2.2s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-dropFromTop {
-    animation: ch3DropIn 0.9s var(--ease) both;
+    animation: ch3DropIn 1.8s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-flyLeft {
-    animation: ch3FlyFromLeft 0.8s var(--ease) both;
+    animation: ch3FlyFromLeft 1.6s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-flyRight {
-    animation: ch3FlyFromRight 0.8s var(--ease) both;
+    animation: ch3FlyFromRight 1.6s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-flyTop {
-    animation: ch3FlyFromTop 0.8s var(--ease) both;
+    animation: ch3FlyFromTop 1.6s var(--ease) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-flyBot {
-    animation: ch3FlyFromBot 0.8s var(--ease) both;
+    animation: ch3FlyFromBot 1.6s var(--ease) both;
 }
 
 /* Gallery 2.1–2.4 dramatic reveal animations */
 .bpt-ch3-section.bpt-visible .ch3-anim-revealZoom {
-    animation: ch3RevealZoom 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealZoom 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealSlideL {
-    animation: ch3RevealSlideLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealSlideLeft 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealSlideR {
-    animation: ch3RevealSlideRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealSlideRight 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealDrop {
-    animation: ch3RevealDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealDrop 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealRise {
-    animation: ch3RevealRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealRise 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealSway {
-    animation: ch3RevealSway 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealSway 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealPop {
-    animation: ch3RevealPop 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealPop 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .bpt-ch3-section.bpt-visible .ch3-anim-revealTilt {
-    animation: ch3RevealTilt 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: ch3RevealTilt 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Animation stagger delays — ch4-style: simple class overrides */
-.bpt-ch3-section.bpt-visible .ch3-d1 { animation-delay: 0.05s; }
-.bpt-ch3-section.bpt-visible .ch3-d2 { animation-delay: 0.15s; }
-.bpt-ch3-section.bpt-visible .ch3-d3 { animation-delay: 0.25s; }
-.bpt-ch3-section.bpt-visible .ch3-d4 { animation-delay: 0.35s; }
-.bpt-ch3-section.bpt-visible .ch3-d5 { animation-delay: 0.45s; }
-.bpt-ch3-section.bpt-visible .ch3-d6 { animation-delay: 0.55s; }
-.bpt-ch3-section.bpt-visible .ch3-d7 { animation-delay: 0.65s; }
+.bpt-ch3-section.bpt-visible .ch3-d1 { animation-delay: 0.1s; }
+.bpt-ch3-section.bpt-visible .ch3-d2 { animation-delay: 0.3s; }
+.bpt-ch3-section.bpt-visible .ch3-d3 { animation-delay: 0.5s; }
+.bpt-ch3-section.bpt-visible .ch3-d4 { animation-delay: 0.7s; }
+.bpt-ch3-section.bpt-visible .ch3-d5 { animation-delay: 0.9s; }
+.bpt-ch3-section.bpt-visible .ch3-d6 { animation-delay: 1.1s; }
+.bpt-ch3-section.bpt-visible .ch3-d7 { animation-delay: 1.3s; }
 
 /* Mosaic images — simple fade-in, no transform conflicts */
 .ch3-split__mosaic .ch3-anim-fadeInUp,
@@ -332,13 +332,13 @@
 
 /* Mosaic images appear AFTER text — delay each image stagger */
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d1 {
-    animation-delay: 0.4s;
+    animation-delay: 0.8s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d2 {
-    animation-delay: 0.55s;
+    animation-delay: 1.1s;
 }
 .bpt-ch3-section.bpt-visible .ch3-split__mosaic .ch3-d3 {
-    animation-delay: 0.7s;
+    animation-delay: 1.4s;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -549,6 +549,7 @@
 
 /* ── Body text ────────────────────────────────────────────────── */
 #article .ch3-intro__body {
+    font-family: "Vollkorn";
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: rgba(26, 26, 26, 0.75);
@@ -603,6 +604,7 @@
 }
 
 .ch3-hero__body p {
+    font-family: "Vollkorn";
     font-size: clamp(1.1rem, 1.5vw, 1.35rem);
     line-height: 1.85;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -748,6 +750,7 @@
 }
 
 #article .ch3-split__body {
+    font-family: "Vollkorn";
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: var(--c-text-dim);
@@ -1038,6 +1041,7 @@
 }
 
 .ch3-step__body {
+    font-family: "Vollkorn";
     font-size: clamp(0.85rem, 1.3vw, 0.95rem);
     line-height: 1.75;
     color: var(--c-text-dim);
@@ -1243,7 +1247,7 @@
 }
 
 #section-bpt-ch3-thanh-pham.bpt-visible .ch3-thanh-pham__image {
-    animation: ch3-thanh-pham-reveal 1.2s var(--ease) 0.15s forwards;
+    animation: ch3-thanh-pham-reveal 2.4s var(--ease) 0.3s forwards;
 }
 
 .ch3-thanh-pham__image img {
@@ -1264,6 +1268,7 @@
 }
 
 #article .ch3-thanh-pham__body {
+    font-family: "Vollkorn";
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: var(--c-text-dim);
@@ -1921,6 +1926,14 @@
 /* Gallery 5: closer to preceding text */
 #section-bpt-ch3-gallery-5 {
     padding-top: clamp(2px, 0.4vh, 6px);
+    padding-bottom: 0;
+}
+
+/* Gallery 5: zero gap between grid and caption */
+#section-bpt-ch3-gallery-5 .ch3-gallery__caption {
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
 }
 
 /* Bao quan: closer to hấp & gói text above */
@@ -1992,8 +2005,9 @@
 
 .ch3-gallery__caption {
     text-align: center;
-    margin-top: 8px;
-    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+    margin: 0;
+    padding: 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     color: var(--c-text-dim);
     font-style: italic;
     line-height: 1.5;
@@ -2011,9 +2025,24 @@
 
 /* ── Vỏ bánh gallery layout (natural proportions) ── */
 #section-bpt-ch3-gallery-2.ch3-gallery {
-    padding: clamp(16px, 3vw, 40px) clamp(16px, 5vw, 80px);
+    padding: clamp(16px, 3vw, 40px) clamp(16px, 5vw, 80px) 0;
     background: var(--c-bg);
 }
+
+/* Slow down gallery-2 animations to 0.5× speed */
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-anim-slideInLeft {
+    animation-duration: 1.8s;
+}
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-anim-slideInRight {
+    animation-duration: 1.8s;
+}
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-anim-slideInRight-slow {
+    animation-duration: 2.8s;
+}
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-d1 { animation-delay: 0.1s; }
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-d2 { animation-delay: 0.3s; }
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-d3 { animation-delay: 0.5s; }
+#section-bpt-ch3-gallery-2.bpt-visible .ch3-d4 { animation-delay: 0.7s; }
 
 .ch3-gallery__grid--vo-banh {
     display: flex;
@@ -2108,22 +2137,23 @@
 /* Caption */
 #section-bpt-ch3-gallery-2 .ch3-gallery__caption {
     text-align: center;
-    margin-top: clamp(8px, 1.5vw, 16px);
-    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+    margin: clamp(8px, 1.5vw, 16px) 0 0;
+    padding: 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     color: var(--c-text-dim);
     font-style: italic;
 }
 
-/* Mobile: single column */
+/* Mobile: keep 2-column layout for bottom row */
 @media (max-width: 768px) {
     #section-bpt-ch3-gallery-2.ch3-gallery {
         padding: clamp(12px, 2vw, 20px) clamp(12px, 3vw, 24px);
     }
 
     .ch3-gallery__grid--vo-banh .ch3-gallery__bottom-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         aspect-ratio: auto;
-        gap: clamp(8px, 1.5vw, 16px);
+        gap: clamp(6px, 1.2vw, 12px);
     }
 
     .ch3-gallery__grid--vo-banh .ch3-gallery__bottom-row .ch3-gallery__item--left,

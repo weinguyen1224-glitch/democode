@@ -41,7 +41,7 @@
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: Outfit, sans-serif;
+  font-family: "Vollkorn";
   font-size: 18px;
 }
 .Theme-HeaderContainer ::-moz-selection {
@@ -128,7 +128,7 @@
 }
 .Theme-Layer-BodyText p,
 .Theme-Story p {
-  font-family: Outfit, sans-serif;
+  font-family: "Vollkorn";
   font-weight: 400;
   line-height: 1.7;
   font-size: inherit;
@@ -1083,7 +1083,7 @@
 .Theme-Layer-BodyText {
   word-wrap: break-word;
   padding: calc(48px - 1.5rem) 25px 48px;
-  font-family: Outfit, sans-serif;
+  font-family: "Vollkorn";
 }
 @media (max-width: 619px) {
   .Theme-Layer-BodyText {

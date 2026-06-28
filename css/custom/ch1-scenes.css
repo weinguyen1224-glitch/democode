@@ -87,7 +87,7 @@
 }
 
 .bpt-zoom-scene__text p {
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-size: clamp(1.1rem, 1.8vw, 1.55rem);
     line-height: 1.8;
     color: var(--color-ink);
@@ -348,7 +348,7 @@
 }
 
 .bpt-sm-text p {
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-size: clamp(1.05rem, 1.7vw, 1.45rem);
     line-height: 1.82;
     color: rgb(30 20 10); /* đen ấm, nổi trên nền kem sáng */

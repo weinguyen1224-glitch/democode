@@ -55,7 +55,7 @@
 }
 
 .bpt-ngu-hanh__hint {
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-style: italic;
     font-size: clamp(0.85rem, 1.2vw, 1rem);
     color: var(--color-sticky-rice-gold, #972023);
@@ -361,7 +361,7 @@
 }
 
 .bpt-ngu-hanh__info-badge {
-    font-family: "Vollkorn", "PT Serif", serif;
+    font-family: "Vollkorn";
     font-size: 0.8rem;
     font-style: italic;
     color: var(--color-ink, #1a1a1a);
@@ -370,7 +370,7 @@
 }
 
 .bpt-ngu-hanh__info-meaning {
-    font-family: "Vollkorn", "PT Serif", serif;
+    font-family: "Vollkorn";
     font-size: 0.88rem;
     line-height: 1.5;
     color: var(--color-ink, #1a1a1a);

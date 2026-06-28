@@ -20,7 +20,7 @@
     background: var(--c4-bg) !important;
     color: var(--c4-text) !important;
     position: relative;
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     margin: 0;
 }
 
@@ -628,7 +628,7 @@
     grid-column: 1 / -1;
     display: block;
     text-align: center;
-    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     color: rgba(255, 255, 255, 0.7);
     font-style: italic;
     margin: 4px 0 0;
@@ -1005,7 +1005,7 @@
 }
 
 .ch4-closing p {
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.8;
     font-style: italic;
@@ -1389,7 +1389,7 @@
 
 .ch4-3d-viewer__subtitle {
     margin: 0;
-    font-family: "Vollkorn", "PT Serif", Georgia, serif;
+    font-family: "Vollkorn";
     font-size: clamp(0.9rem, 1.4vw, 1.15rem);
     color: var(--c4-text-dim);
     line-height: 1.6;

@@ -257,6 +257,50 @@
                 margin: 0;
             }
 
+            /* Horizontal scroll gallery — edge to edge */
+            .ch5-scroll-gallery {
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+
+            .ch5-scroll-gallery__track {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
+
+            .ch5-scroll-gallery__track img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                cursor: pointer;
+                transition: transform 0.4s ease;
+                opacity: 0;
+            }
+
+            .ch5-scroll-gallery__track img.ch5-visible {
+                opacity: 1;
+            }
+
+            .ch5-scroll-gallery__track img:hover {
+                transform: scale(1.02);
+            }
+
+            .ch5-scroll-gallery__item--full {
+                grid-column: 1 / -1;
+            }
+
+            .ch5-scroll-gallery__caption-wrap {
+                padding: 12px 0 0;
+                text-align: center;
+                opacity: 0;
+            }
+
+            .ch5-scroll-gallery__caption-wrap.ch5-visible {
+                opacity: 1;
+            }
+
             /* Grid Layout — Asymmetric mosaic */
             .ch5-grid {
                 display: grid;
@@ -311,7 +355,7 @@
                 background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
                 color: #fff;
                 font-family: "Outfit", sans-serif;
-                font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+                font-size: clamp(0.95rem, 1.5vw, 1.1rem);
                 line-height: 1.5;
                 opacity: 0;
                 transform: translateY(10px);
@@ -367,9 +411,9 @@
                 line-height: 1;
             }
 
-            .ch5-poem p {
-                margin: 0 0 8px;
-                font-family: "Vollkorn", "PT Serif", Georgia, serif;
+.ch5-poem p {
+    margin: 0 0 8px;
+    font-family: "Vollkorn";
                 font-size: clamp(1.2rem, 2.2vw, 1.6rem);
                 font-style: italic;
                 line-height: 1.9;
@@ -437,9 +481,9 @@
                 border: none;
             }
 
-            .ch5-final p {
-                margin: 0 0 8px;
-                font-family: "Vollkorn", "PT Serif", Georgia, serif;
+.ch5-final p {
+    margin: 0 0 8px;
+    font-family: "Vollkorn";
                 font-size: clamp(1.2rem, 2.2vw, 1.6rem);
                 font-style: italic;
                 line-height: 1.9;
@@ -653,6 +697,10 @@
                 .ch5-grid__cell--wide {
                     grid-column: span 2;
                 }
+
+                .ch5-scroll-gallery__track {
+                    grid-template-columns: 1fr 1fr;
+                }
             }
 
             @media (max-width: 480px) {
@@ -665,6 +713,76 @@
                 .ch5-grid__cell--wide {
                     grid-column: span 1;
                 }
+
+                .ch5-scroll-gallery__track {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* ═══════════════════════════════════════════════════════
+               SCROLL GALLERY — Animation
+               ═══════════════════════════════════════════════════════ */
+            @keyframes ch5-gallery-zoom-in {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.85) rotate(-2deg);
+                    filter: blur(8px) brightness(0.6);
+                }
+                60% {
+                    opacity: 1;
+                    filter: blur(0) brightness(1.1);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) rotate(0deg);
+                    filter: blur(0) brightness(1);
+                }
+            }
+
+            @keyframes ch5-gallery-slide-up {
+                0% {
+                    opacity: 0;
+                    transform: translateY(60px) scale(0.9);
+                    filter: blur(4px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                    filter: blur(0);
+                }
+            }
+
+            @keyframes ch5-gallery-fade-caption {
+                0% {
+                    opacity: 0;
+                    transform: translateY(16px);
+                    letter-spacing: 0.12em;
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                    letter-spacing: normal;
+                }
+            }
+
+            .ch5-scroll-gallery__track .ch5-reveal.ch5-visible {
+                animation: ch5-gallery-zoom-in 1.69s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+            }
+
+            .ch5-scroll-gallery__track .ch5-reveal.ch5-visible:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            .ch5-scroll-gallery__track .ch5-reveal.ch5-visible:nth-child(2) {
+                animation: ch5-gallery-slide-up 1.56s cubic-bezier(0.22, 1, 0.36, 1) 0.25s backwards;
+            }
+
+            .ch5-scroll-gallery__track .ch5-reveal.ch5-visible:nth-child(3) {
+                animation: ch5-gallery-slide-up 1.56s cubic-bezier(0.22, 1, 0.36, 1) 0.45s backwards;
+            }
+
+            .ch5-scroll-gallery__caption-wrap.ch5-visible {
+                animation: ch5-gallery-fade-caption 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.65s backwards;
             }
 
             /* ═══════════════════════════════════════════════════════
@@ -716,6 +834,16 @@
                 width: 100%;
                 height: auto;
                 object-fit: cover;
+            }
+
+            .ch5-prose__caption {
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                font-size: 0.82em;
+                color: var(--c5-text);
+                font-style: italic;
+                line-height: 1.5;
             }
 
             /* Horizontal swipe container */
@@ -1376,7 +1504,7 @@
                 <div class="bpt-scene__centered bpt-reveal">
                     <div class="bpt-prose">
                         <h3 class="bpt-title bpt-kicker">
-                            Bánh phu thê — bình dị mà tinh tế
+                            Bánh phu thê - bình dị mà tinh tế
                         </h3>
                         <p>
                             Nếu chỉ nhìn thoáng qua, chiếc bánh phu thê cũng
@@ -1524,9 +1652,7 @@
                     <!-- Text trái -->
                     <div class="bpt-ngu-hanh__text bpt-reveal">
                         <div class="bpt-prose">
-                            <h3 class="bpt-title bpt-kicker">
-                                Ngũ Hành trong chiếc bánh
-                            </h3>
+
                             <p>
                                 Sự tinh tế của các nguyên liệu còn được thể hiện
                                 thông qua sự cân bằng Ngũ hành trong triết học
@@ -1536,20 +1662,7 @@
                                 trời, từ đó biểu thị mong cầu cho đời sống hôn
                                 nhân thuận hòa của người Việt xưa.
                             </p>
-                            <p>
-                                Nếu chỉ nhìn thoáng qua, bánh phu thê chỉ là một
-                                thức quà ngọt ngào giản dị. Nhưng ẩn sâu bên
-                                trong lớp lá dong xanh và sợi lạt đỏ thắm kia là
-                                cả một vũ trụ thu nhỏ — nơi năm nguyên tố của
-                                trời đất hội tụ, cân bằng và hòa quyện.
-                            </p>
-                            <p>
-                                Người xưa đã gửi vào chiếc bánh triết lý ngũ
-                                hành sâu sắc: Mộc nuôi dưỡng, Kim gắn kết, Thổ
-                                ổn định, Hỏa thắp lên, Thủy dẫn đường. Đủ năm
-                                hành — hứa hẹn một hôn nhân trọn vẹn, hạnh phúc
-                                viên mãn.
-                            </p>
+
                         </div>
                         <p
                             class="bpt-ngu-hanh__hint"
@@ -1938,7 +2051,7 @@
                             vào nhau tạo thành một hương vị nồng nàn và dịu
                             ngọt, như có thể cảm nhận được tình nghĩa vợ
                             chồng mà người Việt đã vun vén qua hàng bao thế
-                            hệ..&rdquo;
+                            hệ&rdquo;.
                         </p>
                     </div>
                 </div>
@@ -2034,7 +2147,7 @@
             >
                 <div class="ch3-hero__bg">
                     <img
-                        src="assets/chương-3/5.1.webp"
+                        src="assets/chương-3/wipe1.webp"
                         alt="Thợ làm bánh đang chuẩn bị nguyên liệu"
                         loading="lazy"
                         decoding="async"
@@ -2228,6 +2341,7 @@
                             decoding="async"
                         />
                     </div>
+                     <p class="ch3-gallery__caption">“Giai đoạn ủ bột và nặn bánh kỳ công nhất trong toàn bộ quy trình” (Nguồn: Ngọc Anh)</p>
                 </div>
                 <div class="ch3-split__text">
                     <div class="ch3-split__body ch3-anim-fadeInUp ch3-d3">
@@ -2313,7 +2427,7 @@
             <!-- § 6c — IMAGE GALLERY: 5.1–5.2 -->
             <div id="section-bpt-ch3-gallery-5" class="bpt-ch3 bpt-ch3-section ch3-gallery">
                 <div class="ch3-gallery__grid ch3-gallery__grid--2">
-                    <div class="ch3-gallery__item ch3-anim-dropFromTop ch3-d1">
+                    <div class="ch3-gallery__item ch3-anim-revealDrop ch3-d1">
                         <img
                             src="assets/chương-3/5.1.webp"
                             alt="Bánh phu thê được hoàn thiện"
@@ -2321,7 +2435,7 @@
                             decoding="async"
                         />
                     </div>
-                    <div class="ch3-gallery__item ch3-anim-zoomIn ch3-d2">
+                    <div class="ch3-gallery__item ch3-anim-revealRise ch3-d2">
                         <img
                             src="assets/chương-3/5.2.webp"
                             alt="Xếp bánh vào xửng hấp"
@@ -2589,7 +2703,7 @@
                     </div>
                     <div class="ch4-region__text">
                         <h3 class="bpt-title bpt-kicker ch4-reveal-right">Vẹn tình xưa trong nếp bánh tân thời </h3>
-                        <p class="ch4-reveal-right ch4-d1">Giữa dòng chảy không ngừng của thời gian, chiếc bánh vẫn giữ được vị trí đặc biệt trong đời sống người Việt. Từ Bắc Ninh, chiếc bánh theo chân người dân đến nhiều vùng miền trên cả nước. Ở miền Bắc, người ta quen gọi là bánh phu thê — cái tên gắn trực tiếp với ý nghĩa vợ chồng hòa hợp. Trong khi đó, tại nhiều địa phương miền Trung và miền Nam, chiếc bánh lại được biết đến với tên gọi xu xê hay xu xuê, cách phát âm đã thay đổi dần theo thời gian. Sự khác biệt ấy phần nào phản ánh quá trình bản địa hóa ngôn ngữ để phù hợp với giọng nói và thói quen giao tiếp của từng vùng miền. Dù tên gọi có đôi chút khác nhau, hình ảnh cặp bánh tượng trưng cho sự gắn bó và đồng lòng của lứa đôi vẫn được gìn giữ nguyên vẹn. Chính sự đa dạng trong cách gọi đã cho thấy sức lan tỏa mạnh mẽ của thức quà này trong đời sống văn hóa của người Việt trên khắp ba miền đất nước.</p>
+                        <p class="ch4-reveal-right ch4-d1">Giữa dòng chảy không ngừng của thời gian, chiếc bánh vẫn giữ được vị trí đặc biệt trong đời sống người Việt. Từ Bắc Ninh, chiếc bánh theo chân người dân đến nhiều vùng miền trên cả nước. Ở miền Bắc, người ta quen gọi là bánh phu thê - cái tên gắn trực tiếp với ý nghĩa vợ chồng hòa hợp. Trong khi đó, tại nhiều địa phương miền Trung và miền Nam, chiếc bánh lại được biết đến với tên gọi xu xê hay xu xuê, cách phát âm đã thay đổi dần theo thời gian. Sự khác biệt ấy phần nào phản ánh quá trình bản địa hóa ngôn ngữ để phù hợp với giọng nói và thói quen giao tiếp của từng vùng miền. Dù tên gọi có đôi chút khác nhau, hình ảnh cặp bánh tượng trưng cho sự gắn bó và đồng lòng của lứa đôi vẫn được gìn giữ nguyên vẹn. Chính sự đa dạng trong cách gọi đã cho thấy sức lan tỏa mạnh mẽ của thức quà này trong đời sống văn hóa của người Việt trên khắp ba miền đất nước.</p>
                     </div>
                 </div>
             </section>
@@ -2613,7 +2727,7 @@
             <section class="ch4-prose-section ch4-prose-section--last" aria-label="Biến tấu hương vị mới">
                 <div class="ch4-prose-section__layout ch4-prose-section__layout--center">
                     <div class="ch4-prose-section__text">
-                        <p class="ch4-reveal ch4-d1">Bên cạnh sự điều chỉnh về công thức, hương vị của bánh phu thê ngày nay cũng trở nên phong phú hơn. Ngoài phần nhân truyền thống gồm đậu xanh, hạt sen và dừa nạo, nhiều cơ sở sản xuất đã phát triển thêm các phiên bản mới như nhân sầu riêng, trà xanh, khoai môn, matcha, đậu đỏ hay kết hợp cùng các loại hạt. Những biến tấu này mang đến trải nghiệm mới mẻ cho người thưởng thức, đặc biệt là giới trẻ và du khách. Dù hương vị có thay đổi, phần lớn các phiên bản vẫn giữ cấu trúc quen thuộc với lớp vỏ dẻo trong bao bọc phần nhân bên trong — hình ảnh từ lâu đã gắn liền với quan niệm về sự gắn kết và hòa hợp trong hôn nhân của người Việt.</p>
+                        <p class="ch4-reveal ch4-d1">Bên cạnh sự điều chỉnh về công thức, hương vị của bánh phu thê ngày nay cũng trở nên phong phú hơn. Ngoài phần nhân truyền thống gồm đậu xanh, hạt sen và dừa nạo, nhiều cơ sở sản xuất đã phát triển thêm các phiên bản mới như nhân sầu riêng, trà xanh, khoai môn, matcha, đậu đỏ hay kết hợp cùng các loại hạt. Những biến tấu này mang đến trải nghiệm mới mẻ cho người thưởng thức, đặc biệt là giới trẻ và du khách. Dù hương vị có thay đổi, phần lớn các phiên bản vẫn giữ cấu trúc quen thuộc với lớp vỏ dẻo trong bao bọc phần nhân bên trong - hình ảnh từ lâu đã gắn liền với quan niệm về sự gắn kết và hòa hợp trong hôn nhân của người Việt.</p>
                     </div>
                 </div>
             </section>
@@ -2784,7 +2898,7 @@
                         </h3>
                         <p>
                             Bánh phu thê từ lâu đã trở thành biểu tượng thiêng liêng
-                            của đạo nghĩa vợ chồng — nơi gửi gắm lời thề nguyện về
+                            của đạo nghĩa vợ chồng - nơi gửi gắm lời thề nguyện về
                             sự đồng lòng, thủy chung và son sắt.
                         </p>
                         <p>
@@ -2807,7 +2921,7 @@
                             <p>"Hộp vuông xếp lá dừa xanh,</p>
                             <p>Và đây đôi bánh cho anh, cho nàng.</p>
                             <p>Chúc cho thắm đượm đá vàng,</p>
-                            <p>Sắt son tơ tóc buộc ràng phu thê."</p>
+                            <p>Sắt son tơ tóc buộc ràng phu thê".</p>
                         </blockquote>
                         <p class="ch5-poem__attr">
                             (Bánh phu thê — Bùi Thị Ngọc Diệp)
@@ -2877,8 +2991,9 @@
                             <img class="ch5-prose__swipe-img ch5-prose__swipe-img--base" src="assets/chuong-5/3.1.webp" alt="Bánh phu thê thưởng thức cùng trà" loading="lazy" decoding="async" />
                             <img class="ch5-prose__swipe-img ch5-prose__swipe-img--reveal" src="assets/chuong-5/3.2.webp" alt="Bánh phu thê xếp chồng" loading="lazy" decoding="async" />
                             <div class="ch5-prose__swipe-line" aria-hidden="true"></div>
-<span class="ch4-symbol__caption">   Bánh phu thê được thưởng thức cùng trà xanh truyền thống </span>
+
                         </figure>
+                        <span class="ch4-symbol__caption">  “Bánh phu thê được thưởng thức cùng trà xanh truyền thống”  </span>
 
                              <p>Ngày nay, giữa dòng chảy hối hả của cuộc sống, khi những trào lưu mới liên tục được tạo ra và thay thế nhau với tốc độ chóng mặt, nhiều làng nghề truyền thống đang lặng lẽ đối mặt với bài toán của sự tồn tại. Nghề làm bánh phu thê cũng không nằm ngoài vòng xoáy ấy. Những nếp sống xưa dần đổi thay, những thói quen tiêu dùng mới xuất hiện, khiến khoảng cách giữa con người với các giá trị truyền thống đôi khi trở nên xa hơn bao giờ hết. Thế nhưng, có những điều tưởng chừng mong manh lại sở hữu sức sống bền bỉ lạ kỳ. Ở làng nghề làm bánh phu thê tại Đình Bảng và nhiều vùng quê Bắc Bộ, những nghệ nhân vẫn miệt mài gìn giữ nghề như gìn giữ một phần ký ức của dân tộc. Họ không chỉ làm bánh để mưu sinh, mà còn mang trên vai trách nhiệm lưu truyền một di sản văn hóa đã được cha ông vun đắp qua nhiều thế hệ. Từ việc chọn nếp, đồ đậu, sên nhân, gói lá dong đến buộc từng sợi lạt đỏ, tất cả đều được thực hiện bằng đôi tay và bằng cả niềm tự hào với nghề truyền thống. Mỗi chiếc bánh không chỉ là một món ăn, mà là kết tinh của ký ức làng quê, của phong tục hỷ sự và triết lý sống coi trọng nghĩa tình. </p>
                     </div>
@@ -2886,54 +3001,17 @@
 
                 <!-- PHOTO GRID — 8 ảnh lớn -->
                 <section class="ch5-gallery" aria-label="Ảnh lưới_program 5">
-                    <div class="ch5-gallery__header ch5-reveal">
-                        <p class="ch5-gallery__kicker">Hình ảnh</p>
-                        <h3 class="ch5-gallery__title">
-                            Bánh Phu Thê Trong Đời Sống
-                        </h3>
-                    </div>
 
-                    <!-- Row 1: 2 images -->
-                    <div class="ch5-grid ch5-grid--layout-a" style="margin-bottom: 0">
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-1" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/2.1.webp" alt="Bánh phu thê cắt thành cục trên khay" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Sự hòa quyện của đậu xanh, hạt sen và dừa làm nên hương vị đặc trưng của bánh phu thê.” (Nguồn: Ngọc Anh)</div>
-                        </div>
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-2" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/3.1.webp" alt="Bánh phu thê cùng trà nóng" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Bánh phu thê được thưởng thức cùng trà xanh truyền thống</div>
-                        </div>
-                    </div>
 
-                    <!-- Row 2: 3 images -->
-                    <div class="ch5-grid ch5-grid--layout-b" style="margin-bottom: 0">
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-3" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/1.1.webp" alt="Bánh phu thê được gói trong lá dong" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Bánh phu thê Đình Bảng trong công đoạn hoàn thiện trước khi đến tay người thưởng thức.</div>
+                    <!-- Photo layout — 1 lớn + 2 nhỏ, sát rìa -->
+                    <div class="ch5-scroll-gallery">
+                        <div class="ch5-scroll-gallery__track">
+                            <img class="ch5-scroll-gallery__item--full ch5-reveal" src="assets/chuong-5/4.1.webp" alt="Gói bánh phu thê trong lá dong" loading="lazy" decoding="async" />
+                            <img class="ch5-reveal" src="assets/chuong-5/4.2.webp" alt="Thợ bánh phu thê đang làm việc" loading="lazy" decoding="async" />
+                            <img class="ch5-reveal" src="assets/chuong-5/4.3.webp" alt="Nghệ nhân chế biến bánh phu thê" loading="lazy" decoding="async" />
                         </div>
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-4" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/unnamed (1).webp" alt="Nghệ nhân đang nấu nhân bánh" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Nghệ nhân tỉ mỉ nấu nhân bánh phu thê</div>
-                        </div>
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-5" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/unnamed (2).webp" alt="Đang gói bánh phu thê trong lá dong" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Gói bánh phu thê trong lá dong, thao tác tỉ mỉ</div>
-                        </div>
-                    </div>
-
-                    <!-- Row 3: 3 images -->
-                    <div class="ch5-grid ch5-grid--layout-b">
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-6" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/unnamed (3).webp" alt="Bánh phu thê cắt sẵn trên khay" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Bánh phu thê cắt sẵn, chờ đóng gói</div>
-                        </div>
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-7" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/unnamed.webp" alt="Nghệ nhân cắt bánh phu thê" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Thợ bánh cắt bánh phu thê thành từng phần</div>
-                        </div>
-                        <div class="ch5-grid__cell ch5-grid__cell--anim-8" onclick="openLightbox(this)">
-                            <img src="assets/chuong-5/3.2.webp" alt="Bánh xu xê — phiên bản miền Nam" loading="lazy" decoding="async" />
-                            <div class="ch5-grid__caption">Bánh xu xê — phiên bản miền Nam</div>
+                        <div class="ch5-scroll-gallery__caption-wrap ch5-reveal">
+                            <span class="ch4-symbol__caption"> "Nghệ nhân Đình Bảng miệt mài bảo tồn nghề làm bánh phu thê qua nhiều thế hệ." (Nguồn: Ngọc Anh) </span>
                         </div>
                     </div>
                 </section>
@@ -2961,7 +3039,7 @@
                     <div class="ch5-final__inner ch5-reveal">
                         <blockquote>
                             <p>"Đôi ta như bánh phu thê</p>
-                            <p>Đẹp duyên, vẹn nghĩa, chẳng nề gian nan."</p>
+                            <p>Đẹp duyên, vẹn nghĩa, chẳng nề gian nan".</p>
                         </blockquote>
                         <p class="ch5-final__attr">(Thơ ca dân gian)</p>
                     </div>
