@@ -45,8 +45,8 @@
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -5% 0px',
+        threshold: 0.05,
+        rootMargin: '0px 0px -10px 0px',
       }
     );
 
@@ -54,6 +54,12 @@
       var el = document.getElementById(id);
       if (el) io.observe(el);
     });
+
+    // Reveal first section immediately (match ch4 pattern)
+    var first = document.getElementById(CH3_SECTIONS[0]);
+    if (first) {
+      setTimeout(function () { first.classList.add('bpt-visible'); }, 100);
+    }
   }
 
   if (document.readyState === 'loading') {
