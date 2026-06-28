@@ -192,15 +192,20 @@
       // Get point on path using SVG's own coordinate system
       var point = pathEl.getPointAtLength(progress * pathLength);
 
-      // Use SVG's screen CTM for accurate coordinate conversion
-      var ctm = pathEl.getScreenCTM();
-      var actualX = ctm.a * point.x + ctm.c * point.y + ctm.e;
-      var actualY = ctm.b * point.x + ctm.d * point.y + ctm.f;
+      // Use viewBox-based conversion for reliable positioning
+      var svgEl = pathEl.ownerSVGElement || pathEl;
+      var vb = svgEl.viewBox.baseVal;
+      var svgW = vb.width || 1200;
+      var svgH = vb.height || 600;
+      var svgRect = svgEl.getBoundingClientRect();
+      var scaleX = svgRect.width / svgW;
+      var scaleY = svgRect.height / svgH;
+      var scale = Math.min(scaleX, scaleY);
+      var offX = (svgRect.width - svgW * scale) / 2;
+      var offY = (svgRect.height - svgH * scale) / 2;
 
-      // Position floating element relative to visual container
-      var visualRect = section.querySelector('.ch4-path__visual').getBoundingClientRect();
-      var left = actualX - visualRect.left;
-      var top = actualY - visualRect.top;
+      var left = point.x * scale + offX;
+      var top = point.y * scale + offY;
 
       floatingEl.style.left = left + 'px';
       floatingEl.style.top = top + 'px';
@@ -209,9 +214,8 @@
       function positionWaypoint(wpEl, wpProgress) {
         if (!wpEl) return;
         var pt = pathEl.getPointAtLength(wpProgress * pathLength);
-        var ctm2 = pathEl.getScreenCTM();
-        var wx = ctm2.a * pt.x + ctm2.c * pt.y + ctm2.e - visualRect.left;
-        var wy = ctm2.b * pt.x + ctm2.d * pt.y + ctm2.f - visualRect.top;
+        var wx = pt.x * scale + offX;
+        var wy = pt.y * scale + offY;
         wpEl.style.left = wx + 'px';
         wpEl.style.top = wy + 'px';
       }
