@@ -36,7 +36,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
   var renderer, scene, camera, controls, current;
   var spin = false,
     raf = null,
-    initialized = false;
+    initialized = false,
+    sectionVisible = false;
 
   /* ── Lấy size thật của container ──────────────────────────── */
   function getSize() {
@@ -108,6 +109,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     requestAnimationFrame(function () {
       onResize();
       loadModel(MODELS[0].url, MODELS[0].name);
+      visibilityObs.observe(section);
+      sectionVisible = true;
       animate();
     });
   }
@@ -142,6 +145,32 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     { rootMargin: "200px" },
   );
   observer.observe(section);
+
+  /* ── Visibility — pause render loop khi off-screen ──────── */
+  function startLoop() {
+    if (raf || !renderer) return;
+    animate();
+  }
+  function stopLoop() {
+    if (raf) {
+      cancelAnimationFrame(raf);
+      raf = null;
+    }
+  }
+
+  var visibilityObs = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        sectionVisible = entry.isIntersecting;
+        if (sectionVisible) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      });
+    },
+    { rootMargin: "100px" },
+  );
 
   /* ── Model loading ───────────────────────────────────────── */
   function loadModel(url, name) {
@@ -232,6 +261,10 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
   /* ── Render loop ─────────────────────────────────────────── */
   function animate() {
+    if (!sectionVisible) {
+      raf = null;
+      return;
+    }
     raf = requestAnimationFrame(animate);
     if (current && spin) current.rotation.y += 0.004;
     if (controls) controls.update();

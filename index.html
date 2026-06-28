@@ -2836,7 +2836,6 @@
             <section class="ch4-3d-viewer" aria-label="Xem mô hình 3D bánh phu thê">
                 <div class="ch4-3d-viewer__header">
 
-                    <h3 class="bpt-title bpt-kicker ch4-reveal ch4-d1">Chiêm Ngưỡng Chiếc Bánh</h3>
 
                 </div>
                 <div class="ch4-3d-viewer__stage ch4-reveal-scale ch4-d3">
@@ -3310,6 +3309,9 @@
 
                     var rect = fig.getBoundingClientRect();
                     var viewportH = window.innerHeight;
+                    var isMobile = window.innerWidth < 768;
+                    var deadZone = isMobile ? 0.35 : 0.25;
+                    var liveRange = 1 - deadZone * 2;
 
                     var rawProgress =
                         1 -
@@ -3318,12 +3320,12 @@
                     rawProgress = Math.max(0, Math.min(1, rawProgress));
 
                     var swipeProgress;
-                    if (rawProgress < 0.25) {
+                    if (rawProgress < deadZone) {
                         swipeProgress = 0;
-                    } else if (rawProgress > 0.75) {
+                    } else if (rawProgress > 1 - deadZone) {
                         swipeProgress = 1;
                     } else {
-                        swipeProgress = (rawProgress - 0.25) / 0.5;
+                        swipeProgress = (rawProgress - deadZone) / liveRange;
                     }
 
                     var clipRight = 100 - swipeProgress * 100;
