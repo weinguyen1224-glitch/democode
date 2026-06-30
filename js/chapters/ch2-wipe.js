@@ -3,7 +3,7 @@
    Lightweight: only clip-path updates, no layout thrashing.
    ═══════════════════════════════════════════════════════════ */
 
-(function () {
+function ch2WipeInit() {
     'use strict';
 
     /* ── Wipe Sections ─────────────────────────────────────── */
@@ -78,4 +78,10 @@
     if (first) {
         setTimeout(function () { first.classList.add('bpt-visible'); }, 80);
     }
-})();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ch2WipeInit);
+} else {
+    ch2WipeInit();
+}

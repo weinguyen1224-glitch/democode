@@ -4,7 +4,7 @@
 /* Requires: GSAP (cdn), IMGS (ch2-imgs.js)                    */
 /* ═══════════════════════════════════════════════════════════ */
 
-(() => {
+function ch2NguHanhInit() {
   const section = document.getElementById("section-bpt-ch2-ngu-hanh");
   if (!section) return;
 
@@ -889,7 +889,13 @@
     );
     if (reveals.length) obs.observe(section);
   }
-})();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', ch2NguHanhInit);
+} else {
+  ch2NguHanhInit();
+}
 
 /* ═══════════════════════════════════════════════════════════ */
 /* CHƯƠNG II — EMAGAZINE SCROLL EFFECTS                        */

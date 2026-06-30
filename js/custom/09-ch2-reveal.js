@@ -1,7 +1,7 @@
 /* CHƯƠNG II — Cinematic reveal for new sections               */
 /* ═══════════════════════════════════════════════════════════ */
 
-(() => {
+function ch2RevealInit() {
   // Reveal animations for bpt-split-scene and bpt-scene sections
   const sceneEls = document.querySelectorAll(
     "#section-bpt-ch2-mo-dau, #section-bpt-ch2-nghe-nhan, #section-bpt-ch2-bao-ton, #section-bpt-ch2-gallery-1",
@@ -93,4 +93,10 @@
       }, { passive: true });
     }
   }
-})();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', ch2RevealInit);
+} else {
+  ch2RevealInit();
+}

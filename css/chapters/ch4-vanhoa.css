@@ -722,6 +722,23 @@
     z-index: 2;
 }
 
+.ch4-region__layout--row {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(24px, 4vw, 64px);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(12px, 3vw, 40px);
+}
+
+.ch4-region__layout--row .ch4-region__text {
+    flex: 1 1 55%;
+}
+
+.ch4-region__layout--row .ch4-region__img-wrap {
+    flex: 0 0 45%;
+}
+
 .ch4-region__img-wrap {
     width: 100%;
     margin: 0 auto;
@@ -1290,6 +1307,16 @@
     .ch4-tourism__layout,
     .ch4-prose-section__layout {
         gap: 20px;
+    }
+
+    .ch4-region__layout--row {
+        flex-direction: column;
+    }
+
+    .ch4-region__layout--row .ch4-region__text,
+    .ch4-region__layout--row .ch4-region__img-wrap {
+        flex: none;
+        width: 100%;
     }
 
     .ch4-symbol__img-wrap {

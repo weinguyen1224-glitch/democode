@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────
    js/chapters/ch3-reveal.js
    IntersectionObserver for Chapter III sections.
-   Toggles .bpt-visible — animations replay on scroll back.
+   Toggles .ch3-visible — animations replay on scroll back.
    ───────────────────────────────────────────────────────────── */
 
 (function () {
@@ -29,18 +29,22 @@
     if (!('IntersectionObserver' in window)) {
       CH3_SECTIONS.forEach(function (id) {
         var el = document.getElementById(id);
-        if (el) el.classList.add('bpt-visible');
+        if (el) el.classList.add('ch3-visible');
       });
       return;
     }
+
+    // Observe gallery elements directly so they trigger when scrolled into view,
+    // not when their tall parent section first enters at 5% (match ch4 pattern)
+    var galleries = document.querySelectorAll('.ch3-gallery');
 
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add('bpt-visible');
+            entry.target.classList.add('ch3-visible');
           } else {
-            entry.target.classList.remove('bpt-visible');
+            entry.target.classList.remove('ch3-visible');
           }
         });
       },
@@ -54,11 +58,12 @@
       var el = document.getElementById(id);
       if (el) io.observe(el);
     });
+    galleries.forEach(function (g) { io.observe(g); });
 
     // Reveal first section immediately (match ch4 pattern)
     var first = document.getElementById(CH3_SECTIONS[0]);
     if (first) {
-      setTimeout(function () { first.classList.add('bpt-visible'); }, 100);
+      setTimeout(function () { first.classList.add('ch3-visible'); }, 100);
     }
   }
 

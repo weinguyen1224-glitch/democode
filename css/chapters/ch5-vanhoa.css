@@ -93,12 +93,15 @@
 }
 
 .ch5-opening__inner {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .ch5-opening p {
-    margin: 0 0 20px;
+    margin: 0;
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     color: var(--c5-text);
@@ -112,7 +115,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(48px, 8vw, 100px) clamp(20px, 5vw, 60px);
+    padding: clamp(8px, 1.5vw, 16px) clamp(20px, 5vw, 60px);
 }
 
 .ch5-poem__inner {
@@ -141,16 +144,16 @@
 
 .ch5-poem__quote p,
 .ch5-poem blockquote p {
-    margin: 0 0 8px;
+    margin: 0 0 4px;
     font-family: "MJ Milestone", "Pacifico", cursive;
     font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     font-style: normal;
-    line-height: 1.9;
+    line-height: 1.6;
     color: var(--c5-text);
 }
 
 #article .ch5-poem__attr {
-    margin-top: 24px;
+    margin-top: 10px;
     font-family: "Outfit", sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.06em;
@@ -168,12 +171,15 @@
 }
 
 .ch5-prose__inner {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .ch5-prose p {
-    margin: 0 0 20px;
+    margin: 0;
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     color: var(--c5-text);
@@ -227,6 +233,9 @@
 }
 
 .ch5-artisan-quote__text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
     padding: clamp(16px, 3vw, 40px) 0;
 }
 
@@ -272,16 +281,19 @@
 .ch5-closing {
     display: flex;
     align-items: center;
-    padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 60px);
+    padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 60px) clamp(8px, 1.5vw, 16px);
 }
 
 .ch5-closing__inner {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .ch5-closing p {
-    margin: 0 0 20px;
+    margin: 0;
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.75;
     color: var(--c5-text);
@@ -309,7 +321,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 60px);
+    padding: clamp(4px, 0.8vw, 8px) clamp(20px, 5vw, 60px) clamp(8px, 1.5vw, 16px);
     text-align: center;
 }
 
@@ -327,17 +339,17 @@
 
 .ch5-final p,
 .ch5-final-poem p {
-    margin: 0 0 8px;
+    margin: 0 0 4px;
     font-family: "MJ Milestone", "Pacifico", cursive;
     font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     font-style: normal;
-    line-height: 1.9;
+    line-height: 1.6;
     color: var(--c5-text);
 }
 
 #article .ch5-final__attr,
 #article .ch5-final-poem__attr {
-    margin-top: 24px;
+    margin-top: 10px;
     font-family: "Outfit", sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.06em;

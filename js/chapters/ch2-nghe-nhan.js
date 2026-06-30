@@ -1,6 +1,6 @@
 /* CHUONG II - RICH ELEMENT-LEVEL ANIMATIONS */
 
-(() => {
+function ch2NhnInit() {
   const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReduced) return;
 
@@ -101,4 +101,10 @@
     }
   }
 
-})();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', ch2NhnInit);
+} else {
+  ch2NhnInit();
+}

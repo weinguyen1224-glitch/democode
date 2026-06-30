@@ -312,10 +312,10 @@ img { max-width: 100%; display: block; }
 }
 
 .ch2-closing__content p {
-    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
-    color: var(--c-text);
-    text-align: justify;
+    color: rgba(26, 26, 26, 0.6);
+    text-align: left;
     margin-bottom: 1em;
 }
 

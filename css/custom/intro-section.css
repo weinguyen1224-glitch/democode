@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: clamp(48px, 10vw, 120px) clamp(24px, 8vw, 80px);
+    padding: clamp(32px, 6vh, 64px) clamp(24px, 8vw, 80px);
     background: var(--color-rice-paper);
     overflow: hidden;
 }
@@ -43,7 +43,7 @@
     font-size: clamp(4rem, 10vw, 7.2rem);
     line-height: 1.15;
     color: var(--color-betel-leaf-green);
-    margin: 0 0 clamp(20px, 3vw, 36px);
+    margin: 0 0 clamp(12px, 2vw, 24px);
     word-break: keep-all;
 }
 
@@ -52,7 +52,7 @@
     display: block;
     width: 0;
     height: 2px;
-    margin: 0 auto clamp(28px, 4vw, 48px);
+    margin: 0 auto clamp(16px, 2.5vw, 32px);
     background: linear-gradient(
         90deg,
         transparent,
@@ -69,12 +69,13 @@
 /* ─── Body text container ─── */
 #article .bpt-intro__body {
     font-family: "Vollkorn";
-    font-size: clamp(0.85rem, 3.8vw, 1.65rem);
-    font-weight: 700;
-    line-height: 1.7;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.75;
     color: var(--color-ink);
     margin: 0;
-    max-width: 820px;
+    max-width: 1100px;
     margin-inline: auto;
     overflow-wrap: break-word;
     text-align: left;
