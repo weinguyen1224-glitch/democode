@@ -158,7 +158,10 @@
     activateSlide(0, true);
     window.addEventListener("scroll", createScrollHandler(() => { if (isActive()) update(); }), { passive: true });
     window.addEventListener("resize", update, { passive: true });
-    requestAnimationFrame(update);
+
+    // Browser restores scroll position asynchronously after page load.
+    // Run update() once after a short delay to catch the restored position.
+    requestAnimationFrame(() => { update(); setTimeout(update, 200); });
   })();
 
   // ═══════════════════════════════════════════════════════════

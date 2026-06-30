@@ -22,10 +22,7 @@
 }
 
 /* ── Performance: skip rendering off-screen sections ──────── */
-.bpt-ch3-section {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
-}
+/* content-visibility: auto removed — causes jank on first reveal */
 
 /* ── Shared reveal atoms (ch4-style: transition-based, simple) ── */
 /* All animated elements start hidden; .bpt-visible triggers them */
