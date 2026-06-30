@@ -3,7 +3,7 @@
 .bpt-sm-text .bpt-kicker { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 .bpt-sm-text .bpt-kicker.is-visible { opacity: 1; transform: translateY(0); }
 
-.bpt-prose p { opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.bpt-prose p[data-anim] { opacity: 0; transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
 .bpt-prose p[data-anim="scale-pop"] { transform: scale(0.8); }
 .bpt-prose p[data-anim="scale-pop"].is-visible { opacity: 1; transform: scale(1); }
@@ -34,5 +34,5 @@
   transform: scale(1);
 }
 
-.bpt-ca-dao { opacity: 0; transform: translateY(30px) scale(0.95); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-.bpt-ca-dao.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+.bpt-nghe-nhan .bpt-ca-dao { opacity: 0; transform: translateY(30px) scale(0.95); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.bpt-nghe-nhan .bpt-ca-dao.is-visible { opacity: 1; transform: translateY(0) scale(1); }

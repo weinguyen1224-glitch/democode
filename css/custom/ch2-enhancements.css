@@ -369,8 +369,9 @@
     }
 }
 
-/* Vignette on bpt-scene sections */
-.bpt-scene::after {
+/* Vignette on Ch.2 bpt-scene sections only */
+[id^="section-bpt-ch2-"].bpt-scene::after,
+.bpt-ch2-section::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -384,7 +385,8 @@
 }
 
 @media (max-width: 768px) {
-    .bpt-scene::after {
+    [id^="section-bpt-ch2-"].bpt-scene::after,
+    .bpt-ch2-section::after {
         display: none;
     }
 

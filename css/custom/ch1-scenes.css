@@ -140,7 +140,7 @@
 /* ── Section wrapper ── */
 .bpt-sm-section {
     position: relative;
-    contain: content;
+    contain: layout;
     /* height tự tính qua track, không cần set */
 }
 
@@ -1038,12 +1038,12 @@
     }
 }
 
-.bpt-kicker {
+.bpt-sm-text .bpt-kicker {
     animation: text-breathe 4s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
-    .bpt-kicker {
+    .bpt-sm-text .bpt-kicker {
         animation: none;
     }
 }
