@@ -965,6 +965,7 @@
     .bpt-nghe-nhan__quote-image {
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 
     .bpt-nghe-nhan__lead {
@@ -1013,6 +1014,7 @@
     .bpt-nghe-nhan__quote-image {
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 
     .bpt-nghe-nhan__kicker {

@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════
    bpt-loader.js
-   Preloads all images in the page, shows progress, then fades out.
+   Preloads only above-the-fold images, shows progress, then fades out.
    Blocks body scroll until loading completes.
    ═══════════════════════════════════════════════════════════ */
 
@@ -29,32 +29,41 @@
     done = true;
     document.body.classList.remove('bpt-loading');
     if (loader) loader.classList.add('is-done');
-    // Remove loader from DOM after transition
     setTimeout(function () {
       if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
     }, 700);
-    // Dispatch event for other scripts
     window.dispatchEvent(new Event('bpt:loaded'));
   }
 
-  /* ── Collect all image URLs from <img> and <source> ────── */
+  /* ── Check if element is above the fold ────────────────── */
+  function isAboveFold(el) {
+    // If element has no explicit lazy loading, consider it above fold
+    if (el.loading === 'lazy') return false;
+    // Check if element is within first viewport height
+    var rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight;
+  }
+
+  /* ── Collect above-the-fold image URLs ─────────────────── */
   function collectImageURLs() {
     var urls = [];
     var seen = {};
 
-    // <img src="...">
+    // <img src="..."> — only if not lazy and within viewport
     var imgs = document.querySelectorAll('img[src]');
     for (var i = 0; i < imgs.length; i++) {
       var src = imgs[i].getAttribute('src');
-      if (src && !seen[src] && !src.startsWith('data:')) {
+      if (src && !seen[src] && !src.startsWith('data:') && isAboveFold(imgs[i])) {
         seen[src] = true;
         urls.push(src);
       }
     }
 
-    // <source srcset="...">
+    // <source srcset="..."> — only if parent is above fold
     var sources = document.querySelectorAll('source[srcset]');
     for (var j = 0; j < sources.length; j++) {
+      var parent = sources[j].closest('picture');
+      if (parent && !isAboveFold(parent)) continue;
       var srcset = sources[j].getAttribute('srcset');
       if (srcset) {
         var parts = srcset.split(',');
@@ -68,9 +77,10 @@
       }
     }
 
-    // CSS background-image URLs (from inline styles and computed)
+    // CSS background-image URLs (from inline styles) — only if above fold
     var allElements = document.querySelectorAll('[style*="background"]');
     for (var m = 0; m < allElements.length; m++) {
+      if (!isAboveFold(allElements[m])) continue;
       var bg = allElements[m].style.backgroundImage;
       if (bg && bg !== 'none') {
         var match = bg.match(/url\(["']?([^"')]+)["']?\)/);
@@ -100,27 +110,9 @@
 
   /* ── Main ──────────────────────────────────────────────── */
   function start() {
-    // Lock scroll
     document.body.classList.add('bpt-loading');
 
-    // Collect image URLs from the DOM
     var urls = collectImageURLs();
-
-    // Add known heavy assets that might be lazy-loaded later
-    var extras = [
-      'assets/chương-3/wipe1.webp',
-      'assets/chương-3/wipe2.webp',
-      'assets/chương-3/anh-thanh-pham.webp'
-    ];
-    var seen = {};
-    for (var i = 0; i < urls.length; i++) seen[urls[i]] = true;
-    for (var j = 0; j < extras.length; j++) {
-      if (!seen[extras[j]]) {
-        urls.push(extras[j]);
-        seen[extras[j]] = true;
-      }
-    }
-
     total = urls.length;
 
     if (total === 0) {
@@ -130,8 +122,8 @@
 
     updateProgress();
 
-    // Preload in parallel (max 6 concurrent)
-    var concurrency = 6;
+    // Preload in parallel (max 4 concurrent — lighter on mobile)
+    var concurrency = 4;
     var index = 0;
 
     function next() {
@@ -146,8 +138,8 @@
       next();
     }
 
-    // Safety timeout — finish after 8s even if some images fail
-    setTimeout(finish, 8000);
+    // Safety timeout — finish after 3s even if some images fail
+    setTimeout(finish, 3000);
   }
 
   /* ── Kick off ──────────────────────────────────────────── */
