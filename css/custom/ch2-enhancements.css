@@ -248,11 +248,9 @@
 .bpt-scene__centered {
     max-width: none;
     padding: clamp(40px, 8vh, 80px) clamp(40px, 8vw, 120px);
-    text-align: justify;
 }
 
 .bpt-scene__centered .bpt-prose p {
-    text-indent: 2em;
     text-align: left !important;
 }
 
