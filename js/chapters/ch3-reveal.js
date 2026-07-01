@@ -35,7 +35,10 @@
         promises.push(img.decode().catch(function () {}));
       }
     });
-    return promises.length ? Promise.all(promises) : Promise.resolve();
+    if (!promises.length) return Promise.resolve();
+    var all = Promise.all(promises);
+    var timeout = new Promise(function (resolve) { setTimeout(resolve, 800); });
+    return Promise.race([all, timeout]);
   }
 
   function init() {
