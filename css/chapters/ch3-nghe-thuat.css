@@ -174,6 +174,23 @@
     100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0) scale(1); }
 }
 
+/* § Lens Reveal — magnifying glass placement (3.1.webp) */
+@keyframes ch3LensReveal {
+    0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.15) rotate(8deg); filter: blur(6px); }
+    40% { opacity: 0.8; transform: translate3d(0, 0, 0) scale(1.08) rotate(-2deg); filter: blur(1px); }
+    65% { opacity: 1; transform: translate3d(0, 0, 0) scale(0.97) rotate(1deg); filter: blur(0); }
+    82% { transform: translate3d(0, 0, 0) scale(1.02) rotate(-0.5deg); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(0); filter: blur(0); }
+}
+
+/* § Cinematic Slide — parallax depth reveal (3.2.webp) */
+@keyframes ch3CineSlide {
+    0% { opacity: 0; transform: perspective(900px) translate3d(120px, 30px, -80px) rotateY(-6deg) scale(0.88); }
+    45% { opacity: 1; transform: perspective(900px) translate3d(-8px, -4px, 0) rotateY(1deg) scale(1.02); }
+    70% { transform: perspective(900px) translate3d(4px, 2px, 0) rotateY(-0.5deg) scale(0.99); }
+    100% { opacity: 1; transform: perspective(900px) translate3d(0, 0, 0) rotateY(0) scale(1); }
+}
+
 /* ── Gallery fly-in animations (GPU-accelerated) ── */
 @keyframes ch3FlyFromLeft {
     0% { opacity: 0; transform: translate3d(-120px, 0, 0) scale(0.95); }
@@ -248,7 +265,9 @@
 .ch3-anim-flyLeft,
 .ch3-anim-flyRight,
 .ch3-anim-flyTop,
-.ch3-anim-flyBot {
+.ch3-anim-flyBot,
+.ch3-anim-lensReveal,
+.ch3-anim-cineSlide {
     opacity: 0;
     transform: none;
     will-change: transform, opacity;
@@ -293,6 +312,12 @@
 }
 .bpt-ch3-section.ch3-visible .ch3-anim-flyBot {
     animation: ch3FlyFromBot 1.12s var(--ease) both;
+}
+.bpt-ch3-section.ch3-visible .ch3-anim-lensReveal {
+    animation: ch3LensReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.bpt-ch3-section.ch3-visible .ch3-anim-cineSlide {
+    animation: ch3CineSlide 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Gallery 2.1–2.4 dramatic reveal animations */

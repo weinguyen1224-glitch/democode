@@ -314,7 +314,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: clamp(40px, 8vh, 100px) clamp(24px, 6vw, 120px);
+    padding: clamp(40px, 8vh, 100px) clamp(16px, 5vw, 48px);
     text-align: center;
     position: relative;
 }
@@ -1097,7 +1097,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: clamp(24px, 4vh, 48px) clamp(40px, 8vw, 120px);
+    padding: clamp(24px, 4vh, 48px) clamp(16px, 5vw, 48px);
     opacity: 1;
     transform: none;
 }

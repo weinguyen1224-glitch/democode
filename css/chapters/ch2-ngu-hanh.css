@@ -33,7 +33,7 @@
     gap: 24px;
     width: 100%;
     max-width: none;
-    padding: clamp(24px, 4vh, 48px) clamp(40px, 8vw, 120px);
+    padding: clamp(24px, 4vh, 48px) clamp(16px, 5vw, 48px);
     position: relative;
     z-index: 50;
 }
