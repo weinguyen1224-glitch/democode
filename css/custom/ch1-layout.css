@@ -260,6 +260,9 @@
         height: 100dvh;
         background-color: var(--color-red-thread);
     }
+    .bpt-chapter-divider__bg img {
+        object-fit: contain;
+    }
     .bpt-prose {
         width: 100%;
     }
