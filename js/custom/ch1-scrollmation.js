@@ -227,6 +227,22 @@
     applyAnimation();
     window.addEventListener("scroll", createScrollHandler(applyAnimation), { passive: true });
     window.addEventListener("resize", applyAnimation, { passive: true });
+
+    // Legend layout: trigger inner image + content animation
+    const legendImage = panel.querySelector(".bpt-legend-image");
+    const legendContent = panel.querySelector(".bpt-legend-content");
+    if (legendImage && legendContent && !prefersReduced) {
+      const legendObs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            legendImage.classList.add("bpt-in-view");
+            legendContent.classList.add("bpt-in-view");
+            legendObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      legendObs.observe(panel);
+    }
   })();
 
   // ═══════════════════════════════════════════════════════════
