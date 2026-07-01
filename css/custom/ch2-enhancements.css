@@ -467,38 +467,67 @@
     object-fit: cover;
 }
 
-/* Animation: hidden by default */
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInLeft,
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
+/* ── Gallery 1: dramatic entrance animations (ch3-style) ──── */
+
+/* Keyframes */
+@keyframes ch2ZoomRotate {
+    0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.3) rotate(-15deg); }
+    50% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.08) rotate(3deg); }
+    75% { transform: translate3d(0, 0, 0) scale(0.97) rotate(-1deg); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(0); }
+}
+
+@keyframes ch2SlideBounce {
+    0% { opacity: 0; transform: translate3d(60vw, 0, 0) scale(0.4); }
+    40% { opacity: 1; transform: translate3d(-8px, 0, 0) scale(1.04); }
+    60% { transform: translate3d(4px, 0, 0) scale(0.98); }
+    80% { transform: translate3d(-2px, 0, 0) scale(1.01); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes ch2DropSpin {
+    0% { opacity: 0; transform: translate3d(0, -60vh, 0) rotate(15deg) scale(0.4); }
+    55% { opacity: 1; transform: translate3d(0, 0, 0) rotate(-5deg) scale(1.04); }
+    75% { transform: translate3d(0, 0, 0) rotate(2deg) scale(0.98); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0) scale(1); }
+}
+
+@keyframes ch2RollIn {
+    0% { opacity: 0; transform: translate3d(-60vw, 0, 0) rotate(-120deg) scale(0.4); }
+    60% { opacity: 1; transform: translate3d(0, 0, 0) rotate(10deg) scale(1.04); }
+    80% { transform: translate3d(0, 0, 0) rotate(-4deg) scale(0.98); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0) scale(1); }
+}
+
+/* Animation atoms — start hidden */
+.ch2-anim-zoomRotate,
+.ch2-anim-slideBounce,
+.ch2-anim-dropSpin,
+.ch2-anim-rollIn {
     opacity: 0;
-    transform: translateX(-40px);
-    transition:
-        opacity 0.63s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.63s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+    overflow: visible !important;
 }
 
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
-    transform: translateX(40px);
+/* Triggered state — play animation */
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-zoomRotate {
+    animation: ch2ZoomRotate 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideBounce {
+    animation: ch2SlideBounce 1.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-dropSpin {
+    animation: ch2DropSpin 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-rollIn {
+    animation: ch2RollIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-#section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
-    transition-duration: 0.98s;
-}
-
-/* Animation: trigger when section visible */
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInLeft,
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInRight,
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-anim-slideInRight-slow {
-    opacity: 1;
-    transform: none;
-}
-
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-d1 { transition-delay: 0.07s; }
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-d2 { transition-delay: 0.21s; }
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-d3 { transition-delay: 0.35s; }
-#section-bpt-ch2-gallery-1.bpt-visible .ch2-d4 { transition-delay: 0.49s; }
+/* Stagger delays */
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d1 { animation-delay: 0.07s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d2 { animation-delay: 0.28s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d3 { animation-delay: 0.49s; }
+#section-bpt-ch2-gallery-1.bpt-visible .ch2-d4 { animation-delay: 0.70s; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -520,9 +549,10 @@
     .bpt-ca-dao.bpt-visible,
     .bpt-ca-dao.bpt-quote-visible,
     .bpt-ca-dao--finale::before,
-    #section-bpt-ch2-gallery-1 .ch2-anim-slideInLeft,
-    #section-bpt-ch2-gallery-1 .ch2-anim-slideInRight,
-    #section-bpt-ch2-gallery-1 .ch2-anim-slideInRight-slow {
+    #section-bpt-ch2-gallery-1 .ch2-anim-zoomRotate,
+    #section-bpt-ch2-gallery-1 .ch2-anim-slideBounce,
+    #section-bpt-ch2-gallery-1 .ch2-anim-dropSpin,
+    #section-bpt-ch2-gallery-1 .ch2-anim-rollIn {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
