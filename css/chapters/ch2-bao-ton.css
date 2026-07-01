@@ -704,6 +704,7 @@
 
 /* ── Scene 3: Quote image overlay ─────────────────────────── */
 .bpt-nghe-nhan__scene--portrait {
+    min-height: 100svh;
     min-height: 100vh;
     position: relative;
     display: flex;
@@ -715,7 +716,8 @@
 
 /* Single overlay image — full-bleed, no white space */
 .bpt-nghe-nhan__quote-image {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 10;
     width: 100%;
     height: 100%;
@@ -956,6 +958,7 @@
     }
 
     .bpt-nghe-nhan__scene--portrait {
+    min-height: 100svh;
         padding: clamp(32px, 6vh, 80px) clamp(16px, 4vw, 32px);
     }
 
@@ -1003,6 +1006,7 @@
     }
 
     .bpt-nghe-nhan__scene--portrait {
+    min-height: 100svh;
         padding: 0;
     }
 
