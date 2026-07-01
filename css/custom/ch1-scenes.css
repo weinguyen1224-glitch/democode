@@ -603,66 +603,37 @@
 
 /* ═══════════════════════════════════════════════════════════
    Panel p2 — Legend layout: image left + text right
-   Balanced side-by-side with entrance animation
    ═══════════════════════════════════════════════════════════ */
 
 .bpt-legend-layout {
     display: flex;
     align-items: center;
-    gap: clamp(24px, 3.5vw, 48px);
+    gap: clamp(20px, 3vw, 40px);
     max-width: min(960px, 92vw) !important;
     text-align: left !important;
     padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px) !important;
 }
 
 .bpt-legend-image {
-    flex: 0 0 38%;
-    position: relative;
-    will-change: transform, opacity;
-    transform: translateX(-40px) rotate(-2deg);
-    opacity: 0;
-}
-
-.bpt-legend-image.bpt-in-view {
-    transform: translateX(0) rotate(0deg);
-    opacity: 1;
-    transition:
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    flex: 0 0 36%;
 }
 
 .bpt-legend-image-inner {
-    position: relative;
-    border-radius: 12px;
-    padding: 6px;
-    background: linear-gradient(135deg, #f5e6c8 0%, #e8d4a8 100%);
-    box-shadow:
-        0 0 0 1px rgba(139, 90, 43, 0.25),
-        0 12px 40px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 5px;
+    background: linear-gradient(135deg, #f5e6c8, #e8d4a8);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .bpt-legend-image img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    object-fit: contain;
+    border-radius: 6px;
 }
 
 .bpt-legend-content {
     flex: 1 1 auto;
-    will-change: transform, opacity;
-    transform: translateX(30px);
-    opacity: 0;
-}
-
-.bpt-legend-content.bpt-in-view {
-    transform: translateX(0);
-    opacity: 1;
-    transition:
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 
 .bpt-legend-content .bpt-kicker {
@@ -670,7 +641,7 @@
     margin-bottom: 0.8em;
 }
 
-/* Mobile: stack dọc */
+/* Mobile: stack dọc, ảnh dưới text */
 @media (max-width: 768px) {
     .bpt-legend-layout {
         flex-direction: column;
@@ -686,31 +657,13 @@
     .bpt-legend-image {
         order: 2;
         flex: none;
-        width: 60%;
-        max-width: 280px;
+        width: 55%;
+        max-width: 260px;
         margin: 0 auto;
-    }
-
-    .bpt-legend-image.bpt-in-view {
-        transform: translateY(0) scale(1);
-    }
-
-    .bpt-legend-image {
-        transform: translateY(20px) scale(0.95);
     }
 
     .bpt-legend-content .bpt-kicker {
         text-align: center;
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .bpt-legend-image,
-    .bpt-legend-content {
-        transform: none !important;
-        opacity: 1 !important;
-        transition: none !important;
     }
 }
 
