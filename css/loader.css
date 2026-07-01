@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════════════════
+   BPT Loading Screen
+   Full-viewport overlay that blocks scroll until all assets load.
+   ═══════════════════════════════════════════════════════════ */
+
+.bpt-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0d0a07;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.bpt-loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Title */
+.bpt-loader__title {
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: #f7e8cb;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.bpt-loader__subtitle {
+    font-family: "Vollkorn", serif;
+    font-size: clamp(0.75rem, 1.4vw, 1rem);
+    font-style: italic;
+    color: rgba(247, 232, 203, 0.5);
+    margin-bottom: 32px;
+}
+
+/* Progress track */
+.bpt-loader__track {
+    width: clamp(200px, 50vw, 400px);
+    height: 3px;
+    background: rgba(247, 232, 203, 0.12);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bpt-loader__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #972023, #E5BF4D);
+    border-radius: 2px;
+    transition: width 0.25s ease;
+}
+
+/* Percentage */
+.bpt-loader__pct {
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(0.65rem, 1vw, 0.8rem);
+    color: rgba(247, 232, 203, 0.35);
+    letter-spacing: 0.15em;
+    margin-top: 14px;
+}
+
+/* Prevent body scroll while loading */
+body.bpt-loading {
+    overflow: hidden;
+    height: 100vh;
+}

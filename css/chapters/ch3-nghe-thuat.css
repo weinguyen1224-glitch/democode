@@ -30,6 +30,7 @@
 .ch3-reveal {
     opacity: 0;
     transform: translateY(50px);
+    will-change: transform, opacity;
     transition:
         opacity 0.6s var(--ease),
         transform 0.6s var(--ease);
@@ -38,6 +39,7 @@
 .ch3-reveal-left {
     opacity: 0;
     transform: translateX(-60px);
+    will-change: transform, opacity;
     transition:
         opacity 0.6s var(--ease),
         transform 0.6s var(--ease);
@@ -46,6 +48,7 @@
 .ch3-reveal-right {
     opacity: 0;
     transform: translateX(60px);
+    will-change: transform, opacity;
     transition:
         opacity 0.6s var(--ease),
         transform 0.6s var(--ease);
@@ -54,6 +57,7 @@
 .ch3-reveal-scale {
     opacity: 0;
     transform: scale(0.88);
+    will-change: transform, opacity;
     transition:
         opacity 0.6s var(--ease),
         transform 0.6s var(--ease);
@@ -1920,9 +1924,7 @@
     align-items: center;
     gap: 12px;
     padding: 10px 18px 10px 14px;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(151, 32, 35, 0.12);
     border-radius: 8px;
     opacity: 0;

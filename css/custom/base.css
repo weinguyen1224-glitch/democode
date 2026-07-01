@@ -482,3 +482,12 @@ sh-background-transition .Theme-Item-Picture img {
     object-fit: cover !important;
     object-position: center center !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Performance: skip rendering off-screen sections
+   ═══════════════════════════════════════════════════════════ */
+.bpt-ch4-section,
+.bpt-ch5 {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+}

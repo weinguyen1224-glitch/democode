@@ -25,6 +25,18 @@
     'section-bpt-ch3-thanh-pham',
   ];
 
+  function decodeImages(el) {
+    var imgs = el.querySelectorAll('img');
+    var promises = [];
+    imgs.forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) return;
+      if (typeof img.decode === 'function') {
+        promises.push(img.decode().catch(function () {}));
+      }
+    });
+    return promises.length ? Promise.all(promises) : Promise.resolve();
+  }
+
   function init() {
     if (!('IntersectionObserver' in window)) {
       CH3_SECTIONS.forEach(function (id) {
@@ -34,15 +46,19 @@
       return;
     }
 
-    // Observe gallery elements directly so they trigger when scrolled into view,
-    // not when their tall parent section first enters at 5% (match ch4 pattern)
     var galleries = document.querySelectorAll('.ch3-gallery');
 
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add('ch3-visible');
+            if (entry.target.classList.contains('ch3-gallery')) {
+              decodeImages(entry.target).then(function () {
+                entry.target.classList.add('ch3-visible');
+              });
+            } else {
+              entry.target.classList.add('ch3-visible');
+            }
           } else {
             entry.target.classList.remove('ch3-visible');
           }
@@ -60,7 +76,6 @@
     });
     galleries.forEach(function (g) { io.observe(g); });
 
-    // Reveal first section immediately (match ch4 pattern)
     var first = document.getElementById(CH3_SECTIONS[0]);
     if (first) {
       setTimeout(function () { first.classList.add('ch3-visible'); }, 100);

@@ -23,6 +23,7 @@
 .ch5-reveal {
     opacity: 0;
     transform: translateY(32px);
+    will-change: transform, opacity;
     transition:
         opacity 0.91s var(--c5-ease),
         transform 0.91s var(--c5-ease);
