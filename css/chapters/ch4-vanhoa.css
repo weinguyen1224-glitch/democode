@@ -1438,9 +1438,9 @@
 /* ── Stage (canvas wrapper) — smaller to allow scroll outside ── */
 .ch4-3d-viewer__stage {
     position: relative;
-    width: 60vw;
-    max-width: 900px;
-    height: 50vh;
+    width: 80vw;
+    max-width: 1200px;
+    height: 70vh;
     overflow: hidden;
     background: transparent;
 }
