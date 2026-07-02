@@ -71,9 +71,33 @@
    ────────────────────────────────────────── */
 .bpt-chapter-divider--img {
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    overflow: visible;
     background-color: #f8d077 !important;
     background: #f8d077 !important;
+}
+
+.bpt-chapter-divider--img .bpt-chapter-divider__bg {
+    position: relative;
+    inset: auto;
+    display: block;
+}
+
+.bpt-chapter-divider--img .bpt-chapter-divider__frame {
+    display: block;
+    height: auto;
+}
+
+.bpt-chapter-divider--img .bpt-chapter-divider__bg img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.bpt-chapter-divider--img .bpt-chapter-divider__vignette {
+    position: absolute;
+    inset: 0;
 }
 
 .bpt-chapter-divider__bg {
@@ -256,8 +280,9 @@
         min-height: 80vh;
     }
     .bpt-chapter-divider--img {
-        height: 100vh;
-        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
         background-color: var(--color-red-thread);
     }
     .bpt-chapter-divider__bg img {
