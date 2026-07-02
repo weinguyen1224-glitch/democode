@@ -487,17 +487,14 @@
    Text fade-in từ phải sau GIF 350ms.
    ═══════════════════════════════════════════════════════════ */
 
-/* GIF nền full-bleed — <img> thật, JS control transform + opacity */
+/* Nền vàng be — thay thế GIF nền */
+#section-bpt-ch1-p2 {
+    background: linear-gradient(145deg, #fdf5e6 0%, #f5e6c8 50%, #ede0c0 100%);
+}
+
+/* GIF nền full-bleed — ẩn vì dùng nền màu */
 .bpt-sm-cinematic-bg {
-    position: absolute;
-    inset: -24px;
-    width: calc(100% + 48px);
-    height: calc(100% + 48px);
-    object-fit: cover;
-    object-position: center;
-    z-index: 0;
-    /* JS scroll-driven sets transform + opacity directly */
-    pointer-events: none;
+    display: none;
 }
 
 @media (min-width: 769px) {
@@ -506,11 +503,11 @@
     }
 }
 
-/* Overlay gradient tối → text đọc được */
+/* Overlay gradient — nhẹ hơn vì nền đã là màu vàng be */
 
 @media (max-width: 768px) {
     .bpt-sm-panel--cinematic::after {
-        background: rgb(34 26 20 / 0.65);
+        background: rgb(34 26 20 / 0.15);
     }
 }
 
@@ -594,6 +591,27 @@
     flex: 0 0 38%;
     max-width: 440px;
     z-index: 5;
+    /* Scroll reveal animation — hidden state */
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Visible state — triggered by JS */
+.bpt-legend-float.ch1-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .bpt-legend-float {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 /* Glow effect */

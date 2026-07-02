@@ -166,19 +166,31 @@
 
   // ═══════════════════════════════════════════════════════════
   // 2. PANEL p2 — CINEMATIC (from 06-p2-cinematic.js)
-  //    GIF nền full-bleed + text overlay
+  //    Nền vàng be + text overlay
   // ═══════════════════════════════════════════════════════════
   (() => {
     const panel = document.querySelector(".bpt-sm-panel--cinematic");
     if (!panel) return;
 
+    // Scroll reveal cho floating image (su-tich.webp)
+    const floatImg = panel.querySelector(".bpt-legend-float");
+    if (floatImg) {
+      const floatObserver = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("ch1-visible");
+            floatObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+      floatObserver.observe(floatImg);
+    }
+
     if (isMobile) {
       const obs = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            const bg = panel.querySelector(".bpt-sm-cinematic-bg");
             const txt = panel.querySelector(".bpt-sm-text.bpt-reveal");
-            if (bg) { bg.style.transform = "scale(1)"; bg.style.opacity = "1"; }
             if (txt) { txt.style.transform = "translate3d(0, 0, 0)"; txt.style.opacity = "1"; }
             obs.unobserve(e.target);
           }
@@ -188,11 +200,9 @@
       return;
     }
 
-    const bgImg = panel.querySelector(".bpt-sm-cinematic-bg");
     const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
 
     if (prefersReduced) {
-      if (bgImg) { bgImg.style.transform = ""; bgImg.style.opacity = "1"; }
       if (textEl) { textEl.style.transform = ""; textEl.style.opacity = "1"; textEl.style.filter = "none"; }
       return;
     }
@@ -214,10 +224,6 @@
       const ep = easeOut(p);
       const exp = easeIn(ex);
 
-      if (bgImg) {
-        bgImg.style.transform = `scale(${(1.08 - 0.08 * ep - 0.04 * exp).toFixed(4)})`;
-        bgImg.style.opacity = (Math.min(1, p * 1.6) * (1 - exp * 0.85)).toFixed(3);
-      }
       if (textEl) {
         textEl.style.transform = `translateY(${(30 * (1 - ep) - 20 * exp).toFixed(2)}px)`;
         textEl.style.opacity = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
