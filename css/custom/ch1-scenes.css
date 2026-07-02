@@ -487,15 +487,6 @@
    Text fade-in từ phải sau GIF 350ms.
    ═══════════════════════════════════════════════════════════ */
 
-.bpt-sm-panel--cinematic {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
 /* GIF nền full-bleed — <img> thật, JS control transform + opacity */
 .bpt-sm-cinematic-bg {
     position: absolute;
@@ -516,18 +507,6 @@
 }
 
 /* Overlay gradient tối → text đọc được */
-.bpt-sm-panel--cinematic::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: radial-gradient(
-        ellipse at center,
-        rgb(34 26 20 / 0.4) 0%,
-        rgb(34 26 20 / 0.72) 100%
-    );
-    pointer-events: none;
-}
 
 @media (max-width: 768px) {
     .bpt-sm-panel--cinematic::after {
@@ -535,18 +514,15 @@
     }
 }
 
-/* Text overlay giữa màn hình */
+/* Text overlay — base cho tất cả text trong cinematic panel */
 .bpt-sm-panel--cinematic .bpt-sm-text {
     position: relative;
     z-index: 2;
-    max-width: min(780px, 92vw);
-    margin: auto;
+    margin: 0;
     background: rgb(255 250 235 / 0.92);
-    /* backdrop-filter: blur(14px); */
-    /* -webkit-backdrop-filter: blur(14px); */
     border-radius: 16px;
     border: 1px solid rgb(200 170 100 / 0.35);
-    padding: clamp(28px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
+
     text-align: center;
     will-change: transform, opacity;
 }
@@ -563,13 +539,7 @@
     max-width: min(740px, 92vw);
 }
 
-/* Panel giai thoại — trải giàn, không giới hạn max-width */
-[data-sm-panel="1"] .bpt-sm-text--center {
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
-    text-align: left;
-}
+/* Panel giai thoại —handled by .bpt-legend-textbox class */
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -580,8 +550,7 @@
     }
 
     .bpt-sm-panel--cinematic .bpt-sm-text {
-        max-width: 92vw;
-        padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px);
+        padding: clamp(20px, 3vw, 28px) clamp(16px, 2.5vw, 24px);
         border-radius: 12px;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -602,68 +571,187 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   Panel p2 — Legend layout: image left + text right
+   Panel p2 — Legend Split: Floating image (left) + Text box (right)
+   Ảnh tách hoàn toàn khỏi text box, nổi bên trái
    ═══════════════════════════════════════════════════════════ */
 
-.bpt-legend-layout {
+/* Panel wrapper — flex row, giống magazine layout */
+.bpt-sm-panel--cinematic {
+    position: relative;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    gap: clamp(20px, 3vw, 40px);
-    max-width: min(960px, 92vw) !important;
-    text-align: left !important;
-    padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px) !important;
+    gap: clamp(200px, 6vw, 400px);
+    padding: clamp(32px, 5vw, 64px) clamp(16px, 3vw, 48px);
+    justify-content: center;
+
+    overflow: hidden;
 }
 
-.bpt-legend-image {
-    flex: 0 0 36%;
+/* ── Floating Image — bên trái ── */
+.bpt-legend-float {
+    position: relative;
+    flex: 0 0 38%;
+    max-width: 440px;
+    z-index: 5;
 }
 
-.bpt-legend-image-inner {
-    border-radius: 10px;
-    padding: 5px;
-    background: linear-gradient(135deg, #f5e6c8, #e8d4a8);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+/* Glow effect */
+.bpt-legend-float__glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(229, 191, 77, 0.3) 0%,
+        rgba(229, 191, 77, 0.1) 45%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(25px);
+    pointer-events: none;
+    animation: bpt-legend-glow 5s ease-in-out infinite;
 }
 
-.bpt-legend-image img {
+@keyframes bpt-legend-glow {
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.06);
+    }
+}
+
+/* khung viền */
+.bpt-legend-float__frame {
+    position: relative;
+    padding: 8px;
+    background: linear-gradient(145deg, #f5e6c8 0%, #e0ce9e 100%);
+    border-radius: 14px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Corner accents */
+.bpt-legend-float__frame::before,
+.bpt-legend-float__frame::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(229, 191, 77, 0.5);
+    pointer-events: none;
+    z-index: 2;
+}
+.bpt-legend-float__frame::before {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+.bpt-legend-float__frame::after {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+.bpt-legend-float:hover .bpt-legend-float__frame {
+    transform: translateY(-6px);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.bpt-legend-float__frame img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 8px;
+    object-fit: contain;
 }
 
-.bpt-legend-content {
-    flex: 1 1 auto;
-}
-
-.bpt-legend-content .bpt-kicker {
+/* Caption */
+.bpt-legend-float__caption {
+    display: block;
     text-align: center;
-    margin-bottom: 0.8em;
+    margin-top: 14px;
+    font-family: "Vollkorn", serif;
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    font-style: italic;
+    color: rgba(255, 250, 235, 0.55);
+    letter-spacing: 0.06em;
 }
 
-/* Mobile: stack dọc, ảnh dưới text */
-@media (max-width: 768px) {
-    .bpt-legend-layout {
+/* ── Text box — bên phải, co giãn tự do ── */
+.bpt-legend-textbox {
+    flex: 1 1 auto !important;
+    max-width: min(680px, 56vw) !important;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    padding: clamp(24px, 3vw, 36px) clamp(28px, 4vw, 44px) !important;
+}
+
+.bpt-legend-textbox .bpt-kicker {
+    text-align: left;
+    margin-bottom: 0.8em;
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+}
+
+.bpt-legend-textbox p {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.75;
+}
+
+/*/* ── Mobile: stack dọc ── */
+@media (max-width: 900px) {
+    .bpt-sm-panel--cinematic {
         flex-direction: column;
-        gap: clamp(16px, 3vw, 28px);
-        padding: clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 28px) !important;
+        justify-content: center;
+        gap: clamp(24px, 5vw, 40px);
+        padding: clamp(32px, 5vw, 48px) clamp(20px, 4vw, 32px);
     }
 
-    .bpt-legend-content {
+    .bpt-legend-float {
+        flex: 0 0 auto;
+        width: min(280px, 60vw);
+        max-width: 320px;
+        margin-left: 0;
         order: 1;
-        width: 100%;
     }
 
-    .bpt-legend-image {
-        order: 2;
+    .bpt-legend-textbox {
         flex: none;
-        width: 55%;
-        max-width: 260px;
-        margin: 0 auto;
+        max-width: 100% !important;
+        margin-right: 0 !important;
     }
 
-    .bpt-legend-content .bpt-kicker {
-        text-align: center;
+    .bpt-legend-float__glow {
+        inset: -15px;
+        filter: blur(15px);
+    }
+}
+*/
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .bpt-legend-float__glow {
+        animation: none;
+        opacity: 0.6;
+    }
+    .bpt-legend-float__frame {
+        transition: none;
+    }
+    .bpt-legend-float:hover .bpt-legend-float__frame {
+        transform: none;
     }
 }
 
