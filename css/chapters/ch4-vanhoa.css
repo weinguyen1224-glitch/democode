@@ -428,7 +428,7 @@
 /* XƯA — lớp trên, clip-path */
 .ch4-compare--xua {
     z-index: 2;
-    clip-path: inset(0 50% 0 0);
+    clip-path: inset(0 37% 0 0);
     will-change: clip-path;
 }
 
@@ -436,7 +436,7 @@
 .ch4-slider-handle {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 37%;
     width: 3px;
     height: 100%;
     z-index: 10;
