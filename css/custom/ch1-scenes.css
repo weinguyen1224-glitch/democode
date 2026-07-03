@@ -560,7 +560,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    gap: clamp(200px, 6vw, 400px);
+    gap: clamp(40px, 4vw, 100px);
     padding: clamp(32px, 5vw, 64px) clamp(16px, 3vw, 48px);
     justify-content: center;
 
