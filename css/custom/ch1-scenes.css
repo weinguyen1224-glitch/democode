@@ -638,12 +638,6 @@
 /* ── Khung viền — bounce riêng ── */
 .bpt-legend-float__frame {
     position: relative;
-    padding: 8px;
-    background: linear-gradient(145deg, #f5e6c8 0%, #e0ce9e 100%);
-    border-radius: 14px;
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.2),
-        0 2px 8px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: scale(0.85) rotate(-2deg);
 }
@@ -671,62 +665,17 @@
 }
 
 /* Hover */
-.bpt-legend-float__frame {
-    transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 .bpt-legend-float:hover .bpt-legend-float__frame {
     transform: translateY(-6px);
-    box-shadow:
-        0 16px 48px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* ── Corner accents — fade in ── */
-.bpt-legend-float__frame::before,
-.bpt-legend-float__frame::after {
-    content: "";
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border: 2px solid rgba(229, 191, 77, 0.5);
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0;
-}
-
-.bpt-legend-float.ch1-visible .bpt-legend-float__frame::before,
-.bpt-legend-float.ch1-visible .bpt-legend-float__frame::after {
-    animation: ch1-corner-in 0.5s ease-out 0.6s forwards;
-}
-
-.bpt-legend-float__frame::before {
-    top: 10px;
-    left: 10px;
-    border-right: none;
-    border-bottom: none;
-}
-
-.bpt-legend-float__frame::after {
-    bottom: 10px;
-    right: 10px;
-    border-left: none;
-    border-top: none;
-}
-
-@keyframes ch1-corner-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
+/* ── Corner accents — fade in (removed for transparent image) ── */
 
 /* ── Ảnh bên trong frame — fade in ── */
 .bpt-legend-float__frame img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 8px;
     object-fit: contain;
     opacity: 0;
 }
