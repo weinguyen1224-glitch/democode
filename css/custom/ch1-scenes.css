@@ -406,22 +406,32 @@
 /* ── Mobile: full-width text, overlay nhẹ hơn ── */
 @media (max-width: 768px) {
     .bpt-sm-text {
-        max-width: calc(100vw - 32px);
-        margin: 16px;
-        padding: clamp(20px, 5vw, 32px);
+        max-width: 90vw;
+        width: 90vw;
+        margin: 16px auto !important;
+        padding: clamp(20px, 5vw, 32px) clamp(24px, 6vw, 40px);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
         background: rgb(255 250 235 / 0.93);
+        box-sizing: border-box;
     }
 
     .bpt-sm-text--left,
     .bpt-sm-text--right {
-        margin-left: 16px;
-        margin-right: 16px;
+        width: 90vw;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .bpt-sm-text .bpt-kicker {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 0.5em;
     }
 
     .bpt-sm-text p {
-        font-size: clamp(0.98rem, 3.8vw, 1.2rem);
+        font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+        line-height: 1.55;
+        margin-bottom: 0.6em;
     }
 
     .bpt-sm-overlay {
@@ -789,8 +799,9 @@
     .bpt-sm-panel--cinematic {
         flex-direction: column;
         justify-content: center;
-        gap: clamp(24px, 5vw, 40px);
-        padding: clamp(32px, 5vw, 48px) clamp(20px, 4vw, 32px);
+        gap: clamp(16px, 4vw, 32px);
+        padding: clamp(24px, 5vw, 40px) clamp(16px, 4vw, 24px);
+        min-height: auto;
     }
 
     .bpt-legend-float {
@@ -798,7 +809,7 @@
         width: min(280px, 60vw);
         max-width: 320px;
         margin-left: 0;
-        order: 1;
+        order: 2;
     }
 
     /* Mobile: bay từ dưới lên */
@@ -821,10 +832,42 @@
         }
     }
 
-    .bpt-legend-textbox {
-        flex: none;
-        max-width: 100% !important;
-        margin-right: 0 !important;
+    .bpt-sm-panel--cinematic .bpt-legend-textbox {
+        flex: none !important;
+        width: 90%;
+        max-width: 90% !important;
+        margin: 0 auto !important;
+        padding: clamp(20px, 5vw, 32px) clamp(24px, 6vw, 40px) !important;
+        text-align: left;
+    }
+
+    .bpt-sm-panel--cinematic .bpt-legend-textbox .bpt-kicker {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 0.5em;
+    }
+
+    .bpt-sm-panel--cinematic .bpt-legend-textbox p {
+        font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+        line-height: 1.55;
+        margin-bottom: 0.6em;
+    }
+
+    .bpt-sm-text--left {
+        width: 90%;
+        max-width: 90% !important;
+        margin: 0 auto !important;
+        padding: clamp(20px, 5vw, 32px) clamp(24px, 6vw, 40px) !important;
+    }
+
+    .bpt-sm-text--left .bpt-kicker {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 0.5em;
+    }
+
+    .bpt-sm-text--left p {
+        font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+        line-height: 1.55;
+        margin-bottom: 0.6em;
     }
 
     .bpt-legend-float__glow {
