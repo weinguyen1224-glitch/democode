@@ -210,7 +210,6 @@
       const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
       if (!textEl) return null;
       const dir = textEl.classList.contains("bpt-sm-text--right") ? -1 : 1;
-      textEl.style.willChange = "transform, opacity";
       return { panel, textEl, dir };
     }).filter(Boolean);
 
@@ -218,16 +217,14 @@
 
     const isActive = createVisObserver(section, { rootMargin: "15% 0px" });
 
-    function computeItemProgress(panel) {
+    function applyItem({ panel, textEl, dir }) {
+      // Quick bounds check — skip panels far off-screen
       const rect = panel.getBoundingClientRect();
       const vh = window.innerHeight;
+      if (rect.bottom < -vh * 0.5 || rect.top > vh * 1.5) return;
+
       const p = clamp01((vh * 1.1 - rect.top) / (vh * 1.1 - vh * 0.45));
       const ex = clamp01((-vh * 0.35 - rect.top) / (-vh * 0.35 - (-vh * 1.2)));
-      return { p, ex };
-    }
-
-    function applyItem({ panel, textEl, dir }) {
-      const { p, ex } = computeItemProgress(panel);
       const ep = easeOut(p);
       const exp = easeIn(ex);
 
@@ -236,8 +233,6 @@
       } else if (exp > 0.4) {
         textEl.classList.remove("is-visible");
       }
-
-      textEl.style.willChange = (ep === 0 && exp === 0) ? "auto" : "transform, opacity";
 
       const rotation = dir * 3;
       if (isMobile) {
@@ -375,13 +370,21 @@
       }
     }
 
+    let scrollHandler = null;
+
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          window.addEventListener("scroll", createScrollHandler(update), { passive: true });
+          if (!scrollHandler) {
+            scrollHandler = createScrollHandler(update);
+            window.addEventListener("scroll", scrollHandler, { passive: true });
+          }
           update();
         } else {
-          window.removeEventListener("scroll", update);
+          if (scrollHandler) {
+            window.removeEventListener("scroll", scrollHandler);
+            scrollHandler = null;
+          }
         }
       });
     }, { rootMargin: "20% 0px" });

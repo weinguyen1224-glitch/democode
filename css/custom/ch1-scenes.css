@@ -495,7 +495,6 @@
     border: 1px solid rgb(200 170 100 / 0.35);
 
     text-align: center;
-    will-change: transform, opacity;
 }
 
 /* Kicker căn trái trong legend textbox */
@@ -960,7 +959,6 @@
 .bpt-sm-text.bpt-reveal {
     opacity: 0;
     transform: translateY(30px);
-    will-change: transform, opacity;
     transition:
         opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1237,22 +1235,8 @@
    Cinematic Panel Effects — Enhanced
    ═══════════════════════════════════════════════════════════ */
 
-/* Subtle grain texture overlay cho panels */
-.bpt-sm-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    .bpt-sm-panel::before {
-        display: none;
-    }
-}
+/* Subtle grain texture overlay — removed for performance (feTurbulence too expensive) */
+/* .bpt-sm-panel::before intentionally left empty */
 
 /* Vignette effect cho panels */
 .bpt-sm-panel::after {
