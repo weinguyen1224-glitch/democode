@@ -78,6 +78,58 @@
             }
         });
     }
+
+    /* ── Ch5 Wipe Effect (scroll-triggered, horizontal) ── */
+    var ch5Wipes = document.querySelectorAll("[data-ch5-wipe]");
+    if (ch5Wipes.length) {
+        function updateCh5Wipe(section) {
+            var revealLayer = section.querySelector(".ch5-wipe__reveal-layer");
+            var swipeLine = section.querySelector(".ch5-wipe__line");
+            if (!revealLayer) return;
+
+            var rect = section.getBoundingClientRect();
+            var wrapperHeight = section.offsetHeight;
+            var windowHeight = window.innerHeight;
+
+            var scrolled = -rect.top;
+            var scrollRange = wrapperHeight - windowHeight;
+
+            var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+
+            var clipRight = 100 - progress * 100;
+            revealLayer.style.clipPath = "inset(0 " + clipRight + "% 0 0)";
+
+            if (swipeLine) {
+                var linePos = progress * 100;
+                swipeLine.style.left = linePos + "%";
+                swipeLine.style.opacity = progress > 0.01 && progress < 0.99 ? "1" : "0";
+            }
+        }
+
+        var ch5WipeTicking = false;
+        window.addEventListener("scroll", function () {
+            if (!ch5WipeTicking) {
+                requestAnimationFrame(function () {
+                    ch5Wipes.forEach(function (section) {
+                        var rect = section.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            updateCh5Wipe(section);
+                        }
+                    });
+                    ch5WipeTicking = false;
+                });
+                ch5WipeTicking = true;
+            }
+        }, { passive: true });
+
+        ch5Wipes.forEach(function (section) {
+            var rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                updateCh5Wipe(section);
+            }
+        });
+    }
+
     if (!wipeSections.length) return;
 
     function updateWipe(section) {
