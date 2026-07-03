@@ -293,6 +293,8 @@
     display: flex;
     align-items: center;
     pointer-events: none; /* chỉ text block nhận events */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vh;
 }
 
 /* Closing panel: thêm padding bottom để có khoảng hở */
@@ -382,29 +384,7 @@
     border-radius: 10px;
 }
 
-/* Reveal override: panel p2 text — JS-driven scroll sync (no CSS transition) */
-.bpt-sm-text.bpt-reveal {
-    /* Cinematic reveal: bắt đầu ẩn, JS control */
-    transition: none;
-    /* Initial state: ẩn, sẵn sàng cho animation */
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-/* bpt-visible không cần thiết cho p2 (JS tự handle), giữ lại để không break panels khác */
-.bpt-sm-text.bpt-reveal.bpt-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Paragraph stagger: tắt trong scrollmation context — block animate cùng lúc với JS */
-.bpt-sm-text.bpt-reveal .bpt-kicker,
-.bpt-sm-text.bpt-reveal p,
-.bpt-sm-text.bpt-reveal figure {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-}
+/* Reveal override: removed — panel p2 now uses same is-visible animation as other panels */
 
 /* ── Red-thread accent: đường kẻ trái text block ── */
 .bpt-sm-text::before {
@@ -497,12 +477,6 @@
     display: none;
 }
 
-@media (min-width: 769px) {
-    .bpt-sm-cinematic-bg {
-        will-change: transform, opacity;
-    }
-}
-
 /* Overlay gradient — nhẹ hơn vì nền đã là màu vàng be */
 
 @media (max-width: 768px) {
@@ -524,8 +498,9 @@
     will-change: transform, opacity;
 }
 
-.bpt-sm-panel--cinematic .bpt-sm-text .bpt-kicker {
-    text-align: center;
+/* Kicker căn trái trong legend textbox */
+.bpt-sm-panel--cinematic .bpt-legend-textbox .bpt-kicker {
+    text-align: left;
 }
 
 /* Box từ điển tích đến cung đình (p2-p5) */
@@ -585,64 +560,75 @@
     overflow: hidden;
 }
 
-/* ── Floating Image — bên trái ── */
+/* ═══════════════════════════════════════════════════════════
+   Floating Image — Fly-in animation (GPU-optimized, no blur)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Container — ẩn ban đầu ── */
 .bpt-legend-float {
     position: relative;
     flex: 0 0 38%;
     max-width: 440px;
     z-index: 5;
-    /* Scroll reveal animation — hidden state */
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    transition:
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Visible state — triggered by JS */
+/* ── Bay vào khi scroll ── */
 .bpt-legend-float.ch1-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    animation: ch1-float-flyin 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .bpt-legend-float {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
+@keyframes ch1-float-flyin {
+    0% {
+        opacity: 0;
+        transform: translateX(-180px) translateY(40px) rotate(-10deg) scale(0.75);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(10px) translateY(-5px) rotate(1.5deg) scale(1.02);
+    }
+    80% {
+        transform: translateX(-3px) translateY(2px) rotate(-0.5deg) scale(0.99);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) rotate(0) scale(1);
     }
 }
 
-/* Glow effect */
+/* ── Glow — pulse nhẹ ── */
 .bpt-legend-float__glow {
     position: absolute;
     inset: -30px;
     background: radial-gradient(
         ellipse at center,
-        rgba(229, 191, 77, 0.3) 0%,
-        rgba(229, 191, 77, 0.1) 45%,
+        rgba(229, 191, 77, 0.35) 0%,
+        rgba(229, 191, 77, 0.12) 40%,
         transparent 70%
     );
     border-radius: 50%;
-    filter: blur(25px);
+    filter: blur(12px);
     pointer-events: none;
-    animation: bpt-legend-glow 5s ease-in-out infinite;
+    opacity: 0;
+    transform: scale(0.6);
 }
 
-@keyframes bpt-legend-glow {
-    0%,
+.bpt-legend-float.ch1-visible .bpt-legend-float__glow {
+    animation: ch1-glow-in 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes ch1-glow-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
     100% {
-        opacity: 0.5;
+        opacity: 1;
         transform: scale(1);
     }
-    50% {
-        opacity: 0.9;
-        transform: scale(1.06);
-    }
 }
 
-/* khung viền */
+/* ── Khung viền — bounce riêng ── */
 .bpt-legend-float__frame {
     position: relative;
     padding: 8px;
@@ -651,33 +637,37 @@
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.2),
         0 2px 8px rgba(0, 0, 0, 0.1);
-    transition:
-        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: scale(0.85) rotate(-2deg);
 }
 
-/* Corner accents */
-.bpt-legend-float__frame::before,
-.bpt-legend-float__frame::after {
-    content: "";
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border: 2px solid rgba(229, 191, 77, 0.5);
-    pointer-events: none;
-    z-index: 2;
+.bpt-legend-float.ch1-visible .bpt-legend-float__frame {
+    animation: ch1-frame-bounce 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 }
-.bpt-legend-float__frame::before {
-    top: 10px;
-    left: 10px;
-    border-right: none;
-    border-bottom: none;
+
+@keyframes ch1-frame-bounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) rotate(-2deg);
+    }
+    55% {
+        opacity: 1;
+        transform: scale(1.04) rotate(1deg);
+    }
+    75% {
+        transform: scale(0.98) rotate(-0.3deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
 }
-.bpt-legend-float__frame::after {
-    bottom: 10px;
-    right: 10px;
-    border-left: none;
-    border-top: none;
+
+/* Hover */
+.bpt-legend-float__frame {
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bpt-legend-float:hover .bpt-legend-float__frame {
@@ -687,12 +677,78 @@
         0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+/* ── Corner accents — fade in ── */
+.bpt-legend-float__frame::before,
+.bpt-legend-float__frame::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(229, 191, 77, 0.5);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+}
+
+.bpt-legend-float.ch1-visible .bpt-legend-float__frame::before,
+.bpt-legend-float.ch1-visible .bpt-legend-float__frame::after {
+    animation: ch1-corner-in 0.5s ease-out 0.6s forwards;
+}
+
+.bpt-legend-float__frame::before {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bpt-legend-float__frame::after {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+@keyframes ch1-corner-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ── Ảnh bên trong frame — fade in ── */
 .bpt-legend-float__frame img {
     display: block;
     width: 100%;
     height: auto;
     border-radius: 8px;
     object-fit: contain;
+    opacity: 0;
+}
+
+.bpt-legend-float.ch1-visible .bpt-legend-float__frame img {
+    animation: ch1-img-reveal 0.6s ease-out 0.3s forwards;
+}
+
+@keyframes ch1-img-reveal {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .bpt-legend-float,
+    .bpt-legend-float__glow,
+    .bpt-legend-float__frame,
+    .bpt-legend-float__frame img {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .bpt-legend-float__frame::before,
+    .bpt-legend-float__frame::after {
+        animation: none !important;
+        opacity: 1 !important;
+    }
 }
 
 /* Caption */
@@ -708,7 +764,7 @@
 }
 
 /* ── Text box — bên phải, co giãn tự do ── */
-.bpt-legend-textbox {
+.bpt-sm-panel--cinematic .bpt-legend-textbox {
     flex: 1 1 auto !important;
     max-width: min(680px, 56vw) !important;
     margin: 0;
@@ -729,7 +785,7 @@
     line-height: 1.75;
 }
 
-/*/* ── Mobile: stack dọc ── */
+/* ── Mobile: stack dọc ── */
 @media (max-width: 900px) {
     .bpt-sm-panel--cinematic {
         flex-direction: column;
@@ -746,6 +802,26 @@
         order: 1;
     }
 
+    /* Mobile: bay từ dưới lên */
+    .bpt-legend-float.ch1-visible {
+        animation-name: ch1-float-flyin-mobile;
+    }
+
+    @keyframes ch1-float-flyin-mobile {
+        0% {
+            opacity: 0;
+            transform: translateY(80px) scale(0.8) rotate(3deg);
+        }
+        60% {
+            opacity: 1;
+            transform: translateY(-6px) scale(1.02) rotate(-1deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0);
+        }
+    }
+
     .bpt-legend-textbox {
         flex: none;
         max-width: 100% !important;
@@ -754,10 +830,9 @@
 
     .bpt-legend-float__glow {
         inset: -15px;
-        filter: blur(15px);
+        filter: blur(10px);
     }
 }
-*/
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
@@ -881,41 +956,40 @@
    Sống động, sáng tạo, mượt mà khi lướt
    ═══════════════════════════════════════════════════════════ */
 
-/* Base: text blocks sẵn sàng animation */
+/* Base: text blocks sẵn sàng animation — nhanh, không lag */
 .bpt-sm-text.bpt-reveal {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
     will-change: transform, opacity;
     transition:
-        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Left text: bay từ trái + xoay nhẹ */
+/* Left text: bay từ trái */
 .bpt-sm-text.bpt-reveal.bpt-sm-text--left {
-    transform: translateX(-80px) translateY(30px) rotate(-2deg);
+    transform: translateX(-60px) translateY(20px);
 }
 
-/* Right text: bay từ phải + xoay nhẹ */
+/* Right text: bay từ phải */
 .bpt-sm-text.bpt-reveal.bpt-sm-text--right {
-    transform: translateX(80px) translateY(30px) rotate(2deg);
+    transform: translateX(60px) translateY(20px);
 }
 
-/* Center text: bay từ dưới + scale + blur */
+/* Center text: bay từ dưới */
 .bpt-sm-text.bpt-reveal.bpt-sm-text--center {
-    transform: translateY(60px) scale(0.94);
-    /* filter: blur(4px); */
+    transform: translateY(40px) scale(0.96);
 }
 
-/* Stagger cho content bên trong — cinematic typewriter feel */
+/* Stagger cho content bên trong — nhanh */
 .bpt-sm-text.bpt-reveal .bpt-kicker,
 .bpt-sm-text.bpt-reveal p,
 .bpt-sm-text.bpt-reveal blockquote {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
     transition:
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Decorative line reveal */
@@ -933,8 +1007,8 @@
         transparent
     );
     transition:
-        width 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
-        left 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+        width 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+        left 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 
 /* Border glow effect — animated gradient */
@@ -954,7 +1028,7 @@
     background-size: 200% 100%;
     opacity: 0;
     z-index: -1;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.4s ease;
 }
 
 /* ===== VISIBLE STATES — Bidirectional ===== */
@@ -988,45 +1062,46 @@
     }
 }
 
-/* Stagger reveal content — cascading entrance */
+/* Stagger reveal content — nhanh, cascading entrance */
 .bpt-sm-text.bpt-reveal.is-visible .bpt-kicker {
     opacity: 1;
     transform: translateY(0);
     transition:
-        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
 }
 
 .bpt-sm-text.bpt-reveal.is-visible p:nth-child(1 of p) {
     opacity: 1;
     transform: translateY(0);
     transition:
-        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 
 .bpt-sm-text.bpt-reveal.is-visible p:nth-child(2 of p) {
     opacity: 1;
     transform: translateY(0);
     transition:
-        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s,
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s;
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 .bpt-sm-text.bpt-reveal.is-visible p:nth-child(3 of p) {
     opacity: 1;
     transform: translateY(0);
     transition:
-        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s,
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s;
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
 }
 
 .bpt-sm-text.bpt-reveal.is-visible blockquote {
     opacity: 1;
     transform: translateY(0) scale(1);
     transition:
-        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s,
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s;
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.45s,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
 }
 
 /* Exit animation — text trôi đi khi scroll ra */

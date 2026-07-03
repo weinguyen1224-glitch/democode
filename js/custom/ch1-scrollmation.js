@@ -166,73 +166,34 @@
 
   // ═══════════════════════════════════════════════════════════
   // 2. PANEL p2 — CINEMATIC (from 06-p2-cinematic.js)
-  //    Nền vàng be + text overlay
+  //    Nền vàng be + float image + text reveal (bidirectional)
   // ═══════════════════════════════════════════════════════════
   (() => {
     const panel = document.querySelector(".bpt-sm-panel--cinematic");
     if (!panel) return;
 
-    // Scroll reveal cho floating image (su-tich.webp)
     const floatImg = panel.querySelector(".bpt-legend-float");
-    if (floatImg) {
-      const floatObserver = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("ch1-visible");
-            floatObserver.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-      floatObserver.observe(floatImg);
-    }
-
-    if (isMobile) {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const txt = panel.querySelector(".bpt-sm-text.bpt-reveal");
-            if (txt) { txt.style.transform = "translate3d(0, 0, 0)"; txt.style.opacity = "1"; }
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      obs.observe(panel);
-      return;
-    }
-
     const textEl = panel.querySelector(".bpt-sm-text.bpt-reveal");
 
     if (prefersReduced) {
-      if (textEl) { textEl.style.transform = ""; textEl.style.opacity = "1"; textEl.style.filter = "none"; }
+      if (floatImg) { floatImg.style.opacity = "1"; floatImg.style.transform = "none"; }
+      if (textEl) { textEl.classList.add("is-visible"); }
       return;
     }
 
-    function computeProgress() {
-      const rect = panel.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const enterStart = vh * 1.1;
-      const enterEnd = vh * 0.45;
-      const p = clamp01((enterStart - rect.top) / (enterStart - enterEnd));
-      const exitStart = -vh * 0.35;
-      const exitEnd = -vh * 1.2;
-      const ex = clamp01((exitStart - rect.top) / (exitStart - exitEnd));
-      return { p, ex };
-    }
-
-    function applyAnimation() {
-      const { p, ex } = computeProgress();
-      const ep = easeOut(p);
-      const exp = easeIn(ex);
-
-      if (textEl) {
-        textEl.style.transform = `translateY(${(30 * (1 - ep) - 20 * exp).toFixed(2)}px)`;
-        textEl.style.opacity = (Math.min(1, p * 1.5) * (1 - exp * 0.9)).toFixed(3);
-      }
-    }
-
-    applyAnimation();
-    window.addEventListener("scroll", createScrollHandler(applyAnimation), { passive: true });
-    window.addEventListener("resize", applyAnimation, { passive: true });
+    // IntersectionObserver — bidirectional: thêm/xóa class khi scroll vào/ra
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          if (floatImg) floatImg.classList.add("ch1-visible");
+          if (textEl) textEl.classList.add("is-visible");
+        } else {
+          if (floatImg) floatImg.classList.remove("ch1-visible");
+          if (textEl) textEl.classList.remove("is-visible");
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
+    observer.observe(panel);
   })();
 
   // ═══════════════════════════════════════════════════════════
