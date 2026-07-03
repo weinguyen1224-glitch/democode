@@ -441,10 +441,10 @@
     }
 }
 
-/* ── Reduced motion: tắt tất cả cross-fade và scale ── */
+/* ── Reduced motion: tắt hiệu ứng chuyển động, giữ cross-fade nền ── */
 @media (prefers-reduced-motion: reduce) {
     .bpt-sm-slide {
-        transition: none !important;
+        /* Giữ transition cho background cross-fade (content change, ko phải decoration) */
         transform: scale(1) !important;
     }
 
