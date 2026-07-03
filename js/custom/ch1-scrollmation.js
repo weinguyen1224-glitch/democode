@@ -30,11 +30,18 @@
 
   // Visibility observer: pause when section off-screen
   function createVisObserver(el, opts) {
-    let active = false;
-    const obs = new IntersectionObserver((entries) => {
-      active = entries[0].isIntersecting;
-    }, opts || { rootMargin: "10% 0px" });
-    obs.observe(el);
+    let active = true; // default true: fallback nếu IO không hỗ trợ
+    if (typeof IntersectionObserver === "undefined") {
+      return () => active;
+    }
+    try {
+      const obs = new IntersectionObserver((entries) => {
+        active = entries[0].isIntersecting;
+      }, opts || { rootMargin: "10% 0px" });
+      obs.observe(el);
+    } catch (_e) {
+      // IO không hoạt động, giữ active = true
+    }
     return () => active;
   }
 
@@ -50,11 +57,6 @@
     const panels = Array.from(section.querySelectorAll(".bpt-sm-panel"));
     const N = slides.length;
     if (!N || !panels.length) return;
-
-    if (prefersReduced) {
-      slides[0].classList.add("is-active");
-      return;
-    }
 
     let currentIndex = 0;
     const isActive = createVisObserver(section);
@@ -95,7 +97,7 @@
     let zoomTicking = false;
 
     function applyZoomToSlide4() {
-      if (isMobile) return;
+      if (isMobile || prefersReduced) return;
       const slide4 = slides[ZOOM_SLIDE_INDEX];
       if (!slide4 || !slide4.classList.contains("is-active")) {
         if (slide4) {
@@ -192,18 +194,28 @@
     }
 
     // IntersectionObserver — bidirectional: thêm/xóa class khi scroll vào/ra
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          if (floatImg) floatImg.classList.add("ch1-visible");
-          if (textEl) textEl.classList.add("is-visible");
-        } else {
-          if (floatImg) floatImg.classList.remove("ch1-visible");
-          if (textEl) textEl.classList.remove("is-visible");
-        }
-      });
-    }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
-    observer.observe(panel);
+    function showCinematic() {
+      if (floatImg) floatImg.classList.add("ch1-visible");
+      if (textEl) textEl.classList.add("is-visible");
+    }
+    function hideCinematic() {
+      if (floatImg) floatImg.classList.remove("ch1-visible");
+      if (textEl) textEl.classList.remove("is-visible");
+    }
+    if (typeof IntersectionObserver === "undefined") {
+      showCinematic();
+    } else {
+      try {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) showCinematic(); else hideCinematic();
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
+        observer.observe(panel);
+      } catch (_e) {
+        showCinematic();
+      }
+    }
   })();
 
   // ═══════════════════════════════════════════════════════════
@@ -380,25 +392,36 @@
       }
     }
 
-    let scrollHandler = null;
+    function attachMagazineScroll() {
+      let _scrollHandler = null;
+      function attach() {
+        if (_scrollHandler) return;
+        _scrollHandler = createScrollHandler(update);
+        window.addEventListener("scroll", _scrollHandler, { passive: true });
+      }
+      function detach() {
+        if (!_scrollHandler) return;
+        window.removeEventListener("scroll", _scrollHandler);
+        _scrollHandler = null;
+      }
+      return { attach, detach };
+    }
 
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          if (!scrollHandler) {
-            scrollHandler = createScrollHandler(update);
-            window.addEventListener("scroll", scrollHandler, { passive: true });
-          }
-          update();
-        } else {
-          if (scrollHandler) {
-            window.removeEventListener("scroll", scrollHandler);
-            scrollHandler = null;
-          }
-        }
-      });
-    }, { rootMargin: "20% 0px" });
-    obs.observe(panel);
+    const mg = attachMagazineScroll();
+    if (typeof IntersectionObserver === "undefined") {
+      mg.attach();
+    } else {
+      try {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) mg.attach(); else mg.detach();
+          });
+        }, { rootMargin: "20% 0px" });
+        obs.observe(panel);
+      } catch (_e) {
+        mg.attach();
+      }
+    }
     update();
   })();
 })();
