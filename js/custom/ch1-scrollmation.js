@@ -131,9 +131,19 @@
       return 0;
     }
 
+    function getTrackHeight() {
+      const h = section.offsetHeight - window.innerHeight;
+      if (h > 0) return h;
+      // Fallback: content-visibility:auto hoặc trình duyệt cũ
+      // có thể báo offsetHeight sai. Dùng số panel + viewport
+      const vh = window.innerHeight;
+      const N = Math.max(1, panels.length || 5);
+      return N * vh * 1.4;
+    }
+
     function update() {
       const rect = section.getBoundingClientRect();
-      const trackHeight = section.offsetHeight - window.innerHeight;
+      const trackHeight = getTrackHeight();
       if (trackHeight <= 0) return;
 
       const pct = clamp01(-rect.top / trackHeight);

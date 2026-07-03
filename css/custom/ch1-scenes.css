@@ -293,8 +293,6 @@
     display: flex;
     align-items: center;
     pointer-events: none; /* chỉ text block nhận events */
-    content-visibility: auto;
-    contain-intrinsic-size: auto 100vh;
 }
 
 /* Closing panel: thêm padding bottom để có khoảng hở */
