@@ -1052,6 +1052,8 @@
     .bpt-nghe-nhan__reflect,
     .bpt-nghe-nhan__kicker-line,
     .bpt-nghe-nhan__portrait-wrap,
+    .bpt-nghe-nhan__scene--portrait,
+    .bpt-nghe-nhan__quote-image,
     .bpt-nhn-video-bar {
         opacity: 1 !important;
         transform: none !important;

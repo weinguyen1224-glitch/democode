@@ -529,6 +529,12 @@
 #section-bpt-ch2-gallery-1.bpt-visible .ch2-d3 { animation-delay: 0.49s; }
 #section-bpt-ch2-gallery-1.bpt-visible .ch2-d4 { animation-delay: 0.70s; }
 
+/* Reduced motion: gallery fade instead of fly-in */
+@keyframes ch2-fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .bpt-scene .bpt-prose,
@@ -553,10 +559,11 @@
     #section-bpt-ch2-gallery-1 .ch2-anim-slideBounce,
     #section-bpt-ch2-gallery-1 .ch2-anim-dropSpin,
     #section-bpt-ch2-gallery-1 .ch2-anim-rollIn {
-        animation: none !important;
-        opacity: 1 !important;
+        animation-name: ch2-fade-in !important;
+        animation-duration: 0.5s !important;
+        animation-timing-function: ease-out !important;
+        animation-fill-mode: both !important;
         transform: none !important;
-        transition: none !important;
     }
 
     .bpt-scene::before,

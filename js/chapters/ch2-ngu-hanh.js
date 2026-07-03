@@ -758,29 +758,6 @@ function ch2NguHanhInit() {
   function startUnwrap() {
     if (animating || burstDone) return;
     if (typeof gsap === "undefined") return;
-    // Reduced motion: skip animation, show final state immediately
-    if (prefersReducedMotion()) {
-      frames.forEach((f, i) => {
-        if (f) {
-          f.style.opacity = i === 6 ? "1" : "0";
-          f.style.transform = "none";
-        }
-      });
-      if (progArc) progArc.style.strokeDashoffset = "0";
-      if (hint) {
-        hint.style.opacity = "0";
-        hint.style.pointerEvents = "none";
-      }
-      burstHanh();
-      return;
-    }
-    animating = true;
-
-    if (hint) {
-      hint.style.opacity = "0";
-      hint.style.pointerEvents = "none";
-    }
-    if (glow) glow.classList.add("is-bright");
 
     const steps = [
       {
@@ -833,6 +810,25 @@ function ch2NguHanhInit() {
       },
     ];
     const gaps = [280, 250, 250, 250, 250, 280];
+
+    // Reduced motion: walk frames sequentially (instant swap, no GSAP)
+    if (prefersReducedMotion()) {
+      animating = true;
+      if (hint) { hint.style.opacity = "0"; hint.style.pointerEvents = "none"; }
+      if (progArc) progArc.style.strokeDashoffset = CIRCUMFERENCE.toString();
+      var ri = 0;
+      function rmNext() {
+        if (ri >= steps.length) { burstHanh(); return; }
+        var rs = steps[ri];
+        if (frames[rs.from]) frames[rs.from].style.opacity = "0";
+        if (frames[rs.to]) { frames[rs.to].style.opacity = "1"; frames[rs.to].style.transform = "none"; }
+        setProgress((ri + 1) / 6);
+        ri++;
+        setTimeout(rmNext, 40);
+      }
+      rmNext();
+      return;
+    }
 
     function runStep(i) {
       if (i >= steps.length) {
