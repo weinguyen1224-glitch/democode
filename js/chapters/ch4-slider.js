@@ -172,12 +172,21 @@
       el.classList.remove('ch4-path__node-img--pop-in', 'ch4-path__node-img--pop-out');
     }
 
+    function hideElement(el) {
+      if (!el) return;
+      // Only pop-out if element was previously shown (has pop-in class or is visible)
+      if (el.classList.contains('ch4-path__node-img--pop-in')) {
+        applyAnimation(el, 'ch4-path__node-img--pop-out');
+      } else {
+        removeAnimation(el);
+      }
+    }
+
     function showBanh() {
       if (currentNode === 'banh') return;
       currentNode = 'banh';
-      // Hide vỏ first, then show bánh
-      applyAnimation(voTrad, 'ch4-path__node-img--pop-out');
-      applyAnimation(voMod, 'ch4-path__node-img--pop-out');
+      hideElement(voTrad);
+      hideElement(voMod);
       applyAnimation(banhTrad, 'ch4-path__node-img--pop-in');
       applyAnimation(banhMod, 'ch4-path__node-img--pop-in');
     }
@@ -185,7 +194,6 @@
     function hideBanhShowVo() {
       if (currentNode === 'vo') return;
       currentNode = 'vo';
-      // Pop-out bánh then pop-in vỏ after short delay
       applyAnimation(banhTrad, 'ch4-path__node-img--pop-out');
       applyAnimation(banhMod, 'ch4-path__node-img--pop-out');
       setTimeout(function () {
@@ -194,12 +202,13 @@
       }, 150);
     }
 
-    function resetAll() {
+    function hideBanh() {
+      if (currentNode === null) return;
       currentNode = null;
-      removeAnimation(banhTrad);
-      removeAnimation(banhMod);
-      removeAnimation(voTrad);
-      removeAnimation(voMod);
+      hideElement(banhTrad);
+      hideElement(banhMod);
+      hideElement(voTrad);
+      hideElement(voMod);
     }
 
     function onScroll() {
@@ -258,7 +267,7 @@
         } else if (progress >= banhTrigger) {
           showBanh();
         } else {
-          resetAll();
+          hideBanh();
         }
 
         // Waypoint labels always visible
