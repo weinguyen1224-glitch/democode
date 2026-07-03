@@ -428,7 +428,7 @@
 /* XƯA — lớp trên, clip-path */
 .ch4-compare--xua {
     z-index: 2;
-    clip-path: inset(0 37% 0 0);
+    clip-path: inset(0 38% 0 0);
     will-change: clip-path;
 }
 
@@ -436,7 +436,7 @@
 .ch4-slider-handle {
     position: absolute;
     top: 0;
-    left: 37%;
+    left: 38%;
     width: 3px;
     height: 100%;
     z-index: 10;
@@ -1350,6 +1350,10 @@
         aspect-ratio: 4 / 3;
         border-radius: 0;
     }
+    .ch4-compare--xua,
+    .ch4-compare--nay {
+        object-position: center center;
+    }
 
     .ch4-slider-handle__knob {
         width: 40px;
@@ -1407,6 +1411,10 @@
 @media (max-width: 480px) {
     .ch4-compare {
         aspect-ratio: 3 / 4;
+    }
+    .ch4-compare--xua,
+    .ch4-compare--nay {
+        object-position: center center;
     }
     .ch4-slider-handle__knob {
         width: 36px;

@@ -73,7 +73,7 @@
       });
 
       var rect = el.getBoundingClientRect();
-      setPosition(rect.left + rect.width * 0.37);
+      setPosition(rect.left + rect.width * 0.38);
     });
   }
 
