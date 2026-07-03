@@ -142,141 +142,133 @@
     var floatMod = document.getElementById('ch4-float-mod');
     var wpBánh = document.getElementById('ch4-wp-banh');
     var wpVỏ = document.getElementById('ch4-wp-vo');
-    var labelTruyen = document.getElementById('ch4-label-truyen-thong');
-    var labelHien = document.getElementById('ch4-label-hien-dai');
 
-    // Corner image containers
-    var cornerTrad = document.getElementById('ch4-corner-images-trad');
-    var cornerMod = document.getElementById('ch4-corner-images-mod');
-    var tradBanh = document.getElementById('ch4-trad-banh');
-    var tradVo = document.getElementById('ch4-trad-vo');
-    var modBanh = document.getElementById('ch4-mod-banh');
-    var modVo = document.getElementById('ch4-mod-vo');
+    // Node images
+    var banhTrad = document.getElementById('ch4-banh-trad');
+    var banhMod = document.getElementById('ch4-banh-mod');
+    var voTrad = document.getElementById('ch4-vo-trad');
+    var voMod = document.getElementById('ch4-vo-mod');
 
     if (!pathEl || !floatingEl) return;
 
     var pathLength = pathEl.getTotalLength();
-
-    // Set up progress line stroke-dasharray
     pathEl.style.strokeDasharray = pathLength;
     pathEl.style.strokeDashoffset = pathLength;
 
-    // Waypoint positions along path (0-1)
     var waypointBánh = 0.30;
     var waypointVỏ = 0.65;
+    var currentNode = null; // null | 'banh' | 'vo'
+    var rafPending = false;
 
-    function cycleImages(imgSet, progress, zoneStart, zoneEnd) {
-      if (!imgSet) return;
-      var imgs = imgSet.querySelectorAll('img');
-      if (imgs.length === 0) return;
-      var zoneWidth = zoneEnd - zoneStart;
-      if (zoneWidth <= 0) zoneWidth = 0.01;
-      var zoneProgress = Math.max(0, Math.min(0.999, (progress - zoneStart) / zoneWidth));
-      var activeIndex = Math.floor(zoneProgress * imgs.length) % imgs.length;
-      if (activeIndex < 0) activeIndex = 0;
-      imgs.forEach(function (img, i) {
-        if (i === activeIndex) {
-          img.classList.add('ch4-path__corner-img--active');
-        } else {
-          img.classList.remove('ch4-path__corner-img--active');
-        }
-      });
+    function applyAnimation(el, animClass) {
+      if (!el) return;
+      el.classList.remove('ch4-path__node-img--pop-in', 'ch4-path__node-img--pop-out');
+      void el.offsetWidth; // force reflow to restart animation
+      if (animClass) el.classList.add(animClass);
+    }
+
+    function removeAnimation(el) {
+      if (!el) return;
+      el.classList.remove('ch4-path__node-img--pop-in', 'ch4-path__node-img--pop-out');
+    }
+
+    function showBanh() {
+      if (currentNode === 'banh') return;
+      currentNode = 'banh';
+      // Hide vỏ first, then show bánh
+      applyAnimation(voTrad, 'ch4-path__node-img--pop-out');
+      applyAnimation(voMod, 'ch4-path__node-img--pop-out');
+      applyAnimation(banhTrad, 'ch4-path__node-img--pop-in');
+      applyAnimation(banhMod, 'ch4-path__node-img--pop-in');
+    }
+
+    function hideBanhShowVo() {
+      if (currentNode === 'vo') return;
+      currentNode = 'vo';
+      // Pop-out bánh then pop-in vỏ after short delay
+      applyAnimation(banhTrad, 'ch4-path__node-img--pop-out');
+      applyAnimation(banhMod, 'ch4-path__node-img--pop-out');
+      setTimeout(function () {
+        applyAnimation(voTrad, 'ch4-path__node-img--pop-in');
+        applyAnimation(voMod, 'ch4-path__node-img--pop-in');
+      }, 150);
+    }
+
+    function resetAll() {
+      currentNode = null;
+      removeAnimation(banhTrad);
+      removeAnimation(banhMod);
+      removeAnimation(voTrad);
+      removeAnimation(voMod);
     }
 
     function onScroll() {
-      var rect = section.getBoundingClientRect();
-      var sectionH = section.offsetHeight - window.innerHeight;
-      var scrolled = -rect.top;
-      var progress = Math.max(0, Math.min(1, scrolled / sectionH));
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(function () {
+        rafPending = false;
 
-      // Get point on path using SVG's own coordinate system
-      var point = pathEl.getPointAtLength(progress * pathLength);
+        var rect = section.getBoundingClientRect();
+        var sectionH = section.offsetHeight - window.innerHeight;
+        var scrolled = -rect.top;
+        var progress = Math.max(0, Math.min(1, scrolled / sectionH));
 
-      // Use viewBox-based conversion for reliable positioning
-      var svgEl = pathEl.ownerSVGElement || pathEl;
-      var vb = svgEl.viewBox.baseVal;
-      var svgW = vb.width || 1200;
-      var svgH = vb.height || 600;
-      var svgRect = svgEl.getBoundingClientRect();
-      var scaleX = svgRect.width / svgW;
-      var scaleY = svgRect.height / svgH;
-      var scale = Math.min(scaleX, scaleY);
-      var offX = (svgRect.width - svgW * scale) / 2;
-      var offY = (svgRect.height - svgH * scale) / 2;
+        // Get point on path
+        var point = pathEl.getPointAtLength(progress * pathLength);
+        var svgEl = pathEl.ownerSVGElement || pathEl;
+        var vb = svgEl.viewBox.baseVal;
+        var svgW = vb.width || 1200;
+        var svgH = vb.height || 600;
+        var svgRect = svgEl.getBoundingClientRect();
+        var scaleX = svgRect.width / svgW;
+        var scaleY = svgRect.height / svgH;
+        var scale = Math.min(scaleX, scaleY);
+        var offX = (svgRect.width - svgW * scale) / 2;
+        var offY = (svgRect.height - svgH * scale) / 2;
 
-      var left = point.x * scale + offX;
-      var top = point.y * scale + offY;
+        // Position floating element
+        floatingEl.style.left = (point.x * scale + offX) + 'px';
+        floatingEl.style.top = (point.y * scale + offY) + 'px';
 
-      floatingEl.style.left = left + 'px';
-      floatingEl.style.top = top + 'px';
+        // Position waypoints
+        function positionWaypoint(wpEl, wpProgress) {
+          if (!wpEl) return;
+          var pt = pathEl.getPointAtLength(wpProgress * pathLength);
+          wpEl.style.left = (pt.x * scale + offX) + 'px';
+          wpEl.style.top = (pt.y * scale + offY) + 'px';
+        }
+        positionWaypoint(wpBánh, waypointBánh);
+        positionWaypoint(wpVỏ, waypointVỏ);
 
-      // Position waypoints on the SVG path
-      function positionWaypoint(wpEl, wpProgress) {
-        if (!wpEl) return;
-        var pt = pathEl.getPointAtLength(wpProgress * pathLength);
-        var wx = pt.x * scale + offX;
-        var wy = pt.y * scale + offY;
-        wpEl.style.left = wx + 'px';
-        wpEl.style.top = wy + 'px';
-      }
-      positionWaypoint(wpBánh, waypointBánh);
-      positionWaypoint(wpVỏ, waypointVỏ);
+        // Update progress line
+        pathEl.style.strokeDashoffset = pathLength * (1 - progress);
 
-      // Update progress line
-      pathEl.style.strokeDashoffset = pathLength * (1 - progress);
+        // Cross-fade floating bánh images
+        if (floatTrad && floatMod) {
+          floatTrad.style.opacity = 1 - progress;
+          floatMod.style.opacity = progress;
+        }
 
-      // Floating element: cross-fade between traditional and modern
-      if (floatTrad && floatMod) {
-        floatTrad.style.opacity = 1 - progress;
-        floatMod.style.opacity = progress;
-      }
+        // Trigger node image animations based on scroll zone
+        var banhTrigger = waypointBánh - 0.02;
+        var voTrigger = waypointVỏ - 0.02;
 
-      // Zones: bánh = 0.24→0.70, vỏ = 0.64→1.0 (start before node so images appear AT node)
-      var fadeLen = 0.06;
-      var banhZoneStart = waypointBánh - fadeLen;
-      var banhZoneEnd = 0.70;
-      var voZoneStart = waypointVỏ - fadeLen;
-      var voZoneEnd = 1.0;
+        if (progress >= voTrigger) {
+          hideBanhShowVo();
+        } else if (progress >= banhTrigger) {
+          showBanh();
+        } else {
+          resetAll();
+        }
 
-      function zoneOpacity(p, start, end) {
-        if (p < start || p > end) return 0;
-        var fadeIn = Math.min(1, (p - start) / fadeLen);
-        var fadeOut = Math.min(1, (end - p) / fadeLen);
-        return Math.min(fadeIn, fadeOut);
-      }
-
-      var banhOpacity = zoneOpacity(progress, banhZoneStart, banhZoneEnd);
-      var voOpacity = zoneOpacity(progress, voZoneStart, voZoneEnd);
-
-      // Outer container visible when either zone is active
-      if (cornerTrad && cornerMod) {
-        var cornerOpacity = Math.max(banhOpacity, voOpacity);
-        cornerTrad.style.opacity = cornerOpacity;
-        cornerMod.style.opacity = cornerOpacity;
-
-        // Cross-fade inner sets using opacity (no display toggle)
-        if (tradBanh) tradBanh.style.opacity = banhOpacity;
-        if (tradVo) tradVo.style.opacity = voOpacity;
-        if (modBanh) modBanh.style.opacity = banhOpacity;
-        if (modVo) modVo.style.opacity = voOpacity;
-
-        // Cycle images within each set
-        cycleImages(tradBanh, progress, banhZoneStart, banhZoneEnd);
-        cycleImages(modBanh, progress, banhZoneStart, banhZoneEnd);
-        cycleImages(tradVo, progress, voZoneStart, voZoneEnd);
-        cycleImages(modVo, progress, voZoneStart, voZoneEnd);
-      }
-
-      // Waypoint labels always visible
-      if (wpBánh) wpBánh.classList.add('ch4-path__waypoint--visible');
-      if (wpVỏ) wpVỏ.classList.add('ch4-path__waypoint--visible');
+        // Waypoint labels always visible
+        if (wpBánh) wpBánh.classList.add('ch4-path__waypoint--visible');
+        if (wpVỏ) wpVỏ.classList.add('ch4-path__waypoint--visible');
+      });
     }
 
-    // Use passive scroll listener for performance
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-
-    // Initial position
     onScroll();
   }
 
