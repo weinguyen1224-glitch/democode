@@ -1636,14 +1636,23 @@
     transition: opacity 0.4s;
 }
 
+/* ── Divider reveal (shared .bpt-chapter-divider classes, fallback via .ch4-visible) ── */
+#section-bpt-ch4-divider.ch4-visible .bpt-chapter-divider__bg img {
+    transform: scale(1);
+    opacity: 1;
+}
+#section-bpt-ch4-divider.ch4-visible .bpt-chapter-divider__vignette {
+    opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .ch4-reveal,
     .ch4-reveal-left,
     .ch4-reveal-right,
     .ch4-reveal-scale {
-        transition: none;
-        opacity: 1;
-        transform: none;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
     .ch4-anim-zoomAndFade,
     .ch4-anim-flipInX,
@@ -1651,19 +1660,40 @@
     .ch4-anim-jackInTheBox,
     .ch4-anim-rollIn,
     .ch4-anim-dropFromTop {
-        animation: none;
-        opacity: 1;
-        transform: none;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
     .ch4-path__node-img--pop-in,
     .ch4-path__node-img--pop-out {
-        animation: none;
+        animation: none !important;
     }
     .ch4-path__node-img {
-        opacity: 1;
-        transform: scale(1);
+        opacity: 1 !important;
+        transform: scale(1) !important;
     }
     .ch4-3d-viewer__spinner {
-        animation: none;
+        animation: none !important;
+    }
+
+    #section-bpt-ch4-divider .bpt-chapter-divider__bg img,
+    #section-bpt-ch4-divider .bpt-chapter-divider__vignette {
+        transition: none !important;
+        opacity: 1 !important;
+    }
+
+    .ch4-symbol__img-wrap:hover img,
+    .ch4-region__img-wrap:hover img,
+    .ch4-prose-section__img-wrap:hover img,
+    .ch4-tourism__img-wrap:hover img {
+        transform: none !important;
+    }
+
+    .ch4-path__floating img {
+        transition: none !important;
+    }
+
+    .ch4-path__line-progress {
+        transition: none !important;
     }
 }

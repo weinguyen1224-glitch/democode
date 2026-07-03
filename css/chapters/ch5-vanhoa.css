@@ -378,4 +378,10 @@
         opacity: 1;
         transform: none;
     }
+
+    #section-bpt-ch5-divider .bpt-chapter-divider__bg img,
+    #section-bpt-ch5-divider .bpt-chapter-divider__vignette {
+        transition: none !important;
+        opacity: 1 !important;
+    }
 }

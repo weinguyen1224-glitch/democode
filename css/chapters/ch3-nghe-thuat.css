@@ -412,8 +412,13 @@
     will-change: transform, opacity;
 }
 
-#section-bpt-ch3-divider.ch3-visible .ch3-divider__bg img {
+#section-bpt-ch3-divider.ch3-visible .ch3-divider__bg img,
+#section-bpt-ch3-divider.ch3-visible .bpt-chapter-divider__bg img {
     transform: scale(1);
+    opacity: 1;
+}
+
+#section-bpt-ch3-divider.ch3-visible .bpt-chapter-divider__vignette {
     opacity: 1;
 }
 
@@ -2097,11 +2102,29 @@
     .ch3-vid__particle,
     .ch3-vid__caption,
     .ch3-vid__scroll-cue,
-    .ch3-vid__eyebrow-line {
+    .ch3-vid__eyebrow-line,
+    .ch3-anim-slideInRight-slow,
+    .ch3-anim-lensReveal,
+    .ch3-anim-cineSlide,
+    .ch3-vid__grain,
+    .ch3-vid__scanlines,
+    .ch3-thanh-pham__heading,
+    #section-bpt-ch3-thanh-pham::before {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
         animation: none !important;
+    }
+
+    .ch3-duo__img img,
+    .ch3-duo__pair-item img,
+    .ch3-trio__item img,
+    .ch3-split__visual img,
+    .ch3-split__mosaic img,
+    .ch3-thanh-pham__image img,
+    .ch3-step__img img {
+        transform: none !important;
+        transition: none !important;
     }
 
     .ch3-divider__rule,
