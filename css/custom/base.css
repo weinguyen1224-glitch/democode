@@ -50,6 +50,7 @@
     text-transform: uppercase;
     color: var(--color-red-thread);
     margin: 0 0 18px;
+    text-wrap: pretty;
 }
 
 /* V2 custom layer: only additive overrides, no Shorthand runtime edits. */

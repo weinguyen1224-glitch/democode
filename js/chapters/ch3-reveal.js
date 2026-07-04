@@ -36,9 +36,7 @@
       }
     });
     if (!promises.length) return Promise.resolve();
-    var all = Promise.all(promises);
-    var timeout = new Promise(function (resolve) { setTimeout(resolve, 800); });
-    return Promise.race([all, timeout]);
+    return Promise.all(promises);
   }
 
   function init() {
