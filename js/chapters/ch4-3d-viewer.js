@@ -25,7 +25,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
   var MODELS = [
     {
       name: "Hộp bánh + trà + đĩa",
-      url: "preview-3d/Meshy_AI_Banh_Phu_The_Scene_3D_0613062416_image-to-3d-texture.glb",
+      url: "preview-3d/Meshy_AI_Banh_Phu_The_Scene_3D_0704171237_image-to-3d-texture.glb",
     },
     {
       name: "Nguyên hộp bánh",
@@ -227,7 +227,6 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
     controls.target.set(0, 0, 0);
     controls.update();
-
   }
 
   /* ── Helpers ─────────────────────────────────────────────── */

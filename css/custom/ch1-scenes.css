@@ -311,10 +311,8 @@
     pointer-events: auto;
     max-width: min(760px, 92vw);
     padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
-    /* Nền sáng để text đen nổi lên ảnh */
-    background: rgb(255 250 235 / 0.92);
-    /* backdrop-filter: blur(8px); */
-    /* -webkit-backdrop-filter: blur(8px); */
+    /* Nền sáng để text đen nổi lên ảnh — trong suốt hơn để thấy background */
+    background: rgb(255 250 235 / 0.72);
     border-radius: 12px;
     border: 1px solid rgb(200 170 100 / 0.35);
     margin: clamp(24px, 4vw, 64px);
