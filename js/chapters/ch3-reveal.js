@@ -56,7 +56,7 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            if (entry.target.classList.contains('ch3-gallery')) {
+            if (entry.target.classList.contains('ch3-gallery') || entry.target.id === 'section-bpt-ch3-thanh-pham') {
               decodeImages(entry.target).then(function () {
                 entry.target.classList.add('ch3-visible');
               });
@@ -69,8 +69,8 @@
         });
       },
       {
-        threshold: 0.05,
-        rootMargin: '0px 0px -10px 0px',
+        threshold: 0.01,
+        rootMargin: '0px 0px 300px 0px',
       }
     );
 

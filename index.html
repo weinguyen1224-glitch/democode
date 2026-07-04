@@ -26,6 +26,7 @@
         <script defer="" src="js/story.667703.min.js"></script>
         <script defer="" src="js/footer.667703.min.js"></script>
         <title>Trang chính</title>
+        <link rel="preload" href="assets/ch%C6%B0%C6%A1ng-3/anh-thanh-pham.webp" as="image" fetchpriority="high">
         <link rel="stylesheet" href="css/style-04.css" />
 
         <style>
@@ -724,7 +725,7 @@
                         class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--intro"
                         style="font-size: 2ch;"
                     >
-                        <p class="bpt-nghe-nhan__lead" style="color: white;">
+                        <p class="bpt-nghe-nhan__lead" style="color: #1a1a1a;">
                             Để có những cặp bánh tươi ngon kịp trao tay khách
                             trong ngày đại hỷ, những nếp nhà nghề ở Đình Bảng
                             thường phải bắt đầu công việc từ lúc 3, 4 giờ sáng.
@@ -748,7 +749,7 @@
                         class="bpt-nghe-nhan__scene bpt-nghe-nhan__scene--closing"
                         style="font-size: 2ch"
                     >
-                        <p class="bpt-nghe-nhan__reflect" style="color: white;">
+                        <p class="bpt-nghe-nhan__reflect" style="color: #1a1a1a;">
                             Người thợ không chỉ làm bánh bằng công thức, mà bằng
                             cả sự nâng niu. Việc chờ nhân nguội, đợi bột trong,
                             hay việc cẩn thận thắt từng sợi lạt hồng không chỉ
@@ -1622,7 +1623,7 @@
                         <!-- Slider: So sánh tráp cưới xưa & nay -->
                         <div class="ch4-slider-section" aria-label="Tráp cưới xưa và nay">
                             <div class="ch4-slider__header">
-                                <p class="ch4-slider__kicker bpt-kicker ch4-reveal" style="margin-bottom: -20px;">So sánh</p>
+                                <p id = "so-sanh" aria-activedescendant=""class="ch4-slider__kicker bpt-kicker ch4-reveal" style="margin-bottom: -10px;">So sánh</p>
                                 <h3 class="bpt-title ch4-slider__title bpt-kicker ch4-reveal ch4-d1">Tráp Cưới Xưa &amp; Nay</h3>
                             </div>
                             <div class="ch4-compare" role="img" aria-label="Kéo để so sánh tráp cưới xưa và nay">
@@ -1643,12 +1644,9 @@
                             Không phải ngẫu nhiên mà người xưa lựa chọn bánh phu thê giữa vô số loại bánh dân gian khác để trở thành lễ vật hôn nhân. Ngay từ tên gọi "phu thê", chiếc bánh đã mang trong mình một thông điệp son sắt về tình nghĩa vợ chồng. Đó là sự đồng hành, gắn bó và sẻ chia suốt cuộc đời. Mỗi chi tiết của chiếc bánh đều được người xưa gửi gắm những lớp nghĩa biểu tượng sâu sắc. Lớp vỏ trong suốt ôm lấy phần nhân vàng bên trong gợi nên hình ảnh của sự hòa hợp và bao bọc, như cách hai con người cùng che chở, nâng đỡ nhau xây dựng một mái ấm. Những sợi đu đủ vàng đan xen trong lớp bột dẻo trong không chỉ tạo nên vẻ đẹp thị giác mà còn gợi liên tưởng đến những sợi tơ hồng se duyên, kết nối hai số phận thành một. Hình dáng vuông vắn của chiếc bánh tượng trưng cho sự đầy đủ, trọn vẹn và ổn định, trong khi màu vàng óng của nhân đỗ xanh gợi nhắc đến sự sung túc, ấm no. Ngay cả những sợi lạt buộc bên ngoài chiếc bánh cũng được nhiều nghệ nhân lý giải như biểu tượng của sợi dây nghĩa tình, nhắc nhở vợ chồng luôn biết giữ gìn sự gắn bó và thủy chung trong cuộc sống hôn nhân. Từ lớp vỏ, phần nhân cho đến cách gói bánh trong lá dong xanh mộc mạc, mỗi yếu tố đều góp phần tạo nên một chỉnh thể giàu tính biểu tượng, khiến chiếc bánh trở thành một lời chúc phúc được thể hiện bằng hình hài cụ thể và sinh động.
                         </p>
                     </div>
-                    <div class="ch4-symbol__gallery">
-                        <div class="ch4-symbol__img-wrap">
-                            <img class="ch4-anim-flipInX ch4-d1" src="assets/chương-4/1.1.webp" alt="Bánh phu thê trong tráp cưới" loading="lazy" decoding="async" />
-                        </div>
-                        <div class="ch4-symbol__img-wrap">
-                            <img class="ch4-anim-flipInX ch4-d2" src="assets/chương-4/1.2.webp" alt="Bánh phu thê trong tráp cưới" loading="lazy" decoding="async" />
+                    <div class="ch4-symbol__gallery ch4-symbol__gallery--single">
+                        <div class="ch4-symbol__img-wrap ch4-symbol__img-wrap--single">
+                            <img class="ch4-anim-flipInX" src="assets/chương-4/1.2.webp" alt="Bánh phu thê trong tráp cưới" loading="lazy" decoding="async" />
                         </div>
                         <p class="ch4-symbol__caption">Bánh phu thê xuất hiện trong tráp cưới.</p>
                     </div>

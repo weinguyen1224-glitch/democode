@@ -975,7 +975,7 @@
 .ch3-wipe__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(253, 240, 199, 0.45);
+    background: rgba(253, 240, 199, 0.75);
     z-index: 1;
 }
 
@@ -991,23 +991,21 @@
     margin: 0 auto;
     padding: 40px 24px;
     text-align: left;
-    color: #fff;
+    color: #1a1a1a;
 }
 
 .ch3-wipe__body p {
     font-family: "Vollkorn";
     font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.85;
-    color: #fff;
-    text-shadow:
-        0 0 10px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(0, 0, 0, 0.2);
+    color: #1a1a1a;
+    text-shadow: none;
     margin: 0;
 }
 
 #article .ch3-wipe__body p {
-    color: #fff;
+    color: #1a1a1a;
 }
 
 /* ─────────────────────────────────────────────────────────────

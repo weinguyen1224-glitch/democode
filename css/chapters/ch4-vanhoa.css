@@ -28,6 +28,10 @@
     font-family: "Vollkorn", serif;
 }
 
+#article #so-sanh {
+    font-family: "Vollkorn";
+}
+
 .bpt-ch4 * {
     box-sizing: border-box;
 }
@@ -623,23 +627,32 @@
 
 .ch4-symbol__gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0;
     width: 100%;
+}
+
+.ch4-symbol__gallery--single {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 clamp(16px, 5vw, 48px);
 }
 
 .ch4-symbol__img-wrap {
     border-radius: 0;
     background: var(--c4-bg);
     width: 100%;
-    aspect-ratio: 4/3;
     overflow: hidden;
+}
+
+.ch4-symbol__img-wrap--single {
+    aspect-ratio: auto;
 }
 
 .ch4-symbol__img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
     border-radius: 0;
     box-shadow: none;
@@ -1211,7 +1224,7 @@
     position: absolute;
     z-index: 5;
     pointer-events: none;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, calc(-50% + 12px));
 }
 
 .ch4-path__waypoint--visible {
@@ -1491,7 +1504,9 @@
     opacity: 0.65;
     margin-bottom: 10px;
 }
-
+#so-sanh {
+    font-family: "Vollkorn";
+}
 .ch4-3d-viewer__subtitle {
     margin: 0;
     font-family: "Vollkorn";
