@@ -1080,7 +1080,7 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    overflow: visible;
+    overflow: clip;
     background:
         radial-gradient(
             ellipse at 30% 40%,
@@ -1654,54 +1654,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .ch4-reveal,
-    .ch4-reveal-left,
-    .ch4-reveal-right,
-    .ch4-reveal-scale {
-        transition: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    .ch4-anim-zoomAndFade,
-    .ch4-anim-flipInX,
-    .ch4-anim-spinFromRight,
-    .ch4-anim-jackInTheBox,
-    .ch4-anim-rollIn,
-    .ch4-anim-dropFromTop {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    .ch4-path__node-img--pop-in,
-    .ch4-path__node-img--pop-out {
-        animation: none !important;
-    }
-    .ch4-path__node-img {
-        opacity: 1 !important;
-        transform: scale(1) !important;
-    }
-    .ch4-3d-viewer__spinner {
-        animation: none !important;
-    }
-
     #section-bpt-ch4-divider .bpt-chapter-divider__bg img,
     #section-bpt-ch4-divider .bpt-chapter-divider__vignette {
         transition: none !important;
         opacity: 1 !important;
-    }
-
-    .ch4-symbol__img-wrap:hover img,
-    .ch4-region__img-wrap:hover img,
-    .ch4-prose-section__img-wrap:hover img,
-    .ch4-tourism__img-wrap:hover img {
-        transform: none !important;
-    }
-
-    .ch4-path__floating img {
-        transition: none !important;
-    }
-
-    .ch4-path__line-progress {
-        transition: none !important;
     }
 }
