@@ -143,22 +143,24 @@
     line-height: 1;
 }
 
-.ch5-poem__quote p,
-.ch5-poem blockquote p {
+#article .ch5-poem__quote p,
+#article .ch5-poem blockquote p {
     margin: 0 0 4px;
     font-family: "MJ Milestone", "Pacifico", cursive;
     font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     font-style: normal;
     line-height: 1.6;
     color: var(--c5-text);
+    text-align: center;
 }
 
 #article .ch5-poem__attr {
     margin-top: 10px;
-    font-family: "Outfit", sans-serif;
+    font-family: "Vollkorn", serif;
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     color: var(--c5-accent-dim);
+    text-align: center;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -341,23 +343,25 @@
     border: none;
 }
 
-.ch5-final p,
-.ch5-final-poem p {
+#article .ch5-final p,
+#article .ch5-final-poem p {
     margin: 0 0 4px;
     font-family: "MJ Milestone", "Pacifico", cursive;
     font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     font-style: normal;
     line-height: 1.6;
     color: var(--c5-text);
+    text-align: center;
 }
 
 #article .ch5-final__attr,
 #article .ch5-final-poem__attr {
     margin-top: 10px;
-    font-family: "Outfit", sans-serif;
+    font-family: "Vollkorn", serif;
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     color: var(--c5-accent-dim);
+    text-align: center;
 }
 
 /* ══════════════════════════════════════════════════════════════
