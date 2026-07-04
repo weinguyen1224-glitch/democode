@@ -208,17 +208,37 @@
 
 /* § Path node images — pop in from center */
 @keyframes ch4PopIn {
-    0%   { opacity: 0; transform: scale(0); }
-    60%  { opacity: 1; transform: scale(1.15); }
-    80%  { transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* § Path node images — pop out (disappear) */
 @keyframes ch4PopOut {
-    0%   { opacity: 1; transform: scale(1); }
-    30%  { opacity: 1; transform: scale(1.1); }
-    100% { opacity: 0; transform: scale(0); }
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
 }
 
 /* § Tourism — drop from top with bounce */
@@ -902,7 +922,7 @@
    ══════════════════════════════════════════════════════════════ */
 .ch4-balance {
     padding: clamp(40px, 6vh, 80px) clamp(12px, 3vw, 64px);
-    text-align: center;
+    text-align: justify;
     position: relative;
 }
 
@@ -923,7 +943,8 @@
     margin-right: auto;
     position: relative;
     z-index: 2;
-    text-align: left;
+    text-align: justify;
+    padding: 0 clamp(16px, 5vw, 48px);
 }
 
 .ch4-balance h3 {
@@ -1011,7 +1032,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(16px, 3vh, 40px) clamp(12px, 3vw, 64px) clamp(40px, 6vh, 80px);
+    padding: clamp(16px, 3vh, 40px) clamp(12px, 3vw, 64px)
+        clamp(40px, 6vh, 80px);
     text-align: center;
     position: relative;
 }
