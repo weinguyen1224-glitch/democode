@@ -2395,89 +2395,10 @@
    ───────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-    .ch3-reveal,
-    .ch3-reveal-left,
-    .ch3-reveal-right,
-    .ch3-reveal-scale,
-    .ch3-fade,
-    .ch3-up,
-    .ch3-left,
-    .ch3-right,
-    .ch3-scale,
-    .ch3-scale-spring,
-    .ch3-down,
-    .ch3-anim-fadeInUp,
-    .ch3-anim-zoomIn,
-    .ch3-anim-slideInLeft,
-    .ch3-anim-slideInRight,
-    .ch3-anim-rollIn,
-    .ch3-anim-jackInTheBox,
-    .ch3-anim-rotateIn,
-    .ch3-anim-bounceIn,
-    .ch3-anim-dropFromTop,
-    .ch3-anim-flyLeft,
-    .ch3-anim-flyRight,
-    .ch3-anim-flyTop,
-    .ch3-anim-flyBot,
-    .ch3-intro__heading,
-    .ch3-divider__bg img,
-    .ch3-split__rule,
-    .ch3-quote__mark,
-    .ch3-step .ch3-step__img,
-    .ch3-step .ch3-step__text,
-    .ch3-step__dot,
-    .ch3-timeline__spine,
-    .ch3-thanh-pham__image,
-    .ch3-gallery__item,
-    .ch3-gallery__caption,
-    .ch3-vid__vignette,
-    .ch3-vid__corner,
-    .ch3-vid__eyebrow,
-    .ch3-vid__title-word,
-    .ch3-vid__rule,
-    .ch3-vid__subtitle,
-    .ch3-vid__particle,
-    .ch3-vid__caption,
-    .ch3-vid__scroll-cue,
-    .ch3-vid__eyebrow-line,
-    .ch3-anim-slideInRight-slow,
-    .ch3-anim-lensReveal,
-    .ch3-anim-cineSlide,
-    .ch3-vid__grain,
-    .ch3-vid__scanlines,
-    .ch3-thanh-pham__heading,
-    #section-bpt-ch3-thanh-pham::before {
+    #section-bpt-ch3-divider .bpt-chapter-divider__bg img,
+    #section-bpt-ch3-divider .bpt-chapter-divider__vignette {
         opacity: 1 !important;
-        transform: none !important;
         transition: none !important;
-        animation: none !important;
-    }
-
-    .ch3-duo__img img,
-    .ch3-duo__pair-item img,
-    .ch3-trio__item img,
-    .ch3-split__visual img,
-    .ch3-split__mosaic img,
-    .ch3-thanh-pham__image img,
-    .ch3-step__img img {
-        transform: none !important;
-        transition: none !important;
-    }
-
-    .ch3-divider__rule,
-    .ch3-vid__rule {
-        width: min(240px, 60vw);
-        transition: none;
-    }
-
-    .ch3-vid__eyebrow-line {
-        width: clamp(24px, 5vw, 48px);
-        transition: none;
-    }
-
-    .ch3-divider__scroll-cue {
-        opacity: 0.5;
-        animation: none;
     }
 }
 
