@@ -920,6 +920,13 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
+@media (max-width: 790px) {
+    .ch5-wipe__img,
+    .ch5-wipe__img--reveal {
+        object-fit: contain;
+    }
+}
+
 /* ── Prose figure entrance animations ─────────────── */
 @keyframes ch5-anim-prose-slide-left {
     0% { opacity: 0; transform: translateX(-80px) rotate(-3deg) scale(0.9); filter: blur(4px); }
