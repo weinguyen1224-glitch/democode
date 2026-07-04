@@ -156,7 +156,7 @@
 
 #article .ch5-poem__attr {
     margin-top: 10px;
-    font-family: "Vollkorn", serif;
+    font-family: "Vollkorn", serif !important;
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     color: var(--c5-accent-dim);
@@ -357,8 +357,8 @@
 #article .ch5-final__attr,
 #article .ch5-final-poem__attr {
     margin-top: 10px;
-    font-family: "Vollkorn", serif;
-    font-size: 0.8rem;
+    font-family: "Vollkorn", serif !important;
+    font-size: 0.8rem !important;
     letter-spacing: 0.06em;
     color: var(--c5-accent-dim);
     text-align: center;

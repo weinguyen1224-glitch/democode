@@ -53,7 +53,7 @@
     transform: scale(1);
 }
 
-.bpt-ngu-hanh__hint {
+#article .bpt-ngu-hanh__hint {
     font-family: "Vollkorn";
     font-style: italic;
     font-size: clamp(0.85rem, 1.2vw, 1rem);
