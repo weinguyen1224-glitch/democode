@@ -108,163 +108,99 @@
    IMAGE KEYFRAME ANIMATIONS — unique per section
    ══════════════════════════════════════════════════════════════ */
 
-/* § Slider — fly in from top-left with zoom */
+/* § Slider — gentle fade-in from top-left */
 @keyframes ch4ZoomAndFade {
     from {
         opacity: 0;
-        transform: translate3d(calc(-60vw), calc(-60vh), 0) scale(0.2)
-            rotate(-20deg);
-    }
-    50% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1.06) rotate(2deg);
-    }
-    75% {
-        transform: translate3d(0, 0, 0) scale(0.97) rotate(-1deg);
+        transform: translate3d(-24px, -24px, 0) scale(0.98);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1) rotate(0);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 }
 
-/* § Symbol — flip entrance from left screen edge */
+/* § Symbol — gentle fade-in from left */
 @keyframes ch4FlipInX {
     from {
         opacity: 0;
-        transform: translate3d(-60vw, 0, 0) perspective(800px) rotateY(-120deg)
-            scale(0.4);
-    }
-    40% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(15deg)
-            scale(1.04);
-    }
-    60% {
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(-8deg)
-            scale(0.98);
-    }
-    80% {
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(3deg)
-            scale(1.01);
+        transform: translate3d(-30px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) perspective(800px) rotateY(0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* § Region — spin entrance from right edge */
+/* § Region — gentle fade-in from right */
 @keyframes ch4SpinFromRight {
     from {
         opacity: 0;
-        transform: translate3d(60vw, 0, 0) rotate(270deg) scale(0.4);
-    }
-    60% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(-15deg) scale(1.05);
-    }
-    80% {
-        transform: translate3d(0, 0, 0) rotate(5deg) scale(0.97);
+        transform: translate3d(30px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* § Prose (Thích nghi) — jack-in-the-box from right edge */
+/* § Prose (Thích nghi) — gentle fade-in from right */
 @keyframes ch4JackInTheBox {
     from {
         opacity: 0;
-        transform: translate3d(60vw, 0, 0) scale(0.1) rotate(30deg);
-    }
-    45% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1.08) rotate(-8deg);
-    }
-    65% {
-        transform: translate3d(0, 0, 0) scale(0.95) rotate(4deg);
-    }
-    82% {
-        transform: translate3d(0, 0, 0) scale(1.02) rotate(-2deg);
+        transform: translate3d(30px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1) rotate(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* § Prose (Gam màu) — roll in from left */
+/* § Prose (Gam màu) — gentle fade-in from left */
 @keyframes ch4RollIn {
     from {
         opacity: 0;
-        transform: translate3d(-60vw, 0, 0) rotate(-120deg) scale(0.4);
-    }
-    60% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(10deg) scale(1.04);
-    }
-    80% {
-        transform: translate3d(0, 0, 0) rotate(-4deg) scale(0.98);
+        transform: translate3d(-30px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* § Path node images — pop in from center */
+/* § Path node images — gentle scale-in */
 @keyframes ch4PopIn {
-    0% {
+    from {
         opacity: 0;
-        transform: scale(0);
-    }
-    60% {
-        opacity: 1;
-        transform: scale(1.15);
-    }
-    80% {
         transform: scale(0.95);
     }
-    100% {
+    to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
-/* § Path node images — pop out (disappear) */
+/* § Path node images — gentle scale-out */
 @keyframes ch4PopOut {
-    0% {
+    from {
         opacity: 1;
         transform: scale(1);
     }
-    30% {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-    100% {
+    to {
         opacity: 0;
-        transform: scale(0);
+        transform: scale(0.95);
     }
 }
 
-/* § Tourism — drop from top with bounce */
+/* § Tourism — gentle fade-in from top */
 @keyframes ch4DropFromTop {
     from {
         opacity: 0;
-        transform: translate3d(0, -60vh, 0) rotate(15deg) scale(0.4);
-    }
-    55% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(-5deg) scale(1.04);
-    }
-    75% {
-        transform: translate3d(0, 0, 0) rotate(2deg) scale(0.98);
+        transform: translate3d(0, -24px, 0);
     }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -289,7 +225,7 @@
     animation: ch4SpinFromRight 1.2s var(--c4-ease) both;
 }
 .ch4-visible .ch4-anim-jackInTheBox {
-    animation: ch4JackInTheBox 1s var(--c4-ease-spring) both;
+    animation: ch4JackInTheBox 1s var(--c4-ease) both;
 }
 .ch4-visible .ch4-anim-rollIn {
     animation: ch4RollIn 1s var(--c4-ease) both;

@@ -1822,20 +1822,24 @@
     margin: 0;
     position: relative;
     opacity: 0;
-    transform: translateY(80px) scale(0.96);
+    transform: translateY(120px) scale(0.88);
     box-shadow: none;
     will-change: transform, opacity;
+    transition:
+        opacity 0.9s var(--ease) 0.21s,
+        transform 1.1s var(--ease-spring) 0.21s;
 }
 
 #section-bpt-ch3-thanh-pham.ch3-visible .ch3-thanh-pham__image {
-    animation: ch3-thanh-pham-reveal 1.68s var(--ease) 0.21s forwards;
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .ch3-thanh-pham__image img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 5.39s ease-in-out;
+    transition: transform 5.39s ease-in-out 0.3s;
     transform: scale(1.08);
 }
 
