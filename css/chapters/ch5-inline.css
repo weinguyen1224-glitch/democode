@@ -921,6 +921,16 @@
 }
 
 @media (max-width: 790px) {
+    .ch5-wipe {
+        height: auto;
+    }
+
+    .ch5-wipe__sticky {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 10;
+    }
+
     .ch5-wipe__img,
     .ch5-wipe__img--reveal {
         object-fit: contain;
