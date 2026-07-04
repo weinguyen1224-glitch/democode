@@ -315,7 +315,7 @@ img { max-width: 100%; display: block; }
     font-size: clamp(1.2rem, 2vw, 1.65rem);
     line-height: 1.85;
     color: rgba(26, 26, 26, 0.6);
-    text-align: left;
+    text-align: justify;
     margin-bottom: 1em;
 }
 

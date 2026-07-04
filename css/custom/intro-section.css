@@ -78,7 +78,7 @@
     max-width: 1100px;
     margin-inline: auto;
     overflow-wrap: break-word;
-    text-align: left;
+    text-align: justify;
     clip-path: inset(0 100% 0 0);
     will-change: clip-path;
 }

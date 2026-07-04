@@ -319,6 +319,28 @@
     color: #1a1a1a;
 }
 
+/* Căn đều 2 bên cho tất cả đoạn văn */
+#article p {
+    text-align: justify;
+}
+
+/* Chú thích ảnh — giữ nguyên căn giữa, không căn thẳng */
+#article .Theme-Caption p,
+#article .Theme-OverlayedCaption p,
+#article .Theme-InlineMediaCaption p,
+#article .ch2-gallery__caption,
+#article .ch2-closing__content p,
+#article .ch3-gallery__caption,
+#article .ch3-vid__caption,
+#article .ch4-slider-caption p,
+#article .ch4-symbol__caption,
+#article .ch5-scroll-gallery__caption-wrap p,
+#article .ch5-grid__caption,
+#article .ch5-lightbox__caption,
+#article .ch5-prose__caption {
+    text-align: center;
+}
+
 .Theme-Layer-TextBlock-Container {
     color: #1a1a1a;
 }

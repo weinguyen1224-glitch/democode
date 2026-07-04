@@ -251,7 +251,7 @@
 }
 
 .bpt-scene__centered .bpt-prose p {
-    text-align: left !important;
+    text-align: justify !important;
 }
 
 .bpt-scene__centered .bpt-prose .bpt-kicker {
@@ -265,7 +265,7 @@
 
 #section-bpt-ch2-mo-dau .bpt-scene__centered .bpt-prose p {
     text-indent: 0;
-    text-align: left !important;
+    text-align: justify !important;
 }
 
 /* Split scene enhancement */
