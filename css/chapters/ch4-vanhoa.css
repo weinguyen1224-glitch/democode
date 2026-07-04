@@ -24,6 +24,10 @@
     margin: 0;
 }
 
+#article .bpt-ch4 .bpt-title {
+    font-family: "Vollkorn", serif;
+}
+
 .bpt-ch4 * {
     box-sizing: border-box;
 }
@@ -1257,7 +1261,7 @@
 
 .ch4-path__corner-text {
     font-family: "DNS Gibsons One", "Oswald", sans-serif;
-    font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+    font-size: clamp(3.6rem, 9vw, 7rem);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1427,7 +1431,7 @@
     }
 
     .ch4-path__corner-text {
-        font-size: clamp(1.2rem, 5vw, 2rem);
+        font-size: clamp(2.4rem, 10vw, 4rem);
     }
 }
 
