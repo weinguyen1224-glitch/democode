@@ -1446,6 +1446,10 @@
         transform: none;
     }
 
+    .ch4-path__corner-text {
+        font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    }
+
     .ch4-path__node-img {
         width: clamp(260px, 32vw, 400px);
     }
