@@ -112,30 +112,34 @@
   function start() {
     document.body.classList.add('bpt-loading');
 
-    var urls = collectImageURLs();
-    total = urls.length;
+    try {
+      var urls = collectImageURLs();
+      total = urls.length;
 
-    if (total === 0) {
-      finish();
-      return;
-    }
+      if (total === 0) {
+        finish();
+        return;
+      }
 
-    updateProgress();
+      updateProgress();
 
-    // Preload in parallel (max 4 concurrent — lighter on mobile)
-    var concurrency = 4;
-    var index = 0;
+      // Preload in parallel (max 4 concurrent — lighter on mobile)
+      var concurrency = 4;
+      var index = 0;
 
-    function next() {
-      if (index >= urls.length) return;
-      var url = urls[index++];
-      preloadImage(url).then(function () {
+      function next() {
+        if (index >= urls.length) return;
+        var url = urls[index++];
+        preloadImage(url).then(function () {
+          next();
+        });
+      }
+
+      for (var c = 0; c < concurrency && c < urls.length; c++) {
         next();
-      });
-    }
-
-    for (var c = 0; c < concurrency && c < urls.length; c++) {
-      next();
+      }
+    } catch (e) {
+      console.warn('[bpt-loader] error:', e);
     }
 
     // Safety timeout — finish after 3s even if some images fail
