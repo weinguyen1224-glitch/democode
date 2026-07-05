@@ -2,7 +2,10 @@
   "use strict";
 
   var THREE = window.THREE;
-  if (!THREE) { console.warn("[3D] THREE not loaded"); return; }
+  if (!THREE) {
+    console.warn("[3D] THREE not loaded");
+    return;
+  }
 
   var section = document.querySelector(".ch4-3d-viewer");
   if (!section) {
@@ -78,17 +81,17 @@
     controls.maxDistance = 50;
 
     /* ── Lighting ──────────────────────────────────────────── */
-    scene.add(new THREE.HemisphereLight(0xffeedd, 0x442211, 1.1));
+    scene.add(new THREE.HemisphereLight(0xffeedd, 0x442211, 0.9));
 
-    var key = new THREE.DirectionalLight(0xffe4c4, 1.0);
+    var key = new THREE.DirectionalLight(0xffe4c4, 0.85);
     key.position.set(4, 6, 3);
     scene.add(key);
 
-    var rim = new THREE.DirectionalLight(0xffcc88, 0.7);
+    var rim = new THREE.DirectionalLight(0xffcc88, 0.6);
     rim.position.set(-4, 3, -4);
     scene.add(rim);
 
-    var fill = new THREE.DirectionalLight(0xddeeff, 0.5);
+    var fill = new THREE.DirectionalLight(0xddeeff, 0.4);
     fill.position.set(-2, -1, 3);
     scene.add(fill);
 

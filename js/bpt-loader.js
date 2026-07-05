@@ -150,12 +150,6 @@
   }
 
   /* ── Kick off ──────────────────────────────────────────── */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-    // Failsafe: nếu DOMContentLoaded không fire (iOS Safari + importmap issue),
-    // vẫn finish sau 5 giây
-    setTimeout(start, 5000);
-  } else {
-    start();
-  }
+  // Script ở cuối <body> → DOM đã sẵn sàng, không cần chờ DOMContentLoaded
+  start();
 })();
