@@ -1200,7 +1200,7 @@
 .Theme-Caption .caption-editor-empty {
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: 0.8em;
+  font-size: clamp(0.875rem, 1.39vw, 1.25rem);
   font-weight: 400;
   line-height: 1.2;
 }
@@ -1212,7 +1212,7 @@
 .Theme-Caption p:not(:empty) {
   color: #777;
   font-family: Outfit, sans-serif;
-  font-size: 0.8em;
+  font-size: clamp(0.875rem, 1.39vw, 1.25rem);
   font-style: normal;
   font-weight: 400;
   line-height: 1.2;
@@ -1244,7 +1244,7 @@
   color: #fffc;
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: 0.8em;
+  font-size: clamp(0.875rem, 1.39vw, 1.25rem);
   line-height: 1.2;
 }
 .Theme-OverlayedCaption p:not(:empty),
@@ -2221,7 +2221,7 @@ body:not(.body-editor) .MediaGallery__cell .Theme-BackgroundMedia {
 }
 .MediaGallery--lightbox .Theme-Caption p {
   color: #fff;
-  font-size: 0.9em;
+  font-size: clamp(0.875rem, 1.39vw, 1.25rem);
   line-height: 1.3;
 }
 .MediaGallery--lightbox .Theme-Caption a {
