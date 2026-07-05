@@ -1017,17 +1017,29 @@
 
 .ch5-prose__figure img {
     display: block;
-    width: 100%;
+    width: 101%;
+    max-width: none;
     height: auto;
-    object-fit: cover;
+    margin-left: -0.5%;
 }
 
 .ch5-prose__caption {
     text-align: center;
-    margin: 0;
+    margin: 16px 0 0;
     padding: 0;
     font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     color: var(--c5-text);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* Chú thích ảnh riêng cho chương 5 */
+.ch5-caption {
+    display: block;
+    text-align: center;
+    margin: 16px 0 0;
+    padding: 0;
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     font-style: italic;
     line-height: 1.5;
 }
@@ -1105,101 +1117,6 @@
 
 .ch5-prose__swipe-label--reveal.is-visible {
     opacity: 1;
-}
-
-/* ── Ch5 Wipe — horizontal wipe via scroll, Ch3-style sticky ── */
-.ch5-wipe {
-    position: relative;
-    height: 200vh;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-}
-
-.ch5-wipe__sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.ch5-wipe__img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.ch5-wipe__img--base {
-    z-index: 1;
-}
-
-.ch5-wipe__reveal-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    clip-path: inset(0 100% 0 0);
-}
-
-.ch5-wipe__img--reveal {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.ch5-wipe__line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255, 255, 255, 0.9),
-        transparent
-    );
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-@media (max-width: 790px) {
-    .ch5-wipe {
-        height: auto;
-    }
-
-    .ch5-wipe__sticky {
-        position: relative;
-        height: auto;
-    }
-
-    .ch5-wipe__img--base {
-        position: relative;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-
-    .ch5-wipe__reveal-layer {
-        position: absolute;
-        inset: 0;
-        clip-path: none;
-    }
-
-    .ch5-wipe__img--reveal {
-        width: 130%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .ch5-wipe__line {
-        display: none;
-    }
 }
 
 /* ── Prose figure entrance animations ─────────────── */
@@ -1286,6 +1203,36 @@
     animation: ch5-anim-prose-zoom-in 1.56s cubic-bezier(0.22, 1, 0.36, 1)
         0.195s backwards;
 }
+
+@keyframes ch5-anim-prose-rise-up {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.92);
+        filter: blur(6px);
+    }
+    50% {
+        opacity: 1;
+        filter: blur(0);
+    }
+    72% {
+        transform: translateY(-8px) scale(1.02);
+    }
+    86% {
+        transform: translateY(3px) scale(0.99);
+    }
+    95% {
+        transform: translateY(-1px) scale(1.003);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+.ch5-prose__figure--anim-3.ch5-visible {
+    animation: ch5-anim-prose-rise-up 1.56s cubic-bezier(0.22, 1, 0.36, 1)
+        0.195s backwards;
+}
 .ch5-prose__swipe-figure--anim-1.ch5-visible {
     animation: ch5-anim-prose-flip-in 1.69s cubic-bezier(0.22, 1, 0.36, 1)
         0.195s backwards;
@@ -1316,20 +1263,4 @@
         display: none;
     }
 
-    .ch5-wipe,
-    .ch5-wipe__sticky {
-        height: auto;
-        position: relative;
-    }
-    .ch5-wipe__img {
-        position: relative;
-        width: 100%;
-        height: auto;
-    }
-    .ch5-wipe__reveal-layer {
-        display: none;
-    }
-    .ch5-wipe__line {
-        display: none;
-    }
 }

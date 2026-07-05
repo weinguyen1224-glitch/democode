@@ -541,7 +541,7 @@
 /* ── Caption ────────────────────────────────────────────── */
 .ch4-slider-caption {
     text-align: center;
-    margin-top: clamp(24px, 3vh, 40px);
+    margin-top: 16px;
     position: relative;
     z-index: 2;
 }
@@ -668,7 +668,12 @@
     font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     color: rgba(255, 255, 255, 0.7);
     font-style: italic;
-    margin: 4px 0 0;
+    margin: 16px 0 0;
+}
+
+/* Override khi nằm trong flex container có gap */
+.ch4-prose-section__layout .ch4-symbol__caption {
+    margin-top: 0;
 }
 
 /* Ảnh đơn trong region text */

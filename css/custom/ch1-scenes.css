@@ -709,7 +709,7 @@
 .bpt-legend-float__caption {
     display: block;
     text-align: center;
-    margin-top: 14px;
+    margin-top: 16px;
     font-family: "Vollkorn", serif;
     font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     font-style: italic;

@@ -1207,7 +1207,7 @@
 .Theme-Caption cite,
 .Theme-Caption p:not(:empty) {
   max-width: 100%;
-  margin: 0;
+  margin: 16px 0 0;
 }
 .Theme-Caption p:not(:empty) {
   color: #777;
