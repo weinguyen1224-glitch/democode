@@ -59,8 +59,7 @@
     });
     // ✅ KHÔNG set pixelRatio hay size ở đây — onResize() lo hết
     renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    // bỏ tone mapping — giữ màu chuẩn từ GLB
     container.appendChild(renderer.domElement);
 
     /* ── Scene ─────────────────────────────────────────────── */
@@ -79,17 +78,17 @@
     controls.maxDistance = 50;
 
     /* ── Lighting ──────────────────────────────────────────── */
-    scene.add(new THREE.HemisphereLight(0xfff5e6, 0x2a1520, 2.2));
+    scene.add(new THREE.HemisphereLight(0xffeedd, 0x442211, 1.1));
 
-    var key = new THREE.DirectionalLight(0xfff8ef, 2.6);
-    key.position.set(4, 7, 5);
+    var key = new THREE.DirectionalLight(0xffe4c4, 1.0);
+    key.position.set(4, 6, 3);
     scene.add(key);
 
-    var rim = new THREE.DirectionalLight(0xf8d077, 1.2);
-    rim.position.set(-5, 3, -4);
+    var rim = new THREE.DirectionalLight(0xffcc88, 0.7);
+    rim.position.set(-4, 3, -4);
     scene.add(rim);
 
-    var fill = new THREE.DirectionalLight(0xffe0c0, 0.6);
+    var fill = new THREE.DirectionalLight(0xddeeff, 0.5);
     fill.position.set(-2, -1, 3);
     scene.add(fill);
 
