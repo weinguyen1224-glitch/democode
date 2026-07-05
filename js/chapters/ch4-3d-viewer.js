@@ -72,7 +72,7 @@
     camera.position.set(3, 2, 4);
 
     /* ── Controls ──────────────────────────────────────────── */
-    controls = new OrbitControls(camera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.minDistance = 1;
@@ -177,7 +177,7 @@
     showLoading();
     clearCurrent();
 
-    var loader = new GLTFLoader();
+    var loader = new THREE.GLTFLoader();
     loader.load(
       url,
       function (gltf) {
