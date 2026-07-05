@@ -516,3 +516,32 @@ sh-background-transition .Theme-Item-Picture img {
     content-visibility: auto;
     contain-intrinsic-size: auto 800px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Credits — end of article
+   ═══════════════════════════════════════════════════════════ */
+.bpt-credits {
+    background: var(--c5-bg, #f7e8cb);
+    padding: 48px clamp(20px, 5vw, 60px);
+    border-top: 2px solid rgba(151, 32, 35, 0.15);
+}
+
+.bpt-credits__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 5vw, 48px);
+    font-family: "Vollkorn", serif;
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.75;
+    color: var(--c5-text, #1a1a1a);
+}
+
+.bpt-credits__inner p {
+    margin: 0;
+}
+
+.bpt-credits__inner strong {
+    color: #972023;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
