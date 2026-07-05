@@ -1,9 +1,8 @@
-import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-
 (function () {
   "use strict";
+
+  var THREE = window.THREE;
+  if (!THREE) { console.warn("[3D] THREE not loaded"); return; }
 
   var section = document.querySelector(".ch4-3d-viewer");
   if (!section) {
@@ -59,7 +58,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
       powerPreference: "high-performance",
     });
     // ✅ KHÔNG set pixelRatio hay size ở đây — onResize() lo hết
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
     container.appendChild(renderer.domElement);
