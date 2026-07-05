@@ -223,7 +223,7 @@ img { max-width: 100%; display: block; }
 }
 
 .ch2-gallery__caption {
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     color: rgba(26, 26, 26, 0.6);
     text-align: center;
     margin-top: clamp(8px, 1.5vh, 16px);

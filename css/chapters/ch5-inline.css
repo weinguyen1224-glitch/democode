@@ -320,7 +320,7 @@
     );
     color: #fff;
     font-family: "Outfit", sans-serif;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     line-height: 1.5;
     opacity: 0;
     transform: translateY(10px);
@@ -832,7 +832,7 @@
     transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.8);
     font-family: "Outfit", sans-serif;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     text-align: center;
     max-width: 80vw;
 }
@@ -1026,7 +1026,7 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     color: var(--c5-text);
     font-style: italic;
     line-height: 1.5;

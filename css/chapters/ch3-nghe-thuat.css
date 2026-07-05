@@ -2335,7 +2335,7 @@
 
 .ch3-vid__caption-title {
     font-family: "DNS Gibsons One", "Oswald", sans-serif;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     letter-spacing: 0.1em;
     color: #1a1a1a;
 }
@@ -2585,7 +2585,7 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     color: var(--c-text-dim);
     font-style: italic;
     line-height: 1.5;
@@ -2727,7 +2727,7 @@
     text-align: center;
     margin: clamp(8px, 1.5vw, 16px) 0 0;
     padding: 0;
-    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.82vw, 1.25rem);
     font-weight: 400;
     color: rgba(26, 26, 26, 0.85);
     font-style: italic;
