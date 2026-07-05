@@ -16,6 +16,7 @@
   var total   = 0;
   var loaded  = 0;
   var done    = false;
+  var started = false;
 
   /* ── Helpers ───────────────────────────────────────────── */
   function updateProgress() {
@@ -110,6 +111,8 @@
 
   /* ── Main ──────────────────────────────────────────────── */
   function start() {
+    if (started) return;
+    started = true;
     document.body.classList.add('bpt-loading');
 
     try {
@@ -149,6 +152,9 @@
   /* ── Kick off ──────────────────────────────────────────── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);
+    // Failsafe: nếu DOMContentLoaded không fire (iOS Safari + importmap issue),
+    // vẫn finish sau 5 giây
+    setTimeout(start, 5000);
   } else {
     start();
   }
