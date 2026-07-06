@@ -62,6 +62,21 @@ function ch2RevealInit() {
     !matchMedia("(prefers-reduced-motion: reduce)").matches &&
     window.innerWidth >= 769
   ) {
+    let active = true;
+    const firstVisual = splitVisuals[0];
+
+    // IO guard: only run parallax when section is on-screen
+    if (typeof IntersectionObserver !== "undefined" && firstVisual) {
+      const section = firstVisual.closest('[id^="section-bpt-ch2"]') || firstVisual;
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => { active = e.isIntersecting; });
+        },
+        { rootMargin: "20% 0px" }
+      );
+      obs.observe(section);
+    }
+
     function updateParallax(frame) {
       const vh = frame ? frame.viewportH : window.innerHeight;
       splitVisuals.forEach((img) => {
@@ -78,18 +93,17 @@ function ch2RevealInit() {
       window.BPT.ScrollEngine.register({
         id: 'ch2-parallax',
         priority: window.BPT.ScrollEngine.PRIORITY.LOW,
-        update: updateParallax,
+        update: (frame) => active ? updateParallax(frame) : true,
       });
     } else {
       let ticking = false;
       window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            updateParallax({ viewportH: window.innerHeight });
-            ticking = false;
-          });
-          ticking = true;
-        }
+        if (!active || ticking) return;
+        requestAnimationFrame(() => {
+          updateParallax({ viewportH: window.innerHeight });
+          ticking = false;
+        });
+        ticking = true;
       }, { passive: true });
     }
   }

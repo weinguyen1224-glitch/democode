@@ -15,10 +15,12 @@
         <link rel="stylesheet" href="css/style-00.css" />
         <script src="js/inline-00.js"></script>
         <link rel="stylesheet" href="css/style-01.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             type="text/css"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;family=Mulish:ital,wght@0,400;0,700;1,400;1,700&amp;family=Oswald:wght@400;700&amp;family=Outfit:wght@400;700&amp;family=Pacifico&amp;family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:ital,wght@0,400;0,700;1,400;1,700&amp;family=Quicksand:wght@400;700&amp;family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&amp;family=Mulish:ital,wght@0,400;0,700;1,400;1,700&amp;family=Oswald:wght@400;700&amp;family=Outfit:wght@400;700&amp;family=Pacifico&amp;family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:ital,wght@0,400;0,700;1,400;1,700&amp;family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap"
         />
         <link rel="stylesheet" href="css/style-02.css" />
         <link rel="stylesheet" href="css/style-03.css" />
@@ -348,7 +350,7 @@
                     <!-- Slide 1: Truyền thuyết cung đình -->
                     <div class="bpt-sm-slide is-primed" data-sm-index="1">
                         <img
-                            src="assets/gif/thiet-ke-bao-bi-truyen-thong-lucky-brand-1-8c274acf41.webp"
+                            src="assets/chuong-1/%C4%90%E1%BB%81n%201.webp"
                             alt="Truyền thuyết cung đình — bánh phu thê qua hàng thiên niên kỷ"
                             loading="lazy"
                             fetchpriority="low"
@@ -358,7 +360,7 @@
                     <!-- Slide 2: Bến sông -->
                     <div class="bpt-sm-slide" data-sm-index="2">
                         <img
-                            src="assets/gif/thiet-ke-bao-bi-truyen-thong-lucky-brand-1-8c274acf41.webp"
+                            src="assets/chuong-1/nguoi-vo-ben-song.webp"
                             alt="Bến sông Đình Bảng — nơi gửi gắm tình nghĩa"
                             loading="lazy"
                             decoding="async"
@@ -2018,10 +2020,10 @@
         <script src="js/chapters/ch2-nghe-nhan.js" defer></script>
         <script src="js/chapters/ch3-reveal.js" defer></script>
         <script src="js/chapters/ch4-slider.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
-        <script src="js/chapters/ch4-3d-viewer.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+        <script defer src="js/chapters/ch4-3d-viewer.js"></script>
         <script>
         (function() {
             var DIVIDER_BG = '#F8D077';
@@ -2049,28 +2051,32 @@
                 });
             }
 
-            function fixBaoTon() {
-                // Remove inline styles to let CSS handle styling
-            }
-
             document.addEventListener('DOMContentLoaded', function() {
                 fixDividers();
                 fixQuote();
-                fixBaoTon();
-                setTimeout(fixDividers, 500);
-                setTimeout(fixDividers, 1000);
                 setTimeout(fixDividers, 2000);
 
+                var pending = false;
                 var observer = new MutationObserver(function() {
-                    fixDividers();
-                    fixQuote();
-                    fixBaoTon();
+                    if (pending) return;
+                    pending = true;
+                    requestAnimationFrame(function() {
+                        fixDividers();
+                        fixQuote();
+                        pending = false;
+                    });
                 });
-                observer.observe(document.body, {
-                    childList: true,
-                    subtree: true,
-                    attributes: true,
-                    attributeFilter: ['style', 'class']
+
+                var targets = document.querySelectorAll(
+                    '[id^="section-bpt-ch2"], [id^="section-bpt-ch3"], [id^="section-bpt-ch4"], [id^="section-bpt-ch5"]'
+                );
+                targets.forEach(function(el) {
+                    observer.observe(el, {
+                        childList: true,
+                        subtree: true,
+                        attributes: true,
+                        attributeFilter: ['style', 'class']
+                    });
                 });
             });
         })();

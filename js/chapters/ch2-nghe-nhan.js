@@ -69,6 +69,22 @@ function ch2NhnInit() {
   if (ngheNhan) {
     const revealTopEl = ngheNhan.querySelector('.bpt-nghe-nhan__reveal-top');
     if (revealTopEl) {
+      let active = true;
+
+      // IO guard: only run cross-fade when section is on-screen
+      if (typeof IntersectionObserver !== "undefined") {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              active = e.isIntersecting;
+              if (active) updateRevealCrossFade({ viewportH: window.innerHeight });
+            });
+          },
+          { rootMargin: "20% 0px" }
+        );
+        obs.observe(ngheNhan);
+      }
+
       function updateRevealCrossFade(frame) {
         const rect = ngheNhan.getBoundingClientRect();
         const scrolled = -rect.top;
@@ -83,20 +99,18 @@ function ch2NhnInit() {
         window.BPT.ScrollEngine.register({
           id: 'ch2-crossfade',
           priority: window.BPT.ScrollEngine.PRIORITY.NORMAL,
-          update: updateRevealCrossFade,
+          update: (frame) => active ? updateRevealCrossFade(frame) : true,
         });
       } else {
         let ticking = false;
         window.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(() => {
-              updateRevealCrossFade({ viewportH: window.innerHeight });
-              ticking = false;
-            });
-            ticking = true;
-          }
+          if (!active || ticking) return;
+          requestAnimationFrame(() => {
+            updateRevealCrossFade({ viewportH: window.innerHeight });
+            ticking = false;
+          });
+          ticking = true;
         }, { passive: true });
-        updateRevealCrossFade({ viewportH: window.innerHeight });
       }
     }
   }

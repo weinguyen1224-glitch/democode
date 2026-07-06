@@ -13,6 +13,21 @@
   if (!visual) return;
 
   let ticking = false;
+  let active = true;
+
+  // IO guard: skip scroll work when section is off-screen
+  if (typeof IntersectionObserver !== "undefined") {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          active = e.isIntersecting;
+          if (active) updateZoom();
+        });
+      },
+      { rootMargin: "20% 0px" }
+    );
+    obs.observe(zoomScene);
+  }
 
   // Ease-out cubic for smooth zoom feel
   function easeOutCubicZoom(t) {
@@ -59,8 +74,8 @@
     }
   }
 
-  addEventListener("scroll", requestZoomUpdate, { passive: true });
-  addEventListener("resize", requestZoomUpdate, { passive: true });
+  addEventListener("scroll", () => { if (active) requestZoomUpdate(); }, { passive: true });
+  addEventListener("resize", () => { if (active) requestZoomUpdate(); }, { passive: true });
 
   // Initial state
   requestZoomUpdate();

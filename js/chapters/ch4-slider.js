@@ -190,6 +190,21 @@
     var waypointVỏ = 0.65;
     var currentNode = null; // null | 'banh' | 'vo'
     var rafPending = false;
+    var active = true;
+
+    // IO guard: skip scroll work when section is off-screen
+    if (typeof IntersectionObserver !== "undefined") {
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            active = e.isIntersecting;
+            if (active) onScroll();
+          });
+        },
+        { rootMargin: "20% 0px" }
+      );
+      obs.observe(section);
+    }
 
     function applyAnimation(el, animClass) {
       if (!el) return;
@@ -247,7 +262,7 @@
     }
 
     function onScroll() {
-      if (rafPending) return;
+      if (rafPending || !active) return;
       rafPending = true;
       requestAnimationFrame(function () {
         rafPending = false;
@@ -311,8 +326,8 @@
       });
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+    window.addEventListener("scroll", function () { if (active) onScroll(); }, { passive: true });
+    window.addEventListener("resize", function () { if (active) onScroll(); }, { passive: true });
     onScroll();
   }
 

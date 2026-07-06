@@ -9,6 +9,18 @@ function ch2WipeInit() {
     /* ── Wipe Sections ─────────────────────────────────────── */
     var wipes = document.querySelectorAll('[data-ch2-wipe]');
 
+    var wipeActive = true;
+
+    // IO guard: skip scroll work when no wipe section is visible
+    if (wipes.length && typeof IntersectionObserver !== "undefined") {
+        var wipeObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                wipeActive = e.isIntersecting;
+            });
+        }, { rootMargin: "20% 0px" });
+        wipes.forEach(function (s) { wipeObs.observe(s); });
+    }
+
     function updateWipe(section) {
         var topLayer = section.querySelector('.ch2-wipe__top-layer');
         if (!topLayer) return;
@@ -27,18 +39,17 @@ function ch2WipeInit() {
 
     var wipeTicking = false;
     window.addEventListener('scroll', function () {
-        if (!wipeTicking) {
-            requestAnimationFrame(function () {
-                wipes.forEach(function (section) {
-                    var rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        updateWipe(section);
-                    }
-                });
-                wipeTicking = false;
+        if (!wipeActive || wipeTicking) return;
+        requestAnimationFrame(function () {
+            wipes.forEach(function (section) {
+                var rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    updateWipe(section);
+                }
             });
-            wipeTicking = true;
-        }
+            wipeTicking = false;
+        });
+        wipeTicking = true;
     }, { passive: true });
 
     // Initial paint

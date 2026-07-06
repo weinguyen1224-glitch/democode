@@ -31,6 +31,18 @@
     /* ── Ch3 Wipe Effect (scroll-triggered) ──────────── */
     var ch3Wipes = document.querySelectorAll("[data-ch3-wipe]");
     if (ch3Wipes.length) {
+        var ch3WipeActive = true;
+
+        // IO guard: track if any ch3Wipe section is visible
+        if (typeof IntersectionObserver !== "undefined") {
+            var ch3WipeObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    ch3WipeActive = e.isIntersecting;
+                });
+            }, { rootMargin: "20% 0px" });
+            ch3Wipes.forEach(function (s) { ch3WipeObs.observe(s); });
+        }
+
         function updateCh3Wipe(section) {
             var topLayer = section.querySelector(".ch3-wipe__top-layer");
             if (!topLayer) return;
@@ -52,21 +64,20 @@
         window.addEventListener(
             "scroll",
             function () {
-                if (!ch3WipeTicking) {
-                    requestAnimationFrame(function () {
-                        ch3Wipes.forEach(function (section) {
-                            var rect = section.getBoundingClientRect();
-                            if (
-                                rect.top < window.innerHeight &&
-                                rect.bottom > 0
-                            ) {
-                                updateCh3Wipe(section);
-                            }
-                        });
-                        ch3WipeTicking = false;
+                if (!ch3WipeActive || ch3WipeTicking) return;
+                requestAnimationFrame(function () {
+                    ch3Wipes.forEach(function (section) {
+                        var rect = section.getBoundingClientRect();
+                        if (
+                            rect.top < window.innerHeight &&
+                            rect.bottom > 0
+                        ) {
+                            updateCh3Wipe(section);
+                        }
                     });
-                    ch3WipeTicking = true;
-                }
+                    ch3WipeTicking = false;
+                });
+                ch3WipeTicking = true;
             },
             { passive: true },
         );
@@ -80,6 +91,18 @@
     }
 
     if (!wipeSections.length) return;
+
+    var wipeActive = true;
+
+    // IO guard: track if any wipe section is visible
+    if (typeof IntersectionObserver !== "undefined") {
+        var wipeObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                wipeActive = e.isIntersecting;
+            });
+        }, { rootMargin: "20% 0px" });
+        wipeSections.forEach(function (s) { wipeObs.observe(s); });
+    }
 
     function updateWipe(section) {
         var revealImg = section.querySelector(
@@ -133,21 +156,20 @@
     window.addEventListener(
         "scroll",
         function () {
-            if (!ticking) {
-                requestAnimationFrame(function () {
-                    wipeSections.forEach(function (section) {
-                        var rect = section.getBoundingClientRect();
-                        if (
-                            rect.top < window.innerHeight &&
-                            rect.bottom > 0
-                        ) {
-                            updateWipe(section);
-                        }
-                    });
-                    ticking = false;
+            if (!wipeActive || ticking) return;
+            requestAnimationFrame(function () {
+                wipeSections.forEach(function (section) {
+                    var rect = section.getBoundingClientRect();
+                    if (
+                        rect.top < window.innerHeight &&
+                        rect.bottom > 0
+                    ) {
+                        updateWipe(section);
+                    }
                 });
-                ticking = true;
-            }
+                ticking = false;
+            });
+            ticking = true;
         },
         { passive: true },
     );
@@ -163,6 +185,18 @@
 /* ── Horizontal Swipe Effect ──────────────────────── */
 var hSwipeFigures = document.querySelectorAll("[data-hswipe]");
 if (hSwipeFigures.length) {
+    var hSwipeActive = true;
+
+    // IO guard: track if any swipe figure is visible
+    if (typeof IntersectionObserver !== "undefined") {
+        var hSwipeObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                hSwipeActive = e.isIntersecting;
+            });
+        }, { rootMargin: "20% 0px" });
+        hSwipeFigures.forEach(function (s) { hSwipeObs.observe(s); });
+    }
+
     function updateHSwipe(fig) {
         var revealImg = fig.querySelector(
             ".ch5-prose__swipe-img--reveal",
@@ -218,21 +252,20 @@ if (hSwipeFigures.length) {
     window.addEventListener(
         "scroll",
         function () {
-            if (!hSwipeTicking) {
-                requestAnimationFrame(function () {
-                    hSwipeFigures.forEach(function (fig) {
-                        var rect = fig.getBoundingClientRect();
-                        if (
-                            rect.top < window.innerHeight &&
-                            rect.bottom > 0
-                        ) {
-                            updateHSwipe(fig);
-                        }
-                    });
-                    hSwipeTicking = false;
+            if (!hSwipeActive || hSwipeTicking) return;
+            requestAnimationFrame(function () {
+                hSwipeFigures.forEach(function (fig) {
+                    var rect = fig.getBoundingClientRect();
+                    if (
+                        rect.top < window.innerHeight &&
+                        rect.bottom > 0
+                    ) {
+                        updateHSwipe(fig);
+                    }
                 });
-                hSwipeTicking = true;
-            }
+                hSwipeTicking = false;
+            });
+            hSwipeTicking = true;
         },
         { passive: true },
     );
